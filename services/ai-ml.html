@@ -4,91 +4,755 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI & ML Solutions - QantumIQ</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #00b9f2;
+            --accent: #7b68ee;
+            --dark: #1a1a2e;
+            --light: #f5f7fb;
+            --gray: #747474;
+            --success: #28a745;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 1rem 0;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Service Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .feature-icon svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* Process Section */
+        .process {
+            background-color: var(--light);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 4rem;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            height: 4px;
+            background: var(--gradient);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-title {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Case Studies */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .case-study-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .case-study-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-study-card:hover .case-study-image img {
+            transform: scale(1.1);
+        }
+        
+        .case-study-content {
+            padding: 1.5rem;
+        }
+        
+        .case-study-industry {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        
+        .case-study-results {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light);
+        }
+        
+        .result-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-icon {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+        
+        .cta .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Related Services */
+        .related-services {
+            background-color: var(--light);
+        }
+        
+        .related-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .related-service-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .related-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            min-width: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .step {
+                margin-bottom: 3rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 0.5rem 2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .dropdown-content.active {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header & Navigation -->
     <header>
-        <!-- Navigation from template -->
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+                
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="../services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="ai-ml.html">AI & ML Solutions</a>
+                            <a href="quantum-computing.html">Quantum Computing</a>
+                            <a href="digital-transformation.html">Digital Transformation</a>
+                            <a href="c-suite-advisory.html">C-Suite Advisory</a>
+                            <a href="business-process.html">Business Process Optimization</a>
+                            <a href="information-insights.html">Information Insights</a>
+                            <a href="executive-staffing.html">Executive Staffing</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="../industries.html">Industries</a>
+                        <div class="dropdown-content">
+                            <a href="../industries/financial-services.html">Financial Services</a>
+                            <a href="../industries/technology.html">Technology</a>
+                            <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+                            <a href="../industries/healthcare.html">Healthcare</a>
+                            <a href="../industries/energy.html">Energy</a>
+                            <a href="../industries/government.html">Government</a>
+                            <a href="../industries/sustainability.html">Sustainability</a>
+                        </div>
+                    </li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="../insights.html">Insights</a>
+                        <div class="dropdown-content">
+                            <a href="../insights/blog.html">Blog</a>
+                            <a href="../insights/white-papers.html">White Papers</a>
+                            <a href="../insights/reports.html">Reports</a>
+                            <a href="../insights/webinars-events.html">Webinars & Events</a>
+                            <a href="../insights/podcasts.html">Podcasts</a>
+                        </div>
+                    </li>
+                    <li><a href="../careers.html">Careers</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span>&#9776;</span>
+                </div>
+            </nav>
+        </div>
     </header>
 
+    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
             <div class="page-header-content">
                 <h1>AI & ML Solutions</h1>
-                <p>Transforming businesses through intelligent applications of artificial intelligence</p>
+                <p>Transforming businesses through the intelligent application of artificial intelligence and machine learning technologies.</p>
             </div>
         </div>
     </section>
 
+    <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
             <ul class="breadcrumbs-list">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="index.html">Services</a></li>
+                <li><a href="../services.html">Services</a></li>
                 <li><a href="ai-ml.html">AI & ML Solutions</a></li>
             </ul>
         </div>
     </div>
 
+    <!-- Overview Section -->
     <section class="section">
         <div class="container">
-            <div class="about-snapshot">
-                <div class="about-content">
-                    <h2>AI & Machine Learning Expertise</h2>
-                    <p>Our AI solutions help businesses automate processes, gain insights from data, and create intelligent products and services.</p>
-                    
-                    <h3>Our AI & ML Capabilities</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <svg><!-- ML icon --></svg>
-                            </div>
-                            <h4>Machine Learning Implementation</h4>
-                            <p>Custom ML models tailored to your business needs and data infrastructure.</p>
-                        </div>
-                        <!-- Other features -->
-                    </div>
-                    
-                    <a href="../contact.html" class="btn btn-primary">Get Started with AI</a>
-                </div>
-                
-                <div class="about-image">
-                    <img src="../images/ai-team.jpg" alt="AI Team">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="section" style="background-color: var(--light);">
-        <div class="container">
-            <h2 class="section-title">AI Success Stories</h2>
-            <div class="case-studies-grid">
-                <div class="case-study-card">
-                    <div class="case-study-image">
-                        <img src="../images/fintech-ai.jpg" alt="Fintech AI">
-                    </div>
-                    <div class="case-study-content">
-                        <span class="case-study-industry">Financial Services</span>
-                        <h3>Fraud Detection System</h3>
-                        <p>Reduced false positives by 40% while increasing fraud detection accuracy.</p>
-                        <div class="case-study-results">
-                            <div class="result-item">
-                                <span class="result-icon">✓</span>
-                                <span>65% faster detection</span>
-                            </div>
-                            <!-- More results -->
-                        </div>
-                    </div>
-                </div>
-                <!-- More case studies -->
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <!-- Footer from template -->
-    </footer>
-    <script src="../js/scripts.js"></script>
-</body>
-</html>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2>Harness the Power of Artificial Intelligence</h2>
+                    <p>At QantumIQ, we help organizations across industries unlock new possibilities through the strategic implementation of artificial intelligence and machine learning solutions. Our approach combines deep technical expertise with business acumen to deliver AI systems that create measurable value and competitive advantage.</p>
