@@ -1,0 +1,80 @@
+/*! QantumIQ Main Stylesheet - Copyright 2025 QantumIQ Consulting */
+
+:root {
+    --primary: #2e3192;
+    --primary-dark: #1a1b5d;
+    --secondary: #00b9f2;
+    --accent: #7b68ee;
+    --dark: #1a1a2e;
+    --light: #f5f7fb;
+    --gray: #747474;
+    --success: #28a745;
+    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+/* Layout Components */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    padding: 5rem 0;
+}
+
+/* Header & Navigation */
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Add all other styles from previous templates */
+/* [Previous CSS content would be consolidated here] */
+
+/* New Components */
+.subpage-hero {
+    padding: 12rem 0 6rem;
+    background: var(--gradient);
+    color: white;
+    position: relative;
+}
+
+.service-detail-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .service-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
