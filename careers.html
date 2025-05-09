@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers at QantumIQ - Join Our Team of Innovators</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #00b9f2;
+            --accent: #7b68ee;
+            --dark: #1a1a2e;
+            --light: #f5f7fb;
+            --gray: #747474;
+            --success: #28a745;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 1rem 0;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page-header h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+                 /* Breadcrumbs */
+        .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        /* Careers Specific Styles */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .culture-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .culture-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .job-list {
+            margin-top: 2rem;
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .job-title {
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-location {
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-type {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        
+        .job-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .job-tag {
+            background: rgba(46, 49, 146, 0.1);
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+        
+        .video-testimonial {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 4rem 0;
+        }
+        
+        .video-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        
+        .video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-play::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid var(--primary);
+            margin-left: 5px;
+        }
+        
+        .video-play:hover {
+            background: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .recruitment-process {
+            background-color: var(--light);
+            padding: 4rem 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 60px;
+            right: 60px;
+            height: 4px;
+            background: var(--light);
+            z-index: 1;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .faq-section {
+            padding: 5rem 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question.active::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            background: white;
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            min-width: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .video-testimonial {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 0.5rem 2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .dropdown-content.active {
+                display: block;
+            }
+            
+            .job-header {
+                flex-direction: column;
+            }
+            
+            .job-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+                
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="services/ai-ml.html">AI & ML Solutions</a>
+                            <a href="services/quantum-computing.html">Quantum Computing</a>
+                            <a href="services/digital-transformation.html">Digital Transformation</a>
+                            <a href="services/c-suite-advisory.html">C-Suite Advisory</a>
+                            <a href="services/business-process.html">Business Process Optimization</a>
+                            <a href="services/information-insights.html">Information Insights</a>
+                            <a href="services/executive-staffing.html">Executive Staffing</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="industries.html">Industries</a>
+                        <div class="dropdown-content">
+                            <a href="industries/financial-services.html">Financial Services</a>
+                            <a href="industries/technology.html">Technology</a>
+                            <a href="industries/pharmaceuticals.html">Pharmaceuticals</a>
+                            <a href="industries/healthcare.html">Healthcare</a>
+                            <a href="industries/energy.html">Energy</a>
+                            <a href="industries/government.html">Government</a>
+                            <a href="industries/sustainability.html">Sustainability</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="insights.html">Insights</a>
+                        <div class="dropdown-content">
+                            <a href="insights/blog.html">Blog</a>
+                            <a href="insights/white-papers.html">White Papers</a>
+                            <a href="insights/reports.html">Reports</a>
+                            <a href="insights/webinars-events.html">Webinars & Events</a>
+                            <a href="insights/podcasts.html">Podcasts</a>
+                        </div>
+                    </li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span>&#9776;</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Careers at QantumIQ</h1>
+                <p>Join our team of visionaries shaping the future of technology and business</p>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumbs -->
+    <section class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs-list">
+                <li><a href="index.html">Home</a></li>
+                <span class="separator">/</span>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- Recruitment Process Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Recruitment Process</h2>
+            <p class="text-center">At QantumIQ, we believe in a transparent and engaging recruitment process that allows us to find the best talent while providing candidates with a clear understanding of what to expect.</p>
+            
+            <div class="recruitment-process">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Application</h3>
+                        <p>Submit your application through our careers portal. Ensure your resume highlights your skills and experiences relevant to the role.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Screening</h3>
+                        <p>Our HR team will review your application and reach out if your profile matches our requirements.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Interview</h3>
+                        <p>If selected, you will be invited for an interview with our hiring team. This may include technical assessments and behavioral interviews.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Offer</h3>
+                        <p>If successful, we will extend an offer to join our team. We look forward to welcoming you aboard!</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </section>
+
+    <!-- Culture Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Culture</h2>
+            <p class="text-center">At QantumIQ, we foster an environment of innovation, collaboration, and continuous learning. Our culture is built on a foundation of excellence, diversity, and purpose-driven work.</p>
+            
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v6.5M12 13v9"/>
+                            <circle cx="12" cy="9.5" r="1"/>
+                            <path d="M8 2h8"/>
+                            <path d="M12 19c2.5 0 4.5-2 4.5-4.5S14.5 10 12 10s-4.5 2-4.5 4.5S9.5 19 12 19z"/>
+                        </svg>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We challenge the status quo and embrace new ideas, technologies, and approaches to solve complex problems.</p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>We believe diverse perspectives and cross-functional teamwork lead to the best solutions and outcomes.</p>
+                </div>
+                
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"/>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                        </svg>
+                    </div>
+                    <h3>Continuous Learning</h3>
+                    <p>We invest in our people, providing opportunities for growth and development in emerging technologies and leadership.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employee Video Testimonial -->
+    <section class="section" style="background-color: var(--light);">
+        <div class="container">
+            <div class="video-testimonial">
+                <div class="video-content">
+                    <h2>Life at QantumIQ</h2>
+                    <p>Hear from our Senior Quantum Computing Specialist, Dr. Eliza Chen, about her journey at QantumIQ and how she's making an impact in the quantum computing space.</p>
+                    <p>"Working at QantumIQ has given me the unique opportunity to bridge cutting-edge quantum theory with real-world business applications. The collaborative environment and access to resources have accelerated my professional growth beyond what I thought possible."</p>
+                    <p>— Dr. Eliza Chen, Senior Quantum Computing Specialist</p>
+                </div>
+                
+                <div class="video-container">
+                    <img src="/api/placeholder/600/340" alt="QantumIQ Employee Video Testimonial">
+                    <div class="video-play"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Benefits & Perks</h2>
+            <p class="text-center">We offer comprehensive benefits designed to support your wellbeing, professional growth, and work-life balance.</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.69 1.33 10.28 3.4 12.5L12 21l8.6-8.5c2.07-2.22 1.94-5.81-.18-7.92z"/>
+                        </svg>
+                    </div>
+                    <h3>Comprehensive Healthcare</h3>
+                    <p>Medical, dental, and vision plans for you and your dependents, including mental health support.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                            <line x1="1" y1="10" x2="23" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Competitive Compensation</h3>
+                    <p>Salary packages that recognize your expertise and contributions, plus performance bonuses.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3>Flexible Work Arrangements</h3>
+                    <p>Remote work options, flexible hours, and generous time-off policies to maintain work-life balance.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
+                            <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                            <path d="M12 2v2"/>
+                            <path d="M12 22v-2"/>
+                            <path d="M20 12h-2"/>
+                            <path d="M4 12h2"/>
+                        </svg>

@@ -254,24 +254,41 @@
             margin-bottom: 1.5rem;
         }
         
+         /* Breadcrumbs */
         .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
             display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            opacity: 0.9;
+            list-style: none;
+            flex-wrap: wrap;
         }
         
-        .breadcrumbs a {
-            color: rgba(255, 255, 255, 0.8);
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
         }
         
-        .breadcrumbs a:hover {
-            color: white;
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
         }
         
-        .breadcrumbs .separator {
-            color: rgba(255, 255, 255, 0.6);
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
         }
         
         /* About Sections */
@@ -747,14 +764,20 @@
         <div class="container">
             <div class="page-banner-content">
                 <h1>About QantumIQ</h1>
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a>
-                    <span class="separator">/</span>
-                    <span>About Us</span>
                 </div>
             </div>
+        </section>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs-list">
+                <li><a href="../index.html">Home</a></li>
+                <span class="separator">/</span>
+                <li><a href="../about.html">About Us</a></li>
+            </ul>
         </div>
-    </section>
+    </div>
 
     <!-- Our Story Section -->
     <section class="section">
