@@ -257,7 +257,43 @@
             margin-bottom: 2rem;
             opacity: 0.9;
         }
-
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
+        }
         /* Service Overview */
         .service-overview {
             display: grid;
