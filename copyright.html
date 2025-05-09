@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copyright | QantumIQ</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #00b9f2;
+            --accent: #7b68ee;
+            --dark: #1a1a2e;
+            --light: #f5f7fb;
+            --gray: #747474;
+            --success: #28a745;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 1rem 0;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/300');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .page-header h1 {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(46, 49, 146, 0.1);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            min-width: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 0.5rem 2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .dropdown-content.active {
+                display: block;
+            }
+            
+            .content-section, 
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+                
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="services/ai-ml.html">AI & ML Solutions</a>
+                            <a href="services/quantum-computing.html">Quantum Computing</a>
+                            <a href="services/digital-transformation.html">Digital Transformation</a>
+                            <a href="services/c-suite-advisory.html">C-Suite Advisory</a>
+                            <a href="services/business-process.html">Business Process Optimization</a>
+                            <a href="services/information-insights.html">Information Insights</a>
+                            <a href="services/executive-staffing.html">Executive Staffing</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="industries.html">Industries</a>
+                        <div class="dropdown-content">
+                            <a href="industries/financial-services.html">Financial Services</a>
+                            <a href="industries/technology.html">Technology</a>
+                            <a href="industries/pharmaceuticals.html">Pharmaceuticals</a>
+                            <a href="industries/healthcare.html">Healthcare</a>
+                            <a href="industries/energy.html">Energy</a>
+                            <a href="industries/government.html">Government</a>
+                            <a href="industries/sustainability.html">Sustainability</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="insights.html">Insights</a>
+                        <div class="dropdown-content">
+                            <a href="insights/blog.html">Blog</a>
+                            <a href="insights/white-papers.html">White Papers</a>
+                            <a href="insights/reports.html">Reports</a>
+                            <a href="insights/webinars-events.html">Webinars & Events</a>
+                            <a href="insights/podcasts.html">Podcasts</a>
+                        </div>
+                    </li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span>&#9776;</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Copyright</h1>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="content-section">
+                <h2>Copyright Notice</h2>
+                <p>© 2025 QantumIQ Consulting. All rights reserved worldwide.</p>
+                <p>All content on this website including text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software is the property of QantumIQ Consulting or its content suppliers and is protected by international copyright laws.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Intellectual Property Rights</h2>
+                <p>The entire contents of this website are subject to copyright protection. The content, organization, graphics, design, compilation, digital conversion, and other matters related to the website are protected under applicable copyrights, trademarks, and other proprietary rights.</p>
+                <p>The copying, redistribution, use, or publication by you of any such content or any part of the website is strictly prohibited without express written permission from QantumIQ Consulting. You do not acquire ownership rights to any content, document, or other materials viewed through the website.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Permitted Use</h2>
+                <p>You are permitted to view, download, and print content from this website for your own personal, non-commercial use, provided that you:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>Do not modify the content</li>
+                    <li>Do not remove any copyright or other proprietary notices</li>
+                    <li>Do not use the content in a manner that suggests an association with any of our products, services, or brands</li>
+                    <li>Do not download quantities of content to a database for any purpose</li>
+                    <li>Do not use the content in any way that is unlawful or harmful to any other person or entity</li>
+                </ul>
+            </div>
+
+            <div class="content-section">
+                <h2>Third-Party Content</h2>
+                <p>Certain content on this website may be owned by third parties and licensed to QantumIQ Consulting. This content is protected by copyright and other laws and may not be copied, reproduced, distributed, republished, downloaded, displayed, posted, or transmitted in any form without prior written permission from QantumIQ Consulting or the respective third-party copyright owner.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Trademarks</h2>
+                <p>QantumIQ, the QantumIQ logo, and all other QantumIQ-related trademarks, service marks, product names, and trade names of QantumIQ appearing on this website are trademarks or registered trademarks of QantumIQ Consulting. All other trademarks, service marks, product names and company names or logos appearing on this website are the property of their respective owners.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Copyright Infringement</h2>
+                <p>If you believe that any content on this website infringes upon your copyright, please contact our legal department with a notice containing the following information:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest</li>
+                    <li>A description of the copyrighted work that you claim has been infringed</li>
+                    <li>A description of where the material that you claim is infringing is located on the website</li>
+                    <li>Your address, telephone number, and email address</li>
+                    <li>A statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law</li>
+                    <li>A statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner's behalf</li>
+                </ul>
+                <p>Please send this notice to <a href="mailto:legal@qantumiq.com">legal@qantumiq.com</a></p>
+            </div>
+            
+            <div class="content-section">
+                <h2>Contact Us</h2>
+                <p>If you have any questions regarding this copyright notice or our intellectual property rights, please contact us using the form below or email us at <a href="mailto:info@qantumiq.com">info@qantumiq.com</a>.</p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Qantum<span>IQ</span></div>
+                    <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+                    <div class="social-links">
+                        <a href="#"><i>in</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>fb</i></a>
+                        <a href="#"><i>yt</i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services/ai-ml.html">AI & ML Solutions</a></li>
+                        <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
+                        <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
+                        <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
+                        <li><a href="services/business-process.html">Business Process Optimization</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="industries/financial-services.html">Financial Services</a></li>
+                        <li><a href="industries/technology.html">Technology</a></li>
+                        <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+                        <li><a href="industries/healthcare.html">Healthcare</a></li>
+                        <li><a href="industries/energy.html">Energy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i>📍</i> Global Headquarters: 123 Tech Plaza, San Francisco, CA 94105</p>
+                    <p><i>📞</i> +1 (800) 555-QNTM</p>
+                    <p><i>✉️</i> info@qantumiq.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.navbar')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+            
+            // For mobile dropdown toggles
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('a');
+                
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const content = this.nextElementSibling;
+                        content.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    
+                    // In a real implementation, you would send this data to a server
+                    // For this example, we'll just simulate a successful submission
+                    
+                    // Create a data object to collect form values
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        company: formData.get('company'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message'),
+                        to: 'info@qantumiq.com' // Email recipient
+                    };
+                    
+                    // Here you would typically make an AJAX request to a server-side endpoint
+                    // For demo purposes, just show an alert
+                    alert('Thank you for your message. We will get back to you shortly.');
+                    
+                    // Reset the form
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
