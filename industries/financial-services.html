@@ -918,4 +918,89 @@
                 </div>
             </div>
         </div>
-    
+        <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Technology Strategy?</h2>
+            <p>Partner with QantumIQ to leverage cutting-edge solutions that drive innovation, optimize operations, and create sustainable competitive advantages.</p>
+            <a href="../contact.html" class="btn">Schedule a Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Qantum<span>IQ</span></div>
+                    <p>Empowering organizations to thrive in the quantum age through innovative technology solutions and strategic advisory services.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="../services/ai-ml.html">AI & ML Solutions</a></li>
+                        <li><a href="../services/quantum-computing.html">Quantum Computing</a></li>
+                        <li><a href="../services/digital-transformation.html">Digital Transformation</a></li>
+                        <li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li>
+                        <li><a href="../services/business-process.html">Business Process Optimization</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="financial-services.html">Financial Services</a></li>
+                        <li><a href="technology.html">Technology</a></li>
+                        <li><a href="pharmaceuticals.html">Pharmaceuticals</a></li>
+                        <li><a href="healthcare.html">Healthcare</a></li>
+                        <li><a href="energy.html">Energy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../about.html">About Us</a></li>
+                        <li><a href="../insights/blog.html">Insights</a></li>
+                        <li><a href="../careers.html">Careers</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, San Francisco, CA 94105</p>
+                    <p><i class="fas fa-phone"></i> +1 (415) 555-0123</p>
+                    <p><i class="fas fa-envelope"></i> info@qantumiq.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // For mobile dropdown toggles
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    this.querySelector('.dropdown-content').classList.toggle('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
