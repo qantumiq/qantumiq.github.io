@@ -1,5 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- This is a contact page for QantumIQ Consulting, providing a form for users to reach out. -->
+<!-- The page includes a header, navigation, a contact form, and a footer. -->
+<!-- The design is responsive and includes a map section for location display. -->
+<!-- The page is styled using CSS variables for colors and layout, ensuring a consistent look and feel. -->
+<!-- The JavaScript handles the form submission and menu toggle functionality. -->
+<!--     <meta name="description" content="Contact QantumIQ for advanced consulting solutions in AI, ML, and Quantum Computing."> -->
+<!--     <meta name="keywords" content="Contact, QantumIQ, Consulting, AI, ML, Quantum Computing"> -->
+<!--     <meta name="author" content="QantumIQ"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->     
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"> -->
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - QantumIQ - Advanced Consulting for the Digital Age</title>
+    <!-- Add Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <style>
+        /* Keep all your existing styles */
+        /* Only the map section styles are modified/added here */
+        
+        /* Map Section */
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .map-office-info {
+            padding: 10px;
+            max-width: 200px;
+        }
+        
+        .map-office-info h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .map-controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 5px;
+        }
+        
+        .map-controls button {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .map-controls button:hover {
+            background: var(--light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .map-controls button.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* Custom marker styles */
+        .custom-marker {
+            text-align: center;
+        }
+        
+        .custom-marker-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #2e3192;
+            border: 2px solid #00b9f2;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            line-height: 32px;
+            text-align: center;
+        }
+        
+        .custom-marker-hq {
+            width: 42px;
+            height: 42px;
+            line-height: 38px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -735,15 +853,149 @@
     </section>
 
     <!-- Map Section -->
+    <!-- Replace the Map Section with this: -->
     <section class="section" style="padding-top: 0;">
         <div class="container">
+            <h2 class="section-title">Our Global Presence</h2>
             <div class="map-container">
-                <div class="map-placeholder">
-                    <p>Interactive Map Would Be Displayed Here</p>
+                <div id="map"></div>
+                <div class="map-controls">
+                    <button id="allOffices" class="active">All Offices</button>
+                    <button id="sfOffice">San Francisco</button>
+                    <button id="nyOffice">New York</button>
+                    <button id="londonOffice">London</button>
+                    <button id="singaporeOffice">Singapore</button>
+                    <button id="tokyoOffice">Tokyo</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Add Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Office locations data
+            const offices = [
+                {
+                    name: 'San Francisco (HQ)',
+                    position: [37.7897, -122.3977],
+                    address: '123 Tech Plaza, San Francisco, CA 94105, United States',
+                    phone: '+1 (415) 555-1234',
+                    isHQ: true
+                },
+                {
+                    name: 'New York',
+                    position: [40.7484, -73.9857],
+                    address: '350 Fifth Avenue, New York, NY 10118',
+                    phone: '+1 (212) 555-6789',
+                    isHQ: false
+                },
+                {
+                    name: 'London',
+                    position: [51.5055, -0.0235],
+                    address: 'One Canada Square, Canary Wharf, London E14 5AB',
+                    phone: '+44 20 7555 8901',
+                    isHQ: false
+                },
+                {
+                    name: 'Singapore',
+                    position: [1.2827, 103.8529],
+                    address: 'Marina Bay Financial Centre, Tower 3, Singapore 018982',
+                    phone: '+65 6555 2345',
+                    isHQ: false
+                },
+                {
+                    name: 'Tokyo',
+                    position: [35.6811, 139.7670],
+                    address: 'Marunouchi Building, 2-4-1 Marunouchi, Chiyoda-ku, Tokyo',
+                    phone: '+81 3 5555 6789',
+                    isHQ: false
+                }
+            ];
+
+            // Initialize map
+            const map = L.map('map').setView([25, 0], 2);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Create custom icon function
+            function createCustomIcon(isHQ) {
+                return L.divIcon({
+                    className: 'custom-marker',
+                    html: `<div class="custom-marker-icon ${isHQ ? 'custom-marker-hq' : ''}">${isHQ ? 'HQ' : ''}</div>`,
+                    iconSize: isHQ ? [42, 42] : [36, 36],
+                    iconAnchor: isHQ ? [21, 21] : [18, 18],
+                    popupAnchor: [0, -15]
+                });
+            }
+
+            // Add markers for each office
+            const markers = offices.map(office => {
+                const marker = L.marker(office.position, {
+                    icon: createCustomIcon(office.isHQ),
+                    title: office.name
+                }).addTo(map);
+
+                // Add popup for each marker
+                marker.bindPopup(`
+                    <div class="map-office-info">
+                        <h4>${office.name}${office.isHQ ? ' (Headquarters)' : ''}</h4>
+                        <p>${office.address}</p>
+                        <p>Phone: ${office.phone}</p>
+                    </div>
+                `);
+
+                return { marker, office };
+            });
+
+            // Set up the control buttons
+            document.getElementById('allOffices').addEventListener('click', () => {
+                setActiveButton('allOffices');
+                map.setView([25, 0], 2);
+                closeAllPopups();
+            });
+
+            // Create a bounds object for all markers
+            const bounds = L.latLngBounds(offices.map(office => office.position));
+            map.fitBounds(bounds);
+
+            // Add event listeners for each office button
+            offices.forEach((office, index) => {
+                const buttonId = office.name.toLowerCase().replace(' ', '').replace('(', '').replace(')', '') + 'Office';
+                const officeId = buttonId.replace('(hq)', ''); // Remove (HQ) if present
+                const button = document.getElementById(officeId);
+                
+                if (button) {
+                    button.addEventListener('click', () => {
+                        setActiveButton(officeId);
+                        map.setView(office.position, 13);
+                        closeAllPopups();
+                        markers[index].marker.openPopup();
+                    });
+                }
+            });
+
+            // Function to set active button
+            function setActiveButton(activeId) {
+                document.querySelectorAll('.map-controls button').forEach(button => {
+                    button.classList.remove('active');
+                });
+                document.getElementById(activeId).classList.add('active');
+            }
+
+            // Function to close all popups
+            function closeAllPopups() {
+                markers.forEach(({ marker }) => {
+                    marker.closePopup();
+                });
+            }
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
