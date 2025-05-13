@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Reports - QantumIQ</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #00b9f2;
+            --accent: #7b68ee;
+            --dark: #1a1a2e;
+            --light: #f5f7fb;
+            --gray: #747474;
+            --success: #28a745;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 1rem 0;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .page-banner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .page-banner h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Reports Grid */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .report-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .report-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .report-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .report-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .report-card:hover .report-image img {
+            transform: scale(1.1);
+        }
+        
+        .report-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .report-content {
+            padding: 2rem;
+        }
+        
+        .report-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .report-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .report-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Featured Report */
+        .featured-report {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+        }
+        
+        .featured-report-image {
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        .featured-report-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-report-content {
+            padding: 2rem 3rem 2rem 0;
+        }
+        
+        .featured-report-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .featured-report-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+        }
+        
+        .featured-report-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .featured-report-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Categories */
+        .categories {
+            background-color: white;
+            padding: 5rem 0;
+        }
+        
+        .categories-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            background: var(--light);
+            color: var(--dark);
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Search & Filter */
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+        
+        .search-form {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+        
+        .filter-select {
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+        
+        .pagination a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Subscription CTA */
+        .subscription-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .subscription-cta h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .subscription-cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .subscription-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .subscription-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 5px 0 0 5px;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .subscription-btn {
+            padding: 1rem 2rem;
+            border-radius: 0 5px 5px 0;
+            background: var(--dark);
+            color: white;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subscription-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            min-width: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .featured-report {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-report-image {
+                min-height: 300px;
+                order: -1;
+            }
+            
+            .featured-report-content {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 0.5rem 2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .dropdown-content.active {
+                display: block;
+            }
+            
+            .search-filter {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+            
+            .search-form {
+                max-width: none;
+            }
+            
+            .filter-select {
+                margin-left: 0;
+            }
+            
+            .subscription-form {
+                flex-direction: column;
+            }
+            
+            .subscription-input {
+                border-radius: 5px;
+                margin-bottom: 1rem;
+            }
+            
+            .subscription-btn {
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+                
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="../services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../services/ai-ml.html">AI & ML Solutions</a>
+                            <a href="../services/quantum-computing.html">Quantum Computing</a>
+                            <a href="../services/digital-transformation.html">Digital Transformation</a>
+                            <a href="../services/c-suite-advisory.html">C-Suite Advisory</a>
+                            <a href="../services/business-process.html">Business Process Optimization</a>
+                            <a href="../services/information-insights.html">Information Insights</a>
+                            <a href="../services/executive-staffing.html">Executive Staffing</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="../industries.html">Industries</a>
+                        <div class="dropdown-content">
+                            <a href="../industries/financial-services.html">Financial Services</a>
+                            <a href="../industries/technology.html">Technology</a>
+                            <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+                            <a href="../industries/healthcare.html">Healthcare</a>
+                            <a href="../industries/energy.html">Energy</a>
+                            <a href="../industries/government.html">Government</a>
+                            <a href="../industries/sustainability.html">Sustainability</a>
+                        </div>
+                    </li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="../insights.html">Insights</a>
+                        <div class="dropdown-content">
+                            <a href="blog.html">Blog</a>
+                            <a href="white-papers.html">White Papers</a>
+                            <a href="reports.html">Reports</a>
+                            <a href="webinars-events.html">Webinars & Events</a>
+                            <a href="podcasts.html">Podcasts</a>
+                        </div>
+                    </li>
+                    <li><a href="../careers.html">Careers</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span>&#9776;</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <div class="page-banner-content">
+                <h1>Industry Reports</h1>
+                <p>In-depth analyses and forecasts on emerging technologies and industry trends</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../insights.html">Insights</a></li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Featured Report -->
+    <section class="section">
+        <div class="container">
+            <div class="featured-report">
+                <div class="featured-report-content">
+                    <div class="featured-report-badge">Featured Report</div>
+                    <h2>Quantum Computing Market Forecast 2025-2030</h2>
+                    <div class="featured-report-meta">
+                        <span>Published: May 5, 2025</span>
+                        <span>By Dr. Eleanor Zhang</span>
+                    </div>
+                    <p>Our comprehensive analysis of the quantum computing industry reveals accelerating enterprise adoption, breakthrough applications in pharmaceuticals and finance, and projections for the next five years of quantum supremacy.</p>
+                    <a href="reports/quantum-computing-forecast.html" class="btn btn-primary">Download Report</a>
+                </div>
+                <div class="featured-report-image">
+                    <img src="/api/placeholder/600/400" alt="Quantum Computing Market Forecast">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Report Categories</h2>
+            <div class="categories-list">
+                <a href="#" class="category-btn active">All Reports</a>
+                <a href="#" class="category-btn">Quantum Computing</a>
+                <a href="#" class="category-btn">Artificial Intelligence</a>
+                <a href="#" class="category-btn">Digital Transformation</a>
+                <a href="#" class="category-btn">Finance & Banking</a>
+                <a href="#" class="category-btn">Healthcare</a>
+                <a href="#" class="category-btn">Energy & Sustainability</a>
+                <a href="#" class="category-btn">Technology Trends</a>
+            </div>
+            
+            <!-- Search & Filter -->
+            <div class="search-filter">
+                <div class="search-form">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" placeholder="Search reports...">
+                </div>
+                <div>
+                    <select class="filter-select">
+                        <option>Most Recent</option>
+                        <option>Most Popular</option>
+                        <option>Alphabetical (A-Z)</option>
+                        <option>Alphabetical (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Grid -->
+    <section class="section">
+        <div class="container">
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="AI in Financial Services">
+                        <div class="report-badge">NEW</div>
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>April 28, 2025</span>
+                            <span>Financial Services</span>
+                        </div>
+                        <h3>AI Disruption in Financial Services</h3>
+                        <p>How machine learning and AI are reshaping investment strategies, risk assessment, and customer experience in the banking sector.</p>
+                        <a href="reports/ai-financial-services.html" class="btn btn-outline">View Report</a>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="Healthcare Transformation">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>March 15, 2025</span>
+                            <span>Healthcare</span>
+                        </div>
+                        <h3>Digital Transformation in Healthcare</h3>
+                        <p>A comprehensive analysis of digital adoption in healthcare systems worldwide and the impact on patient outcomes and cost efficiency.</p>
+                        <a href="reports/healthcare-transformation.html" class="btn btn-outline">View Report</a>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="Sustainability Technology">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>February 7, 2025</span>
+                            <span>Sustainability</span>
+                        </div>
+                        <h3>Sustainability Tech Investment Outlook</h3>
+                        <p>Investment trends in climate tech, renewable energy solutions, and sustainable infrastructure with 5-year projections.</p>
+                        <a href="reports/sustainability-tech-outlook.html" class="btn btn-outline">View Report</a>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="Manufacturing AI">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>January 22, 2025</span>
+                            <span>Manufacturing</span>
+                        </div>
+                        <h3>Industry 4.0: Smart Manufacturing</h3>
+                        <p>How IoT, AI, and autonomous systems are creating the factories of the future and transforming supply chains globally.</p>
+                        <a href="reports/industry-4-manufacturing.html" class="btn btn-outline">View Report</a>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="Cybersecurity Landscape">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>December 10, 2024</span>
+                            <span>Security</span>
+                        </div>
+                        <h3>Enterprise Cybersecurity Landscape</h3>
+                        <p>Analysis of emerging threats, quantum-resistant cryptography, and AI-powered security solutions for enterprise protection.</p>
+                        <a href="reports/cybersecurity-landscape.html" class="btn btn-outline">View Report</a>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <div class="report-image">
+                        <img src="/api/placeholder/600/400" alt="Digital Banking">
+                    </div>
+                    <div class="report-content">
+                        <div class="report-meta">
+                            <span>November 19, 2024</span>
+                            <span>Financial Services</span>
+                        </div>
+                        <h3>Future of Digital Banking</h3>
+                        <p>Exploring the rise of neobanks, blockchain integration, and personalized financial services in the evolving banking
