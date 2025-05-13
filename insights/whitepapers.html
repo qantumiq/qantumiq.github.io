@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Papers - QantumIQ</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e3192;
+            --primary-dark: #1a1b5d;
+            --secondary: #00b9f2;
+            --accent: #7b68ee;
+            --dark: #1a1a2e;
+            --light: #f5f7fb;
+            --gray: #747474;
+            --success: #28a745;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            z-index: 1;
+            padding: 1rem 0;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Page Banner */
+        .page-banner {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+        }
+        
+        .page-banner-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .page-banner h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .page-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs-list {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumbs-list li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumbs-list li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a {
+            color: var(--gray);
+        }
+        
+        .breadcrumbs-list a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumbs-list li:last-child a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Whitepaper Cards */
+        .whitepaper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .whitepaper-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .whitepaper-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .whitepaper-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .whitepaper-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .whitepaper-card:hover .whitepaper-image img {
+            transform: scale(1.1);
+        }
+        
+        .whitepaper-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .whitepaper-content h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .whitepaper-meta {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .meta-item i {
+            color: var(--primary);
+        }
+        
+        .whitepaper-description {
+            margin-bottom: 2rem;
+        }
+        
+        .whitepaper-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tag {
+            background-color: rgba(46, 49, 146, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .whitepaper-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background-color: white;
+        }
+        
+        .featured-whitepaper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .featured-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background-color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+        
+        .filter-option {
+            padding: 0.5rem 1rem;
+            background-color: var(--light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .filter-option:hover, .filter-option.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-left: auto;
+            max-width: 300px;
+            width: 100%;
+        }
+        
+        .search-bar input {
+            flex-grow: 1;
+            padding: 0.7rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 0.9rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            background-color: var(--light);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .subscribe-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .subscribe-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto 0;
+        }
+        
+        .subscribe-form input {
+            flex-grow: 1;
+            padding: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: white;
+            color: var(--dark);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+        
+        .cta .btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .footer-contact i {
+            min-width: 20px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .featured-whitepaper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                padding: 0.5rem 2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                padding: 0.5rem 1rem;
+            }
+            
+            .dropdown-content.active {
+                display: block;
+            }
+            
+            .subscribe-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+                
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="../services.html">Services</a>
+                        <div class="dropdown-content">
+                            <a href="../services/ai-ml.html">AI & ML Solutions</a>
+                            <a href="../services/quantum-computing.html">Quantum Computing</a>
+                            <a href="../services/digital-transformation.html">Digital Transformation</a>
+                            <a href="../services/c-suite-advisory.html">C-Suite Advisory</a>
+                            <a href="../services/business-process.html">Business Process Optimization</a>
+                            <a href="../services/information-insights.html">Information Insights</a>
+                            <a href="../services/executive-staffing.html">Executive Staffing</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="../industries.html">Industries</a>
+                        <div class="dropdown-content">
+                            <a href="../industries/financial-services.html">Financial Services</a>
+                            <a href="../industries/technology.html">Technology</a>
+                            <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+                            <a href="../industries/healthcare.html">Healthcare</a>
+                            <a href="../industries/energy.html">Energy</a>
+                            <a href="../industries/government.html">Government</a>
+                            <a href="../industries/sustainability.html">Sustainability</a>
+                        </div>
+                    </li>
+                    <li><a href="../about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="../insights.html">Insights</a>
+                        <div class="dropdown-content">
+                            <a href="../insights/blog.html">Blog</a>
+                            <a href="../insights/white-papers.html">White Papers</a>
+                            <a href="../insights/reports.html">Reports</a>
+                            <a href="../insights/webinars-events.html">Webinars & Events</a>
+                            <a href="../insights/podcasts.html">Podcasts</a>
+                        </div>
+                    </li>
+                    <li><a href="../careers.html">Careers</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span>&#9776;</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <div class="page-banner-content">
+                <h1>White Papers</h1>
+                <p>In-depth research, analysis, and insights on emerging technologies and strategic business transformations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul class="breadcrumbs-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../insights.html">Insights</a></li>
+                <li><a href="white-papers.html">White Papers</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Featured Whitepaper -->
+    <section class="section featured-section">
+        <div class="container">
+            <h2 class="section-title">Featured White Paper</h2>
+            <div class="featured-whitepaper">
+                <div class="featured-content">
+                    <div class="whitepaper-meta">
+                        <span class="meta-item"><i>📅</i> May 2, 2025</span>
+                        <span class="meta-item"><i>👤</i> Dr. Elena Markova</span>
+                    </div>
+                    <h3>The Quantum Edge: How Quantum Computing Will Transform Business by 2030</h3>
+                    <div class="whitepaper-tags">
+                        <span class="tag">Quantum Computing</span>
+                        <span class="tag">Future of Business</span>
+                        <span class="tag">Technology</span>
+                    </div>
+                    <p>This comprehensive white paper explores the practical applications and competitive advantages that quantum computing will bring to enterprises across industries in the next five years, with actionable strategies for preparation.</p>
+                    <p>Based on extensive research and interviews with quantum pioneers, this paper provides a roadmap for organizations to prepare for the quantum revolution, including talent strategies, infrastructure considerations, and priority use cases.</p>
+                    <div class="whitepaper-actions">
+                        <a href="#" class="btn btn-primary">Download White Paper</a>
+                        <a href="#" class="btn btn-outline">View Executive Summary</a>
+                    </div>
+                </div>
+                <div class="featured-image">
+                    <img src="/api/placeholder/600/400" alt="Quantum Computing White Paper">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-label">Filter by:</div>
+                <div class="filter-options">
+                    <div class="filter-option active">All</div>
+                    <div class="filter-option">AI & ML</div>
+                    <div class="filter-option">Quantum Computing</div>
+                    <div class="filter-option">Digital Transformation</div>
+                    <div class="filter-option">Business Strategy</div>
+                    <div class="filter-option">Industry Insights</div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search white papers...">
+                    <button>🔍</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- White Papers Grid -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Latest White Papers</h2>
+            <div class="whitepaper-grid">
+                <!-- White Paper 1 -->
+                <div class="whitepaper-card">
+                    <div class="whitepaper-image">
+                        <img src="/api/placeholder/600/400" alt="AI Ethics White Paper">
+                    </div>
+                    <div class="whitepaper-content">
+                        <div class="whitepaper-meta">
+                            <span class="meta-item"><i>📅</i> Apr 18, 2025</span>
+                        </div>
+                        <h3>Responsible AI: Building Ethical Frameworks for Enterprise AI Adoption</h3>
+                        <div class="whitepaper-tags">
+                            <span class="tag">AI Ethics</span>
+                            <span class="tag">Enterprise AI</span>
+                            <span class="tag">Governance</span>
+                        </div>
+                        <p class="whitepaper-description">A comprehensive guide to developing and implementing ethical AI frameworks that balance innovation with responsibility across organizations.</p>
+                        <div class="whitepaper-actions">
+                            <a href="#" class="btn btn-outline">Download (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- White Paper 2 -->
+                <div class="whitepaper-card">
+                    <div class="whitepaper-image">
+                        <img src="/api/placeholder/600/400" alt="Quantum Financial Services">
+                    </div>
+                    <div class="whitepaper-content">
+                        <div class="whitepaper-meta">
+                            <span class="meta-item"><i>📅</i> Mar 27, 2025</span>
+                        </div>
+                        <h3>Quantum Advantage in Financial Services: Risk Modeling & Portfolio Optimization</h3>
+                        <div class="whitepaper-tags">
+                            <span class="tag">Quantum Computing</span>
+                            <span class="tag">Financial Services</span>
+                            <span class="tag">Risk Management</span>
+                        </div>
+                        <p class="whitepaper-description">Explores how quantum algorithms are revolutionizing quantitative finance through enhanced modeling capabilities and optimization techniques.</p>
+                        <div class="whitepaper-actions">
+                            <a href="#" class="btn btn-outline">Download (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- White Paper 3 -->
+                <div class="whitepaper-card">
+                    <div class="whitepaper-image">
+                        <img src="/api/placeholder/600/400" alt="Supply Chain Resilience">
+                    </div>
+                    <div class="whitepaper-content">
+                        <div class="whitepaper-meta">
+                            <span class="meta-item"><i>📅</i> Mar 15, 2025</span>
+                        </div>
+                        <h3>Supply Chain Resilience Through Digital Twins & Predictive Analytics</h3>
+                        <div class="whitepaper-tags">
+                            <span class="tag">Supply Chain</span>
+                            <span class="tag">Digital Twins</span>
+                            <span class="tag">Predictive Analytics</span>
+                        </div>
+                        <p class="whitepaper-description">How leading organizations are creating resilient supply chains using advanced simulation and AI-powered predictive capabilities.</p>
+                        <div class="whitepaper-actions">
+                            <a href="#" class="btn btn-outline">Download (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- White Paper 4 -->
+                <div class="whitepaper-card">
+                    <div class="whitepaper-image">
+                        <img src="/api/placeholder/600/400" alt="Healthcare AI">
+                    </div>
+                    <div class="whitepaper-content">
+                        <div class="whitepaper-meta">
+                            <span class="meta-item"><i>📅</i> Feb 28, 2025</span>
+                        </div>
+                        <h3>AI in Healthcare: Transforming Patient Outcomes & Operational Efficiency</h3>
+                        <div class="whitepaper-tags">
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">Patient Care</span>
+                        </div>
+                        <p class="whitepaper-description">A detailed analysis of successful AI implementations in healthcare settings with measurable impacts on patient outcomes and cost reduction.</p>
+                        <div class="whitepaper-actions">
+                            <a href="#" class="btn btn-outline">Download (PDF)</a>
+                        
