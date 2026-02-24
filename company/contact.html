@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact Us — QantumIQ</title>
+<meta name="description" content="Contact QantumIQ — schedule a consultation, reach our global offices, or send us a message."/>
+<link rel="stylesheet" href="../assets/css/main.css"/>
+</head>
+<body>
+<canvas id="qiq-canvas"></canvas>
+<div class="page-hero" data-hero-theme="contact">
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow hero-animate-1">Company / Contact</div>
+      <h1 class="hero-animate-2">Let's start a <span class="italic">conversation</span></h1>
+      <p class="hero-animate-3">Whether you're ready to transform your organization or just exploring possibilities — our experts are here to help. Schedule a consultation or reach out to any of our 12 global offices.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT GRID -->
+<section class="section-pad">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;" class="reveal">
+      <!-- Info -->
+      <div>
+        <div class="eyebrow">Get In Touch</div>
+        <h2 class="section-title">We'd love to <span class="it">hear from you</span></h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;">Our team of consultants is ready to discuss your challenges, explore opportunities, and design a custom engagement that delivers measurable outcomes.</p>
+
+        <div style="display:flex;flex-direction:column;gap:1.25rem;margin-bottom:2.5rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border:1px solid var(--border);">
+            <span style="color:var(--cyan);font-size:1.2rem;flex-shrink:0;">📍</span>
+            <div>
+              <div style="font-family:var(--ff-display);font-weight:700;font-size:.88rem;margin-bottom:.25rem;">Global Headquarters</div>
+              <div style="font-size:.83rem;color:var(--muted);">5000 Thayer Center STE C<br>Oakland, MD 21550, USA</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;border:1px solid var(--border);">
+            <span style="color:var(--cyan);font-size:1.2rem;flex-shrink:0;">📞</span>
+            <div>
+              <div style="font-family:var(--ff-display);font-weight:700;font-size:.88rem;margin-bottom:.25rem;">Phone</div>
+              <a href="tel:+18005557686" style="font-size:.83rem;color:var(--muted);text-decoration:none;">+1 (800) 555-QNTM</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;border:1px solid var(--border);">
+            <span style="color:var(--cyan);font-size:1.2rem;flex-shrink:0;">✉️</span>
+            <div>
+              <div style="font-family:var(--ff-display);font-weight:700;font-size:.88rem;margin-bottom:.25rem;">Email</div>
+              <a href="mailto:info@qantumiq.com" style="font-size:.83rem;color:var(--muted);text-decoration:none;">info@qantumiq.com</a>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.25rem;border:1px solid var(--border);">
+            <span style="color:var(--cyan);font-size:1.2rem;flex-shrink:0;">💼</span>
+            <div>
+              <div style="font-family:var(--ff-display);font-weight:700;font-size:.88rem;margin-bottom:.25rem;">Business Inquiries</div>
+              <a href="mailto:consulting@qantumiq.com" style="font-size:.83rem;color:var(--muted);text-decoration:none;">consulting@qantumiq.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:1.5rem;border:1px solid var(--gold);background:rgba(201,168,76,.05);">
+          <div style="font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;">Response Time</div>
+          <p style="font-size:.85rem;color:var(--muted);">We respond to all consultation requests within <strong style="color:var(--white);">1 business day</strong>. For urgent matters, call our HQ directly.</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <div style="background:var(--surface);border:1px solid var(--border);padding:2.5rem;">
+          <div style="font-family:var(--ff-display);font-weight:700;font-size:1.2rem;margin-bottom:.5rem;">Schedule a Consultation</div>
+          <p style="font-size:.83rem;color:var(--muted);margin-bottom:2rem;">Tell us about your organization and challenges. We'll match you with the right expert.</p>
+          <form class="qiq-form" id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name *</label>
+                <input type="text" class="form-input" placeholder="Jane" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name *</label>
+                <input type="text" class="form-input" placeholder="Smith" required/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Work Email *</label>
+                <input type="email" class="form-input" placeholder="jane@company.com" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" placeholder="+1 (555) 000-0000"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Company *</label>
+                <input type="text" class="form-input" placeholder="Acme Corporation" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-input" placeholder="Chief Technology Officer"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service of Interest *</label>
+              <select class="form-select" required>
+                <option value="">Select a service…</option>
+                <option>AI & ML Solutions</option>
+                <option>Quantum Computing</option>
+                <option>Digital Transformation</option>
+                <option>C-Suite Advisory</option>
+                <option>Business Process Optimization</option>
+                <option>Information Insights</option>
+                <option>Management Consulting</option>
+                <option>Multiple Services</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nearest Office</label>
+              <select class="form-select">
+                <option value="">Select a region…</option>
+                <option>Oakland, MD (Global HQ)</option>
+                <option>New York City, USA</option>
+                <option>Miami, USA</option>
+                <option>London, UK</option>
+                <option>Toronto, Canada</option>
+                <option>Sydney, Australia</option>
+                <option>Melbourne, Australia</option>
+                <option>Mumbai, India</option>
+                <option>Bangalore, India</option>
+                <option>NCR (Delhi), India</option>
+                <option>Hyderabad, India</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tell Us About Your Challenge *</label>
+              <textarea class="form-textarea" placeholder="Briefly describe your organization's key technology or business challenge…" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Submit Consultation Request →</button>
+          </form>
+          <div id="form-success" style="display:none;padding:1.5rem;background:rgba(0,212,255,.08);border:1px solid var(--cyan);margin-top:1rem;text-align:center;">
+            <div style="font-family:var(--ff-display);font-weight:700;color:var(--cyan);margin-bottom:.5rem;">✓ Request Received</div>
+            <p style="font-size:.85rem;color:var(--muted);">Thank you! A QantumIQ consultant will contact you within 1 business day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFICES -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Global Offices</div>
+      <h2 class="section-title">Find us <span class="it">near you</span></h2>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;">
+      <div class="location-card location-hq">
+        <div class="location-hq-badge">Global HQ</div>
+        <div class="location-flag">🇺🇸</div>
+        <div class="location-city">Oakland, MD</div>
+        <div class="location-country" style="margin-bottom:.6rem;">United States</div>
+        <div style="font-size:.76rem;color:var(--muted);">5000 Thayer Center STE C<br>Oakland, MD 21550</div>
+      </div>
+      <div class="location-card"><div class="location-flag">🇺🇸</div><div class="location-city">New York City</div><div class="location-country">United States</div></div>
+      <div class="location-card"><div class="location-flag">🇺🇸</div><div class="location-city">Miami</div><div class="location-country">United States</div></div>
+      <div class="location-card"><div class="location-flag">🇬🇧</div><div class="location-city">London</div><div class="location-country">United Kingdom</div></div>
+      <div class="location-card"><div class="location-flag">🇨🇦</div><div class="location-city">Toronto</div><div class="location-country">Canada</div></div>
+      <div class="location-card"><div class="location-flag">🇦🇺</div><div class="location-city">Sydney</div><div class="location-country">Australia</div></div>
+      <div class="location-card"><div class="location-flag">🇦🇺</div><div class="location-city">Melbourne</div><div class="location-country">Australia</div></div>
+      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Mumbai</div><div class="location-country">India</div></div>
+      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Bangalore</div><div class="location-country">India</div></div>
+      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">NCR (Delhi)</div><div class="location-country">India</div></div>
+      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Hyderabad</div><div class="location-country">India</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="qiq-footer"></footer>
+<script src="../assets/js/main.js"></script>
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+</script>
+</body>
+</html>
