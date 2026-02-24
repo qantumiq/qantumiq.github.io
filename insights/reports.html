@@ -1,78 +1,12 @@
-<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Research Reports — QantumIQ</title>
-<link rel="stylesheet" href="../assets/css/main.css"/>
-</head><body><canvas id="qiq-canvas"></canvas>
-<div class="page-hero" data-hero-theme="insights">
-  <div class="container"><div class="page-hero-content">
-    <div class="page-hero-eyebrow hero-animate-1">Insights / Reports</div>
-    <h1 class="hero-animate-2">Research <span class="italic">Reports</span></h1>
-    <p class="hero-animate-3">In-depth research reports on quantum computing, AI, digital transformation, and emerging technology trends — grounded in primary research across our global client base.</p>
-  </div></div>
-</div>
-<section class="section-pad"><div class="container">
-  <div class="reveal section-header-row"><div><div class="eyebrow">Research Reports</div><h2 class="section-title">Data-driven <span class="it">intelligence</span></h2></div></div>
-  <div class="reveal" style="display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem;">
-    <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;display:flex;gap:2rem;align-items:flex-start;">
-      <div style="flex-shrink:0;width:60px;height:60px;background:rgba(0,212,255,.1);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">📊</div>
-      <div style="flex:1;">
-        <div class="insight-tag">2025 Annual Report</div>
-        <h3 style="font-family:var(--ff-display);font-weight:700;font-size:1.1rem;margin-bottom:.5rem;">2025 Global Quantum Readiness Index</h3>
-        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">Comprehensive assessment of quantum readiness across 500+ organizations in 25 countries. Benchmarks by industry, region, and company size. Includes detailed PQC migration maturity model and strategic recommendations for each sector.</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
-          <span style="font-size:.76rem;color:var(--muted);">February 28, 2025 · 62 pages</span>
-          <a href="../company/contact.html" class="btn-text">Download Report →</a>
-        </div>
-      </div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;display:flex;gap:2rem;align-items:flex-start;">
-      <div style="flex-shrink:0;width:60px;height:60px;background:rgba(0,212,255,.1);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🤖</div>
-      <div style="flex:1;">
-        <div class="insight-tag">AI Research</div>
-        <h3 style="font-family:var(--ff-display);font-weight:700;font-size:1.1rem;margin-bottom:.5rem;">State of Enterprise AI 2025: From Pilot to Production</h3>
-        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">Analysis of enterprise AI adoption across 350+ organizations. Success factors, failure modes, ROI benchmarks by use case, and governance best practices for scaling AI responsibly.</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
-          <span style="font-size:.76rem;color:var(--muted);">January 15, 2025 · 48 pages</span>
-          <a href="../company/contact.html" class="btn-text">Download Report →</a>
-        </div>
-      </div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;display:flex;gap:2rem;align-items:flex-start;">
-      <div style="flex-shrink:0;width:60px;height:60px;background:rgba(201,168,76,.1);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🌍</div>
-      <div style="flex:1;">
-        <div class="insight-tag">Market Research</div>
-        <h3 style="font-family:var(--ff-display);font-weight:700;font-size:1.1rem;margin-bottom:.5rem;">Digital Transformation in Emerging Markets: India, ASEAN & Africa</h3>
-        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">First major study of digital transformation dynamics in high-growth emerging economies. Leapfrog opportunities, infrastructure constraints, and the unique competitive dynamics of digital-native market entry.</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
-          <span style="font-size:.76rem;color:var(--muted);">December 2024 · 55 pages</span>
-          <a href="../company/contact.html" class="btn-text">Download Report →</a>
-        </div>
-      </div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);padding:2rem;display:flex;gap:2rem;align-items:flex-start;">
-      <div style="flex-shrink:0;width:60px;height:60px;background:rgba(0,212,255,.1);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🔐</div>
-      <div style="flex:1;">
-        <div class="insight-tag">Security Research</div>
-        <h3 style="font-family:var(--ff-display);font-weight:700;font-size:1.1rem;margin-bottom:.5rem;">Post-Quantum Cryptography: Migration Readiness Across Critical Infrastructure</h3>
-        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">Technical assessment of PQC migration readiness across energy, finance, healthcare, and government sectors. NIST PQC implementation guide and sector-specific migration timelines.</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
-          <span style="font-size:.76rem;color:var(--muted);">November 2024 · 44 pages</span>
-          <a href="../company/contact.html" class="btn-text">Download Report →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div></section>
-<section class="news-feed-section section-half"><div class="container">
-  <div class="reveal"><div class="eyebrow">Intelligence Feed</div><h2 class="section-title" style="font-size:1.75rem;">Latest <span class="it">research</span> intelligence</h2></div>
-  <div class="news-feed-grid reveal" id="page-news"></div>
-</div></section>
-<section class="cta-band"><div class="reveal">
-  <h2 class="cta-band-title">Access our <span class="it">full research</span> library</h2>
-  <p class="cta-band-desc">Register to download our complete research library and receive new reports as published.</p>
-  <div class="cta-band-actions"><a href="../company/contact.html" class="btn-primary">Register for Access →</a></div>
-</div></section>
-<footer id="qiq-footer"></footer>
-<script src="../assets/js/main.js"></script>
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news'); });</script>
-</body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Reports | QantumIQ</title><meta name="description" content="Reports — QantumIQ: Advanced consulting in AI, quantum computing, and digital transformation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css"></head><body><div class="scroll-progress"></div><header class="site-header"><div class="header-inner"><a href="../index.html" class="logo">Qantum<span>IQ</span></a><nav class="main-nav"><div class="nav-item"><a href="../services.html">Services</a><div class="nav-dropdown"><a href="../services/ai-ml.html">AI &amp; ML Solutions</a><a href="../services/quantum-computing.html">Quantum Computing</a><a href="../services/digital-transformation.html">Digital Transformation</a><a href="../services/c-suite-advisory.html">C-Suite Advisory</a><a href="../services/business-process.html">Business Process Optimization</a><a href="../services/information-insights.html">Information &amp; Insights</a><a href="../services/management-consulting.html">Management Consulting</a></div></div><div class="nav-item"><a href="../industries.html">Industries</a><div class="nav-dropdown"><a href="../industries/financial-services.html">Financial Services</a><a href="../industries/technology.html">Technology</a><a href="../industries/pharmaceuticals.html">Pharmaceuticals</a><a href="../industries/healthcare.html">Healthcare</a><a href="../industries/energy.html">Energy</a><a href="../industries/government.html">Government</a><a href="../industries/sustainability.html">Sustainability</a><a href="../industries/media-entertainment.html">Media &amp; Entertainment</a></div></div><div class="nav-item active"><a href="../insights.html">Insights</a><div class="nav-dropdown"><a href="../insights/blog.html">Blog</a><a href="../insights/reports.html">Reports</a><a href="../insights/white-papers.html">White Papers</a><a href="../insights/podcasts.html">Podcasts</a><a href="../insights/webinars-events.html">Webinars &amp; Events</a></div></div><div class="nav-item"><a href="../about.html">Company</a><div class="nav-dropdown"><a href="../about.html">About Us</a><a href="../careers.html">Careers</a><a href="../contact.html">Contact Us</a></div></div></nav><button class="mobile-toggle" aria-label="Menu">☰</button></div></header><div class="nav-overlay"></div><section class="page-hero"><div class="hero__bg"><div class="hero__bg-overlay"></div><img data-hero-theme="insights" alt="" loading="eager"></div><div class="container"><div class="hero__content"><span class="section-label">QantumIQ</span><h1>Reports</h1><p>In-depth research and analysis.</p></div></div></section><div class="breadcrumb"><div class="container"><a href="../index.html">Home</a><span class=sep>›</span><a href="../insights.html">Insights</a><span class=sep>›</span><span class="current">Reports</span></div></div><section><div class="container"><div class="card-grid"><div class="card"><span class="insight-card__tag">Research</span><h3 style="font-size:1.05rem">Global AI Adoption Index 2025</h3><p style="font-size:.86rem">500+ enterprise survey on AI patterns.</p><span style="font-size:.74rem;color:var(--slate-200)">Q2 2025</span></div><div class="card"><span class="insight-card__tag">Industry</span><h3 style="font-size:1.05rem">Quantum Computing Market Landscape</h3><p style="font-size:.86rem">Comprehensive ecosystem analysis.</p><span style="font-size:.74rem;color:var(--slate-200)">Q1 2025</span></div><div class="card"><span class="insight-card__tag">Technology</span><h3 style="font-size:1.05rem">State of Digital Transformation</h3><p style="font-size:.86rem">Benchmarking across 12 industries.</p><span style="font-size:.74rem;color:var(--slate-200)">Q1 2025</span></div></div></div></section><section class="cta-section"><div class="container"><span class="section-label">Get Started</span><h2>Ready to Transform Your Business?</h2><p>Partner with QantumIQ to navigate emerging technology and build a resilient, future-ready organization.</p><a href="../contact.html" class="btn btn--white">Schedule a Consultation</a> <a href="../services.html" class="btn btn--outline-w">Explore Services</a></div></section><footer class="site-footer"><div class="container"><div class="footer-grid">
+<div class="footer-brand"><a href="../index.html" class="logo">Qantum<span>IQ</span></a><p>Advanced consulting solutions for the quantum age.</p></div>
+<div class="footer-links"><h4>Services</h4><ul><li><a href="../services/ai-ml.html">AI &amp; ML Solutions</a></li><li><a href="../services/quantum-computing.html">Quantum Computing</a></li><li><a href="../services/digital-transformation.html">Digital Transformation</a></li><li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li><li><a href="../services/business-process.html">Business Process Optimization</a></li><li><a href="../services/information-insights.html">Information &amp; Insights</a></li><li><a href="../services/management-consulting.html">Management Consulting</a></li></ul></div>
+<div class="footer-links"><h4>Industries</h4><ul><li><a href="../industries/financial-services.html">Financial Services</a></li><li><a href="../industries/technology.html">Technology</a></li><li><a href="../industries/pharmaceuticals.html">Pharmaceuticals</a></li><li><a href="../industries/healthcare.html">Healthcare</a></li><li><a href="../industries/energy.html">Energy</a></li><li><a href="../industries/government.html">Government</a></li><li><a href="../industries/sustainability.html">Sustainability</a></li><li><a href="../industries/media-entertainment.html">Media &amp; Entertainment</a></li></ul></div>
+<div class="footer-links"><h4>Company</h4><ul><li><a href="../about.html">About Us</a></li><li><a href="../insights.html">Insights</a></li><li><a href="../careers.html">Careers</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../legal/privacy-policy.html">Privacy</a></li></ul></div>
+<div class="footer-contact"><h4>Contact Us</h4><p>📍 5000 Thayer Center STE C<br>Oakland, MD 21550, USA</p><p>📞 +1 (301) 334-QNTM</p><p>✉️ <a href="mailto:info@qantumiq.com">info@qantumiq.com</a></p></div>
+</div><div class="footer-bottom"><span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span><div class="footer-social"><a href="https://linkedin.com" target="_blank" rel="noopener">in</a><a href="https://twitter.com" target="_blank" rel="noopener">𝕏</a></div></div></div></footer>
+<script src="../assets/js/main.js"></script></body></html>
