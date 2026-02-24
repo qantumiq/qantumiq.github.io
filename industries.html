@@ -1,1029 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Industries - QantumIQ</title>
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        
-        :root {
-            --primary: #2e3192;
-            --primary-dark: #1a1b5d;
-            --secondary: #00b9f2;
-            --accent: #7b68ee;
-            --dark: #1a1a2e;
-            --light: #f5f7fb;
-            --gray: #747474;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-            padding: 1rem 0;
-            top: 100%;
-            left: 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 0.5rem 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Page Banner */
-        .page-banner {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/1200/400');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-        
-        .page-banner-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .page-banner h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-banner p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        /* Industry Cards */
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .industry-card {
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .industry-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .industry-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .industry-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .industry-card:hover .industry-image img {
-            transform: scale(1.1);
-        }
-        
-        .industry-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(46, 49, 146, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .industry-card:hover .industry-overlay {
-            opacity: 1;
-        }
-        
-        .industry-overlay-content {
-            text-align: center;
-            color: white;
-            padding: 0 1rem;
-        }
-        
-        .industry-overlay-content h3 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-        
-        .industry-content {
-            padding: 2rem;
-        }
-        
-        .industry-content h3 {
-            margin-bottom: 1rem;
-        }
-        
-        .industry-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Why Choose Us */
-        .why-choose-us {
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .feature-item {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-item h3 {
-            margin-bottom: 1rem;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background-color: var(--light);
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            position: relative;
-        }
-        
-        .testimonial-quote {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .testimonial-quote::before {
-            content: '"';
-            font-size: 4rem;
-            color: rgba(0, 0, 0, 0.1);
-            position: absolute;
-            top: -20px;
-            left: -10px;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .testimonial-author-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-        }
-        
-        .testimonial-author-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .testimonial-author-info h4 {
-            margin-bottom: 0.2rem;
-        }
-        
-        .testimonial-author-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .cta .btn {
-            background: white;
-            color: var(--primary);
-            border: none;
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-        }
-        
-        .cta .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            min-width: 20px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .industry-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                padding: 0.5rem 2rem;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .dropdown-content.active {
-                display: block;
-            }
-            
-            .industry-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industries We Serve | QantumIQ</title>
+  <meta name="description" content="QantumIQ serves clients across financial services, technology, pharmaceuticals, healthcare, energy, and more.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>Q</text></svg>">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Qantum<span>IQ</span></a>
-                
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/services.html">Services</a>
-                        <div class="dropdown-content">
-                            <a href="/services/ai-ml.html">AI & ML Solutions</a>
-                            <a href="/services/business-process.html">Business Process Optimization</a>
-                            <a href="/services/c-suite-advisory.html">C-Suite Advisory</a>
-                            <a href="/services/digital-transformation.html">Digital Transformation</a>
-                            <a href="/services/executive-staffing.html">Executive Staffing</a>
-                            <a href="/services/information-insights.html">Information Insights</a>
-                            <a href="/services/quantum-computing.html">Quantum Computing</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/industries.html">Industries</a>
-                        <div class="dropdown-content">
-                            <a href="/industries/energy.html">Energy</a>
-                            <a href="/industries/financial-services.html">Financial Services</a>
-                            <a href="/industries/government.html">Government</a>
-                            <a href="/industries/healthcare.html">Healthcare</a>
-                            <a href="/industries/Media-Entertainment.html">Media and Entertainment</a>
-                            <a href="/industries/pharmaceuticals.html">Pharmaceuticals</a>
-                            <a href="/industries/sustainability.html">Sustainability</a>
-                            <a href="/industries/technology.html">Technology</a>
-                        </div>
-                    </li>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="/insights.html">Insights</a>
-                        <div class="dropdown-content">
-                            <a href="/insights/blog.html">Blog</a>
-                            <a href="/insights/podcasts.html">Podcasts</a>
-                            <a href="/insights/reports.html">Reports</a>
-                            <a href="/insights/white-papers.html">White Papers</a>
-                            <a href="/insights/webinars-events.html">Webinars & Events</a>
-                        </div>
-                    </li>
-                    <li><a href="/careers.html">Careers</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                
-                <div class="hamburger">
-                    <span>&#9776;</span>
-                </div>
-            </nav>
+<div class="nav-overlay"></div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="services.html">Services</a>
+        <div class="nav-dropdown">
+          <a href="services/ai-ml.html">AI &amp; ML Solutions</a>
+          <a href="services/quantum-computing.html">Quantum Computing</a>
+          <a href="services/digital-transformation.html">Digital Transformation</a>
+          <a href="services/c-suite-advisory.html">C-Suite Advisory</a>
+          <a href="services/business-process.html">Business Process Optimization</a>
+          <a href="services/information-insights.html">Information Insights</a>
+          <a href="services/executive-staffing.html">Executive Staffing</a>
         </div>
-    </header>
+      </div>
+      <div class="nav-item">
+        <a href="industries.html">Industries</a>
+        <div class="nav-dropdown">
+          <a href="industries/financial-services.html">Financial Services</a>
+          <a href="industries/technology.html">Technology</a>
+          <a href="industries/pharmaceuticals.html">Pharmaceuticals</a>
+          <a href="industries/healthcare.html">Healthcare</a>
+          <a href="industries/energy.html">Energy</a>
+          <a href="industries/government.html">Government</a>
+          <a href="industries/sustainability.html">Sustainability</a>
+          <a href="industries/media-entertainment.html">Media &amp; Entertainment</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="about.html">About</a></div>
+      <div class="nav-item">
+        <a href="insights.html">Insights</a>
+        <div class="nav-dropdown">
+          <a href="insights/blog.html">Blog</a>
+          <a href="insights/reports.html">Reports</a>
+          <a href="insights/white-papers.html">White Papers</a>
+          <a href="insights/podcasts.html">Podcasts</a>
+          <a href="insights/webinars-events.html">Webinars &amp; Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="careers.html">Careers</a></div>
+      <div class="nav-cta"><a href="contact.html" class="btn btn--primary">Contact Us</a></div>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <img data-hero-theme="index" data-width="1600" data-height="600" alt="" loading="eager">
+  </div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="section-label">Industries</span>
+    <h1>Industries We Serve</h1>
+    <p>Deep domain expertise combined with cutting-edge technology capabilities across the sectors driving the global economy.</p>
+  </div>
+</section>
+<section class="section"><div class="container"><div class="card-grid">
+    <div class="card">
+      <div class="card__icon">🏦</div>
+      <h3>Financial Services</h3>
+      <p>Transforming banking, capital markets, and insurance through AI-powered risk management, digital banking platforms, and regulatory technology.</p>
+      <a href="industries/financial-services.html" class="card__link">Explore →</a>
+    </div>
     
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="container">
-            <div class="page-banner-content">
-                <h1>Industry Solutions</h1>
-                <p>Tailored strategies and innovative technologies to address the unique challenges of your industry</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Industry Overview -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Specialized Expertise Across Key Industries</h2>
-            <p class="text-center" style="max-width: 800px; margin: 0 auto 3rem;">At QantumIQ, we combine deep industry knowledge with cutting-edge technological capabilities to deliver transformative solutions that address the specific challenges and opportunities in your sector. Our industry-focused approach ensures that we provide relevant strategies that drive meaningful business outcomes.</p>
-            
-            <div class="industry-grid">
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Financial Services">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Financial Services</h3>
-                                <a href="industries/financial-services.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Financial Services</h3>
-                        <p>Enhance risk management, optimize operations, and deliver exceptional customer experiences through AI-driven analytics, fraud detection systems, and digital banking solutions.</p>
-                        <a href="industries/financial-services.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Technology">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Technology</h3>
-                                <a href="industries/technology.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Technology</h3>
-                        <p>Accelerate innovation cycles, optimize product development, and gain competitive advantage through quantum computing applications, AI/ML integration, and advanced data analytics.</p>
-                        <a href="industries/technology.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Pharmaceuticals">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Pharmaceuticals</h3>
-                                <a href="industries/pharmaceuticals.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Pharmaceuticals</h3>
-                        <p>Revolutionize drug discovery, optimize clinical trials, and streamline regulatory compliance through quantum simulations, predictive analytics, and intelligent automation.</p>
-                        <a href="industries/pharmaceuticals.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Healthcare">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Healthcare</h3>
-                                <a href="industries/healthcare.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Healthcare</h3>
-                        <p>Improve patient outcomes, enhance operational efficiency, and personalize care delivery through predictive analytics, AI-driven diagnostics, and intelligent healthcare systems.</p>
-                        <a href="industries/healthcare.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Energy">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Energy</h3>
-                                <a href="industries/energy.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Energy</h3>
-                        <p>Optimize resource allocation, advance sustainability initiatives, and enhance grid management through quantum optimization, predictive maintenance, and smart energy solutions.</p>
-                        <a href="industries/energy.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Government">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Government</h3>
-                                <a href="industries/government.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Government</h3>
-                        <p>Transform public services, enhance cybersecurity, and improve decision-making through secure AI implementations, quantum-safe cryptography, and data-driven policy analysis.</p>
-                        <a href="industries/government.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-                
-                <div class="industry-card">
-                    <div class="industry-image">
-                        <img src="/api/placeholder/600/400" alt="Sustainability">
-                        <div class="industry-overlay">
-                            <div class="industry-overlay-content">
-                                <h3>Sustainability</h3>
-                                <a href="industries/sustainability.html" class="btn btn-outline" style="color: white; border-color: white;">Explore</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="industry-content">
-                        <h3>Sustainability</h3>
-                        <p>Accelerate ESG initiatives, optimize resource utilization, and build resilient operations through ML-powered environmental modeling, quantum optimization, and sustainable tech strategies.</p>
-                        <a href="industries/sustainability.html" class="btn btn-outline">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="section why-choose-us">
-        <div class="container">
-            <h2 class="section-title">Our Industry Approach</h2>
-            
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Deep Industry Insights</h3>
-                    <p>Our consultants bring decades of hands-on experience in their respective industries, providing unparalleled expertise and contextual understanding to every engagement.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Cross-Sector Innovation</h3>
-                    <p>We leverage insights and best practices across industries to bring fresh perspectives and breakthrough approaches to your unique challenges.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Future-Ready Solutions</h3>
-                    <p>Our solutions are designed not just for today's challenges but to position your organization for long-term success in rapidly evolving marketplaces.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🤝</div>
-                    <h3>Collaborative Partnership</h3>
-                    <p>We work as an extension of your team, ensuring knowledge transfer and building internal capabilities that drive sustainable transformation.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">📊</div>
-                    <h3>Data-Driven Approach</h3>
-                    <p>Our strategies and recommendations are backed by rigorous data analysis, market research, and industry benchmarking for measurable outcomes.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🔗</div>
-                    <h3>Ecosystem Integration</h3>
-                    <p>We help you navigate and leverage industry ecosystems, creating strategic partnerships and alliances that accelerate your transformation journey.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">Client Success Stories</h2>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        QantumIQ's deep understanding of the financial services industry was evident from day one. Their AI-powered risk management solution has transformed our decision-making processes and yielded a 28% reduction in credit losses while improving customer experience.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="/api/placeholder/100/100" alt="Sarah Johnson">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>CIO, Global Financial Services</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        As a healthcare provider navigating complex regulatory requirements, we needed a partner who understood both technology and our industry's unique challenges. QantumIQ delivered an integrated solution that improved patient outcomes by 32% while reducing administrative overhead.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="/api/placeholder/100/100" alt="Dr. Robert Chen">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Dr. Robert Chen</h4>
-                            <p>Chief Medical Officer, Regional Healthcare Network</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div>  
-                        <div class="testimonial-quote">
-                            The QantumIQ team helped us leverage quantum computing to optimize our supply chain operations. Their expertise in the energy sector was invaluable, and we achieved a 40% reduction in operational costs within six months.
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="testimonial-author-image">
-                                <img src="/api/placeholder/100/100" alt="Michael Thompson">
-                            </div>
-                            <div class="testimonial-author-info">
-                                <h4>Michael Thompson</h4>
-                                <p>COO, Leading Energy Provider</p>
-                            </div>
-                        </div>  
-                    </div>  
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        QantumIQ's innovative approach to sustainability has helped us not only meet our ESG goals but exceed them. Their data-driven insights and strategic partnerships have positioned us as a leader in sustainable practices within our industry.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="/api/placeholder/100/100" alt="Emily Davis">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Emily Davis</h4>
-                            <p>VP of Sustainability, Global Manufacturing Corp.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        The QantumIQ team provided us with the insights and tools we needed to navigate the complexities of government regulations. Their expertise in quantum-safe cryptography has significantly enhanced our cybersecurity posture.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="/api/placeholder/100/100" alt="David Martinez">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>David Martinez</h4>
-                            <p>Director of Cybersecurity, Federal Agency</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-quote">
-                        QantumIQ's team of experts helped us navigate the complexities of digital transformation in the technology sector. Their insights and strategies have been instrumental in our success.
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="/api/placeholder/100/100" alt="Jessica Lee">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Jessica Lee</h4>
-                            <p>CTO, Leading Tech Company</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+      <div class="card__icon">💻</div>
+      <h3>Technology</h3>
+      <p>Accelerating growth for technology companies through product strategy, platform architecture, go-to-market optimization, and operational scaling.</p>
+      <a href="industries/technology.html" class="card__link">Explore →</a>
+    </div>
     
-                    
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Our team of experts is ready to help you unlock new possibilities and drive sustainable growth in the quantum age.</p>
-            <a href="contact.html" class="btn">Schedule a Consultation</a>
-        </div>
-    </section>
+    <div class="card">
+      <div class="card__icon">💊</div>
+      <h3>Pharmaceuticals</h3>
+      <p>Optimizing drug development, manufacturing, and regulatory compliance through AI-driven CMC strategies, clinical analytics, and supply chain intelligence.</p>
+      <a href="industries/pharmaceuticals.html" class="card__link">Explore →</a>
+    </div>
+    
+    <div class="card">
+      <div class="card__icon">🏥</div>
+      <h3>Healthcare</h3>
+      <p>Improving patient outcomes and operational efficiency through clinical AI, health informatics, and digital health platform development.</p>
+      <a href="industries/healthcare.html" class="card__link">Explore →</a>
+    </div>
+    
+    <div class="card">
+      <div class="card__icon">⚡</div>
+      <h3>Energy</h3>
+      <p>Enabling the energy transition through grid modernization, renewable optimization, predictive maintenance, and carbon management solutions.</p>
+      <a href="industries/energy.html" class="card__link">Explore →</a>
+    </div>
+    
+    <div class="card">
+      <div class="card__icon">🏛️</div>
+      <h3>Government</h3>
+      <p>Modernizing public services through digital government platforms, citizen experience design, and secure cloud migration.</p>
+      <a href="industries/government.html" class="card__link">Explore →</a>
+    </div>
+    
+    <div class="card">
+      <div class="card__icon">🌱</div>
+      <h3>Sustainability</h3>
+      <p>Advancing ESG strategies through environmental analytics, sustainable operations, carbon accounting, and impact measurement frameworks.</p>
+      <a href="industries/sustainability.html" class="card__link">Explore →</a>
+    </div>
+    
+    <div class="card">
+      <div class="card__icon">🎬</div>
+      <h3>Media & Entertainment</h3>
+      <p>Enabling content innovation through AI-powered personalization, streaming optimization, audience analytics, and digital rights management.</p>
+      <a href="industries/media-entertainment.html" class="card__link">Explore →</a>
+    </div>
+    </div></div></section>
+<section class="cta-section">
+  <div class="container text-center">
+    <span class="section-label">Get Started</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p>Partner with QantumIQ to navigate the complexities of emerging technology and build a resilient, future-ready organization.</p>
+    <div>
+      <a href="contact.html" class="btn btn--primary">Schedule a Consultation</a>
+      <a href="services.html" class="btn btn--secondary">Explore Services</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Qantum<span>IQ</span></div>
-                    <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i>in</i></a>
-                        <a href="#"><i>tw</i></a>
-                        <a href="#"><i>fb</i></a>
-                        <a href="#"><i>yt</i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/ai-ml.html">AI & ML Solutions</a></li>
-                        <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
-                        <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
-                        <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
-                        <li><a href="services/business-process.html">Business Process Optimization</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Industries</h4>
-                    <ul>
-                        <li><a href="industries/financial-services.html">Financial Services</a></li>
-                        <li><a href="industries/technology.html">Technology</a></li>
-                        <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
-                        <li><a href="industries/healthcare.html">Healthcare</a></li>
-                        <li><a href="industries/energy.html">Energy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="insights.html">Insights</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i>📍</i> Global Headquarters: 123 Tech Plaza, San Francisco, CA 94105</p>
-                    <p><i>📞</i> +1 (800) 555-QNTM</p>
-                    <p><i>✉️</i> info@qantumiq.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+        <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services/ai-ml.html">AI &amp; ML Solutions</a></li>
+          <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
+          <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
+          <li><a href="services/business-process.html">Business Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries/financial-services.html">Financial Services</a></li>
+          <li><a href="industries/technology.html">Technology</a></li>
+          <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="industries/healthcare.html">Healthcare</a></li>
+          <li><a href="industries/energy.html">Energy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

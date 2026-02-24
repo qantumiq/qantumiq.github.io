@@ -1,1022 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QantumIQ - Insights & Thought Leadership</title>
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        
-        :root {
-            --primary: #2e3192;
-            --primary-dark: #1a1b5d;
-            --secondary: #00b9f2;
-            --accent: #7b68ee;
-            --dark: #1a1a2e;
-            --light: #f5f7fb;
-            --gray: #747474;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-            padding: 1rem 0;
-            top: 100%;
-            left: 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 0.5rem 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Page Header */
-        .page-header {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/1200/600');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-        
-        .page-header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .page-header h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-header p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* Insights Categories */
-        .categories-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-        
-        .category-tab {
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background-color: white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .category-tab:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .category-tab.active {
-            background: var(--gradient);
-            color: white;
-        }
-
-        /* Search Bar */
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            padding-right: 3rem;
-            border-radius: 50px;
-            border: none;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .search-button {
-            position: absolute;
-            top: 50%;
-            right: 1.5rem;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--gray);
-            transition: all 0.3s ease;
-        }
-        
-        .search-button:hover {
-            color: var(--primary);
-        }
-
-        /* Featured Insights */
-        .featured-insight {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 4rem;
-            background-color: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-        
-        .featured-insight-image {
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .featured-insight-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .featured-insight:hover .featured-insight-image img {
-            transform: scale(1.05);
-        }
-        
-        .featured-insight-content {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .featured-label {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .insight-meta {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-        
-        .insight-meta div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* Insights Grid */
-        .insights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .insight-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .insight-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .insight-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .insight-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .insight-card:hover .insight-image img {
-            transform: scale(1.1);
-        }
-        
-        .insight-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .insight-category {
-            display: inline-block;
-            background: var(--light);
-            color: var(--primary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-        
-        .insight-title {
-            margin-bottom: 1rem;
-        }
-        
-        .insight-excerpt {
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-        
-        .insight-date {
-            font-size: 0.9rem;
-            color: var(--gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .read-more {
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .read-more svg {
-            transition: transform 0.3s ease;
-        }
-        
-        .read-more:hover svg {
-            transform: translateX(5px);
-        }
-
-        /* Trending Topics */
-        .trending-topics {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 3rem;
-        }
-        
-        .trending-title {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .trending-title svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-        
-        .topic-tag {
-            background-color: var(--light);
-            border-radius: 5px;
-            padding: 0.8rem 1.2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .topic-tag:hover {
-            background: var(--gradient);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: var(--gradient);
-            color: white;
-            border-radius: 10px;
-            padding: 3rem;
-            margin-top: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .newsletter::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/800/400');
-            background-size: cover;
-            opacity: 0.1;
-        }
-        
-        .newsletter-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .newsletter h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter p {
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter-input {
-            flex-grow: 1;
-            padding: 1rem 1.5rem;
-            border-radius: 5px;
-            border: none;
-            font-size: 1rem;
-        }
-        
-        .newsletter-input:focus {
-            outline: none;
-        }
-        
-        .newsletter-button {
-            background-color: white;
-            color: var(--primary);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-button:hover {
-            background-color: var(--primary-dark);
-            color: white;
-        }
-        
-        .privacy-note {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 4rem;
-            gap: 0.5rem;
-        }
-        
-        .pagination-item {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .pagination-item:hover, .pagination-item.active {
-            background: var(--gradient);
-            color: white;
-        }
-        
-        .pagination-arrow {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .pagination-arrow:hover {
-            background: var(--gradient);
-            color: white;
-        }
-
-        /* Webinar/Events Section */
-        .events-section {
-            background-color: var(--light);
-            padding: 5rem 0;
-            margin-top: 4rem;
-        }
-        
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .event-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .event-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .event-image {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .event-card:hover .event-image img {
-            transform: scale(1.1);
-        }
-        
-        .event-date-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: white;
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-weight: 600;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .event-content {
-            padding: 1.5rem;
-        }
-        
-        .event-type {
-            display: inline-block;
-            background: var(--light);
-            color: var(--primary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-        }
-        
-        .event-info {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .event-info div {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .register-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.7rem 1.5rem;
-            background: var(--gradient);
-            color: white;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .register-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            min-width: 20px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .featured-insight {
-                grid-template-columns: 1fr;
-            }
-            
-            .featured-insight-image {
-                height: 300px;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .section {
-                padding: 4rem 0;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                padding: 0.5rem 2rem;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .dropdown-content.active {
-                display: block;
-            }
-            
-            .categories-tabs {
-                overflow-x: auto;
-                padding-bottom: 1rem;
-                justify-content: flex-start;
-            }
-            
-            .category-tab {
-                white-space: nowrap;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights | QantumIQ</title>
+  <meta name="description" content="Thought leadership from QantumIQ experts on AI, quantum computing, digital transformation, and business strategy.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>Q</text></svg>">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Qantum<span>IQ</span></a>
-                
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/services.html">Services</a>
-                        <div class="dropdown-content">
-                            <a href="/services/ai-ml.html">AI & ML Solutions</a>
-                            <a href="/services/business-process.html">Business Process Optimization</a>
-                            <a href="/services/c-suite-advisory.html">C-Suite Advisory</a>
-                            <a href="/services/digital-transformation.html">Digital Transformation</a>
-                            <a href="/services/executive-staffing.html">Executive Staffing</a>
-                            <a href="/services/information-insights.html">Information Insights</a>
-                            <a href="/services/quantum-computing.html">Quantum Computing</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/industries.html">Industries</a>
-                        <div class="dropdown-content">
-                            <a href="/industries/energy.html">Energy</a>
-                            <a href="/industries/financial-services.html">Financial Services</a>
-                            <a href="/industries/government.html">Government</a>
-                            <a href="/industries/healthcare.html">Healthcare</a>
-                            <a href="/industries/Media-Entertainment.html">Media and Entertainment</a>
-                            <a href="/industries/pharmaceuticals.html">Pharmaceuticals</a>
-                            <a href="/industries/sustainability.html">Sustainability</a>
-                            <a href="/industries/technology.html">Technology</a>
-                        </div>
-                    </li>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="/insights.html">Insights</a>
-                        <div class="dropdown-content">
-                            <a href="/insights/blog.html">Blog</a>
-                            <a href="/insights/podcasts.html">Podcasts</a>
-                            <a href="/insights/reports.html">Reports</a>
-                            <a href="/insights/white-papers.html">White Papers</a>
-                            <a href="/insights/webinars-events.html">Webinars & Events</a>
-                        </div>
-                    </li>
-                    <li><a href="/careers.html">Careers</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                
-                <div class="hamburger">
-                    <span>&#9776;</span>
-                </div>
-            </nav>
+<div class="nav-overlay"></div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="services.html">Services</a>
+        <div class="nav-dropdown">
+          <a href="services/ai-ml.html">AI &amp; ML Solutions</a>
+          <a href="services/quantum-computing.html">Quantum Computing</a>
+          <a href="services/digital-transformation.html">Digital Transformation</a>
+          <a href="services/c-suite-advisory.html">C-Suite Advisory</a>
+          <a href="services/business-process.html">Business Process Optimization</a>
+          <a href="services/information-insights.html">Information Insights</a>
+          <a href="services/executive-staffing.html">Executive Staffing</a>
         </div>
-    </header>
-
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <div class="page-header-content">
-                <h1>Insights & Thought Leadership</h1>
-                <p>Stay ahead with our latest research, analysis, and perspectives on transformative technologies and business strategies.</p>
-            </div>
+      </div>
+      <div class="nav-item">
+        <a href="industries.html">Industries</a>
+        <div class="nav-dropdown">
+          <a href="industries/financial-services.html">Financial Services</a>
+          <a href="industries/technology.html">Technology</a>
+          <a href="industries/pharmaceuticals.html">Pharmaceuticals</a>
+          <a href="industries/healthcare.html">Healthcare</a>
+          <a href="industries/energy.html">Energy</a>
+          <a href="industries/government.html">Government</a>
+          <a href="industries/sustainability.html">Sustainability</a>
+          <a href="industries/media-entertainment.html">Media &amp; Entertainment</a>
         </div>
-    </section>
+      </div>
+      <div class="nav-item"><a href="about.html">About</a></div>
+      <div class="nav-item">
+        <a href="insights.html">Insights</a>
+        <div class="nav-dropdown">
+          <a href="insights/blog.html">Blog</a>
+          <a href="insights/reports.html">Reports</a>
+          <a href="insights/white-papers.html">White Papers</a>
+          <a href="insights/podcasts.html">Podcasts</a>
+          <a href="insights/webinars-events.html">Webinars &amp; Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="careers.html">Careers</a></div>
+      <div class="nav-cta"><a href="contact.html" class="btn btn--primary">Contact Us</a></div>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-    <!-- Main Content -->
-    <section class="section">
-        <div class="container">
-            <!-- Search & Filter -->
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search insights...">
-                <button class="search-button">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="M21 21l-4.35-4.35"/>
-                    </svg>
-                </button>
-            </div>
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <img data-hero-theme="insights" data-width="1600" data-height="600" alt="" loading="eager">
+  </div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="section-label">Knowledge</span>
+    <h1>Insights & Thought Leadership</h1>
+    <p>Expert perspectives on the technologies and strategies shaping the future of business.</p>
+  </div>
+</section>
+<section class="section"><div class="container"><div class="insights-grid">
+    <a href="insights/articles/future-of-ai-financial-services.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="financial-services" data-img-idx="0" data-width="600" data-height="340" alt="The Future of AI in Financial Services"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Technology</span>
+          <span class="insight-card__date">January 15, 2026</span>
+        </div>
+        <h3>The Future of AI in Financial Services</h3>
+        <p>How artificial intelligence is revolutionizing risk assessment, fraud detection, and customer experiences in banking and capital markets.</p>
+      </div>
+    </a>
+    
+    <a href="insights/articles/quantum-computing-next-revolution.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="quantum-computing" data-img-idx="0" data-width="600" data-height="340" alt="Quantum Computing: Preparing for the Next Computing Revolution"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Research</span>
+          <span class="insight-card__date">January 8, 2026</span>
+        </div>
+        <h3>Quantum Computing: Preparing for the Next Computing Revolution</h3>
+        <p>A comprehensive guide to understanding quantum computing and its potential impact on industries from finance to pharmaceuticals.</p>
+      </div>
+    </a>
+    
+    <a href="insights/articles/digital-leadership-disruption.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="c-suite-advisory" data-img-idx="0" data-width="600" data-height="340" alt="Digital Leadership in the Age of Disruption"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Leadership</span>
+          <span class="insight-card__date">December 22, 2025</span>
+        </div>
+        <h3>Digital Leadership in the Age of Disruption</h3>
+        <p>How C-suite executives can develop the mindset and capabilities needed to lead successful digital transformation initiatives.</p>
+      </div>
+    </a>
+    
+    <a href="insights/articles/enterprise-ai-adoption-guide.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="ai-ml" data-img-idx="0" data-width="600" data-height="340" alt="The Enterprise AI Adoption Playbook: From Pilot to Production"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Strategy</span>
+          <span class="insight-card__date">December 10, 2025</span>
+        </div>
+        <h3>The Enterprise AI Adoption Playbook: From Pilot to Production</h3>
+        <p>A practical framework for scaling AI initiatives across the enterprise, addressing common pitfalls and proven success patterns.</p>
+      </div>
+    </a>
+    
+    <a href="insights/articles/cmc-optimization-pharma.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="pharmaceuticals" data-img-idx="0" data-width="600" data-height="340" alt="AI-Driven CMC Optimization in Pharmaceutical Development"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Pharmaceuticals</span>
+          <span class="insight-card__date">November 28, 2025</span>
+        </div>
+        <h3>AI-Driven CMC Optimization in Pharmaceutical Development</h3>
+        <p>How machine learning and advanced analytics are transforming Chemistry, Manufacturing, and Controls processes to accelerate drug development.</p>
+      </div>
+    </a>
+    
+    <a href="insights/articles/cloud-migration-strategy.html" class="insight-card">
+      <div class="insight-card__img"><img data-img-theme="digital-transformation" data-img-idx="0" data-width="600" data-height="340" alt="Cloud Migration Done Right: A Strategic Framework"></div>
+      <div class="insight-card__body">
+        <div class="insight-card__meta">
+          <span class="insight-card__tag">Digital</span>
+          <span class="insight-card__date">November 15, 2025</span>
+        </div>
+        <h3>Cloud Migration Done Right: A Strategic Framework</h3>
+        <p>Avoid the common pitfalls of cloud migration with a proven strategic framework that balances speed, cost, and risk.</p>
+      </div>
+    </a>
+    </div></div></section>
+<section class="section section--dark">
+  <div class="container">
+    <div class="info-feed">
+      <div class="info-feed__header">
+        <div>
+          <h3>Industry Intelligence Feed</h3>
+          <p style="font-size:0.88rem;color:var(--gray-400);margin-top:4px;" id="info-feed-date">Loading...</p>
+        </div>
+        <span class="info-feed__live-dot">Updates Daily</span>
+      </div>
+      <div class="info-feed__items" id="info-feed-items">
+        <div class="info-feed__loading">
+          <div class="spinner"></div>
+          <p>Loading latest industry developments...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Categories Tabs -->
-            <div class="categories-tabs">
-                <div class="category-tab active">All</div>
-                <div class="category-tab">Quantum Computing</div>
-                <div class="category-tab">Artificial Intelligence</div>
-                <div class="category-tab">Digital Transformation</div>
-                <div class="category-tab">Leadership</div>
-                <div class="category-tab">Industry Trends</div>
-                <div class="category-tab">Technology</div>
-                <div class="category-tab">Strategy</div>
-            </div>
+<section class="cta-section">
+  <div class="container text-center">
+    <span class="section-label">Get Started</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p>Partner with QantumIQ to navigate the complexities of emerging technology and build a resilient, future-ready organization.</p>
+    <div>
+      <a href="contact.html" class="btn btn--primary">Schedule a Consultation</a>
+      <a href="services.html" class="btn btn--secondary">Explore Services</a>
+    </div>
+  </div>
+</section>
 
-            <!-- Featured Article -->
-            <div class="featured-insight">
-                <div class="featured-insight-image">
-                    <img src="/api/placeholder/600/600" alt="Quantum Computing Business Impact">
-                </div>
-                <div class="featured-insight-content">
-                    <span class="featured-label">Featured Insight</span>
-                    <h2>Quantum Computing: The Business Impact Beyond the Hype</h2>
-                    <p>A comprehensive analysis of practical quantum computing applications across industries and a strategic roadmap for business leaders to prepare for the quantum advantage.</p>
-                    <div class="insight-meta">
-                        <div>
-                            <svg width="16" height="16" viewBox="0 0 24 24
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Qantum<span>IQ</span></a>
+        <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services/ai-ml.html">AI &amp; ML Solutions</a></li>
+          <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
+          <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
+          <li><a href="services/business-process.html">Business Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="industries/financial-services.html">Financial Services</a></li>
+          <li><a href="industries/technology.html">Technology</a></li>
+          <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="industries/healthcare.html">Healthcare</a></li>
+          <li><a href="industries/energy.html">Energy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

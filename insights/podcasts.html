@@ -1,1507 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Podcasts - QantumIQ</title>
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        
-        :root {
-            --primary: #2e3192;
-            --primary-dark: #1a1b5d;
-            --secondary: #00b9f2;
-            --accent: #7b68ee;
-            --dark: #1a1a2e;
-            --light: #f5f7fb;
-            --gray: #747474;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-            padding: 1rem 0;
-            top: 100%;
-            left: 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 0.5rem 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Page Banner */
-        .page-banner {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/1200/400');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-        
-        .page-banner-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .page-banner h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-banner p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        /* Breadcrumbs */
-        .breadcrumbs {
-            background-color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .breadcrumbs-list {
-            display: flex;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumbs-list li {
-            display: flex;
-            align-items: center;
-        }
-        
-        .breadcrumbs-list li:not(:last-child)::after {
-            content: '/';
-            margin: 0 0.5rem;
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a {
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a:hover {
-            color: var(--primary);
-        }
-        
-        .breadcrumbs-list li:last-child a {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Podcast Overview */
-        .podcast-overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .podcast-overview-content h2 {
-            margin-bottom: 1.5rem;
-        }
-        
-        .podcast-overview-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .podcast-overview-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .podcast-overview-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Podcast Grid */
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .podcast-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .podcast-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .podcast-thumbnail {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .podcast-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .podcast-card:hover .podcast-thumbnail img {
-            transform: scale(1.1);
-        }
-        
-        .podcast-play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .podcast-card:hover .podcast-play-button {
-            opacity: 1;
-        }
-        
-        .podcast-content {
-            padding: 1.5rem;
-        }
-        
-        .podcast-meta {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .podcast-date {
-            margin-right: 1rem;
-        }
-        
-        .podcast-duration {
-            display: flex;
-            align-items: center;
-        }
-        
-        .podcast-duration::before {
-            content: '•';
-            margin-right: 0.5rem;
-        }
-        
-        .podcast-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .podcast-description {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-        }
-        
-        .podcast-actions {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .podcast-platform {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Podcast Series */
-        .podcast-series {
-            background-color: white;
-        }
-        
-        .series-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .series-tab {
-            padding: 1rem 2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .series-tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-        
-        .series-tab:hover:not(.active) {
-            color: var(--secondary);
-        }
-        
-        .series-content {
-            display: none;
-        }
-        
-        .series-content.active {
-            display: block;
-        }
-
-        /* Featured Guests */
-        .guests-slider {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-        
-        .guest-card {
-            text-align: center;
-        }
-        
-        .guest-image {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 1rem;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--primary);
-        }
-        
-        .guest-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .guest-card h4 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .guest-title {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Subscribe Section */
-        .subscribe-section {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .subscribe-section h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .subscribe-section p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .podcast-platforms {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .platform-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            font-size: 0.9rem;
-        }
-        
-        .platform-icon span {
-            display: block;
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .platform-icon:hover span {
-            background: white;
-            color: var(--primary);
-        }
-
-        /* Contact Us Section */
-        .contact-us {
-            padding: 5rem 0;
-            text-align: center;
-        }
-        
-        .contact-us h2 {
-            margin-bottom: 1rem;
-        }
-        
-        .contact-description {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            min-width: 20px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .podcast-overview {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .podcast-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                padding: 0.5rem 2rem;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .dropdown-content.active {
-                display: block;
-            }
-            
-            .series-tab {
-                padding: 0.8rem 1rem;
-            }
-            
-            .guests-slider {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podcasts | QantumIQ</title>
+  <meta name="description" content="Conversations with industry leaders exploring the intersection of technology and business strategy.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>Q</text></svg>">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Qantum<span>IQ</span></a>
-                
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/services.html">Services</a>
-                        <div class="dropdown-content">
-                            <a href="/services/ai-ml.html">AI & ML Solutions</a>
-                            <a href="/services/business-process.html">Business Process Optimization</a>
-                            <a href="/services/c-suite-advisory.html">C-Suite Advisory</a>
-                            <a href="/services/digital-transformation.html">Digital Transformation</a>
-                            <a href="/services/executive-staffing.html">Executive Staffing</a>
-                            <a href="/services/information-insights.html">Information Insights</a>
-                            <a href="/services/quantum-computing.html">Quantum Computing</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/industries.html">Industries</a>
-                        <div class="dropdown-content">
-                            <a href="/industries/energy.html">Energy</a>
-                            <a href="/industries/financial-services.html">Financial Services</a>
-                            <a href="/industries/government.html">Government</a>
-                            <a href="/industries/healthcare.html">Healthcare</a>
-                            <a href="/industries/Media-Entertainment.html">Media and Entertainment</a>
-                            <a href="/industries/pharmaceuticals.html">Pharmaceuticals</a>
-                            <a href="/industries/sustainability.html">Sustainability</a>
-                            <a href="/industries/technology.html">Technology</a>
-                        </div>
-                    </li>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="/insights.html">Insights</a>
-                        <div class="dropdown-content">
-                            <a href="/insights/blog.html">Blog</a>
-                            <a href="/insights/podcasts.html">Podcasts</a>
-                            <a href="/insights/reports.html">Reports</a>
-                            <a href="/insights/white-papers.html">White Papers</a>
-                            <a href="/insights/webinars-events.html">Webinars & Events</a>
-                        </div>
-                    </li>
-                    <li><a href="/careers.html">Careers</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                
-                <div class="hamburger">
-                    <span>&#9776;</span>
-                </div>
-            </nav>
+<div class="nav-overlay"></div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="../services.html">Services</a>
+        <div class="nav-dropdown">
+          <a href="../services/ai-ml.html">AI &amp; ML Solutions</a>
+          <a href="../services/quantum-computing.html">Quantum Computing</a>
+          <a href="../services/digital-transformation.html">Digital Transformation</a>
+          <a href="../services/c-suite-advisory.html">C-Suite Advisory</a>
+          <a href="../services/business-process.html">Business Process Optimization</a>
+          <a href="../services/information-insights.html">Information Insights</a>
+          <a href="../services/executive-staffing.html">Executive Staffing</a>
         </div>
-    </header>
+      </div>
+      <div class="nav-item">
+        <a href="../industries.html">Industries</a>
+        <div class="nav-dropdown">
+          <a href="../industries/financial-services.html">Financial Services</a>
+          <a href="../industries/technology.html">Technology</a>
+          <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+          <a href="../industries/healthcare.html">Healthcare</a>
+          <a href="../industries/energy.html">Energy</a>
+          <a href="../industries/government.html">Government</a>
+          <a href="../industries/sustainability.html">Sustainability</a>
+          <a href="../industries/media-entertainment.html">Media &amp; Entertainment</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="../about.html">About</a></div>
+      <div class="nav-item">
+        <a href="../insights.html">Insights</a>
+        <div class="nav-dropdown">
+          <a href="../insights/blog.html">Blog</a>
+          <a href="../insights/reports.html">Reports</a>
+          <a href="../insights/white-papers.html">White Papers</a>
+          <a href="../insights/podcasts.html">Podcasts</a>
+          <a href="../insights/webinars-events.html">Webinars &amp; Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="../careers.html">Careers</a></div>
+      <div class="nav-cta"><a href="../contact.html" class="btn btn--primary">Contact Us</a></div>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="container">
-            <div class="page-banner-content">
-                <h1>QantumIQ Podcasts</h1>
-                <p>Explore the future of business and technology through insightful conversations with industry experts and thought leaders</p>
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <img data-hero-theme="podcasts" data-width="1600" data-height="600" alt="" loading="eager">
+  </div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="section-label">Insights</span>
+    <h1>Podcasts</h1>
+    <p>Conversations with industry leaders exploring the intersection of technology and business strategy.</p>
+  </div>
+</section>
+<section class="section"><div class="container"><div class="insights-grid">
+        <a href="articles/future-of-ai-financial-services.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="financial-services" data-img-idx="0" data-width="600" data-height="340" alt="The Future of AI in Financial Services"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Technology</span>
+              <span class="insight-card__date">January 15, 2026</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container">
-            <ul class="breadcrumbs-list">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../insights.html">Insights</a></li>
-                <li><a href="podcasts.html">Podcasts</a></li>
-            </ul>
-        </div>
+            <h3>The Future of AI in Financial Services</h3>
+            <p>How artificial intelligence is revolutionizing risk assessment, fraud detection, and customer experiences in banking and capital m...</p>
+          </div>
+        </a>
+        
+        <a href="articles/quantum-computing-next-revolution.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="quantum-computing" data-img-idx="0" data-width="600" data-height="340" alt="Quantum Computing: Preparing for the Next Computing Revolution"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Research</span>
+              <span class="insight-card__date">January 8, 2026</span>
+            </div>
+            <h3>Quantum Computing: Preparing for the Next Computing Revolution</h3>
+            <p>A comprehensive guide to understanding quantum computing and its potential impact on industries from finance to pharmaceuticals....</p>
+          </div>
+        </a>
+        
+        <a href="articles/digital-leadership-disruption.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="c-suite-advisory" data-img-idx="0" data-width="600" data-height="340" alt="Digital Leadership in the Age of Disruption"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Leadership</span>
+              <span class="insight-card__date">December 22, 2025</span>
+            </div>
+            <h3>Digital Leadership in the Age of Disruption</h3>
+            <p>How C-suite executives can develop the mindset and capabilities needed to lead successful digital transformation initiatives....</p>
+          </div>
+        </a>
+        
+        <a href="articles/enterprise-ai-adoption-guide.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="ai-ml" data-img-idx="0" data-width="600" data-height="340" alt="The Enterprise AI Adoption Playbook: From Pilot to Production"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Strategy</span>
+              <span class="insight-card__date">December 10, 2025</span>
+            </div>
+            <h3>The Enterprise AI Adoption Playbook: From Pilot to Production</h3>
+            <p>A practical framework for scaling AI initiatives across the enterprise, addressing common pitfalls and proven success patterns....</p>
+          </div>
+        </a>
+        
+        <a href="articles/cmc-optimization-pharma.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="pharmaceuticals" data-img-idx="0" data-width="600" data-height="340" alt="AI-Driven CMC Optimization in Pharmaceutical Development"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Pharmaceuticals</span>
+              <span class="insight-card__date">November 28, 2025</span>
+            </div>
+            <h3>AI-Driven CMC Optimization in Pharmaceutical Development</h3>
+            <p>How machine learning and advanced analytics are transforming Chemistry, Manufacturing, and Controls processes to accelerate drug d...</p>
+          </div>
+        </a>
+        
+        <a href="articles/cloud-migration-strategy.html" class="insight-card">
+          <div class="insight-card__img"><img data-img-theme="digital-transformation" data-img-idx="0" data-width="600" data-height="340" alt="Cloud Migration Done Right: A Strategic Framework"></div>
+          <div class="insight-card__body">
+            <div class="insight-card__meta">
+              <span class="insight-card__tag">Digital</span>
+              <span class="insight-card__date">November 15, 2025</span>
+            </div>
+            <h3>Cloud Migration Done Right: A Strategic Framework</h3>
+            <p>Avoid the common pitfalls of cloud migration with a proven strategic framework that balances speed, cost, and risk....</p>
+          </div>
+        </a>
+        </div></div></section>
+<section class="cta-section">
+  <div class="container text-center">
+    <span class="section-label">Get Started</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p>Partner with QantumIQ to navigate the complexities of emerging technology and build a resilient, future-ready organization.</p>
+    <div>
+      <a href="../contact.html" class="btn btn--primary">Schedule a Consultation</a>
+      <a href="../services.html" class="btn btn--secondary">Explore Services</a>
     </div>
+  </div>
+</section>
 
-    <!-- Podcast Overview -->
-    <section class="section">
-        <div class="container">
-            <div class="podcast-overview">
-                <div class="podcast-overview-content">
-                    <h2>Quantum Conversations</h2>
-                    <p>Welcome to <strong>Quantum Conversations</strong>, QantumIQ's flagship podcast series where we dive deep into the transformative technologies and strategies shaping the future of business and society.</p>
-                    <p>Each episode features stimulating discussions with industry pioneers, thought leaders, and QantumIQ experts as they explore emerging trends, share insights, and provide actionable strategies for navigating the rapidly evolving digital landscape.</p>
-                    <p>Whether you're a C-suite executive, technology professional, or simply curious about the future, our podcasts offer valuable perspectives to help you stay ahead in this quantum age.</p>
-                    <a href="#latest-episodes" class="btn btn-primary">Listen to Latest Episodes</a>
-                </div>
-                <div class="podcast-overview-image">
-                    <img src="/api/placeholder/600/400" alt="Quantum Conversations Podcast">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Latest Episodes -->
-    <section id="latest-episodes" class="section">
-        <div class="container">
-            <h2 class="section-title">Latest Episodes</h2>
-            <div class="podcast-grid">
-                <div class="podcast-card">
-                    <div class="podcast-thumbnail">
-                        <img src="/api/placeholder/400/300" alt="AI Ethics and Governance">
-                        <div class="podcast-play-button">▶</div>
-                    </div>
-                    <div class="podcast-content">
-                        <div class="podcast-meta">
-                            <span class="podcast-date">May 6, 2025</span>
-                            <span class="podcast-duration">48 min</span>
-                        </div>
-                        <h3>AI Ethics and Governance: Balancing Innovation with Responsibility</h3>
-                        <p class="podcast-description">In this episode, we explore the critical balance between AI innovation and ethical responsibility with Dr. Elena Morales, Chief Ethics Officer at TechFuture Institute.</p>
-                        <div class="podcast-actions">
-                            <a href="#" class="btn btn-outline">Listen Now</a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎵</span> Apple
-                            </a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎧</span> Spotify
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podcast-card">
-                    <div class="podcast-thumbnail">
-                        <img src="/api/placeholder/400/300" alt="Quantum Computing">
-                        <div class="podcast-play-button">▶</div>
-                    </div>
-                    <div class="podcast-content">
-                        <div class="podcast-meta">
-                            <span class="podcast-date">April 22, 2025</span>
-                            <span class="podcast-duration">53 min</span>
-                        </div>
-                        <h3>Quantum Computing: From Theory to Business Applications</h3>
-                        <p class="podcast-description">Dr. James Chen, CTO of QantumIQ, discusses how quantum computing is moving from theoretical concept to practical business applications across industries.</p>
-                        <div class="podcast-actions">
-                            <a href="#" class="btn btn-outline">Listen Now</a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎵</span> Apple
-                            </a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎧</span> Spotify
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podcast-card">
-                    <div class="podcast-thumbnail">
-                        <img src="/api/placeholder/400/300" alt="Digital Transformation">
-                        <div class="podcast-play-button">▶</div>
-                    </div>
-                    <div class="podcast-content">
-                        <div class="podcast-meta">
-                            <span class="podcast-date">April 8, 2025</span>
-                            <span class="podcast-duration">45 min</span>
-                        </div>
-                        <h3>Digital Transformation: Success Stories from the Financial Sector</h3>
-                        <p class="podcast-description">Sarah Johnson, Chief Digital Officer at Global Financial Partners, shares insights on successful digital transformation initiatives in banking and insurance.</p>
-                        <div class="podcast-actions">
-                            <a href="#" class="btn btn-outline">Listen Now</a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎵</span> Apple
-                            </a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎧</span> Spotify
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podcast-card">
-                    <div class="podcast-thumbnail">
-                        <img src="/api/placeholder/400/300" alt="Healthcare Innovation">
-                        <div class="podcast-play-button">▶</div>
-                    </div>
-                    <div class="podcast-content">
-                        <div class="podcast-meta">
-                            <span class="podcast-date">March 25, 2025</span>
-                            <span class="podcast-duration">51 min</span>
-                        </div>
-                        <h3>Healthcare Innovation: AI-Powered Diagnostics and Treatment</h3>
-                        <p class="podcast-description">Dr. Robert Kim, Head of AI Research at MediTech Innovations, discusses how artificial intelligence is revolutionizing healthcare diagnostics and treatment protocols.</p>
-                        <div class="podcast-actions">
-                            <a href="#" class="btn btn-outline">Listen Now</a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎵</span> Apple
-                            </a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎧</span> Spotify
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podcast-card">
-                    <div class="podcast-thumbnail">
-                        <img src="/api/placeholder/400/300" alt="Sustainability Tech">
-                        <div class="podcast-play-button">▶</div>
-                    </div>
-                    <div class="podcast-content">
-                        <div class="podcast-meta">
-                            <span class="podcast-date">March 11, 2025</span>
-                            <span class="podcast-duration">47 min</span>
-                        </div>
-                        <h3>Sustainability Tech: Innovations for a Greener Future</h3>
-                        <p class="podcast-description">Environmental scientist Dr. Maya Patel explores cutting-edge technologies helping businesses achieve sustainability goals and reduce their carbon footprint.</p>
-                        <div class="podcast-actions">
-                            <a href="#" class="btn btn-outline">Listen Now</a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎵</span> Apple
-                            </a>
-                            <a href="#" class="podcast-platform">
-                                <span>🎧</span> Spotify
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Podcast Series -->
-    <section class="podcast-series section">
-        <div class="container">
-            <h2 class="section-title">Podcast Series</h2>
-            <div class="series-tabs">
-                <div class="series-tab active" data-series="all">All Episodes</div>
-                <div class="series-tab" data-series="ai-ml">AI & ML Insights</div>
-                <div class="series-tab" data-series="quantum">Quantum Computing</div>
-                <div class="series-tab" data-series="digital-transformation">Digital Transformation</div>
-                <div class="series-tab" data-series="healthcare">Healthcare Innovations</div>
-                <div class="series-tab" data-series="sustainability">Sustainability Tech</div>
-            </div>
-            <div class="series-content active" data-series="all">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for all episodes -->
-                </div>
-            </div>
-            <div class="series-content" data-series="ai-ml">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for AI & ML episodes -->
-                </div>
-            </div>
-            <div class="series-content" data-series="quantum">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for Quantum Computing episodes -->
-                </div>
-            </div>
-            <div class="series-content" data-series="digital-transformation">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for Digital Transformation episodes -->
-                </div>
-            </div>
-            <div class="series-content" data-series="healthcare">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for Healthcare Innovations episodes -->
-                </div>
-            </div>
-            <div class="series-content" data-series="sustainability">
-                <div class="podcast-grid">
-                    <!-- Repeat podcast cards here for Sustainability Tech episodes -->
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Featured Guests -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Featured Guests</h2>
-            <div class="guests-slider">
-                <div class="guest-card">
-                    <div class="guest-image">
-                        <img src="/api/placeholder/150/150" alt="Dr. Elena Morales">
-                    </div>
-                    <h4>Dr. Elena Morales</h4>
-                    <p class="guest-title">Chief Ethics Officer, TechFuture Institute</p>
-                    <p>Expert in AI ethics and governance, Dr. Morales leads initiatives to ensure responsible AI development.</p>
-                </div>
-                <div class="guest-card">
-                    <div class="guest-image">
-                        <img src="/api/placeholder/150/150" alt="Dr. James Chen">
-                    </div>
-                    <h4>Dr. James Chen</h4>
-                    <p class="guest-title">CTO, QantumIQ</p>
-                    <p>Leading expert in quantum computing, Dr. Chen is at the forefront of developing practical applications for businesses.</p>
-                </div>
-                <div class="guest-card">
-                    <div class="guest-image">
-                        <img src="/api/placeholder/150/150" alt="Sarah Johnson">
-                    </div>
-                    <h4>Sarah Johnson</h4>
-                    <p class="guest-title">Chief Digital Officer, Global Financial Partners</p>
-                    <p>Digital transformation leader with extensive experience in banking and insurance sectors.</p>
-                </div>
-                <div class="guest-card">
-                    <div class="guest-image">
-                        <img src="/api/placeholder/150/150" alt="Dr. Robert Kim">
-                    </div>
-                    <h4>Dr. Robert Kim</h4>
-                    <p class="guest-title">Head of AI Research, MediTech Innovations</p>
-                    <p>AI researcher focused on healthcare applications, Dr. Kim is pioneering new diagnostic and treatment methods.</p>
-                </div>
-                <div class="guest-card">
-                    <div class="guest-image">
-                        <img src="/api/placeholder/150/150" alt="Dr. Maya Patel">
-                    </div>
-                    <h4>Dr. Maya Patel</h4>
-                    <p class="guest-title">Environmental Scientist</p>
-                    <p>Expert in sustainability technologies, Dr. Patel is dedicated to helping businesses achieve their environmental goals.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Subscribe Section -->
-    <section class="subscribe-section">
-        <div class="container">
-            <h2>Subscribe to Our Podcast</h2>
-            <p>Stay updated with the latest episodes and insights from QantumIQ. Subscribe now on your favorite podcast platform!</p>
-            <div class="podcast-platforms">
-                <a href="#" class="platform-icon">
-                    <span>🎧</span>
-                    Apple Podcasts
-                </a>
-                <a href="#" class="platform-icon">
-                    <span>🎵</span>
-                    Spotify
-                </a>
-                <a href="#" class="platform-icon">
-                    <span>📻</span>
-                    Google Podcasts
-                </a>
-                <a href="#" class="platform-icon">
-                    <span>🎤</span>
-                    Stitcher
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Us Section -->
-    <section class="contact-us">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <p class="contact-description">Have questions or feedback? We'd love to hear from you! Reach out to us through the form below.</p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
-            </form>
-        </div>
-    </section>
-    <!-- Footer -->    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Qantum<span>IQ</span></div>
-                    <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i>in</i></a>
-                        <a href="#"><i>tw</i></a>
-                        <a href="#"><i>fb</i></a>
-                        <a href="#"><i>yt</i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/ai-ml.html">AI & ML Solutions</a></li>
-                        <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
-                        <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
-                        <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
-                        <li><a href="services/business-process.html">Business Process Optimization</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Industries</h4>
-                    <ul>
-                        <li><a href="industries/financial-services.html">Financial Services</a></li>
-                        <li><a href="industries/technology.html">Technology</a></li>
-                        <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
-                        <li><a href="industries/healthcare.html">Healthcare</a></li>
-                        <li><a href="industries/energy.html">Energy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="insights.html">Insights</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i>📍</i> Global Headquarters: 123 Tech Plaza, San Francisco, CA 94105</p>
-                    <p><i>📞</i> +1 (800) 555-QNTM</p>
-                    <p><i>✉️</i> info@qantumiq.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Menu Toggle -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            
-            hamburger.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!event.target.closest('.navbar')) {
-                    navLinks.classList.remove('active');
-                }
-            });
-            
-            // For mobile dropdown toggles
-            const dropdowns = document.querySelectorAll('.dropdown');
-            
-            dropdowns.forEach(dropdown => {
-                const link = dropdown.querySelector('a');
-                
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const content = this.nextElementSibling;
-                        content.classList.toggle('active');
-                    }
-                });
-            });
-        });
-    </script>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+        <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="../services/ai-ml.html">AI &amp; ML Solutions</a></li>
+          <li><a href="../services/quantum-computing.html">Quantum Computing</a></li>
+          <li><a href="../services/digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li>
+          <li><a href="../services/business-process.html">Business Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="../industries/financial-services.html">Financial Services</a></li>
+          <li><a href="../industries/technology.html">Technology</a></li>
+          <li><a href="../industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="../industries/healthcare.html">Healthcare</a></li>
+          <li><a href="../industries/energy.html">Energy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../insights.html">Insights</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../legal/privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
 </body>
 </html>
-    <script>
-        // JavaScript for Podcast Series Tabs
-        const seriesTabs = document.querySelectorAll('.series-tab');
-        const seriesContents = document.querySelectorAll('.series-content');
-
-        seriesTabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                const targetSeries = this.getAttribute('data-series');
-
-                // Remove active class from all tabs and contents
-                seriesTabs.forEach(t => t.classList.remove('active'));
-                seriesContents.forEach(c => c.classList.remove('active'));
-
-                // Add active class to clicked tab and corresponding content
-                this.classList.add('active');
-                document.querySelector(`.series-content[data-series="${targetSeries}"]`).classList.add('active');
-            });
-        });
-    </script>
-    <script>
-        // JavaScript for Featured Guests Slider
-        const guestsSlider = document.querySelector('.guests-slider');
-        const guestCards = document.querySelectorAll('.guest-card');
-
-        let currentIndex = 0;
-        const itemsToShow = 3;
-
-        function showGuests() {
-            guestCards.forEach((card, index) => {
-                card.style.display = (index >= currentIndex && index < currentIndex + itemsToShow) ? 'block' : 'none';
-            });
-        }
-
-        function nextGuests() {
-            currentIndex = (currentIndex + itemsToShow) % guestCards.length;
-            showGuests();
-        }
-
-        setInterval(nextGuests, 5000); // Change guests every 5 seconds
-        showGuests();
-    </script>
-    <script>
-        // JavaScript for Podcast Play Button
-        const playButtons = document.querySelectorAll('.podcast-play-button');
-
-        playButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const podcastCard = this.closest('.podcast-card');
-                const podcastThumbnail = podcastCard.querySelector('.podcast-thumbnail img');
-                const podcastDescription = podcastCard.querySelector('.podcast-description');
-
-                // Simulate playing the podcast
-                alert(`Playing: ${podcastDescription.textContent}`);
-            });
-        });
-    </script>
-    <script>
-        // JavaScript for Subscribe Section
-        const subscribeButtons = document.querySelectorAll('.platform-icon');
-
-        subscribeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const platformName = this.textContent.trim();
-                alert(`Subscribed to ${platformName}`);
-            });
-        });
-    </script>
-    <script>
-        // JavaScript for Contact Form Submission
-        const contactForm = document.querySelector('.contact-form');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-    </script>
-    <script>
-        // JavaScript for Scroll to Top Button
-        const scrollToTopButton = document.createElement('button');
-        scrollToTopButton.textContent = '↑';
-        scrollToTopButton.classList.add('scroll-to-top');
-        document.body.appendChild(scrollToTopButton);
-
-        scrollToTopButton.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                scrollToTopButton.style.display = 'block';
-            } else {
-                scrollToTopButton.style.display = 'none';
-            }
-        });
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.position = 'fixed';
-        scrollToTopButton.style.bottom = '20px';
-        scrollToTopButton.style.right = '20px';
-        scrollToTopButton.style.backgroundColor = '#007bff';
-        scrollToTopButton.style.color = '#fff';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.width = '40px';
-        scrollToTopButton.style.height = '40px';
-        scrollToTopButton.style.fontSize = '20px';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';
-        scrollToTopButton.style.fontWeight = 'bold';
-        scrollToTopButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        scrollToTopButton.style.border = 'none';
-        scrollToTopButton.style.borderRadius = '50%';
-        scrollToTopButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        scrollToTopButton.style.zIndex = '1000';
-        scrollToTopButton.style.cursor = 'pointer';
-        scrollToTopButton.style.transition = 'opacity 0.3s ease';
-        scrollToTopButton.style.opacity = '0.7';
-        scrollToTopButton.style.display = 'none';
-        scrollToTopButton.style.padding = '0';
-        scrollToTopButton.style.textAlign = 'center';
-        scrollToTopButton.style.lineHeight = '40px';    

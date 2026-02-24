@@ -1,1033 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Computing - QantumIQ</title>
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        
-        :root {
-            --primary: #2e3192;
-            --primary-dark: #1a1b5d;
-            --secondary: #00b9f2;
-            --accent: #7b68ee;
-            --dark: #1a1a2e;
-            --light: #f5f7fb;
-            --gray: #747474;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-            padding: 1rem 0;
-            top: 100%;
-            left: 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 0.5rem 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Page Banner */
-        .page-banner {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/1200/400');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-        
-        .page-banner-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .page-banner h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-banner p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-         /* Breadcrumbs */
-        .breadcrumbs {
-            background-color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .breadcrumbs-list {
-            display: flex;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumbs-list li {
-            display: flex;
-            align-items: center;
-        }
-        
-        .breadcrumbs-list li:not(:last-child)::after {
-            content: '/';
-            margin: 0 0.5rem;
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a {
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a:hover {
-            color: var(--primary);
-        }
-        
-        .breadcrumbs-list li:last-child a {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        /* Service Overview */
-        .service-overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .service-overview-content h2 {
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-overview-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-overview-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-overview-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Key Features */
-        .key-features {
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .feature-item {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-item h3 {
-            margin-bottom: 1rem;
-        }
-        
-        /* Process Section */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        .process-step {
-            position: relative;
-            text-align: center;
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .process-steps .process-step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 30px;
-            right: -1rem;
-            width: calc(100% - 30px);
-            height: 2px;
-            background: var(--gradient);
-            z-index: 1;
-        }
-        
-        .process-step h3 {
-            margin-bottom: 1rem;
-        }
-        
-        /* Case Studies */
-        .case-studies {
-            background-color: white;
-        }
-        
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .case-card {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .case-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .case-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .case-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .case-card:hover .case-image img {
-            transform: scale(1.1);
-        }
-        
-        .case-content {
-            padding: 2rem;
-        }
-        
-        .case-content h3 {
-            margin-bottom: 1rem;
-        }
-        
-        .case-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Benefits Section */
-        .benefits-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-        
-        .benefit-icon {
-            min-width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient);
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        /* FAQ Section */
-        .faq-accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            background-color: white;
-            padding: 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .faq-question.active::after {
-            content: '-';
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-answer.active {
-            padding: 0 1.5rem 1.5rem;
-            max-height: 500px;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .cta .btn {
-            background: white;
-            color: var(--primary);
-            border: none;
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-        }
-        
-        .cta .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            min-width: 20px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .service-overview {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .process-steps {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .process-steps .process-step:not(:last-child)::after {
-                top: auto;
-                bottom: -1.5rem;
-                right: auto;
-                left: 30px;
-                width: 2px;
-                height: 100%;
-                transform: translateX(-50%);
-            }
-            
-            .benefits-list {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                padding: 0.5rem 2rem;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .dropdown-content.active {
-                display: block;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Computing | QantumIQ</title>
+  <meta name="description" content="Prepare your organization for the quantum era with readiness assessments, algorithm development, and strategic advisory from leading quantum experts.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>Q</text></svg>">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Qantum<span>IQ</span></a>
-                
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/services.html">Services</a>
-                        <div class="dropdown-content">
-                            <a href="/services/ai-ml.html">AI & ML Solutions</a>
-                            <a href="/services/business-process.html">Business Process Optimization</a>
-                            <a href="/services/c-suite-advisory.html">C-Suite Advisory</a>
-                            <a href="/services/digital-transformation.html">Digital Transformation</a>
-                            <a href="/services/executive-staffing.html">Executive Staffing</a>
-                            <a href="/services/information-insights.html">Information Insights</a>
-                            <a href="/services/quantum-computing.html">Quantum Computing</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/industries.html">Industries</a>
-                        <div class="dropdown-content">
-                            <a href="/industries/energy.html">Energy</a>
-                            <a href="/industries/financial-services.html">Financial Services</a>
-                            <a href="/industries/government.html">Government</a>
-                            <a href="/industries/healthcare.html">Healthcare</a>
-                            <a href="/industries/Media-Entertainment.html">Media and Entertainment</a>
-                            <a href="/industries/pharmaceuticals.html">Pharmaceuticals</a>
-                            <a href="/industries/sustainability.html">Sustainability</a>
-                            <a href="/industries/technology.html">Technology</a>
-                        </div>
-                    </li>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="/insights.html">Insights</a>
-                        <div class="dropdown-content">
-                            <a href="/insights/blog.html">Blog</a>
-                            <a href="/insights/podcasts.html">Podcasts</a>
-                            <a href="/insights/reports.html">Reports</a>
-                            <a href="/insights/white-papers.html">White Papers</a>
-                            <a href="/insights/webinars-events.html">Webinars & Events</a>
-                        </div>
-                    </li>
-                    <li><a href="/careers.html">Careers</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                
-                <div class="hamburger">
-                    <span>&#9776;</span>
-                </div>
-            </nav>
+<div class="nav-overlay"></div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="../services.html">Services</a>
+        <div class="nav-dropdown">
+          <a href="../services/ai-ml.html">AI &amp; ML Solutions</a>
+          <a href="../services/quantum-computing.html">Quantum Computing</a>
+          <a href="../services/digital-transformation.html">Digital Transformation</a>
+          <a href="../services/c-suite-advisory.html">C-Suite Advisory</a>
+          <a href="../services/business-process.html">Business Process Optimization</a>
+          <a href="../services/information-insights.html">Information Insights</a>
+          <a href="../services/executive-staffing.html">Executive Staffing</a>
         </div>
-    </header>
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="container">
-            <div class="page-banner-content">
-                <h1>Quantum Computing</h1>
-                <p>Harness the revolutionary power of quantum computing to solve complex problems and create unprecedented competitive advantages</p>
-            </div>
+      </div>
+      <div class="nav-item">
+        <a href="../industries.html">Industries</a>
+        <div class="nav-dropdown">
+          <a href="../industries/financial-services.html">Financial Services</a>
+          <a href="../industries/technology.html">Technology</a>
+          <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+          <a href="../industries/healthcare.html">Healthcare</a>
+          <a href="../industries/energy.html">Energy</a>
+          <a href="../industries/government.html">Government</a>
+          <a href="../industries/sustainability.html">Sustainability</a>
+          <a href="../industries/media-entertainment.html">Media &amp; Entertainment</a>
         </div>
-    </section>
+      </div>
+      <div class="nav-item"><a href="../about.html">About</a></div>
+      <div class="nav-item">
+        <a href="../insights.html">Insights</a>
+        <div class="nav-dropdown">
+          <a href="../insights/blog.html">Blog</a>
+          <a href="../insights/reports.html">Reports</a>
+          <a href="../insights/white-papers.html">White Papers</a>
+          <a href="../insights/podcasts.html">Podcasts</a>
+          <a href="../insights/webinars-events.html">Webinars &amp; Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="../careers.html">Careers</a></div>
+      <div class="nav-cta"><a href="../contact.html" class="btn btn--primary">Contact Us</a></div>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-    <!-- Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container">
-            <ul class="breadcrumbs-list">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../services.html">Services</a></li>
-                <li><a href="quantum-computing.html">Quantum Computing</a></li>
-            </ul>
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <img data-hero-theme="quantum-computing" data-width="1600" data-height="600" alt="" loading="eager">
+  </div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="section-label">Services</span>
+    <h1>Quantum Computing</h1>
+    <p>Prepare your organization for the quantum era with readiness assessments, algorithm development, and strategic advisory from leading quantum experts.</p>
+  </div>
+</section>
+<section class="section"><div class="container">
+        <div class="feature-row">
+          <div>
+            <span class="section-label">Quantum Advantage</span>
+            <h2>Leading the Quantum Revolution</h2>
+            <p>Quantum computing represents the most transformative technological shift since the semiconductor revolution. QantumIQ stands at the forefront of this transition, helping organizations understand quantum's potential, prepare their infrastructure, and identify use cases where quantum algorithms can deliver exponential advantages.</p>
+            <p>Our quantum practice combines theoretical expertise with practical business acumen. We bridge the gap between quantum research and enterprise value creation, ensuring your quantum investments deliver strategic advantage rather than remaining science experiments.</p>
+          </div>
+          <div class="feature-row__img"><img data-img-theme="quantum-computing" data-img-idx="0" alt="Quantum Computing"></div>
         </div>
+
+        <div class="stats-row">
+          <div class="stat"><div class="stat__number">50+</div><div class="stat__label">Quantum Projects Delivered</div></div>
+          <div class="stat"><div class="stat__number">1000x</div><div class="stat__label">Speed-up in Optimization</div></div>
+          <div class="stat"><div class="stat__number">12</div><div class="stat__label">Quantum Patents Filed</div></div>
+          <div class="stat"><div class="stat__number">98%</div><div class="stat__label">Client Renewal Rate</div></div>
+        </div>
+
+        <h2 class="section-title mt-6">Quantum Services</h2>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card__icon">🔍</div>
+            <h3>Quantum Readiness Assessment</h3>
+            <p>Comprehensive evaluation of your organization's quantum preparedness, including computational workload analysis, cryptographic vulnerability assessment, and strategic roadmap development for quantum adoption.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">🧬</div>
+            <h3>Algorithm Development</h3>
+            <p>Custom quantum algorithm design for optimization, simulation, and machine learning applications. Our researchers develop hybrid quantum-classical approaches that deliver near-term value on current NISQ hardware.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">🔐</div>
+            <h3>Post-Quantum Cryptography</h3>
+            <p>Protect your organization from quantum threats with our cryptographic migration services. We assess vulnerabilities, develop transition roadmaps, and implement quantum-resistant encryption protocols.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">🔬</div>
+            <h3>Quantum Simulation</h3>
+            <p>Leverage quantum computing for molecular simulation, materials discovery, and complex system modeling. Our simulation capabilities accelerate research timelines in pharmaceuticals, chemistry, and materials science.</p>
+          </div>
+        </div>
+        </div></section>
+<section class="cta-section">
+  <div class="container text-center">
+    <span class="section-label">Get Started</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p>Partner with QantumIQ to navigate the complexities of emerging technology and build a resilient, future-ready organization.</p>
+    <div>
+      <a href="../contact.html" class="btn btn--primary">Schedule a Consultation</a>
+      <a href="../services.html" class="btn btn--secondary">Explore Services</a>
     </div>
+  </div>
+</section>
 
-    <!-- Service Overview -->
-    <section class="section">
-        <div class="container">
-            <div class="service-overview">
-                <div class="service-overview-content">
-                    <h2>Unlock Exponential Business Value Through Quantum Computing</h2>
-                    <p>In an era where computational limits constrain innovation, quantum computing represents a paradigm shift in problem-solving capabilities. At QantumIQ, we help organizations prepare for and harness the transformative power of quantum computing to address challenges that are intractable for classical computers.</p>
-                    <p>Our quantum computing expertise spans algorithm development, infrastructure readiness assessment, and practical applications across industries. Whether you're exploring quantum advantage for optimization problems, machine learning enhancements, or secure communications, our team of quantum specialists will guide your organization through this complex technological frontier with clear business objectives in mind.</p>
-                    <a href="../contact.html" class="btn btn-primary">Begin Your Quantum Journey</a>
-                </div>
-                <div class="service-overview-image">
-                    <img src="/api/placeholder/600/400" alt="Quantum Computing">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Features -->
-    <section class="section key-features">
-        <div class="container">
-            <h2 class="section-title">Our Quantum Computing Capabilities</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">⚛️</div>
-                    <h3>Quantum Algorithm Development</h3>
-                    <p>Custom quantum algorithms designed to solve your specific business challenges, from optimization problems to machine learning tasks that are intractable for classical computers.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔌</div>
-                    <h3>Quantum-Ready Infrastructure</h3>
-                    <p>Build the foundation for quantum computing integration with quantum-ready systems, infrastructure assessment, and hybrid quantum-classical computing frameworks.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Quantum Machine Learning</h3>
-                    <p>Leverage quantum-enhanced machine learning algorithms to extract insights from complex datasets and solve pattern recognition problems beyond classical capabilities.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📊</div>
-                    <h3>Quantum Optimization</h3>
-                    <p>Solve complex optimization challenges in logistics, supply chain, financial modeling, and resource allocation with quantum computing's parallel processing power.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Quantum Security Solutions</h3>
-                    <p>Prepare your organization for post-quantum cryptography and implement quantum-resistant security measures to protect your data from future quantum threats.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🗺️</div>
-                    <h3>Quantum Computing Strategy</h3>
-                    <p>Develop a comprehensive quantum computing roadmap tailored to your industry and business needs with expert guidance on quantum use cases and implementation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Process -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Our Quantum Implementation Approach</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Evaluate</h3>
-                    <p>We assess your business challenges and identify quantum-amenable problems that could benefit from quantum computing approaches.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Design</h3>
-                    <p>We design quantum and hybrid quantum-classical solutions tailored to your specific business requirements and technological landscape.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Prototype</h3>
-                    <p>We develop proof-of-concept implementations using quantum simulators and quantum hardware access to validate the approach.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Integrate</h3>
-                    <p>We help you integrate quantum solutions into your existing infrastructure and workflows to maximize business impact.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies -->
-    <section class="section case-studies">
-        <div class="container">
-            <h2 class="section-title">Success Stories</h2>
-            <div class="case-grid">
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Financial Services Quantum Case Study">
-                    </div>
-                    <div class="case-content">
-                        <h3>Financial Services Optimization</h3>
-                        <p>A leading investment firm achieved 65% faster portfolio optimization using our quantum algorithms, revolutionizing their risk assessment capabilities and asset allocation strategies.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Pharmaceutical Research Quantum Case Study">
-                    </div>
-                    <div class="case-content">
-                        <h3>Pharmaceutical Molecule Simulation</h3>
-                        <p>Our quantum computing solution accelerated drug discovery by simulating molecular interactions at unprecedented accuracy, reducing R&D timelines by 40% for a global pharmaceutical company.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Logistics Quantum Case Study">
-                    </div>
-                    <div class="case-content">
-                        <h3>Supply Chain Logistics Quantum Solution</h3>
-                        <p>A multinational logistics provider implemented our quantum optimization algorithms to solve complex route planning challenges, resulting in 28% fuel savings and improved delivery times.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Why Choose QantumIQ for Quantum Computing</h2>
-            <div class="benefits-list">
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Quantum Expertise</h3>
-                        <p>Our team includes recognized quantum computing specialists with deep theoretical knowledge and practical implementation experience across various quantum platforms.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Business-Driven Approach</h3>
-                        <p>We focus on practical quantum applications that deliver measurable business value rather than pursuing quantum technology for its own sake.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Collaborative Partnership</h3>
-                        <p>We work closely with your team to ensure seamless integration of quantum solutions into your existing processes and systems.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Future-Ready Solutions</h3>
-                        <p>We help you prepare for the future of quantum computing, ensuring your organization is ready to leverage advancements in quantum technology as they emerge.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Comprehensive Support</h3>
-                        <p>From strategy development to implementation and ongoing support, we provide end-to-end services to ensure your quantum computing success.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Industry-Specific Solutions</h3>
-                        <p>We tailor our quantum computing solutions to meet the unique needs of your industry, ensuring maximum relevance and impact.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Qantum<span>IQ</span></div>
-                    <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i>in</i></a>
-                        <a href="#"><i>tw</i></a>
-                        <a href="#"><i>fb</i></a>
-                        <a href="#"><i>yt</i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/ai-ml.html">AI & ML Solutions</a></li>
-                        <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
-                        <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
-                        <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
-                        <li><a href="services/business-process.html">Business Process Optimization</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Industries</h4>
-                    <ul>
-                        <li><a href="industries/financial-services.html">Financial Services</a></li>
-                        <li><a href="industries/technology.html">Technology</a></li>
-                        <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
-                        <li><a href="industries/healthcare.html">Healthcare</a></li>
-                        <li><a href="industries/energy.html">Energy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="insights.html">Insights</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i>📍</i> Global Headquarters: 123 Tech Plaza, San Francisco, CA 94105</p>
-                    <p><i>📞</i> +1 (800) 555-QNTM</p>
-                    <p><i>✉️</i> info@qantumiq.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-                    
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+        <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="../services/ai-ml.html">AI &amp; ML Solutions</a></li>
+          <li><a href="../services/quantum-computing.html">Quantum Computing</a></li>
+          <li><a href="../services/digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li>
+          <li><a href="../services/business-process.html">Business Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="../industries/financial-services.html">Financial Services</a></li>
+          <li><a href="../industries/technology.html">Technology</a></li>
+          <li><a href="../industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="../industries/healthcare.html">Healthcare</a></li>
+          <li><a href="../industries/energy.html">Energy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../insights.html">Insights</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../legal/privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,1033 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Process Optimization - QantumIQ</title>
-    <style>
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
-        }
-        
-        :root {
-            --primary: #2e3192;
-            --primary-dark: #1a1b5d;
-            --secondary: #00b9f2;
-            --accent: #7b68ee;
-            --dark: #1a1a2e;
-            --light: #f5f7fb;
-            --gray: #747474;
-            --success: #28a745;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-        }
-        
-        body {
-            background-color: var(--light);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-        }
-        
-        h2 {
-            font-size: 2.4rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            font-size: 1rem;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        
-        .logo span {
-            color: var(--secondary);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        .nav-links a {
-            font-weight: 600;
-            color: var(--dark);
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            z-index: 1;
-            padding: 1rem 0;
-            top: 100%;
-            left: 0;
-        }
-        
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        .dropdown-content a {
-            color: var(--dark);
-            padding: 0.5rem 1.5rem;
-            display: block;
-            font-weight: 500;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: var(--light);
-            color: var(--primary);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        /* Page Banner */
-        .page-banner {
-            background: var(--gradient);
-            color: white;
-            padding: 8rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .page-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/api/placeholder/1200/400');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-        
-        .page-banner-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        
-        .page-banner h1 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .page-banner p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-         /* Breadcrumbs */
-        .breadcrumbs {
-            background-color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .breadcrumbs-list {
-            display: flex;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-        
-        .breadcrumbs-list li {
-            display: flex;
-            align-items: center;
-        }
-        
-        .breadcrumbs-list li:not(:last-child)::after {
-            content: '/';
-            margin: 0 0.5rem;
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a {
-            color: var(--gray);
-        }
-        
-        .breadcrumbs-list a:hover {
-            color: var(--primary);
-        }
-        
-        .breadcrumbs-list li:last-child a {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        /* Service Overview */
-        .service-overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .service-overview-content h2 {
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-overview-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-overview-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-overview-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        /* Key Features */
-        .key-features {
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .feature-item {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-item h3 {
-            margin-bottom: 1rem;
-        }
-        
-        /* Process Section */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        .process-step {
-            position: relative;
-            text-align: center;
-        }
-        
-        .step-number {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .process-steps .process-step:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            top: 30px;
-            right: -1rem;
-            width: calc(100% - 30px);
-            height: 2px;
-            background: var(--gradient);
-            z-index: 1;
-        }
-        
-        .process-step h3 {
-            margin-bottom: 1rem;
-        }
-        
-        /* Case Studies */
-        .case-studies {
-            background-color: white;
-        }
-        
-        .case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .case-card {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .case-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .case-image {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .case-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .case-card:hover .case-image img {
-            transform: scale(1.1);
-        }
-        
-        .case-content {
-            padding: 2rem;
-        }
-        
-        .case-content h3 {
-            margin-bottom: 1rem;
-        }
-        
-        .case-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Benefits Section */
-        .benefits-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-        
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-        
-        .benefit-icon {
-            min-width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient);
-            color: white;
-            font-size: 1.5rem;
-        }
-        
-        /* FAQ Section */
-        .faq-accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            background-color: white;
-            padding: 1.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .faq-question.active::after {
-            content: '-';
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-answer.active {
-            padding: 0 1.5rem 1.5rem;
-            max-height: 500px;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .cta .btn {
-            background: white;
-            color: var(--primary);
-            border: none;
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-        }
-        
-        .cta .btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 1rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo span {
-            color: var(--secondary);
-        }
-        
-        .footer-about p {
-            opacity: 0.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-contact p {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        .footer-contact i {
-            min-width: 20px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .service-overview {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .process-steps {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .process-steps .process-step:not(:last-child)::after {
-                top: auto;
-                bottom: -1.5rem;
-                right: auto;
-                left: 30px;
-                width: 2px;
-                height: 100%;
-                transform: translateX(-50%);
-            }
-            
-            .benefits-list {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li {
-                margin: 0;
-                padding: 0.5rem 2rem;
-            }
-            
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                display: none;
-                padding: 0.5rem 1rem;
-            }
-            
-            .dropdown-content.active {
-                display: block;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Process Optimization | QantumIQ</title>
+  <meta name="description" content="Streamline operations, eliminate waste, and build agile processes through data-driven analysis, automation, and continuous improvement frameworks.">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>Q</text></svg>">
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="/index.html" class="logo">Qantum<span>IQ</span></a>
-                
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="/services.html">Services</a>
-                        <div class="dropdown-content">
-                            <a href="/services/ai-ml.html">AI & ML Solutions</a>
-                            <a href="/services/business-process.html">Business Process Optimization</a>
-                            <a href="/services/c-suite-advisory.html">C-Suite Advisory</a>
-                            <a href="/services/digital-transformation.html">Digital Transformation</a>
-                            <a href="/services/executive-staffing.html">Executive Staffing</a>
-                            <a href="/services/information-insights.html">Information Insights</a>
-                            <a href="/services/quantum-computing.html">Quantum Computing</a>
-                        </div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="/industries.html">Industries</a>
-                        <div class="dropdown-content">
-                            <a href="/industries/energy.html">Energy</a>
-                            <a href="/industries/financial-services.html">Financial Services</a>
-                            <a href="/industries/government.html">Government</a>
-                            <a href="/industries/healthcare.html">Healthcare</a>
-                            <a href="/industries/Media-Entertainment.html">Media and Entertainment</a>
-                            <a href="/industries/pharmaceuticals.html">Pharmaceuticals</a>
-                            <a href="/industries/sustainability.html">Sustainability</a>
-                            <a href="/industries/technology.html">Technology</a>
-                        </div>
-                    </li>
-                    <li><a href="/about.html">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="/insights.html">Insights</a>
-                        <div class="dropdown-content">
-                            <a href="/insights/blog.html">Blog</a>
-                            <a href="/insights/podcasts.html">Podcasts</a>
-                            <a href="/insights/reports.html">Reports</a>
-                            <a href="/insights/white-papers.html">White Papers</a>
-                            <a href="/insights/webinars-events.html">Webinars & Events</a>
-                        </div>
-                    </li>
-                    <li><a href="/careers.html">Careers</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                
-                <div class="hamburger">
-                    <span>&#9776;</span>
-                </div>
-            </nav>
+<div class="nav-overlay"></div>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+    <nav class="main-nav">
+      <div class="nav-item">
+        <a href="../services.html">Services</a>
+        <div class="nav-dropdown">
+          <a href="../services/ai-ml.html">AI &amp; ML Solutions</a>
+          <a href="../services/quantum-computing.html">Quantum Computing</a>
+          <a href="../services/digital-transformation.html">Digital Transformation</a>
+          <a href="../services/c-suite-advisory.html">C-Suite Advisory</a>
+          <a href="../services/business-process.html">Business Process Optimization</a>
+          <a href="../services/information-insights.html">Information Insights</a>
+          <a href="../services/executive-staffing.html">Executive Staffing</a>
         </div>
-    </header>
+      </div>
+      <div class="nav-item">
+        <a href="../industries.html">Industries</a>
+        <div class="nav-dropdown">
+          <a href="../industries/financial-services.html">Financial Services</a>
+          <a href="../industries/technology.html">Technology</a>
+          <a href="../industries/pharmaceuticals.html">Pharmaceuticals</a>
+          <a href="../industries/healthcare.html">Healthcare</a>
+          <a href="../industries/energy.html">Energy</a>
+          <a href="../industries/government.html">Government</a>
+          <a href="../industries/sustainability.html">Sustainability</a>
+          <a href="../industries/media-entertainment.html">Media &amp; Entertainment</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="../about.html">About</a></div>
+      <div class="nav-item">
+        <a href="../insights.html">Insights</a>
+        <div class="nav-dropdown">
+          <a href="../insights/blog.html">Blog</a>
+          <a href="../insights/reports.html">Reports</a>
+          <a href="../insights/white-papers.html">White Papers</a>
+          <a href="../insights/podcasts.html">Podcasts</a>
+          <a href="../insights/webinars-events.html">Webinars &amp; Events</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="../careers.html">Careers</a></div>
+      <div class="nav-cta"><a href="../contact.html" class="btn btn--primary">Contact Us</a></div>
+    </nav>
+    <button class="mobile-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-    <!-- Page Banner -->
-    <section class="page-banner">
-        <div class="container">
-            <div class="page-banner-content">
-                <h1>Business Process Optimization</h1>
-                <p>Streamline operations, reduce waste, and maximize value creation across your enterprise</p>
-            </div>
+<section class="page-hero">
+  <div class="page-hero__bg">
+    <img data-hero-theme="business-process" data-width="1600" data-height="600" alt="" loading="eager">
+  </div>
+  <div class="page-hero__overlay"></div>
+  <div class="page-hero__content container">
+    <span class="section-label">Services</span>
+    <h1>Business Process Optimization</h1>
+    <p>Streamline operations, eliminate waste, and build agile processes through data-driven analysis, automation, and continuous improvement frameworks.</p>
+  </div>
+</section>
+<section class="section"><div class="container">
+        <div class="feature-row">
+          <div>
+            <span class="section-label">Operational Excellence</span>
+            <h2>Engineered Efficiency at Scale</h2>
+            <p>Operational inefficiency costs enterprises millions annually in lost productivity, redundant efforts, and missed opportunities. QantumIQ's Business Process Optimization practice applies rigorous analytical methodologies combined with modern automation technologies to transform how organizations operate.</p>
+            <p>We go beyond surface-level process mapping to fundamentally rethink workflows, eliminate value-destroying activities, and build adaptive processes that respond to changing business conditions in real time.</p>
+          </div>
+          <div class="feature-row__img"><img data-img-theme="business-process" data-img-idx="0" alt="Process Optimization"></div>
         </div>
-    </section>
 
-    <!-- Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container">
-            <ul class="breadcrumbs-list">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../services.html">Services</a></li>
-                <li><a href="business-process.html">Business Process Optimization</a></li>
-            </ul>
+        <h2 class="section-title mt-6">Optimization Services</h2>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card__icon">🔍</div>
+            <h3>Process Mining & Analysis</h3>
+            <p>Discover actual process flows from system event logs, identify bottlenecks and deviations, and quantify improvement opportunities with precision data rather than assumptions.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">🤖</div>
+            <h3>Intelligent Automation</h3>
+            <p>Deploy RPA, intelligent document processing, and AI-powered decision engines to automate complex business processes while maintaining compliance and audit trail requirements.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">📐</div>
+            <h3>Lean Six Sigma</h3>
+            <p>Apply proven quality improvement methodologies to reduce variation, eliminate defects, and create sustainable process improvements. Our certified practitioners bring decades of industry-specific expertise.</p>
+          </div>
+          <div class="card">
+            <div class="card__icon">🔄</div>
+            <h3>Continuous Improvement Programs</h3>
+            <p>Build organizational capabilities for ongoing optimization. We design measurement systems, feedback loops, and improvement governance structures that sustain gains and drive iterative advancement.</p>
+          </div>
         </div>
+        </div></section>
+<section class="cta-section">
+  <div class="container text-center">
+    <span class="section-label">Get Started</span>
+    <h2 class="section-title">Ready to Transform Your Business?</h2>
+    <p>Partner with QantumIQ to navigate the complexities of emerging technology and build a resilient, future-ready organization.</p>
+    <div>
+      <a href="../contact.html" class="btn btn--primary">Schedule a Consultation</a>
+      <a href="../services.html" class="btn btn--secondary">Explore Services</a>
     </div>
+  </div>
+</section>
 
-    <!-- Service Overview -->
-    <section class="section">
-        <div class="container">
-            <div class="service-overview">
-                <div class="service-overview-content">
-                    <h2>Elevate Performance Through Strategic Process Excellence</h2>
-                    <p>In today's competitive business landscape, operational efficiency is a critical differentiator between market leaders and followers. At QantumIQ, we help organizations identify, analyze, and optimize key business processes to eliminate inefficiencies, reduce costs, and create sustainable competitive advantages.</p>
-                    <p>Our comprehensive approach to Business Process Optimization leverages advanced analytics, industry best practices, and innovative technologies to transform how your organization operates. Whether you're looking to streamline operations, enhance quality, improve customer satisfaction, or increase agility, our team of process excellence experts will develop tailored solutions that deliver measurable business results.</p>
-                    <a href="../contact.html" class="btn btn-primary">Transform Your Operations</a>
-                </div>
-                <div class="service-overview-image">
-                    <img src="/api/placeholder/600/400" alt="Business Process Optimization">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Features -->
-    <section class="section key-features">
-        <div class="container">
-            <h2 class="section-title">Our Process Optimization Capabilities</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <div class="feature-icon">📊</div>
-                    <h3>Process Assessment & Mapping</h3>
-                    <p>Comprehensive analysis and visualization of existing processes to identify bottlenecks, redundancies, and improvement opportunities.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Lean Six Sigma Implementation</h3>
-                    <p>Apply proven methodologies to eliminate waste, reduce variability, and enhance quality across your operations.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Workflow Automation</h3>
-                    <p>Leverage technology to automate repetitive tasks, streamline approvals, and accelerate process execution.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">🛠️</div>
-                    <h3>Business Process Reengineering</h3>
-                    <p>Fundamentally rethink and redesign core processes to achieve dramatic improvements in critical performance metrics.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📱</div>
-                    <h3>Digital Process Transformation</h3>
-                    <p>Integrate digital technologies to create intelligent, adaptable processes that enhance customer and employee experiences.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">📈</div>
-                    <h3>Continuous Improvement Systems</h3>
-                    <p>Establish frameworks and culture for ongoing process refinement and sustained operational excellence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Process -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Our Process Optimization Approach</h2>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Discover</h3>
-                    <p>We analyze current processes, gather stakeholder input, and benchmark against industry standards to identify improvement opportunities.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Design</h3>
-                    <p>We develop optimized process models, technology enablers, and implementation roadmaps tailored to your business objectives.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Implement</h3>
-                    <p>We execute process changes, deploy supporting technologies, and provide training to ensure successful adoption.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Sustain</h3>
-                    <p>We establish measurement systems, governance frameworks, and continuous improvement mechanisms to maintain and enhance process performance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Studies -->
-    <section class="section case-studies">
-        <div class="container">
-            <h2 class="section-title">Success Stories</h2>
-            <div class="case-grid">
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Healthcare Process Optimization">
-                    </div>
-                    <div class="case-content">
-                        <h3>Healthcare Provider Transformation</h3>
-                        <p>We helped a leading healthcare system optimize patient flow processes, resulting in a 35% reduction in wait times and 28% improvement in patient satisfaction scores.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Supply Chain Optimization">
-                    </div>
-                    <div class="case-content">
-                        <h3>Supply Chain Excellence Program</h3>
-                        <p>Our team redesigned a global manufacturer's supply chain processes, reducing order-to-delivery time by 42% and cutting inventory costs by 23%.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-                <div class="case-card">
-                    <div class="case-image">
-                        <img src="/api/placeholder/600/400" alt="Financial Services Process Optimization">
-                    </div>
-                    <div class="case-content">
-                        <h3>Banking Operations Redesign</h3>
-                        <p>We guided a financial institution through a comprehensive operations transformation, resulting in 45% faster transaction processing and 31% reduction in operational costs.</p>
-                        <a href="../insights/case-studies.html" class="btn btn-outline">Read Case Study</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Why Choose QantumIQ for Process Optimization</h2>
-            <div class="benefits-list">
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Methodology-Agnostic Approach</h3>
-                        <p>We draw from multiple improvement methodologies (Lean, Six Sigma, Agile, etc.) to create tailored solutions that address your specific challenges and objectives.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Cross-Industry Expertise</h3>
-                        <p>Our team has extensive experience across various industries, enabling us to apply best practices and innovative solutions that drive results in your sector.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Data-Driven Insights</h3>
-                        <p>We leverage advanced analytics and data visualization tools to provide actionable insights that inform decision-making and drive process improvements.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Change Management Expertise</h3>
-                        <p>We understand that successful process optimization requires more than just technical changes. Our change management strategies ensure stakeholder buy-in and sustainable adoption.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Proven Track Record</h3>
-                        <p>Our clients have achieved significant improvements in efficiency, quality, and customer satisfaction through our process optimization initiatives.</p>
-                    </div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">✓</div>
-                    <div>
-                        <h3>Commitment to Excellence</h3>
-                        <p>We are dedicated to delivering exceptional value and results for our clients, ensuring that your process optimization journey is a success.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">Qantum<span>IQ</span></div>
-                    <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
-                    <div class="social-links">
-                        <a href="#"><i>in</i></a>
-                        <a href="#"><i>tw</i></a>
-                        <a href="#"><i>fb</i></a>
-                        <a href="#"><i>yt</i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services/ai-ml.html">AI & ML Solutions</a></li>
-                        <li><a href="services/quantum-computing.html">Quantum Computing</a></li>
-                        <li><a href="services/digital-transformation.html">Digital Transformation</a></li>
-                        <li><a href="services/c-suite-advisory.html">C-Suite Advisory</a></li>
-                        <li><a href="services/business-process.html">Business Process Optimization</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Industries</h4>
-                    <ul>
-                        <li><a href="industries/financial-services.html">Financial Services</a></li>
-                        <li><a href="industries/technology.html">Technology</a></li>
-                        <li><a href="industries/pharmaceuticals.html">Pharmaceuticals</a></li>
-                        <li><a href="industries/healthcare.html">Healthcare</a></li>
-                        <li><a href="industries/energy.html">Energy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="insights.html">Insights</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="legal/privacy-policy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact Us</h4>
-                    <p><i>📍</i> Global Headquarters: 123 Tech Plaza, San Francisco, CA 94105</p>
-                    <p><i>📞</i> +1 (800) 555-QNTM</p>
-                    <p><i>✉️</i> info@qantumiq.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 QantumIQ Consulting. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo">Qantum<span>IQ</span></a>
+        <p>Advanced consulting solutions for the quantum age, helping organizations transform through cutting-edge technology and strategic innovation.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="../services/ai-ml.html">AI &amp; ML Solutions</a></li>
+          <li><a href="../services/quantum-computing.html">Quantum Computing</a></li>
+          <li><a href="../services/digital-transformation.html">Digital Transformation</a></li>
+          <li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li>
+          <li><a href="../services/business-process.html">Business Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="../industries/financial-services.html">Financial Services</a></li>
+          <li><a href="../industries/technology.html">Technology</a></li>
+          <li><a href="../industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+          <li><a href="../industries/healthcare.html">Healthcare</a></li>
+          <li><a href="../industries/energy.html">Energy</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../insights.html">Insights</a></li>
+          <li><a href="../careers.html">Careers</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../legal/privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 QantumIQ Consulting. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">𝕏</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
