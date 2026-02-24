@@ -151,75 +151,146 @@ body {
 
 /* ══════════════════════════════════
    HERO (PAGE HERO — all inner pages)
+   Compact banner: title + tagline only.
+   Content flows below the hero.
 ══════════════════════════════════ */
 .page-hero {
-  position:relative;
-  min-height:500px; padding:9rem 5vw 5rem;
-  display:flex; align-items:center;
-  background-size:cover; background-position:center;
-  background-color:var(--bg3); /* fallback */
-  overflow:hidden;
-  z-index:1;
+  position: relative;
+  /* Compact — just tall enough for title + one-liner */
+  padding: 7.5rem 5vw 2.75rem;
+  display: flex;
+  align-items: flex-end;           /* text sits at bottom of banner */
+  /* CSS gradient is the ALWAYS-ON background */
+  background: linear-gradient(135deg, #050b1a 0%, #071428 50%, #090f22 100%);
+  /* Photo loads on top via JS — gradient shows if image fails */
+  background-size: cover;
+  background-position: center top;
+  overflow: hidden;
+  z-index: 1;
 }
-/* DARK OVERLAY — fixes text visibility over photos */
+
+/* ── LAYER 1: solid dark base (behind image) ── */
+.page-hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  /* Uniform 88% dark — never fades, text always visible */
+  background: rgba(5, 7, 15, 0.88);
+}
+
+/* ── LAYER 2: subtle left-column gradient for depth ── */
 .page-hero::before {
-  content:'';
-  position:absolute; inset:0; z-index:1;
-  background:linear-gradient(
-    110deg,
-    rgba(5,7,15,.90) 0%,
-    rgba(5,7,15,.72) 55%,
-    rgba(5,7,15,.45) 100%
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.30) 0%,
+    transparent 70%
   );
 }
+
+/* Content sits above both overlay layers */
 .page-hero-content {
-  position:relative; z-index:2;
-  max-width:820px;
+  position: relative;
+  z-index: 10;        /* well above overlays */
+  max-width: 860px;
 }
+
 .page-hero-eyebrow {
-  display:inline-flex; align-items:center; gap:.7rem;
-  font-size:.72rem; font-weight:500; letter-spacing:.2em;
-  text-transform:uppercase; color:var(--cyan); margin-bottom:1.25rem;
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .7rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: .85rem;
 }
-.page-hero-eyebrow::before { content:''; width:32px; height:1px; background:var(--cyan); }
-.page-hero h1 {
-  font-family:var(--ff-display); font-weight:800;
-  font-size:clamp(2.2rem,5vw,4rem);
-  line-height:1.05; letter-spacing:-.02em;
-  margin-bottom:1.25rem;
-  color:#fff; /* explicit white — fixes blending */
-  text-shadow:0 2px 20px rgba(0,0,0,.5);
+.page-hero-eyebrow::before {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--cyan);
+  flex-shrink: 0;
 }
-.page-hero h1 .italic { font-family:var(--ff-serif); font-style:italic; font-weight:400; color:var(--gold-lt); }
+
+/* H1 — force white with multiple fallback layers */
+.page-hero h1,
+.page-hero h1 *:not(.italic) {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin-bottom: .9rem;
+  color: #ffffff !important;
+  text-shadow:
+    0 1px 0   rgba(0,0,0,1),
+    0 2px 8px  rgba(0,0,0,.9),
+    0 4px 24px rgba(0,0,0,.7);
+}
+.page-hero h1 .italic {
+  font-family: var(--ff-serif) !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: var(--gold-lt) !important;
+}
+
+/* Subtitle — visible on any background */
 .page-hero p {
-  color:rgba(242,244,255,.75);
-  font-size:clamp(.95rem,1.5vw,1.15rem);
-  max-width:52ch; line-height:1.8;
-  text-shadow:0 1px 8px rgba(0,0,0,.4);
+  font-size: clamp(.88rem, 1.4vw, 1.05rem);
+  line-height: 1.75;
+  max-width: 56ch;
+  color: rgba(242,244,255, 0.85) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,.8);
+  margin-bottom: 0;
 }
-.page-hero-actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:2rem; }
+
+.page-hero-actions {
+  display: flex; gap: .75rem; flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+/* Thin cyan accent line at bottom of hero */
+.page-hero-bottom-line {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; z-index: 10;
+  background: linear-gradient(90deg, var(--cyan), transparent 60%);
+  opacity: .5;
+}
 
 /* ══════════════════════════════════
-   HOMEPAGE HERO
+   HOMEPAGE HERO — larger but not full-bleed tall
 ══════════════════════════════════ */
 .home-hero {
-  position:relative; z-index:1;
-  min-height:100vh; display:flex; flex-direction:column;
-  justify-content:center; padding:9rem 5vw 5rem;
-  background-size:cover; background-position:center;
-  background-color:var(--bg);
-  overflow:hidden;
+  position: relative;
+  z-index: 1;
+  /* 65vh — prominent but not screen-filling */
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;       /* content at bottom */
+  padding: 9rem 5vw 4rem;
+  background: linear-gradient(135deg, #050b1a 0%, #071428 50%, #090f22 100%);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 }
+
+/* Solid 85% overlay — image tints through but text is always clear */
 .home-hero::before {
-  content:''; position:absolute; inset:0; z-index:0;
-  background:linear-gradient(
-    130deg,
-    rgba(5,7,15,.95) 0%,
-    rgba(5,7,15,.80) 50%,
-    rgba(5,7,15,.60) 100%
-  );
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background: rgba(5, 7, 15, 0.82);
 }
-.home-hero > * { position:relative; z-index:1; }
+
+/* Bottom-up vignette so stats row reads cleanly */
+.home-hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 180px; z-index: 1;
+  background: linear-gradient(to top, rgba(5,7,15,.6), transparent);
+  pointer-events: none;
+}
+
+.home-hero > .container {
+  position: relative;
+  z-index: 2;
+}
 
 /* ══════════════════════════════════
    SHARED LAYOUT
@@ -596,9 +667,13 @@ img { max-width:100%; }
   .news-feed-grid{grid-template-columns:1fr}
   .news-loading{grid-column:span 1}
   .section-header-row{flex-direction:column; align-items:flex-start}
-  .page-hero{min-height:420px; padding:8rem 5vw 3.5rem}
+  /* Mobile heroes — compact, never full-screen */
+  .page-hero{ padding:6.5rem 5vw 2.25rem; }
+  .home-hero{ min-height:55vh; padding:7rem 5vw 3rem; }
 }
 @media(max-width:480px){
   .stats-row{gap:1.5rem}
   .stat-num{font-size:2.1rem}
+  .page-hero{ padding:6rem 4vw 2rem; }
+  .home-hero{ min-height:50vh; }
 }
