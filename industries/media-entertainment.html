@@ -1,593 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media & Entertainment | QantumIQ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ─────────────────────────────────────────
-       DESIGN TOKENS — matches site palette
-    ───────────────────────────────────────── */
-    :root {
-      --bg-primary:   #070c18;
-      --bg-secondary: #0d1526;
-      --bg-card:      #111a2e;
-      --bg-card-alt:  #0f1729;
-      --border:       rgba(0,212,255,0.12);
-      --border-hover: rgba(0,212,255,0.35);
-      --accent:       #00d4ff;
-      --accent-2:     #7c3aed;
-      --text-primary: #f0f4ff;
-      --text-muted:   #8a9bbd;
-      --text-dim:     #4e6080;
-      --gradient:     linear-gradient(135deg,#00d4ff 0%,#7c3aed 100%);
-      --glow:         0 0 40px rgba(0,212,255,0.18);
-      --radius:       12px;
-      --radius-lg:    20px;
-      --font-head:    'Syne', sans-serif;
-      --font-body:    'Inter', sans-serif;
-    }
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="dark"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Media &amp; Entertainment — QantumIQ</title>
+<meta name="theme-color" content="#05070F"/>
+<meta name="description" content="QantumIQ's Media &amp; Entertainment practice: AI personalization, audience intelligence, cloud OTT architecture, and ad tech for global media leaders."/>
+<link rel="stylesheet" href="../assets/css/main.css"/>
+<style>
+/* ── PAGE-SPECIFIC TOKENS ────────────────────────────── */
+:root {
+  --bg-card:      #111a2e;
+  --bg-card-alt:  #0f1729;
+  --border-hover: rgba(0,212,255,0.35);
+  --gradient:     linear-gradient(135deg,var(--cyan) 0%,#7c3aed 100%);
+  --glow:         0 0 40px rgba(0,212,255,0.18);
+  --radius:       12px;
+  --radius-lg:    20px;
+  --text-dim:     #4e6080;
+  --accent-2:     #7c3aed;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── BREADCRUMB ──────────────────────────────────────── */
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 22px;
+}
+.breadcrumb a { color: var(--text-dim); text-decoration: none; transition: color .2s; }
+.breadcrumb a:hover { color: var(--cyan); }
+.breadcrumb span { color: var(--cyan); }
 
-    html { scroll-behavior: smooth; }
+/* ── PAGE HERO ───────────────────────────────────────── */
+.page-hero {
+  position: relative; overflow: hidden;
+  padding: 100px 0 80px;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.10) 0%, transparent 65%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.08) 0%, transparent 60%),
+              var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%2300d4ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+.page-hero .container { position: relative; }
+.page-hero-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
+  color: var(--cyan); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+}
+.page-hero h1 {
+  font-family: var(--ff-sans); font-size: clamp(2.4rem,5vw,3.8rem);
+  font-weight: 800; line-height: 1.12; letter-spacing: -.03em;
+  margin-bottom: 22px; max-width: 820px; color: #fff;
+}
+.page-hero h1 .it  { font-family: var(--ff-serif); font-style: italic; font-weight: 400; color: var(--gold-lt); }
+.page-hero h1 .hi  { color: var(--cyan); }
+.page-hero-sub {
+  color: rgba(242,244,255,.8); font-size: 1.08rem;
+  max-width: 640px; line-height: 1.75; margin-bottom: 2.25rem;
+}
+.page-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.page-hero-stats {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border);
+}
+.hero-stat-num {
+  font-family: var(--ff-sans); font-size: 2rem; font-weight: 800;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.hero-stat-lbl {
+  font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 5px;
+}
 
-    body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
+/* ── OVERVIEW ────────────────────────────────────────── */
+.overview-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.overview-text p {
+  color: var(--muted); margin-bottom: 18px; line-height: 1.75; font-size: 0.95rem;
+}
+.overview-text p:last-child { margin-bottom: 0; }
+.highlights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.highlight-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 20px;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.highlight-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--glow); }
+.highlight-num {
+  font-family: var(--ff-sans); font-size: 1.8rem; font-weight: 800;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+.highlight-lbl { font-size: 0.82rem; color: var(--muted); }
 
-    /* ── NAV ── */
-    .nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(7,12,24,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px;
-    }
-    .nav-logo {
-      font-family: var(--font-head);
-      font-size: 1.45rem; font-weight: 800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; align-items: center; gap: 8px; }
-    .nav-links a {
-      color: var(--text-muted); text-decoration: none; font-size: 0.88rem;
-      font-weight: 500; padding: 8px 14px; border-radius: 8px;
-      transition: color .2s, background .2s;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(0,212,255,0.07); }
-    .nav-cta {
-      background: var(--gradient); color: #fff !important; padding: 9px 20px !important;
-      border-radius: 8px; font-weight: 600 !important;
-      -webkit-text-fill-color: #fff !important;
-    }
-    .nav-cta:hover { opacity: .9; }
-    .nav-mobile { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+/* ── CHALLENGE CARDS ─────────────────────────────────── */
+.challenge-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px 28px;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.challenge-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--glow); }
+.challenge-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 20px;
+}
+.challenge-card h3 { font-family: var(--ff-sans); font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+.challenge-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative; overflow: hidden;
-      padding: 100px 40px 80px;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.10) 0%, transparent 65%),
-                  radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.08) 0%, transparent 60%),
-                  var(--bg-primary);
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d4ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-      pointer-events: none;
-    }
-    .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; }
-    .hero-breadcrumb {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.8rem; color: var(--text-dim); margin-bottom: 24px;
-      text-transform: uppercase; letter-spacing: .08em;
-    }
-    .hero-breadcrumb a { color: var(--text-dim); text-decoration: none; }
-    .hero-breadcrumb a:hover { color: var(--accent); }
-    .hero-breadcrumb span { color: var(--accent); }
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
-      color: var(--accent); font-size: 0.78rem; font-weight: 600;
-      letter-spacing: .1em; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-family: var(--font-head); font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 800; line-height: 1.12; margin-bottom: 22px;
-      max-width: 800px;
-    }
-    .hero h1 .gradient-text {
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-sub {
-      color: var(--text-muted); font-size: 1.08rem; max-width: 620px;
-      line-height: 1.7; margin-bottom: 36px;
-    }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gradient); color: #fff; text-decoration: none;
-      font-weight: 600; font-size: 0.9rem; padding: 13px 26px;
-      border-radius: 10px; transition: opacity .2s, transform .2s;
-      border: none; cursor: pointer;
-    }
-    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--text-primary); text-decoration: none;
-      font-weight: 600; font-size: 0.9rem; padding: 12px 26px;
-      border-radius: 10px; border: 1px solid var(--border-hover);
-      transition: background .2s, border-color .2s;
-    }
-    .btn-secondary:hover { background: rgba(0,212,255,0.07); border-color: var(--accent); }
+/* ── SOLUTION CARDS ──────────────────────────────────── */
+.solution-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 36px 32px;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  transition: border-color .25s, box-shadow .25s;
+}
+.solution-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--gradient); opacity: 0; transition: opacity .25s;
+}
+.solution-card:hover { border-color: var(--border-hover); box-shadow: var(--glow); }
+.solution-card:hover::before { opacity: 1; }
+.solution-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: linear-gradient(135deg,rgba(0,212,255,0.15),rgba(124,58,237,0.15));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; margin-bottom: 22px;
+}
+.solution-card h3 { font-family: var(--ff-sans); font-size: 1.12rem; font-weight: 700; margin-bottom: 12px; }
+.solution-card p  { color: var(--muted); font-size: 0.88rem; line-height: 1.65; flex: 1; }
+.solution-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.stag {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--cyan); background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.18); border-radius: 6px; padding: 4px 10px;
+}
 
-    /* hero stats strip */
-    .hero-stats {
-      display: flex; gap: 40px; flex-wrap: wrap;
-      margin-top: 60px; padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-    .hero-stat {}
-    .hero-stat-num {
-      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-stat-lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; }
+/* ── IMPACT METRICS ──────────────────────────────────── */
+.impact-metric {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 36px 28px; text-align: center;
+  transition: border-color .25s, transform .25s;
+}
+.impact-metric:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+.impact-num {
+  font-family: var(--ff-sans); font-size: 2.6rem; font-weight: 800;
+  background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  line-height: 1; margin-bottom: 8px;
+}
+.impact-lbl { color: var(--muted); font-size: 0.82rem; line-height: 1.5; }
 
-    /* ── SECTION HELPERS ── */
-    section { padding: 80px 40px; }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: var(--font-head); font-size: clamp(1.8rem,3.5vw,2.6rem);
-      font-weight: 800; margin-bottom: 16px; line-height: 1.2;
-    }
-    .section-sub {
-      color: var(--text-muted); font-size: 1rem; max-width: 600px; line-height: 1.7;
-      margin-bottom: 52px;
-    }
+/* ── CASE STUDY CARDS ────────────────────────────────── */
+.case-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px 28px;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.case-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--glow); }
+.case-tag {
+  display: inline-block; font-size: 0.72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent-2); background: rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.25); border-radius: 6px;
+  padding: 4px 10px; margin-bottom: 16px;
+}
+.case-card h3 { font-family: var(--ff-sans); font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.case-card p  { color: var(--muted); font-size: 0.85rem; line-height: 1.65; margin-bottom: 16px; }
+.case-result  { border-top: 1px solid var(--border); padding-top: 16px; font-size: 0.82rem; color: var(--muted); }
+.case-result strong { color: var(--cyan); }
 
-    /* ── OVERVIEW ── */
-    .overview { background: var(--bg-secondary); }
-    .overview-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-    }
-    .overview-text p {
-      color: var(--text-muted); margin-bottom: 18px; line-height: 1.75;
-    }
-    .overview-text p:last-child { margin-bottom: 0; }
-    .overview-highlights {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    .highlight-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 22px 20px;
-      transition: border-color .2s, transform .2s, box-shadow .2s;
-    }
-    .highlight-card:hover {
-      border-color: var(--border-hover); transform: translateY(-3px);
-      box-shadow: var(--glow);
-    }
-    .highlight-card-num {
-      font-family: var(--font-head); font-size: 1.8rem; font-weight: 800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      margin-bottom: 4px;
-    }
-    .highlight-card-lbl { font-size: 0.82rem; color: var(--text-muted); }
+/* ── ACCORDION ───────────────────────────────────────── */
+.accordion { display: flex; flex-direction: column; gap: 12px; }
+.accordion-item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; transition: border-color .2s;
+}
+.accordion-item:hover { border-color: var(--border-hover); }
+.accordion-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 28px; cursor: pointer;
+}
+.accordion-header-left { display: flex; align-items: center; gap: 16px; }
+.accordion-icon {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.accordion-title { font-family: var(--ff-sans); font-size: 1rem; font-weight: 700; }
+.accordion-arrow { color: var(--cyan); font-size: 1.2rem; transition: transform .25s; flex-shrink: 0; }
+.accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+.accordion-body {
+  display: none; padding: 0 28px 24px;
+  color: var(--muted); font-size: 0.88rem; line-height: 1.7;
+  border-top: 1px solid var(--border);
+}
+.accordion-body.open { display: block; }
+.accordion-body ul { margin: 14px 0 0; padding-left: 18px; }
+.accordion-body li { margin-bottom: 6px; }
 
-    /* ── CHALLENGES ── */
-    .challenges {}
-    .challenges-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    }
-    .challenge-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 32px 28px;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-    }
-    .challenge-card:hover {
-      border-color: var(--border-hover); transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.35), var(--glow);
-    }
-    .challenge-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 20px;
-    }
-    .challenge-card h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
-    .challenge-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+/* ── MARQUEE ─────────────────────────────────────────── */
+.marquee-wrapper { overflow: hidden; position: relative; margin-bottom: 0; }
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.marquee-wrapper::before { left:  0; background: linear-gradient(90deg,  var(--bg), transparent); }
+.marquee-wrapper::after  { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.marquee-track { display: flex; gap: 20px; width: max-content; animation: marquee 30s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee { 0%{ transform: translateX(0); } 100%{ transform: translateX(-50%); } }
+.marquee-logo {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 24px;
+  font-size: 0.82rem; font-weight: 600; color: var(--muted); white-space: nowrap;
+  transition: border-color .2s, color .2s;
+}
+.marquee-logo:hover { border-color: var(--border-hover); color: #f0f4ff; }
 
-    /* ── SOLUTIONS ── */
-    .solutions { background: var(--bg-secondary); }
-    .solutions-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;
-    }
-    .solution-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 36px 32px;
-      display: flex; flex-direction: column;
-      transition: border-color .25s, box-shadow .25s;
-      position: relative; overflow: hidden;
-    }
-    .solution-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
-      height: 3px; background: var(--gradient); opacity: 0; transition: opacity .25s;
-    }
-    .solution-card:hover { border-color: var(--border-hover); box-shadow: var(--glow); }
-    .solution-card:hover::before { opacity: 1; }
-    .solution-card-icon {
-      width: 56px; height: 56px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15));
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; margin-bottom: 22px;
-    }
-    .solution-card h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; }
-    .solution-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; flex: 1; }
-    .solution-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-    .tag {
-      font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
-      color: var(--accent); background: rgba(0,212,255,0.08);
-      border: 1px solid rgba(0,212,255,0.18); border-radius: 6px; padding: 4px 10px;
-    }
+/* ── CLIENT CHIPS ────────────────────────────────────── */
+.client-chips { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 24px; }
+.client-chip {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 12px; text-align: center;
+  transition: border-color .2s; cursor: default;
+}
+.client-chip:hover { border-color: var(--border-hover); }
+.client-chip-icon { font-size: 1.4rem; margin-bottom: 6px; display: block; }
+.client-chip-name { font-size: 0.76rem; font-weight: 600; color: var(--muted); }
 
-    /* ── IMPACT ── */
-    .impact {}
-    .impact-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-      margin-bottom: 60px;
-    }
-    .impact-metric {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 36px 28px; text-align: center;
-      transition: border-color .25s, transform .25s;
-    }
-    .impact-metric:hover { border-color: var(--border-hover); transform: translateY(-4px); }
-    .impact-metric-num {
-      font-family: var(--font-head); font-size: 2.6rem; font-weight: 800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      line-height: 1; margin-bottom: 8px;
-    }
-    .impact-metric-lbl { color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+/* ── INSIGHT CARDS ───────────────────────────────────── */
+.insight-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.me-insight-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.me-insight-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--glow); }
+.insight-thumb {
+  height: 160px;
+  background: linear-gradient(135deg,rgba(0,212,255,0.15),rgba(124,58,237,0.15));
+  display: flex; align-items: center; justify-content: center; font-size: 3rem;
+}
+.insight-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.insight-category {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--cyan); margin-bottom: 10px;
+}
+.me-insight-card h3 { font-family: var(--ff-sans); font-size: 0.98rem; font-weight: 700; margin-bottom: 10px; }
+.me-insight-card p  { color: var(--muted); font-size: 0.84rem; line-height: 1.6; flex: 1; }
+.insight-date { font-size: 0.76rem; color: var(--text-dim); margin-top: 14px; }
 
-    .case-studies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .case-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 32px 28px;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-    }
-    .case-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: var(--glow); }
-    .case-tag {
-      display: inline-block; font-size: 0.72rem; font-weight: 600;
-      text-transform: uppercase; letter-spacing: .06em;
-      color: var(--accent-2); background: rgba(124,58,237,0.12);
-      border: 1px solid rgba(124,58,237,0.25); border-radius: 6px;
-      padding: 4px 10px; margin-bottom: 16px;
-    }
-    .case-card h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-    .case-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.65; margin-bottom: 16px; }
-    .case-result {
-      border-top: 1px solid var(--border); padding-top: 16px;
-      font-size: 0.82rem; color: var(--text-muted);
-    }
-    .case-result strong { color: var(--accent); }
-
-    /* ── SERVICES LIST ── */
-    .services-list { background: var(--bg-secondary); }
-    .services-accordion { display: flex; flex-direction: column; gap: 12px; }
-    .accordion-item {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: border-color .2s;
-    }
-    .accordion-item:hover { border-color: var(--border-hover); }
-    .accordion-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 28px; cursor: pointer;
-    }
-    .accordion-header-left { display: flex; align-items: center; gap: 16px; }
-    .accordion-icon-wrap {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2);
-      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .accordion-title { font-family: var(--font-head); font-size: 1rem; font-weight: 700; }
-    .accordion-arrow {
-      color: var(--accent); font-size: 1.2rem; transition: transform .25s;
-      flex-shrink: 0;
-    }
-    .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
-    .accordion-body {
-      display: none; padding: 0 28px 24px;
-      color: var(--text-muted); font-size: 0.88rem; line-height: 1.7;
-      border-top: 1px solid var(--border);
-    }
-    .accordion-body.open { display: block; }
-    .accordion-body ul { margin: 14px 0 0 0; padding-left: 18px; }
-    .accordion-body li { margin-bottom: 6px; }
-
-    /* ── PARTNERS & CLIENTS ── */
-    .partners { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .partners-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; align-items: start;
-    }
-    .partners-left {}
-    .marquee-wrapper { overflow: hidden; position: relative; }
-    .marquee-wrapper::before, .marquee-wrapper::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
-    }
-    .marquee-wrapper::before { left: 0; background: linear-gradient(90deg, var(--bg-primary), transparent); }
-    .marquee-wrapper::after { right: 0; background: linear-gradient(270deg, var(--bg-primary), transparent); }
-    .marquee-track {
-      display: flex; gap: 24px; width: max-content;
-      animation: marquee 30s linear infinite;
-    }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .marquee-logo {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 24px;
-      font-size: 0.82rem; font-weight: 600; color: var(--text-muted);
-      white-space: nowrap; transition: border-color .2s, color .2s;
-    }
-    .marquee-logo:hover { border-color: var(--border-hover); color: var(--text-primary); }
-
-    .clients-list { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 24px; }
-    .client-chip {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px 14px; text-align: center;
-      transition: border-color .2s; cursor: default;
-    }
-    .client-chip:hover { border-color: var(--border-hover); }
-    .client-chip-icon { font-size: 1.4rem; margin-bottom: 6px; display: block; }
-    .client-chip-name { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
-
-    /* testimonials */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-    .testimonial-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 32px 28px;
-      transition: border-color .25s;
-    }
-    .testimonial-card:hover { border-color: var(--border-hover); }
-    .testimonial-quote { font-size: 2rem; color: var(--accent); line-height: 1; margin-bottom: 16px; }
-    .testimonial-text { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 22px; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--gradient); display: flex; align-items: center; justify-content: center;
-      font-size: 0.82rem; font-weight: 700; color: #fff; flex-shrink: 0;
-    }
-    .testimonial-name { font-weight: 600; font-size: 0.88rem; }
-    .testimonial-role { font-size: 0.78rem; color: var(--text-dim); }
-
-    /* ── INSIGHTS ── */
-    .insights {}
-    .insights-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-    .insight-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); overflow: hidden;
-      text-decoration: none; color: inherit;
-      transition: border-color .25s, transform .25s, box-shadow .25s;
-      display: flex; flex-direction: column;
-    }
-    .insight-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: var(--glow); }
-    .insight-card-thumb {
-      height: 160px;
-      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15));
-      display: flex; align-items: center; justify-content: center; font-size: 3rem;
-    }
-    .insight-card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-    .insight-category {
-      font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--accent); margin-bottom: 10px;
-    }
-    .insight-card h3 { font-family: var(--font-head); font-size: 0.98rem; font-weight: 700; margin-bottom: 10px; }
-    .insight-card p { color: var(--text-muted); font-size: 0.84rem; line-height: 1.6; flex: 1; }
-    .insight-date { font-size: 0.78rem; color: var(--text-dim); margin-top: 14px; }
-
-    /* ── CTA ── */
-    .cta-section {
-      background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,212,255,0.08) 0%, transparent 70%),
-                  var(--bg-secondary);
-      text-align: center;
-    }
-    .cta-section h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; margin-bottom: 16px; }
-    .cta-section p { color: var(--text-muted); font-size: 1rem; max-width: 540px; margin: 0 auto 36px; line-height: 1.7; }
-    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      padding: 60px 40px 32px;
-    }
-    .footer-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.4fr; gap: 40px;
-    }
-    .footer-brand .footer-logo {
-      font-family: var(--font-head); font-size: 1.3rem; font-weight: 800;
-      background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-decoration: none; display: block; margin-bottom: 12px;
-    }
-    .footer-brand p { color: var(--text-dim); font-size: 0.85rem; line-height: 1.6; margin-bottom: 20px; }
-    .footer-social { display: flex; gap: 10px; }
-    .footer-social a {
-      width: 34px; height: 34px; border-radius: 8px;
-      background: var(--bg-card); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
-      transition: border-color .2s, color .2s;
-    }
-    .footer-social a:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-col h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-primary); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .footer-col ul li a { color: var(--text-dim); text-decoration: none; font-size: 0.84rem; transition: color .2s; }
-    .footer-col ul li a:hover { color: var(--accent); }
-    .footer-contact p { color: var(--text-dim); font-size: 0.84rem; line-height: 1.7; }
-    .footer-contact a { color: var(--accent); text-decoration: none; }
-    .footer-bottom {
-      max-width: 1200px; margin: 40px auto 0;
-      padding-top: 24px; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.8rem; color: var(--text-dim);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .overview-grid, .solutions-grid, .impact-grid, .partners-grid { grid-template-columns: 1fr; }
-      .challenges-grid, .case-studies-grid, .testimonials-grid, .insights-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      section { padding: 60px 20px; }
-      .nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .nav-mobile { display: block; }
-      .hero { padding: 70px 20px 60px; }
-      .challenges-grid, .case-studies-grid, .testimonials-grid, .insights-grid,
-      .overview-highlights, .clients-list { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .impact-grid { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:1024px) {
+  .overview-grid  { grid-template-columns: 1fr; }
+  .insight-grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:768px) {
+  .page-hero  { padding: 72px 0 56px; }
+  .highlights-grid, .client-chips { grid-template-columns: 1fr 1fr; }
+  .insight-grid-3 { grid-template-columns: 1fr; }
+  .page-hero-stats { gap: 28px; }
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════════ NAV ═══════════ -->
-<nav class="nav">
-  <a href="../index.html" class="nav-logo">QantumIQ</a>
-  <div class="nav-links">
-    <a href="../services.html">Services</a>
-    <a href="../industries.html" class="active">Industries</a>
-    <a href="../insights.html">Insights</a>
-    <a href="../about.html">Company</a>
-    <a href="../contact.html" class="nav-cta">Contact Us</a>
-  </div>
-  <button class="nav-mobile">☰</button>
-</nav>
+<canvas id="qiq-canvas"></canvas>
 
-<!-- ═══════════ HERO ═══════════ -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-breadcrumb">
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
       <a href="../index.html">Home</a> /
-      <a href="../industries.html">Industries</a> /
+      <a href="../industries/financial-services.html">Industries</a> /
       <span>Media &amp; Entertainment</span>
     </div>
-    <div class="hero-label">🎬 Industry Focus</div>
-    <h1>
-      Transforming <span class="gradient-text">Media &amp; Entertainment</span><br>
-      for the Digital Age
-    </h1>
-    <p class="hero-sub">
-      From content creation to audience monetization, QantumIQ helps media companies
-      harness AI, data intelligence, and quantum-ready architecture to deliver
-      personalized experiences at scale and build resilient, future-proof businesses.
-    </p>
-    <div class="hero-btns">
-      <a href="../contact.html" class="btn-primary">Request a Consultation →</a>
-      <a href="../insights.html" class="btn-secondary">Explore Insights</a>
+    <div class="page-hero-label">🎬 Industry Focus</div>
+    <h1>Transforming <span class="it">Media</span> &amp;<br><span class="hi">Entertainment</span><br>for the Digital Age</h1>
+    <p class="page-hero-sub">From content creation to audience monetization, QantumIQ helps media companies harness AI, data intelligence, and quantum-ready architecture to deliver personalized experiences at scale and build resilient, future-proof businesses.</p>
+    <div class="page-hero-btns">
+      <a href="../company/contact.html" class="btn-primary">Request a Consultation →</a>
+      <a href="../insights/blog.html" class="btn-ghost">Explore Insights</a>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">85+</div>
-        <div class="hero-stat-lbl">M&amp;E Clients Served</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">$2.4B</div>
-        <div class="hero-stat-lbl">Client Revenue Impact</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">40%</div>
-        <div class="hero-stat-lbl">Avg. Churn Reduction</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">3.2×</div>
-        <div class="hero-stat-lbl">Content ROI Improvement</div>
-      </div>
+    <div class="page-hero-stats">
+      <div><div class="hero-stat-num">85<span style="-webkit-text-fill-color:var(--cyan)">+</span></div><div class="hero-stat-lbl">M&amp;E Clients Served</div></div>
+      <div><div class="hero-stat-num">$2.4B</div><div class="hero-stat-lbl">Client Revenue Impact</div></div>
+      <div><div class="hero-stat-num">40%</div><div class="hero-stat-lbl">Avg. Churn Reduction</div></div>
+      <div><div class="hero-stat-num">3.2×</div><div class="hero-stat-lbl">Content ROI Improvement</div></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ OVERVIEW ═══════════ -->
-<section class="overview">
-  <div class="section-inner">
-    <div class="overview-grid">
+<!-- OVERVIEW -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal overview-grid">
       <div class="overview-text">
-        <div class="section-label">Industry Overview</div>
-        <h2 class="section-title">Navigating the New Media Landscape</h2>
-        <p>
-          The media and entertainment industry is undergoing its most profound
-          transformation in decades. Streaming proliferation, audience fragmentation,
-          creator economy disruption, and AI-generated content are simultaneously
-          reshaping every segment — from broadcast and OTT platforms to gaming,
-          live events, music, and publishing.
-        </p>
-        <p>
-          QantumIQ works with content studios, broadcasters, streaming platforms,
-          gaming companies, advertising networks, and publishing houses to build
-          the data infrastructure, AI capabilities, and operating models required
-          to thrive in this new reality.
-        </p>
-        <p>
-          Our multidisciplinary teams blend deep M&amp;E domain expertise with
-          cutting-edge AI, machine learning, and cloud engineering to unlock
-          new revenue streams, reduce operational complexity, and create
-          unforgettable audience experiences.
-        </p>
+        <div class="eyebrow">Industry Overview</div>
+        <h2 class="section-title">Navigating the New <span class="it">Media</span> Landscape</h2>
+        <p>The media and entertainment industry is undergoing its most profound transformation in decades. Streaming proliferation, audience fragmentation, creator economy disruption, and AI-generated content are simultaneously reshaping every segment — from broadcast and OTT platforms to gaming, live events, music, and publishing.</p>
+        <p>QantumIQ works with content studios, broadcasters, streaming platforms, gaming companies, advertising networks, and publishing houses to build the data infrastructure, AI capabilities, and operating models required to thrive in this new reality.</p>
+        <p>Our multidisciplinary teams blend deep M&amp;E domain expertise with cutting-edge AI, machine learning, and cloud engineering to unlock new revenue streams, reduce operational complexity, and create unforgettable audience experiences.</p>
       </div>
-      <div class="overview-highlights">
-        <div class="highlight-card">
-          <div class="highlight-card-num">$650B+</div>
-          <div class="highlight-card-lbl">Global M&amp;E market by 2027</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-card-num">5.7B</div>
-          <div class="highlight-card-lbl">Digital media consumers worldwide</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-card-num">73%</div>
-          <div class="highlight-card-lbl">Of viewers prefer personalized content</div>
-        </div>
-        <div class="highlight-card">
-          <div class="highlight-card-num">4×</div>
-          <div class="highlight-card-lbl">AI-driven content discovery lift</div>
-        </div>
+      <div class="highlights-grid">
+        <div class="highlight-card"><div class="highlight-num">$650B<span style="font-size:1.2rem;-webkit-text-fill-color:var(--cyan)">+</span></div><div class="highlight-lbl">Global M&amp;E market by 2027</div></div>
+        <div class="highlight-card"><div class="highlight-num">5.7B</div><div class="highlight-lbl">Digital media consumers worldwide</div></div>
+        <div class="highlight-card"><div class="highlight-num">73%</div><div class="highlight-lbl">Of viewers prefer personalized content</div></div>
+        <div class="highlight-card"><div class="highlight-num">4×</div><div class="highlight-lbl">AI-driven content discovery lift</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CHALLENGES ═══════════ -->
-<section class="challenges">
-  <div class="section-inner">
-    <div class="section-label">Industry Challenges</div>
-    <h2 class="section-title">The Challenges We Help Solve</h2>
-    <p class="section-sub">
-      Today's media organizations face compounding pressures that demand both
-      strategic clarity and technical execution.
-    </p>
-    <div class="challenges-grid">
+<!-- CHALLENGES -->
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Industry Challenges</div>
+      <h2 class="section-title">The Challenges <span class="it">We Help</span> Solve</h2>
+      <p class="section-desc">Today's media organizations face compounding pressures that demand both strategic clarity and technical execution.</p>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:2rem;">
       <div class="challenge-card">
         <div class="challenge-icon">📉</div>
         <h3>Subscriber Churn &amp; Retention</h3>
@@ -611,7 +358,7 @@
       <div class="challenge-card">
         <div class="challenge-icon">💰</div>
         <h3>Advertising Revenue Pressure</h3>
-        <p>Declining traditional ad spend, cookie deprecation, and the rise of privacy regulations require new audience monetization models built on first-party data and contextual intelligence.</p>
+        <p>Declining traditional ad spend, cookie deprecation, and privacy regulations require new audience monetization models built on first-party data and contextual intelligence.</p>
       </div>
       <div class="challenge-card">
         <div class="challenge-icon">⚙️</div>
@@ -622,148 +369,106 @@
   </div>
 </section>
 
-<!-- ═══════════ SOLUTIONS ═══════════ -->
-<section class="solutions">
-  <div class="section-inner">
-    <div class="section-label">Our Solutions</div>
-    <h2 class="section-title">How QantumIQ Delivers Results</h2>
-    <p class="section-sub">
-      We combine strategic advisory with hands-on technical delivery across every
-      dimension of the media value chain.
-    </p>
-    <div class="solutions-grid">
+<!-- SOLUTIONS -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal section-header-row">
+      <div>
+        <div class="eyebrow">Our Solutions</div>
+        <h2 class="section-title">How QantumIQ <span class="it">Delivers</span> Results</h2>
+        <p class="section-desc">We combine strategic advisory with hands-on technical delivery across every dimension of the media value chain.</p>
+      </div>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:2rem;">
       <div class="solution-card">
-        <div class="solution-card-icon">🧠</div>
+        <div class="solution-icon">🧠</div>
         <h3>AI-Powered Content Personalization</h3>
         <p>Deploy next-generation recommendation engines using deep learning and collaborative filtering to deliver hyper-personalized content discovery experiences that increase watch time, reduce churn, and maximize lifetime value across streaming, gaming, and digital media platforms.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Recommendation Systems</span>
-          <span class="tag">A/B Testing</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Machine Learning</span><span class="stag">Recommendation Systems</span><span class="stag">A/B Testing</span></div>
       </div>
       <div class="solution-card">
-        <div class="solution-card-icon">📊</div>
+        <div class="solution-icon">📊</div>
         <h3>Audience Intelligence &amp; Analytics</h3>
         <p>Build unified audience data platforms that consolidate first-party behavioral signals, real-time engagement metrics, and predictive lifetime value models — enabling data-driven commissioning, targeted marketing, and precision audience monetization at scale.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Data Platform</span>
-          <span class="tag">Predictive Analytics</span>
-          <span class="tag">CDP Integration</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Data Platform</span><span class="stag">Predictive Analytics</span><span class="stag">CDP Integration</span></div>
       </div>
       <div class="solution-card">
-        <div class="solution-card-icon">🎬</div>
+        <div class="solution-icon">🎬</div>
         <h3>Content Supply Chain Optimization</h3>
         <p>Streamline content production, localization, rights management, and distribution workflows with AI automation and intelligent orchestration platforms. Reduce time-to-market, cut operational costs, and scale content output without proportional cost increases.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Workflow Automation</span>
-          <span class="tag">Rights Management</span>
-          <span class="tag">Localization AI</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Workflow Automation</span><span class="stag">Rights Management</span><span class="stag">Localization AI</span></div>
       </div>
       <div class="solution-card">
-        <div class="solution-card-icon">☁️</div>
+        <div class="solution-icon">☁️</div>
         <h3>Cloud-Native OTT Architecture</h3>
         <p>Design and implement scalable, resilient streaming infrastructure on AWS, Azure, or GCP — including adaptive bitrate delivery, global CDN strategy, real-time quality monitoring, and cost-optimized media processing pipelines that handle peak demand without compromise.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Cloud Architecture</span>
-          <span class="tag">Video Engineering</span>
-          <span class="tag">CDN Strategy</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Cloud Architecture</span><span class="stag">Video Engineering</span><span class="stag">CDN Strategy</span></div>
       </div>
       <div class="solution-card">
-        <div class="solution-card-icon">💡</div>
+        <div class="solution-icon">💡</div>
         <h3>Ad Tech &amp; Revenue Optimization</h3>
         <p>Modernize programmatic advertising infrastructure with privacy-safe identity solutions, contextual targeting models, and dynamic ad insertion systems. Maximize yield across direct and programmatic channels while preparing for a cookieless future with first-party data strategies.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Ad Tech</span>
-          <span class="tag">Privacy Compliance</span>
-          <span class="tag">Yield Optimization</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Ad Tech</span><span class="stag">Privacy Compliance</span><span class="stag">Yield Optimization</span></div>
       </div>
       <div class="solution-card">
-        <div class="solution-card-icon">⚛️</div>
+        <div class="solution-icon">⚛️</div>
         <h3>Quantum-Ready Future Planning</h3>
         <p>Prepare your media technology stack for the quantum era with cryptographic security assessments, quantum-resistant content protection architectures, and readiness roadmaps. Future-proof DRM systems and secure distribution channels against emerging computational threats.</p>
-        <div class="solution-card-tags">
-          <span class="tag">Quantum Security</span>
-          <span class="tag">DRM</span>
-          <span class="tag">Future Readiness</span>
-        </div>
+        <div class="solution-tags"><span class="stag">Quantum Security</span><span class="stag">DRM</span><span class="stag">Future Readiness</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ IMPACT / CASE STUDIES ═══════════ -->
-<section class="impact">
-  <div class="section-inner">
-    <div class="section-label">Proven Impact</div>
-    <h2 class="section-title">Results That Speak for Themselves</h2>
-    <p class="section-sub">Measurable outcomes delivered for global media leaders.</p>
-
-    <div class="impact-grid">
-      <div class="impact-metric">
-        <div class="impact-metric-num">40%</div>
-        <div class="impact-metric-lbl">Reduction in subscriber churn for top-5 streaming client</div>
-      </div>
-      <div class="impact-metric">
-        <div class="impact-metric-num">3.2×</div>
-        <div class="impact-metric-lbl">Improvement in content recommendation click-through rates</div>
-      </div>
-      <div class="impact-metric">
-        <div class="impact-metric-num">60%</div>
-        <div class="impact-metric-lbl">Faster content delivery pipeline for global broadcaster</div>
-      </div>
-      <div class="impact-metric">
-        <div class="impact-metric-num">$180M</div>
-        <div class="impact-metric-lbl">Additional ad revenue unlocked via programmatic optimization</div>
-      </div>
+<!-- IMPACT METRICS + CASE STUDIES -->
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Proven Impact</div>
+      <h2 class="section-title">Results that <span class="it">Speak</span> for Themselves</h2>
+      <p class="section-desc">Measurable outcomes delivered for global media leaders.</p>
     </div>
-
-    <div class="case-studies-grid">
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:2rem;margin-bottom:3.5rem;">
+      <div class="impact-metric"><div class="impact-num">40%</div><div class="impact-lbl">Reduction in subscriber churn for top-5 streaming client</div></div>
+      <div class="impact-metric"><div class="impact-num">3.2×</div><div class="impact-lbl">Improvement in content recommendation click-through rates</div></div>
+      <div class="impact-metric"><div class="impact-num">60%</div><div class="impact-lbl">Faster content delivery pipeline for global broadcaster</div></div>
+      <div class="impact-metric"><div class="impact-num">$180M</div><div class="impact-lbl">Additional ad revenue unlocked via programmatic optimization</div></div>
+    </div>
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
       <div class="case-card">
         <span class="case-tag">Streaming Platform</span>
         <h3>Reducing Churn with Predictive AI</h3>
         <p>A global SVOD platform faced mounting subscriber churn as competition intensified. We deployed an ML-driven churn propensity model integrated with real-time personalization to intervene at critical cancellation moments.</p>
-        <div class="case-result">
-          Result: <strong>40% churn reduction</strong> within 6 months, adding <strong>$95M in retained ARR</strong>.
-        </div>
+        <div class="case-result">Result: <strong>40% churn reduction</strong> within 6 months, adding <strong>$95M in retained ARR</strong>.</div>
       </div>
       <div class="case-card">
         <span class="case-tag">Broadcast Network</span>
         <h3>Modernizing Content Distribution</h3>
         <p>A major broadcaster's legacy distribution infrastructure was creating multi-day delays and $30M+ in annual inefficiencies. We redesigned their end-to-end content supply chain on cloud-native architecture.</p>
-        <div class="case-result">
-          Result: <strong>60% faster delivery</strong>, <strong>$28M annual cost savings</strong>, and zero-downtime migration.
-        </div>
+        <div class="case-result">Result: <strong>60% faster delivery</strong>, <strong>$28M annual cost savings</strong>, and zero-downtime migration.</div>
       </div>
       <div class="case-card">
         <span class="case-tag">Digital Media Group</span>
         <h3>First-Party Data Monetization</h3>
         <p>With third-party cookies sunsetting, a digital media group needed a scalable first-party data strategy. We built a proprietary audience intelligence platform with contextual targeting capabilities.</p>
-        <div class="case-result">
-          Result: <strong>$180M incremental ad revenue</strong> and a <strong>45% increase in CPM rates</strong> within 12 months.
-        </div>
+        <div class="case-result">Result: <strong>$180M incremental ad revenue</strong> and a <strong>45% increase in CPM rates</strong> within 12 months.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ SERVICE ACCORDION ═══════════ -->
-<section class="services-list">
-  <div class="section-inner">
-    <div class="section-label">Consulting Services</div>
-    <h2 class="section-title">Our Full Range of M&amp;E Services</h2>
-    <p class="section-sub">Tailored engagements from strategic advisory to full-scale technical implementation.</p>
-    <div class="services-accordion">
+<!-- SERVICE ACCORDION -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Consulting Services</div>
+      <h2 class="section-title">Our Full Range of <span class="it">M&amp;E Services</span></h2>
+      <p class="section-desc">Tailored engagements from strategic advisory to full-scale technical implementation.</p>
+    </div>
+    <div class="reveal accordion" style="margin-top:2rem;">
       <div class="accordion-item open" onclick="toggleAccordion(this)">
         <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-icon-wrap">🔮</div>
-            <span class="accordion-title">Digital Transformation &amp; Technology Strategy</span>
-          </div>
+          <div class="accordion-header-left"><div class="accordion-icon">🔮</div><span class="accordion-title">Digital Transformation &amp; Technology Strategy</span></div>
           <span class="accordion-arrow">▾</span>
         </div>
         <div class="accordion-body open">
@@ -778,10 +483,7 @@
       </div>
       <div class="accordion-item" onclick="toggleAccordion(this)">
         <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-icon-wrap">📈</div>
-            <span class="accordion-title">Data &amp; AI Strategy</span>
-          </div>
+          <div class="accordion-header-left"><div class="accordion-icon">📈</div><span class="accordion-title">Data &amp; AI Strategy</span></div>
           <span class="accordion-arrow">▾</span>
         </div>
         <div class="accordion-body">
@@ -796,10 +498,7 @@
       </div>
       <div class="accordion-item" onclick="toggleAccordion(this)">
         <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-icon-wrap">🎯</div>
-            <span class="accordion-title">Audience Monetization &amp; Ad Tech</span>
-          </div>
+          <div class="accordion-header-left"><div class="accordion-icon">🎯</div><span class="accordion-title">Audience Monetization &amp; Ad Tech</span></div>
           <span class="accordion-arrow">▾</span>
         </div>
         <div class="accordion-body">
@@ -814,10 +513,7 @@
       </div>
       <div class="accordion-item" onclick="toggleAccordion(this)">
         <div class="accordion-header">
-          <div class="accordion-header-left">
-            <div class="accordion-icon-wrap">🏢</div>
-            <span class="accordion-title">C-Suite Advisory &amp; M&amp;A Support</span>
-          </div>
+          <div class="accordion-header-left"><div class="accordion-icon">🏢</div><span class="accordion-title">C-Suite Advisory &amp; M&amp;A Support</span></div>
           <span class="accordion-arrow">▾</span>
         </div>
         <div class="accordion-body">
@@ -834,48 +530,33 @@
   </div>
 </section>
 
-<!-- ═══════════ PARTNERS & CLIENTS ═══════════ -->
-<section class="partners">
-  <div class="section-inner">
-    <div class="partners-grid">
-      <div class="partners-left">
-        <div class="section-label">Technology Partners</div>
-        <h2 class="section-title">Built on Best-in-Class Technology</h2>
-        <p style="color:var(--text-muted);margin-bottom:32px;line-height:1.7;font-size:0.95rem;">
-          We work alongside the world's leading technology providers to deliver
-          integrated, enterprise-grade solutions for the media industry.
-        </p>
-        <div class="marquee-wrapper" style="margin-bottom:16px;">
+<!-- PARTNERS & WHO WE SERVE -->
+<section class="section-pad" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+      <div>
+        <div class="eyebrow">Technology Partners</div>
+        <h2 class="section-title">Built on <span class="it">Best-in-Class</span> Technology</h2>
+        <p class="section-desc" style="margin-bottom:1.5rem;">We work alongside the world's leading technology providers to deliver integrated, enterprise-grade solutions for the media industry.</p>
+        <div class="marquee-wrapper">
           <div class="marquee-track">
-            <!-- first set -->
-            <span class="marquee-logo">AWS Media</span>
-            <span class="marquee-logo">Microsoft Azure</span>
-            <span class="marquee-logo">Google Cloud</span>
-            <span class="marquee-logo">Snowflake</span>
-            <span class="marquee-logo">Databricks</span>
-            <span class="marquee-logo">Salesforce</span>
-            <span class="marquee-logo">ServiceNow</span>
-            <span class="marquee-logo">Palantir</span>
-            <span class="marquee-logo">Akamai</span>
-            <span class="marquee-logo">Brightcove</span>
-            <!-- duplicate for seamless loop -->
-            <span class="marquee-logo">AWS Media</span>
-            <span class="marquee-logo">Microsoft Azure</span>
-            <span class="marquee-logo">Google Cloud</span>
-            <span class="marquee-logo">Snowflake</span>
-            <span class="marquee-logo">Databricks</span>
-            <span class="marquee-logo">Salesforce</span>
-            <span class="marquee-logo">ServiceNow</span>
-            <span class="marquee-logo">Palantir</span>
-            <span class="marquee-logo">Akamai</span>
-            <span class="marquee-logo">Brightcove</span>
+            <span class="marquee-logo">AWS Media</span><span class="marquee-logo">Microsoft Azure</span>
+            <span class="marquee-logo">Google Cloud</span><span class="marquee-logo">Snowflake</span>
+            <span class="marquee-logo">Databricks</span><span class="marquee-logo">Salesforce</span>
+            <span class="marquee-logo">ServiceNow</span><span class="marquee-logo">Palantir</span>
+            <span class="marquee-logo">Akamai</span><span class="marquee-logo">Brightcove</span>
+            <span class="marquee-logo">AWS Media</span><span class="marquee-logo">Microsoft Azure</span>
+            <span class="marquee-logo">Google Cloud</span><span class="marquee-logo">Snowflake</span>
+            <span class="marquee-logo">Databricks</span><span class="marquee-logo">Salesforce</span>
+            <span class="marquee-logo">ServiceNow</span><span class="marquee-logo">Palantir</span>
+            <span class="marquee-logo">Akamai</span><span class="marquee-logo">Brightcove</span>
           </div>
         </div>
       </div>
-      <div class="partners-right">
-        <div class="section-label">Industry Clients</div>
-        <h2 class="section-title">Who We Serve</h2>
-        <div class="clients-list">
+      <div>
+        <div class="eyebrow">Industry Clients</div>
+        <h2 class="section-title">Who We <span class="it">Serve</span></h2>
+        <div class="client-chips">
           <div class="client-chip"><span class="client-chip-icon">📺</span><span class="client-chip-name">OTT Platforms</span></div>
           <div class="client-chip"><span class="client-chip-icon">🎬</span><span class="client-chip-name">Content Studios</span></div>
           <div class="client-chip"><span class="client-chip-icon">📻</span><span class="client-chip-name">Broadcasters</span></div>
@@ -891,78 +572,63 @@
   </div>
 </section>
 
-<!-- ═══════════ TESTIMONIALS ═══════════ -->
-<section style="background:var(--bg-secondary);">
-  <div class="section-inner">
-    <div class="section-label">Client Voices</div>
-    <h2 class="section-title">What Our Clients Say</h2>
-    <p class="section-sub">Trusted by media leaders transforming audience experiences worldwide.</p>
-    <div class="testimonials-grid">
+<!-- TESTIMONIALS -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal text-center" style="margin-bottom:3rem;">
+      <div class="eyebrow eyebrow-center">Client Voices</div>
+      <h2 class="section-title">What Our Clients <span class="it">Say</span></h2>
+    </div>
+    <div class="reveal grid-3">
       <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">QantumIQ's recommendation engine transformed our streaming platform. Within six months, average session time increased by 38% and our churn rate dropped to its lowest level since launch. Their team truly understands the intersection of data science and content strategy.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">JM</div>
-          <div>
-            <div class="testimonial-name">James Mitchell</div>
-            <div class="testimonial-role">Chief Product Officer, Global Streaming Platform</div>
-          </div>
-        </div>
+        <p class="t-quote">QantumIQ's recommendation engine transformed our streaming platform. Within six months, average session time increased by 38% and our churn rate dropped to its lowest level since launch. Their team truly understands the intersection of data science and content strategy.</p>
+        <div class="t-author"><div class="t-avatar">JM</div><div><div class="t-name">James Mitchell</div><div class="t-role">Chief Product Officer, Global Streaming Platform</div></div></div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">The ad tech modernization project delivered results well beyond our expectations. The first-party data strategy they built is now our most valuable competitive asset, and the programmatic yield improvements directly funded further investment in original content.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">SK</div>
-          <div>
-            <div class="testimonial-name">Serena Kato</div>
-            <div class="testimonial-role">VP Revenue Strategy, Digital Media Group</div>
-          </div>
-        </div>
+        <p class="t-quote">The ad tech modernization project delivered results well beyond our expectations. The first-party data strategy they built is now our most valuable competitive asset, and the programmatic yield improvements directly funded further investment in original content.</p>
+        <div class="t-author"><div class="t-avatar">SK</div><div><div class="t-name">Serena Kato</div><div class="t-role">VP Revenue Strategy, Digital Media Group</div></div></div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Migrating 30 years of broadcast infrastructure to the cloud felt impossible until we partnered with QantumIQ. Their team managed technical complexity while keeping our operations running flawlessly. We're now more agile and more cost-efficient than ever before.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">DL</div>
-          <div>
-            <div class="testimonial-name">David Laurent</div>
-            <div class="testimonial-role">CTO, European Broadcast Network</div>
-          </div>
-        </div>
+        <p class="t-quote">Migrating 30 years of broadcast infrastructure to the cloud felt impossible until we partnered with QantumIQ. Their team managed technical complexity while keeping operations running flawlessly. We're now more agile and more cost-efficient than ever before.</p>
+        <div class="t-author"><div class="t-avatar">DL</div><div><div class="t-name">David Laurent</div><div class="t-role">CTO, European Broadcast Network</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ INSIGHTS ═══════════ -->
-<section class="insights">
-  <div class="section-inner">
-    <div class="section-label">Knowledge</div>
-    <h2 class="section-title">Featured M&amp;E Insights</h2>
-    <p class="section-sub">Perspectives and research from QantumIQ's media practice.</p>
-    <div class="insights-grid">
-      <a href="../insights/articles/ai-streaming-personalization.html" class="insight-card">
-        <div class="insight-card-thumb">🎬</div>
-        <div class="insight-card-body">
+<!-- FEATURED INSIGHTS -->
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal section-header-row">
+      <div>
+        <div class="eyebrow">Knowledge</div>
+        <h2 class="section-title">Featured <span class="it">M&amp;E Insights</span></h2>
+        <p class="section-desc">Perspectives and research from QantumIQ's media practice.</p>
+      </div>
+      <a href="../insights/blog.html" class="btn-ghost">All Insights</a>
+    </div>
+    <div class="reveal insight-grid-3" style="margin-top:2rem;">
+      <a href="../insights/articles/ai-streaming-personalization.html" class="me-insight-card">
+        <div class="insight-thumb">🎬</div>
+        <div class="insight-body">
           <div class="insight-category">AI &amp; Streaming</div>
           <h3>The Personalization Imperative: How AI is Redefining Content Discovery</h3>
           <p>Why recommendation systems are now the primary competitive battlefield for streaming platforms — and what it takes to win.</p>
           <div class="insight-date">May 2025</div>
         </div>
       </a>
-      <a href="../insights/articles/cookieless-media.html" class="insight-card">
-        <div class="insight-card-thumb">📊</div>
-        <div class="insight-card-body">
+      <a href="../insights/articles/cookieless-media.html" class="me-insight-card">
+        <div class="insight-thumb">📊</div>
+        <div class="insight-body">
           <div class="insight-category">Advertising</div>
           <h3>First-Party Data Strategies for the Cookieless Media Era</h3>
           <p>Practical frameworks for building durable audience intelligence assets as third-party data signals disappear.</p>
           <div class="insight-date">April 2025</div>
         </div>
       </a>
-      <a href="../insights/articles/quantum-drm.html" class="insight-card">
-        <div class="insight-card-thumb">⚛️</div>
-        <div class="insight-card-body">
+      <a href="../insights/articles/quantum-drm.html" class="me-insight-card">
+        <div class="insight-thumb">⚛️</div>
+        <div class="insight-body">
           <div class="insight-category">Quantum Security</div>
           <h3>Quantum Threats to Content Protection: What Media Companies Need to Know</h3>
           <p>Assessing the timeline and implications of quantum computing for DRM, encryption, and content security infrastructure.</p>
@@ -973,92 +639,34 @@
   </div>
 </section>
 
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-section">
-  <div class="section-inner">
-    <h2>Ready to Transform Your <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Media Business?</span></h2>
-    <p>Partner with QantumIQ to build the audience intelligence, content technology, and digital capabilities that define the next generation of media leadership.</p>
-    <div class="cta-btns">
-      <a href="../contact.html" class="btn-primary">Schedule a Consultation →</a>
-      <a href="../services.html" class="btn-secondary">Explore All Services</a>
+<!-- CTA -->
+<section class="cta-band">
+  <div class="reveal">
+    <h2 class="cta-band-title">Ready to <span class="it">transform</span><br>your media business?</h2>
+    <p class="cta-band-desc">Partner with QantumIQ to build the audience intelligence, content technology, and digital capabilities that define the next generation of media leadership.</p>
+    <div class="cta-band-actions">
+      <a href="../company/contact.html" class="btn-primary">Schedule a Consultation →</a>
+      <a href="../services/ai-ml.html" class="btn-ghost">Explore All Services</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="../index.html" class="footer-logo">QantumIQ</a>
-      <p>Advanced consulting solutions for the quantum age — transforming organizations through AI, quantum computing, and digital innovation.</p>
-      <div class="footer-social">
-        <a href="https://linkedin.com">in</a>
-        <a href="https://twitter.com">𝕏</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="../services/ai-ml.html">AI &amp; ML Solutions</a></li>
-        <li><a href="../services/quantum-computing.html">Quantum Computing</a></li>
-        <li><a href="../services/digital-transformation.html">Digital Transformation</a></li>
-        <li><a href="../services/c-suite-advisory.html">C-Suite Advisory</a></li>
-        <li><a href="../services/business-process.html">Business Process</a></li>
-        <li><a href="../services/information-insights.html">Information &amp; Insights</a></li>
-        <li><a href="../services/management-consulting.html">Management Consulting</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Industries</h4>
-      <ul>
-        <li><a href="financial-services.html">Financial Services</a></li>
-        <li><a href="technology.html">Technology</a></li>
-        <li><a href="pharmaceuticals.html">Pharmaceuticals</a></li>
-        <li><a href="healthcare.html">Healthcare</a></li>
-        <li><a href="energy.html">Energy</a></li>
-        <li><a href="government.html">Government</a></li>
-        <li><a href="sustainability.html">Sustainability</a></li>
-        <li><a href="media-entertainment.html">Media &amp; Entertainment</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="../about.html">About Us</a></li>
-        <li><a href="../insights.html">Insights</a></li>
-        <li><a href="../careers.html">Careers</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../legal/privacy-policy.html">Privacy</a></li>
-      </ul>
-    </div>
-    <div class="footer-col footer-contact">
-      <h4>Contact Us</h4>
-      <p>📍 5000 Thayer Center STE C<br>Oakland, MD 21550, USA</p>
-      <p style="margin-top:10px;">📞 +1 (301) 334-QNTM</p>
-      <p style="margin-top:10px;">✉️ <a href="mailto:info@qantumiq.com">info@qantumiq.com</a></p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 QantumIQ Consulting. All rights reserved.</span>
-    <span>Media &amp; Entertainment Practice</span>
-  </div>
-</footer>
-
+<footer id="qiq-footer"></footer>
+<script src="../assets/js/main.js"></script>
 <script>
-  function toggleAccordion(item) {
-    const body = item.querySelector('.accordion-body');
-    const isOpen = item.classList.contains('open');
-    // close all
-    document.querySelectorAll('.accordion-item').forEach(el => {
-      el.classList.remove('open');
-      el.querySelector('.accordion-body').classList.remove('open');
-    });
-    // open clicked if wasn't open
-    if (!isOpen) {
-      item.classList.add('open');
-      body.classList.add('open');
-    }
+function toggleAccordion(item) {
+  const body  = item.querySelector('.accordion-body');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.accordion-item').forEach(el => {
+    el.classList.remove('open');
+    const b = el.querySelector('.accordion-body');
+    if (b) b.classList.remove('open');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.classList.add('open');
   }
+}
 </script>
 </body>
 </html>
