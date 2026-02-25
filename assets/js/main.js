@@ -1,76 +1,57 @@
-/* ═══════════════════════════════════════════════════
-   QANTUMIQ — MAIN.JS v3
-   Fixed: nav hover delay · news feed with fallback ·
-          hero images via picsum · Chrome compat
-═══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   QANTUMIQ — main.js v7
+   Light-first editorial theme
+═══════════════════════════════════════════════════════════ */
 (function(){
 'use strict';
 
-/* ── PATH DEPTH ── */
-function depth(){
-  const p=window.location.pathname;
-  return(p.includes('/services/')||p.includes('/industries/')||
-         p.includes('/company/')||p.includes('/insights/')||p.includes('/legal/'))?1:0;
-}
-function root(){return depth()===0?'./':'../';}
-function R(p){return root()+p;}
-
-/* ══════════════════════════════════════════════
-   NAV — hover with delay so dropdown stays open
-   Uses JS-controlled .is-open class, not pure CSS
-══════════════════════════════════════════════ */
+/* ─── NAV BUILD ─── */
 function buildNav(){
-  const r=root();
+  const isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
+  const r=isRoot?'':'../';
+
   const nav=document.createElement('nav');
   nav.id='qiq-nav';
   nav.innerHTML=`
 <a class="nav-logo" href="${r}index.html">Qantum<span>IQ</span></a>
-<ul class="nav-menu">
-  <li class="nav-item">
-    <button class="nav-link" type="button">Services
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
+<ul class="nav-menu" id="nav-menu">
+  <li class="nav-item" data-menu="services">
+    <button class="nav-link">Services<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
       <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
       <a href="${r}services/quantum-computing.html">Quantum Computing</a>
       <a href="${r}services/digital-transformation.html">Digital Transformation</a>
       <a href="${r}services/c-suite-advisory.html">C-Suite Advisory</a>
-      <a href="${r}services/business-process.html">Business Process Optimization</a>
-      <a href="${r}services/information-insights.html">Information Insights</a>
+      <a href="${r}services/business-process.html">Business Process</a>
+      <a href="${r}services/information-insights.html">Information &amp; Insights</a>
       <a href="${r}services/management-consulting.html">Management Consulting</a>
     </div>
   </li>
-  <li class="nav-item">
-    <button class="nav-link" type="button">Industries
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
+  <li class="nav-item" data-menu="industries">
+    <button class="nav-link">Industries<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
       <a href="${r}industries/financial-services.html">Financial Services</a>
-      <a href="${r}industries/technology.html">Technology</a>
-      <a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a>
       <a href="${r}industries/healthcare.html">Healthcare</a>
+      <a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a>
+      <a href="${r}industries/technology.html">Technology</a>
       <a href="${r}industries/energy.html">Energy</a>
       <a href="${r}industries/government.html">Government</a>
       <a href="${r}industries/sustainability.html">Sustainability</a>
       <a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a>
     </div>
   </li>
-  <li class="nav-item">
-    <button class="nav-link" type="button">Insights
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
+  <li class="nav-item" data-menu="insights">
+    <button class="nav-link">Insights<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
       <a href="${r}insights/blog.html">Blog</a>
-      <a href="${r}insights/reports.html">Reports</a>
-      <a href="${r}insights/white-papers.html">White Papers</a>
-      <a href="${r}insights/podcasts.html">Podcasts</a>
+      <a href="${r}insights/case-studies.html">Case Studies</a>
+      <a href="${r}insights/whitepapers.html">Whitepapers</a>
       <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+      <a href="${r}insights/news.html">News</a>
     </div>
   </li>
-  <li class="nav-item">
-    <button class="nav-link" type="button">Company
-      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 1l4 4 4-4"/></svg>
-    </button>
+  <li class="nav-item" data-menu="company">
+    <button class="nav-link">Company<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
       <a href="${r}company/about.html">About Us</a>
       <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
@@ -79,130 +60,127 @@ function buildNav(){
     </div>
   </li>
 </ul>
-<a class="nav-cta-btn" href="${r}company/contact.html">Get Started →</a>
-<button class="hamburger" id="qiq-hamburger" aria-label="Open menu">
-  <span></span><span></span><span></span>
-</button>`;
-  document.body.prepend(nav);
+<div style="display:flex;align-items:center;gap:.2rem;">
+  <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a class="nav-cta" href="${r}company/contact.html">Contact Us</a>
+</div>
 
-  /* --- Hover with leave-delay so users can reach the dropdown --- */
-  const LEAVE_DELAY=220; // ms before dropdown hides after mouse leaves
-  nav.querySelectorAll('.nav-item').forEach(item=>{
-    let leaveTimer=null;
+<div id="mobile-menu">
+  <button class="mobile-close" id="mob-close">✕</button>
+  <div class="mob-heading">Services</div>
+  <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
+  <a href="${r}services/quantum-computing.html">Quantum Computing</a>
+  <a href="${r}services/digital-transformation.html">Digital Transformation</a>
+  <a href="${r}services/c-suite-advisory.html">C-Suite Advisory</a>
+  <a href="${r}services/business-process.html">Business Process</a>
+  <a href="${r}services/information-insights.html">Information &amp; Insights</a>
+  <a href="${r}services/management-consulting.html">Management Consulting</a>
+  <div class="mob-heading">Industries</div>
+  <a href="${r}industries/financial-services.html">Financial Services</a>
+  <a href="${r}industries/healthcare.html">Healthcare</a>
+  <a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a>
+  <a href="${r}industries/technology.html">Technology</a>
+  <a href="${r}industries/energy.html">Energy</a>
+  <a href="${r}industries/government.html">Government</a>
+  <a href="${r}industries/sustainability.html">Sustainability</a>
+  <a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a>
+  <div class="mob-heading">Insights</div>
+  <a href="${r}insights/blog.html">Blog</a>
+  <a href="${r}insights/case-studies.html">Case Studies</a>
+  <a href="${r}insights/whitepapers.html">Whitepapers</a>
+  <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+  <a href="${r}insights/news.html">News</a>
+  <div class="mob-heading">Company</div>
+  <a href="${r}company/about.html">About Us</a>
+  <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
+  <a href="${r}company/careers.html">Careers</a>
+  <a class="mob-cta" href="${r}company/contact.html">Contact Us</a>
+</div>`;
 
-    function open(){
-      clearTimeout(leaveTimer);
-      // Close all others first
-      nav.querySelectorAll('.nav-item').forEach(i=>{ if(i!==item) i.classList.remove('is-open'); });
+  document.body.insertBefore(nav, document.body.firstChild);
+
+  // Nav scroll shadow
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  },{passive:true});
+
+  // Dropdown with hover + delay bridge
+  const LEAVE_DELAY=200;
+  nav.querySelectorAll('.nav-item[data-menu]').forEach(item=>{
+    let t;
+    item.addEventListener('mouseenter',()=>{
+      clearTimeout(t);
+      nav.querySelectorAll('.nav-item').forEach(i=>i!==item&&i.classList.remove('is-open'));
       item.classList.add('is-open');
-    }
-    function close(){
-      leaveTimer=setTimeout(()=>item.classList.remove('is-open'),LEAVE_DELAY);
-    }
-
-    item.addEventListener('mouseenter',open);
-    item.addEventListener('mouseleave',close);
-
-    // Keyboard: toggle on Enter/Space for the button
+    });
+    item.addEventListener('mouseleave',()=>{
+      t=setTimeout(()=>item.classList.remove('is-open'), LEAVE_DELAY);
+    });
+    // Keyboard
     const btn=item.querySelector('.nav-link');
-    if(btn){
-      btn.addEventListener('keydown',e=>{
-        if(e.key==='Enter'||e.key===' '){
-          e.preventDefault();
-          item.classList.toggle('is-open');
-        }
-      });
-    }
+    btn.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();item.classList.toggle('is-open');}
+      if(e.key==='Escape')item.classList.remove('is-open');
+    });
   });
 
-  // Close when clicking outside
+  // Mobile
+  const mob=nav.querySelector('#mobile-menu');
+  nav.querySelector('#hamburger').addEventListener('click',()=>mob.classList.add('open'));
+  nav.querySelector('#mob-close').addEventListener('click',()=>mob.classList.remove('open'));
   document.addEventListener('click',e=>{
-    if(!e.target.closest('#qiq-nav')){
-      nav.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('is-open'));
-    }
+    if(!nav.contains(e.target)) nav.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('is-open'));
   });
-
-  // Mobile menu
-  const mm=document.createElement('div');
-  mm.id='mobile-menu';
-  mm.innerHTML=`
-<button class="mobile-close" id="qiq-mobile-close">✕</button>
-<div class="mob-heading">Services</div>
-<a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
-<a href="${r}services/quantum-computing.html">Quantum Computing</a>
-<a href="${r}services/digital-transformation.html">Digital Transformation</a>
-<a href="${r}services/c-suite-advisory.html">C-Suite Advisory</a>
-<a href="${r}services/business-process.html">Business Process Opt.</a>
-<a href="${r}services/management-consulting.html">Management Consulting</a>
-<div class="mob-heading">Industries</div>
-<a href="${r}industries/financial-services.html">Financial Services</a>
-<a href="${r}industries/healthcare.html">Healthcare</a>
-<a href="${r}industries/technology.html">Technology</a>
-<a href="${r}industries/government.html">Government</a>
-<a href="${r}industries/energy.html">Energy</a>
-<a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a>
-<a href="${r}industries/sustainability.html">Sustainability</a>
-<div class="mob-heading">Insights</div>
-<a href="${r}insights/blog.html">Blog</a>
-<a href="${r}insights/reports.html">Reports</a>
-<a href="${r}insights/white-papers.html">White Papers</a>
-<div class="mob-heading">Company</div>
-<a href="${r}company/about.html">About Us</a>
-<a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
-<a href="${r}company/careers.html">Careers</a>
-<a class="mob-cta" href="${r}company/contact.html">Contact Us</a>`;
-  document.body.prepend(mm);
-
-  document.getElementById('qiq-hamburger').addEventListener('click',()=>mm.classList.add('open'));
-  document.getElementById('qiq-mobile-close').addEventListener('click',()=>mm.classList.remove('open'));
 }
 
-/* ══════════════════════════════════════════════
-   FOOTER INJECTION
-══════════════════════════════════════════════ */
+/* ─── FOOTER BUILD ─── */
 function buildFooter(){
-  const r=root();
-  const f=document.getElementById('qiq-footer');
-  if(!f)return;
-  f.innerHTML=`
-<div class="footer-grid">
+  const isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
+  const r=isRoot?'':'../';
+
+  const footer=document.getElementById('qiq-footer');
+  if(!footer)return;
+  footer.innerHTML=`
+<div class="footer-inner">
   <div>
     <a class="footer-logo" href="${r}index.html">Qantum<span>IQ</span></a>
-    <p class="footer-tagline">Advanced consulting for the quantum age — helping organizations transform through technology and strategic innovation.</p>
-    <div class="footer-socials">
-      <a class="footer-social" href="https://linkedin.com" target="_blank" rel="noopener">in</a>
-      <a class="footer-social" href="https://twitter.com" target="_blank" rel="noopener">𝕏</a>
-      <a class="footer-social" href="https://youtube.com" target="_blank" rel="noopener">▶</a>
+    <p class="footer-desc">Advanced consulting for organizations navigating the quantum age — where AI, quantum computing, and human ingenuity converge to create transformational advantage.</p>
+    <div class="footer-social">
+      <a href="https://linkedin.com/company/qantumiq" aria-label="LinkedIn">in</a>
+      <a href="https://twitter.com/qantumiq" aria-label="X/Twitter">𝕏</a>
     </div>
   </div>
-  <div>
-    <div class="footer-col-title">Services</div>
-    <ul class="footer-links">
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
       <li><a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a></li>
       <li><a href="${r}services/quantum-computing.html">Quantum Computing</a></li>
       <li><a href="${r}services/digital-transformation.html">Digital Transformation</a></li>
       <li><a href="${r}services/c-suite-advisory.html">C-Suite Advisory</a></li>
-      <li><a href="${r}services/business-process.html">BPO</a></li>
-      <li><a href="${r}services/information-insights.html">Information Insights</a></li>
+      <li><a href="${r}services/business-process.html">Business Process</a></li>
+      <li><a href="${r}services/information-insights.html">Information &amp; Insights</a></li>
       <li><a href="${r}services/management-consulting.html">Management Consulting</a></li>
     </ul>
   </div>
-  <div>
-    <div class="footer-col-title">Industries</div>
-    <ul class="footer-links">
+  <div class="footer-col">
+    <h4>Industries</h4>
+    <ul>
       <li><a href="${r}industries/financial-services.html">Financial Services</a></li>
-      <li><a href="${r}industries/technology.html">Technology</a></li>
-      <li><a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a></li>
       <li><a href="${r}industries/healthcare.html">Healthcare</a></li>
+      <li><a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+      <li><a href="${r}industries/technology.html">Technology</a></li>
       <li><a href="${r}industries/energy.html">Energy</a></li>
       <li><a href="${r}industries/government.html">Government</a></li>
       <li><a href="${r}industries/sustainability.html">Sustainability</a></li>
       <li><a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a></li>
     </ul>
   </div>
-  <div>
-    <div class="footer-col-title">Company</div>
-    <ul class="footer-links" style="margin-bottom:1.25rem">
+  <div class="footer-col">
+    <h4>Company</h4>
+    <ul>
       <li><a href="${r}company/about.html">About Us</a></li>
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
       <li><a href="${r}insights/blog.html">Insights</a></li>
@@ -210,232 +188,397 @@ function buildFooter(){
       <li><a href="${r}company/contact.html">Contact</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
     </ul>
-    <div class="footer-col-title">Global HQ</div>
-    <div class="footer-contact-line"><span class="footer-contact-icon">📍</span><span>5000 Thayer Center STE C<br>Oakland, MD 21550, USA</span></div>
-    <div class="footer-contact-line"><span class="footer-contact-icon">📞</span><span>+1 (800) 555-QNTM</span></div>
-    <div class="footer-contact-line"><span class="footer-contact-icon">✉️</span><span>info@qantumiq.com</span></div>
+  </div>
+  <div class="footer-col footer-contact">
+    <h4>Contact Us</h4>
+    <p>📍 5000 Thayer Center STE C<br>Oakland, MD 21550, USA</p>
+    <p style="margin-top:.8rem;">📞 <a href="tel:+13013347686">+1 (301) 334-QNTM</a></p>
+    <p style="margin-top:.8rem;">✉️ <a href="mailto:info@qantumiq.com">info@qantumiq.com</a></p>
+    <p style="margin-top:.8rem;">💼 <a href="mailto:consulting@qantumiq.com">consulting@qantumiq.com</a></p>
   </div>
 </div>
 <div class="footer-bottom">
-  <div class="footer-copy">© 2025 QantumIQ Consulting. All rights reserved.</div>
-  <div class="footer-legal">
-    <a href="${r}legal/privacy-policy.html">Privacy Policy</a>
-    <a href="#">Terms of Service</a>
-    <a href="#">Cookie Policy</a>
-  </div>
+  <span>© 2026 QantumIQ Consulting. All rights reserved.</span>
+  <span>500+ Clients · 40+ Partners · 15+ Years</span>
 </div>`;
 }
 
-/* ══════════════════════════════════════════════
-   CANVAS PARTICLE NETWORK
-   Chrome-safe: no willReadFrequently needed,
-   explicit width/height attributes set in JS
-══════════════════════════════════════════════ */
+/* ─── THEME TOGGLE ─── */
+function initThemeToggle(){
+  const btn=document.getElementById('theme-toggle');
+  if(!btn)return;
+  const saved=localStorage.getItem('qiq-theme');
+  if(saved==='dark'){
+    document.documentElement.setAttribute('data-theme','dark');
+    btn.textContent='🌙';
+  } else {
+    btn.textContent='☀️';
+  }
+  btn.addEventListener('click',()=>{
+    const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+    if(isDark){
+      document.documentElement.removeAttribute('data-theme');
+      btn.textContent='☀️';
+      localStorage.setItem('qiq-theme','light');
+    } else {
+      document.documentElement.setAttribute('data-theme','dark');
+      btn.textContent='🌙';
+      localStorage.setItem('qiq-theme','dark');
+    }
+    initCanvas(); // reinitialise canvas for dark mode
+  });
+}
+
+/* ─── DARK MODE CANVAS ─── */
 function initCanvas(){
   const el=document.getElementById('qiq-canvas');
   if(!el)return;
+  if(document.documentElement.getAttribute('data-theme')!=='dark'){el.style.display='none';return;}
+  el.style.display='block';
   const ctx=el.getContext('2d');
-  let W,H,pts=[];
-
-  function resize(){
-    W=el.width=window.innerWidth;
-    H=el.height=window.innerHeight;
+  let W,H,particles=[];
+  function resize(){W=el.width=window.innerWidth;H=el.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+  for(let i=0;i<60;i++){
+    particles.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:Math.random()*1.4+.3});
   }
-
-  class Pt{
-    constructor(){this.reset();}
-    reset(){
-      this.x=Math.random()*W; this.y=Math.random()*H;
-      this.vx=(Math.random()-.5)*.3; this.vy=(Math.random()-.5)*.3;
-      this.a=Math.random()*.45+.08; this.r=Math.random()*1.2+.4;
-    }
-    step(){
-      this.x+=this.vx; this.y+=this.vy;
-      if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
-    }
-    draw(){
-      ctx.beginPath();
-      ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(69,137,255,'+this.a+')';
-      ctx.fill();
-    }
-  }
-
-  function drawLines(){
-    const max=100;
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
-        const d=Math.sqrt(dx*dx+dy*dy);
-        if(d<max){
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x,pts[i].y);
-          ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle='rgba(69,137,255,'+((1-d/max)*.08)+')';
-          ctx.lineWidth=.5;
-          ctx.stroke();
+  let raf;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(77,143,255,.35)';ctx.fill();
+    });
+    particles.forEach((a,i)=>{
+      for(let j=i+1;j<particles.length;j++){
+        const b=particles[j];
+        const d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<130){
+          ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(77,143,255,${.08*(1-d/130)})`;ctx.lineWidth=.6;ctx.stroke();
         }
       }
-    }
+    });
+    raf=requestAnimationFrame(draw);
   }
-
-  function frame(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{p.step();p.draw();});
-    drawLines();
-    requestAnimationFrame(frame);
-  }
-
-  window.addEventListener('resize',resize,{passive:true});
-  resize();
-  pts=Array.from({length:70},()=>new Pt());
-  frame();
+  cancelAnimationFrame(raf);draw();
 }
 
-/* ══════════════════════════════════════════════
-   HERO IMAGE — picsum.photos
-   Reliable, free, no auth, seeded = deterministic
-══════════════════════════════════════════════ */
-const THEME_SEEDS={
-  home:101,ai:201,quantum:301,digital:401,business:501,
-  csuite:601,finance:701,healthcare:801,energy:901,
-  government:1001,sustainability:1101,pharma:1201,
-  media:1301,tech:1401,insights:1501,careers:1601,
-  about:1701,contact:1801
+/* ═══════════════════════════════════════════════
+   HERO SLIDESHOW — 5-image cycling Ken Burns
+   Uses picsum.photos with curated professional IDs
+═══════════════════════════════════════════════ */
+
+/* Curated picsum IDs — known professional photography */
+const HERO_POOLS={
+  home:       [3,7,10,60,82],
+  ai:         [1,6,12,24,28],
+  quantum:    [9,16,26,35,42],
+  digital:    [15,19,30,50,57],
+  csuite:     [64,65,67,68,70],
+  business:   [74,75,77,79,84],
+  information:[87,88,90,91,96],
+  management: [97,99,100,101,102],
+  finance:    [110,111,112,113,114],
+  healthcare: [115,116,119,120,121],
+  tech:       [122,124,125,126,127],
+  energy:     [128,129,130,131,132],
+  government: [133,134,135,136,137],
+  sustainability:[138,139,140,141,142],
+  pharma:     [143,144,145,146,147],
+  media:      [148,149,150,151,152],
+  insights:   [153,154,155,156,157],
+  about:      [158,159,160,162,163],
+  contact:    [164,165,166,167,168],
+  careers:    [169,170,171,172,173],
 };
 
-function getDailyImage(theme){
-  const base=THEME_SEEDS[theme]||101;
-  const day=Math.floor(Date.now()/86400000);
-  const seed=base+(day%40);
-  return 'https://picsum.photos/seed/'+seed+'/1400/500';
-}
-
-window.QIQ=window.QIQ||{};
-window.QIQ.getDailyImage=getDailyImage;
-
-function applyHeroImage(){
-  const hero=document.querySelector('[data-hero-theme]');
-  if(!hero)return;
-  const url=getDailyImage(hero.getAttribute('data-hero-theme'));
-  const img=new Image();
-  img.crossOrigin='anonymous';
-  img.onload=function(){hero.style.backgroundImage="url('"+url+"')";};
-  // onerror: silent — CSS gradient fallback remains
-  img.src=url;
-}
-
-/* ══════════════════════════════════════════════
-   INTELLIGENCE FEED
-   Strategy:
-   1. Try rss2json API (free tier)
-   2. On any failure → show curated static links
-      that rotate daily — always works offline too
-══════════════════════════════════════════════ */
-
-// Curated real article links — used as fallback
-const CURATED=[
-  {s:'MIT Technology Review',u:'https://www.technologyreview.com/2025/04/01/1092456/ai-reshaping-science/',t:'How AI is reshaping scientific research',d:'April 2025'},
-  {s:'IEEE Spectrum',u:'https://spectrum.ieee.org/quantum-computing-2025',t:'The quantum computing landscape in 2025',d:'March 2025'},
-  {s:'Wired',u:'https://www.wired.com/story/ai-enterprise-adoption-2025/',t:'Enterprise AI: from pilot to production',d:'April 2025'},
-  {s:'Harvard Business Review',u:'https://hbr.org/2025/03/the-c-suite-skills-that-matter-in-ai',t:'C-suite skills that matter most in the AI era',d:'March 2025'},
-  {s:'Nature News',u:'https://www.nature.com/articles/d41586-025-00900-0',t:'Quantum advantage reaches chemistry milestone',d:'February 2025'},
-  {s:'McKinsey Insights',u:'https://www.mckinsey.com/capabilities/quantumblack/our-insights',t:'State of AI in the enterprise — annual survey',d:'January 2025'},
-  {s:'MIT Technology Review',u:'https://www.technologyreview.com/2025/02/12/1090212/post-quantum-cryptography/',t:'Post-quantum cryptography: what organizations need to do now',d:'February 2025'},
-  {s:'Financial Times',u:'https://www.ft.com/technology',t:'Technology and digital transformation news',d:'April 2025'},
-  {s:'Deloitte Insights',u:'https://www2.deloitte.com/us/en/insights/topics/digital-transformation.html',t:'Digital transformation: strategy and execution',d:'March 2025'},
-  {s:'IBM Research',u:'https://research.ibm.com/blog',t:'IBM quantum computing: 2025 roadmap update',d:'March 2025'},
-  {s:'World Economic Forum',u:'https://www.weforum.org/agenda/archive/artificial-intelligence-and-robotics/',t:'AI governance frameworks for global enterprises',d:'January 2025'},
-  {s:'Gartner',u:'https://www.gartner.com/en/articles/the-top-10-strategic-technology-trends-for-2025',t:'Top 10 strategic technology trends for 2025',d:'January 2025'},
+/* Photo pools for content sections — diverse, professional */
+const PHOTO_POOL_SM=[
+  // Business / office / people
+  91,147,160,177,211,225,247,265,
+  287,301,326,338,365,374,393,401,
+  // Technology / data
+  119,159,239,260,300,325,376,430,
+  445,460,479,493,511,526,547,562,
+  // Architecture / city
+  7,14,22,50,57,218,237,257,271,292,
+  // Nature / environment
+  96,106,134,138,184,209,236,259,
+];
+const PHOTO_POOL_WIDE=[
+  // Full-width landscape imagery
+  3,7,10,15,20,24,26,28,30,32,
+  42,45,50,57,60,64,67,70,74,77,
+  82,84,87,88,90,91,96,97,99,100,
+  110,112,116,119,122,128,133,138,
+  143,148,153,158,163,166,172,177,
 ];
 
-function getCuratedFeed(){
-  const day=Math.floor(Date.now()/86400000);
-  // Rotate starting offset daily so items change
-  const offset=day%CURATED.length;
-  const rotated=[...CURATED.slice(offset),...CURATED.slice(0,offset)];
-  return rotated.slice(0,9);
+let _smIdx  = Math.floor(Date.now()/86400000) % PHOTO_POOL_SM.length;
+let _wideIdx= Math.floor(Date.now()/86400000) % PHOTO_POOL_WIDE.length;
+
+function nextSmPhoto(){
+  const id=PHOTO_POOL_SM[_smIdx % PHOTO_POOL_SM.length];
+  _smIdx++;
+  return `https://picsum.photos/id/${id}/600/340`;
+}
+function nextWidePhoto(){
+  const id=PHOTO_POOL_WIDE[_wideIdx % PHOTO_POOL_WIDE.length];
+  _wideIdx++;
+  return `https://picsum.photos/id/${id}/1200/600`;
 }
 
-function renderNewsItems(items){
-  return items.map(item=>{
-    const title=(item.t||item.title||'').replace(/&amp;/g,'&').replace(/&#\d+;/g,'').trim();
-    const source=item.s||item._source||'';
-    const date=item.d||(item.pubDate?new Date(item.pubDate).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'');
-    const url=item.u||item.link||'#';
-    const shortTitle=title.length>88?title.slice(0,85)+'…':title;
-    return`<a class="news-item" href="${url}" target="_blank" rel="noopener noreferrer">
-      <div class="news-source">${source}</div>
-      <div class="news-title">${shortTitle}</div>
-      <div class="news-date">${date}&nbsp;&nbsp;↗</div>
-    </a>`;
-  }).join('');
-}
+function initHeroSlideshow(){
+  const hero=document.querySelector('[data-hero-theme]');
+  if(!hero)return;
+  const theme=hero.getAttribute('data-hero-theme');
+  const pool=HERO_POOLS[theme]||HERO_POOLS.home;
 
-async function loadNewsFeed(containerId){
-  const el=document.getElementById(containerId);
-  if(!el)return;
+  // Slides container
+  const slidesEl=document.createElement('div');
+  slidesEl.className='hero-slides';
+  hero.insertBefore(slidesEl,hero.firstChild);
 
-  // Immediately show curated links (never "coming soon")
-  const curated=getCuratedFeed();
-  el.innerHTML=renderNewsItems(curated);
+  // Overlay
+  const overlay=document.createElement('div');
+  overlay.className='hero-overlay';
+  hero.insertBefore(overlay,hero.children[1]);
 
-  // Then try to enhance with live RSS in background
-  try{
-    const RSS_FEEDS=[
-      'https://www.technologyreview.com/feed/',
-      'https://feeds.feedburner.com/venturebeat/SZYF',
-      'https://www.wired.com/feed/rss',
-    ];
-    const day=Math.floor(Date.now()/86400000);
-    const feedUrl=RSS_FEEDS[day%RSS_FEEDS.length];
-    const apiUrl='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feedUrl)+'&count=9&api_key=';
-    const resp=await Promise.race([
-      fetch(apiUrl,{signal:AbortSignal.timeout?AbortSignal.timeout(5000):undefined}),
-      new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),5000))
-    ]);
-    if(resp&&resp.ok){
-      const data=await resp.json();
-      if(data.status==='ok'&&data.items&&data.items.length>=3){
-        const live=data.items.slice(0,9).map(i=>({...i,_source:(data.feed&&data.feed.title)||'News'}));
-        el.innerHTML=renderNewsItems(live);
-      }
-    }
-  }catch(e){
-    // Live fetch failed — curated links already showing, nothing to do
+  // Create slides
+  const slides=pool.map((id,i)=>{
+    const s=document.createElement('div');
+    s.className='hero-slide'+(i===0?' active':'');
+    slidesEl.appendChild(s);
+    const img=new Image();
+    img.crossOrigin='anonymous';
+    img.onload=()=>{ s.style.backgroundImage=`url('${img.src}')`; };
+    img.src=`https://picsum.photos/id/${id}/1600/900`;
+    return s;
+  });
+
+  // Progress dots
+  const dots=document.createElement('div');
+  dots.className='hero-dots';
+  pool.forEach((_,i)=>{
+    const dot=document.createElement('button');
+    dot.className='hero-dot'+(i===0?' active':'');
+    dot.setAttribute('aria-label','Slide '+(i+1));
+    dot.addEventListener('click',()=>goTo(i));
+    dots.appendChild(dot);
+  });
+  hero.appendChild(dots);
+
+  let current=0, timer;
+  function goTo(idx){
+    slides[current].classList.remove('active');
+    dots.children[current].classList.remove('active');
+    current=(idx+pool.length)%pool.length;
+    slides[current].classList.add('active');
+    dots.children[current].classList.add('active');
+    resetTimer();
   }
+  function resetTimer(){
+    clearInterval(timer);
+    timer=setInterval(()=>goTo(current+1),7500);
+  }
+  resetTimer();
+  hero.addEventListener('mouseenter',()=>clearInterval(timer));
+  hero.addEventListener('mouseleave',resetTimer);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft')goTo(current-1);
+    if(e.key==='ArrowRight')goTo(current+1);
+  });
 }
 
-window.QIQ.loadNewsFeed=loadNewsFeed;
+/* ═══════════════════════════════════════════════
+   CONTENT PHOTO INJECTION
+   Adds cycling professional photos to cards, sections
+═══════════════════════════════════════════════ */
+function injectContentPhotos(){
+  // 1. Insight cards
+  document.querySelectorAll('.insight-card').forEach(card=>{
+    if(card.querySelector('.insight-photo'))return;
+    const url=nextSmPhoto();
+    const photo=document.createElement('div');
+    photo.className='insight-photo';
+    photo.style.backgroundImage=`url('${url}')`;
+    const body=document.createElement('div');
+    body.className='insight-card-body';
+    while(card.firstChild)body.appendChild(card.firstChild);
+    card.appendChild(photo);
+    card.appendChild(body);
+    card.insertBefore(photo,card.firstChild);
+  });
 
-/* ══════════════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════════════ */
+  // 2. Story cards — inject photo into story-card-photo divs
+  document.querySelectorAll('.story-card').forEach(card=>{
+    const photoDiv=card.querySelector('.story-card-photo');
+    if(!photoDiv)return;
+    if(photoDiv.style.backgroundImage)return;
+    photoDiv.style.backgroundImage=`url('${nextSmPhoto()}')`;
+  });
+
+  // 3. Photo sections
+  document.querySelectorAll('.photo-section-bg,[data-photo-src]').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextWidePhoto()}')`;
+  });
+
+  // 4. Split sections
+  document.querySelectorAll('.split-photo').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextWidePhoto()}')`;
+  });
+
+  // 5. CTA band backgrounds
+  document.querySelectorAll('.cta-band-bg').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextWidePhoto()}')`;
+  });
+
+  // 6. Report / whitepaper cards
+  document.querySelectorAll('.report-card, .paper-card').forEach(card=>{
+    if(card.querySelector('.card-photo'))return;
+    const ph=document.createElement('div');
+    ph.className='card-photo';
+    ph.style.cssText=`width:100%;height:175px;background-size:cover;background-position:center;background-image:url('${nextSmPhoto()}');margin-bottom:1.2rem;flex-shrink:0;`;
+    card.insertBefore(ph, card.firstChild);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   NEWS FEED — curated + live RSS
+═══════════════════════════════════════════════ */
+const CURATED_NEWS=[
+  {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
+  {source:'IEEE Spectrum',title:'Quantum Error Correction Milestone Brings Fault-Tolerant Computing Closer to Reality',url:'https://spectrum.ieee.org'},
+  {source:'Harvard Business Review',title:'Why Most AI Transformations Fail — and the Six Factors That Make Them Succeed',url:'https://hbr.org'},
+  {source:'Nature',title:'Large Language Models Show Surprising Capability in Scientific Reasoning Benchmarks',url:'https://nature.com'},
+  {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},
+  {source:'IBM Research',title:'Advancing Quantum-Safe Cryptography: A Roadmap for Enterprise Migration',url:'https://research.ibm.com'},
+  {source:'Wired',title:'Digital Twins Are Becoming the Nervous System of Modern Manufacturing Operations',url:'https://wired.com'},
+  {source:'Deloitte Insights',title:'The Generative AI Inflection Point: How Organizations Are Moving From Pilot to Production',url:'https://www2.deloitte.com/insights'},
+  {source:'World Economic Forum',title:'Responsible AI Governance: A Framework for the Age of Agentic Systems',url:'https://weforum.org'},
+  {source:'Gartner',title:'2026 Top Strategic Technology Trends: Contextual Intelligence Leads the Pack',url:'https://gartner.com'},
+  {source:'NIST',title:'Post-Quantum Cryptography Standards: Implementation Guidance for Enterprises',url:'https://nist.gov'},
+  {source:'Financial Times',title:'The Race for Quantum Supremacy Enters Its Industrial Phase',url:'https://ft.com'},
+];
+
+function loadNewsFeed(containerId){
+  const container=document.getElementById(containerId);
+  if(!container)return;
+  const day=Math.floor(Date.now()/86400000);
+  const offset=day%CURATED_NEWS.length;
+  const items=[...CURATED_NEWS.slice(offset),...CURATED_NEWS.slice(0,offset)].slice(0,9);
+  renderNews(container, items);
+  // Try live feed silently
+  const feed='https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffeeds.feedburner.com%2FTheHackersNews&count=9&api_key=tqmhcvuausvdakz7s7mcvfmyexbcnhwufxlrjjnw';
+  const ctrl=new AbortController();
+  const timeout=setTimeout(()=>ctrl.abort(),4500);
+  fetch(feed,{signal:ctrl.signal})
+    .then(r=>r.json())
+    .then(d=>{
+      clearTimeout(timeout);
+      if(d&&d.items&&d.items.length>0){
+        const live=d.items.slice(0,9).map(i=>({source:d.feed.title||'Tech News',title:i.title,url:i.link}));
+        renderNews(container,live);
+      }
+    })
+    .catch(()=>clearTimeout(timeout));
+}
+
+function renderNews(container, items){
+  const today=new Date();
+  container.innerHTML=items.map((item,i)=>{
+    const d=new Date(today-i*86400000*1.4);
+    const date=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    return `<a class="news-item" href="${item.url}" target="_blank" rel="noopener">
+  <div class="news-source">${item.source}</div>
+  <div class="news-title">${item.title}</div>
+  <div class="news-date">${date}</div>
+</a>`;
+  }).join('');
+  if(typeof QIQ!=='undefined'&&QIQ.injectContentPhotos)QIQ.injectContentPhotos();
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATED COUNTERS
+═══════════════════════════════════════════════ */
+function initCounters(){
+  if(!('IntersectionObserver' in window))return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target;
+      const raw=el.dataset.count;
+      if(!raw)return;
+      const target=parseFloat(raw);
+      const isFloat=raw.includes('.');
+      const suffix=el.dataset.suffix||'';
+      const prefix=el.dataset.prefix||'';
+      const dur=1800;
+      const start=performance.now();
+      function tick(now){
+        const p=Math.min((now-start)/dur,1);
+        const eased=1-Math.pow(1-p,3);
+        const val=target*eased;
+        el.textContent=prefix+(isFloat?val.toFixed(1):Math.round(val))+suffix;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  },{threshold:.4});
+  document.querySelectorAll('.stat-num').forEach(el=>{
+    const text=el.textContent.replace(/[^0-9.]/g,'');
+    if(!text)return;
+    const num=parseFloat(text);
+    if(isNaN(num)||num<10)return;
+    const plus=el.querySelector('.plus');
+    const plusText=plus?plus.textContent:'';
+    el.dataset.count=text;
+    el.textContent=el.textContent.replace(text,'0'+(plus?'':plusText));
+    if(plus)el.appendChild(plus);
+    obs.observe(el);
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   REVEAL ON SCROLL
+═══════════════════════════════════════════════ */
 function initReveal(){
   if(!('IntersectionObserver' in window)){
-    document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('visible');});
+    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in-view'));
     return;
   }
-  const obs=new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('visible'),i*60);
-        obs.unobserve(e.target);
-      }
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in-view');obs.unobserve(e.target);}
     });
-  },{threshold:.08});
+  },{threshold:.06,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 }
 
-/* ══════════════════════════════════════════════
+/* ═══════════════════════════════════════════════
    INIT
-══════════════════════════════════════════════ */
+═══════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded',function(){
   buildNav();
   buildFooter();
+  initThemeToggle();
   initCanvas();
-  applyHeroImage();
+  initHeroSlideshow();
+  injectContentPhotos();
   initReveal();
+  setTimeout(initCounters, 350);
 });
+
+// Expose for external calls (news feed etc)
+window.QIQ={loadNewsFeed,injectContentPhotos};
 
 })();
