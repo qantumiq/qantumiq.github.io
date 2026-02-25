@@ -73,6 +73,7 @@ function buildNav(){
     </button>
     <div class="nav-dropdown">
       <a href="${r}company/about.html">About Us</a>
+      <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
       <a href="${r}company/careers.html">Careers</a>
       <a href="${r}company/contact.html">Contact Us</a>
     </div>
@@ -147,6 +148,7 @@ function buildNav(){
 <a href="${r}insights/white-papers.html">White Papers</a>
 <div class="mob-heading">Company</div>
 <a href="${r}company/about.html">About Us</a>
+<a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
 <a href="${r}company/careers.html">Careers</a>
 <a class="mob-cta" href="${r}company/contact.html">Contact Us</a>`;
   document.body.prepend(mm);
@@ -202,6 +204,7 @@ function buildFooter(){
     <div class="footer-col-title">Company</div>
     <ul class="footer-links" style="margin-bottom:1.25rem">
       <li><a href="${r}company/about.html">About Us</a></li>
+      <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
       <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
       <li><a href="${r}company/contact.html">Contact</a></li>

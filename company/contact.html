@@ -5,236 +5,163 @@
 <meta name="color-scheme" content="dark"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Contact Us — QantumIQ</title>
-<meta name="theme-color" content="#05070F"/>
-<meta name="description" content="Get in touch with QantumIQ. Request a consultation, find a global office, or reach out to our team."/>
+<meta name="description" content="Contact QantumIQ — 13 global offices across 5 countries. Schedule a consultation or find your nearest office."/>
 <link rel="stylesheet" href="../assets/css/main.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <style>
-/* PAGE HERO */
-.page-hero{position:relative;overflow:hidden;padding:100px 0 80px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,212,255,.10),transparent 65%),var(--bg);}
-.page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%2300d4ff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none;}
-.ph-inner{position:relative;text-align:center;}
-.ph-label{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,255,.10);border:1px solid rgba(0,212,255,.25);color:var(--cyan);font-size:.73rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:1.25rem;}
-.page-hero h1{font-family:var(--ff-sans);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1rem;color:#fff;}
-.ph-sub{color:rgba(242,244,255,.75);font-size:1.05rem;line-height:1.75;max-width:560px;margin:0 auto;}
-.grad{background:linear-gradient(135deg,var(--cyan),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-/* CONTACT GRID */
-.contact-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:start;}
-/* FORM */
-.form-card{background:var(--bg);border:1px solid var(--border);border-radius:1.25rem;padding:2.5rem 2.25rem;}
-.form-card h2{font-family:var(--ff-sans);font-size:1.4rem;font-weight:800;margin-bottom:.4rem;color:#fff;}
-.form-sub{color:var(--muted);font-size:.88rem;margin-bottom:1.75rem;}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.fg{display:flex;flex-direction:column;margin-bottom:1rem;}
-.fg label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.45rem;}
-.fg input,.fg select,.fg textarea{background:var(--bg2);border:1px solid var(--border);border-radius:.6rem;color:var(--text);font-family:var(--ff-sans);font-size:.9rem;padding:11px 14px;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.12);}
-.fg textarea{resize:vertical;min-height:110px;}
-.fg select option{background:var(--bg2);}
-.f-submit{width:100%;background:linear-gradient(135deg,var(--cyan),#7c3aed);color:#fff;border:none;border-radius:.65rem;padding:14px 24px;font-family:var(--ff-sans);font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .2s,transform .2s;margin-top:.25rem;}
-.f-submit:hover{opacity:.88;transform:translateY(-1px);}
-.f-note{font-size:.73rem;color:var(--muted);margin-top:.9rem;line-height:1.6;}
-.f-note a{color:var(--cyan);text-decoration:none;}
-/* INFO SIDEBAR */
-.info-card{background:var(--bg);border:1px solid var(--border);border-radius:1.25rem;padding:1.75rem;margin-bottom:1.25rem;transition:border-color .2s;}
-.info-card:hover{border-color:rgba(0,212,255,.35);}
-.info-card h3{font-family:var(--ff-sans);font-size:.95rem;font-weight:700;margin-bottom:.9rem;color:#fff;}
-.i-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem;}
-.i-item:last-child{margin-bottom:0;}
-.i-icon{font-size:1.1rem;margin-top:1px;flex-shrink:0;}
-.i-text{font-size:.87rem;color:var(--muted);line-height:1.55;}
-.i-text strong{color:var(--text);display:block;font-size:.8rem;margin-bottom:2px;}
-.i-text a{color:var(--cyan);text-decoration:none;}
-/* OFFICES */
-.o-stats{display:flex;gap:2.5rem;flex-wrap:wrap;margin-bottom:3rem;padding:2rem 2.25rem;background:var(--bg);border:1px solid var(--border);border-radius:1.25rem;}
-.o-num{font-family:var(--ff-sans);font-size:2.4rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
-.o-lbl{font-size:.73rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px;}
-.o-layout{display:grid;grid-template-columns:320px 1fr;gap:1.75rem;align-items:start;}
-.o-btns{display:flex;flex-direction:column;gap:.5rem;}
-.c-group{margin-bottom:1rem;}
-.c-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem;padding-left:4px;opacity:.55;}
-.o-btn{width:100%;display:flex;align-items:center;gap:.75rem;padding:.875rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:.75rem;cursor:pointer;text-align:left;transition:all .2s;color:var(--text);font-family:var(--ff-sans);}
-.o-btn:hover{border-color:rgba(0,212,255,.35);background:rgba(0,212,255,.04);}
-.o-btn.active{border-color:var(--cyan);background:rgba(0,212,255,.07);box-shadow:0 0 20px rgba(0,212,255,.1);}
-.o-flag{font-size:1.2rem;flex-shrink:0;}
-.o-info{flex:1;min-width:0;}
-.o-city{font-size:.87rem;font-weight:600;}
-.o-region{font-size:.73rem;color:var(--muted);}
-.o-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0;transition:background .2s;}
-.o-btn.active .o-dot{background:var(--cyan);}
-/* MAP */
-.map-panel{background:var(--bg);border:1px solid var(--border);border-radius:1.25rem;overflow:hidden;position:sticky;top:88px;}
-.map-disp{position:relative;width:100%;height:360px;background:radial-gradient(ellipse 60% 40% at 30% 50%,rgba(0,212,255,.06),transparent 60%),linear-gradient(135deg,#0a1525,#0d1a32);overflow:hidden;}
-.map-disp svg{width:100%;height:100%;opacity:.22;}
-.map-pin{position:absolute;transform:translate(-50%,-100%);transition:all .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;}
-.m-dot{width:14px;height:14px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(0,212,255,.25),0 0 20px rgba(0,212,255,.5);margin:0 auto;}
-.m-stem{width:2px;height:20px;background:linear-gradient(var(--cyan),transparent);margin:0 auto;}
-.m-pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;border:2px solid rgba(0,212,255,.5);animation:mpulse 2s ease-out infinite;}
-@keyframes mpulse{0%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0}}
-.m-placeholder{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:.6rem;color:var(--muted);}
-.m-ph-icon{font-size:2.5rem;opacity:.35;}
-.m-ph-text{font-size:.83rem;text-align:center;max-width:200px;line-height:1.5;opacity:.55;}
-.map-info{padding:1.5rem 1.75rem;border-top:1px solid var(--border);}
-.m-name{font-family:var(--ff-sans);font-size:1.1rem;font-weight:800;margin-bottom:.2rem;color:#fff;}
-.m-country{font-size:.73rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem;}
-.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
-.m-item label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:3px;opacity:.6;}
-.m-item span{font-size:.84rem;color:var(--muted);}
-/* MARQUEE */
-.mq-wrap{overflow:hidden;position:relative;}
-.mq-wrap::before,.mq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
-.mq-wrap::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent);}
-.mq-wrap::after{right:0;background:linear-gradient(270deg,var(--bg2),transparent);}
-.mq-track{display:flex;gap:1.25rem;width:max-content;animation:mqs 38s linear infinite;}
-.mq-track:hover{animation-play-state:paused;}
-@keyframes mqs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.mq-chip{background:var(--bg);border:1px solid var(--border);border-radius:.6rem;padding:.875rem 1.5rem;font-size:.83rem;font-weight:600;color:var(--muted);white-space:nowrap;transition:border-color .2s,color .2s;}
-.mq-chip:hover{border-color:rgba(0,212,255,.35);color:var(--text);}
-@media(max-width:1024px){.contact-grid,.o-layout{grid-template-columns:1fr;}.map-panel{position:static;}.o-btns{display:grid;grid-template-columns:1fr 1fr;}}
-@media(max-width:680px){.frow{grid-template-columns:1fr;}.o-btns{grid-template-columns:1fr;}.m-grid{grid-template-columns:1fr;}.o-stats{gap:1.5rem;}}
+#contact-map{width:100%;height:420px;border:1px solid var(--border);position:relative;z-index:1;}
+.leaflet-container{background:#080e1f !important;font-family:'IBM Plex Sans',sans-serif !important;}
+.leaflet-tile-pane .leaflet-tile{filter:brightness(.7) saturate(.5) hue-rotate(200deg);}
+.leaflet-popup-content-wrapper{background:rgba(8,11,24,.98)!important;border:1px solid #0F62FE!important;border-radius:0!important;color:#F4F6FF!important;font-family:'IBM Plex Sans',sans-serif!important;box-shadow:0 8px 32px rgba(0,0,0,.6)!important;}
+.leaflet-popup-content{margin:12px 16px!important;font-size:.83rem!important;line-height:1.55!important;}
+.leaflet-popup-tip-container{display:none!important;}
+.leaflet-popup-close-button{color:#4589FF!important;right:8px!important;top:6px!important;}
+.leaflet-control-zoom a{background:rgba(8,11,24,.95)!important;color:#4589FF!important;border:1px solid rgba(255,255,255,.12)!important;}
+.leaflet-control-zoom a:hover{background:#0F62FE!important;color:#fff!important;}
+.leaflet-control-attribution{background:rgba(5,7,15,.7)!important;color:rgba(244,246,255,.35)!important;font-size:.6rem!important;}
+.leaflet-control-attribution a{color:rgba(69,137,255,.6)!important;}
+/* custom pin */
+.qiq-pin{width:20px;height:20px;background:#0F62FE;border:2px solid #4589FF;border-radius:50%;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s;}
+.qiq-pin:hover,.qiq-pin.active{transform:scale(1.4);background:#4589FF;box-shadow:0 0 12px rgba(69,137,255,.7);}
+.qiq-pin.hq{background:#D4A84B;border-color:#F0CC7A;width:24px;height:24px;}
+.qiq-pin.hq:hover,.qiq-pin.hq.active{background:#F0CC7A;box-shadow:0 0 12px rgba(212,168,75,.7);}
+/* location buttons grid */
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.6rem;margin-top:2rem;}
+.loc-btn{
+  background:var(--bg);border:1px solid var(--border);
+  padding:.7rem 1rem;cursor:pointer;
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--ff-sans);font-size:.78rem;font-weight:500;color:var(--muted);
+  text-align:left;transition:border-color .18s,color .18s,background .18s;
+  white-space:nowrap;overflow:hidden;
+}
+.loc-btn:hover{border-color:var(--blue-lt);color:var(--white);}
+.loc-btn.active{border-color:var(--blue);background:rgba(15,98,254,.1);color:var(--white);}
+.loc-btn.active-hq{border-color:var(--gold-lt);background:rgba(212,168,75,.08);color:var(--white);}
+.loc-flag{font-size:.95rem;flex-shrink:0;}
+.loc-text{display:flex;flex-direction:column;overflow:hidden;}
+.loc-city{font-weight:600;font-size:.78rem;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.loc-country{font-size:.67rem;color:var(--muted);}
+.hq-badge{
+  display:inline-block;font-family:var(--ff-sans);font-size:.6rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt);
+  border:1px solid rgba(212,168,75,.4);padding:.15rem .45rem;margin-bottom:.1rem;
+}
 </style>
 </head>
 <body>
 <canvas id="qiq-canvas"></canvas>
 
-<section class="page-hero">
-  <div class="container">
-    <div class="ph-inner reveal">
-      <div class="ph-label">📬 Get in Touch</div>
-      <h1>Let's <span class="grad">Start a Conversation</span></h1>
-      <p class="ph-sub">Ready to navigate the quantum age? Our team of experts is here to help you define, design, and deliver transformative change.</p>
-    </div>
-  </div>
-</section>
+<div class="page-hero" data-hero-theme="contact">
+  <div class="container"><div class="page-hero-content">
+    <div class="page-hero-eyebrow hero-animate-1">Company / Contact</div>
+    <h1 class="hero-animate-2">Let's start a <span class="italic">conversation</span></h1>
+    <p class="hero-animate-3">13 offices across 5 countries — our experts are wherever your transformation needs us to be. All inquiries receive a response within one business day.</p>
+  </div></div>
+</div>
 
-<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+<!-- FORM + CONTACT INFO -->
+<section class="section-pad">
   <div class="container">
-    <div class="contact-grid">
-      <div class="form-card reveal">
-        <h2>Request a Consultation</h2>
-        <p class="form-sub">Tell us about your organization and challenge — we'll connect you with the right expert.</p>
-        <div class="frow">
-          <div class="fg"><label>First Name</label><input type="text" placeholder="Jane"></div>
-          <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith"></div>
-        </div>
-        <div class="fg"><label>Work Email</label><input type="email" placeholder="jane.smith@company.com"></div>
-        <div class="frow">
-          <div class="fg"><label>Company</label><input type="text" placeholder="Your Organization"></div>
-          <div class="fg"><label>Job Title</label><input type="text" placeholder="e.g. CTO"></div>
-        </div>
-        <div class="frow">
-          <div class="fg">
-            <label>Country</label>
-            <select><option value="">Select country</option><option>United States</option><option>United Kingdom</option><option>Germany</option><option>Singapore</option><option>United Arab Emirates</option><option>Other</option></select>
+    <div style="display:grid;grid-template-columns:1fr 1.45fr;gap:5rem;" class="reveal">
+      <!-- LEFT -->
+      <div>
+        <div class="eyebrow">Get In Touch</div>
+        <h2 class="section-title">We'd love to <span class="it">hear from you</span></h2>
+        <p style="font-size:.92rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;">Our consultants respond to all inquiries within one business day. For urgent matters, call our HQ directly.</p>
+        <div style="display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);">
+          <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--surface);">
+            <span style="color:var(--blue-lt);flex-shrink:0;margin-top:.1rem;">📍</span>
+            <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.2rem;">Global Headquarters</div><div style="font-size:.82rem;color:var(--muted);">5000 Thayer Center STE C<br>Oakland, MD 21550, USA</div></div>
           </div>
-          <div class="fg">
-            <label>Service Interest</label>
-            <select><option value="">Select area of interest</option><option>AI &amp; ML Solutions</option><option>Quantum Computing</option><option>Digital Transformation</option><option>C-Suite Advisory</option><option>Business Process Optimization</option><option>Information &amp; Insights</option><option>Management Consulting</option></select>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
+            <span style="color:var(--blue-lt);flex-shrink:0;">📞</span>
+            <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Phone</div><a href="tel:+13013347686" style="font-size:.82rem;color:var(--muted);text-decoration:none;">+1 (301) 334-QNTM</a></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
+            <span style="color:var(--blue-lt);flex-shrink:0;">✉️</span>
+            <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Email</div><a href="mailto:info@qantumiq.com" style="font-size:.82rem;color:var(--muted);text-decoration:none;">info@qantumiq.com</a></div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
+            <span style="color:var(--blue-lt);flex-shrink:0;">💼</span>
+            <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Business Development</div><a href="mailto:consulting@qantumiq.com" style="font-size:.82rem;color:var(--muted);text-decoration:none;">consulting@qantumiq.com</a></div>
           </div>
         </div>
-        <div class="fg"><label>How can we help?</label><textarea placeholder="Briefly describe your challenge or project goals..."></textarea></div>
-        <button class="f-submit" onclick="handleSubmit(event)">Send Message →</button>
-        <p class="f-note">By submitting you agree to our <a href="../legal/privacy-policy.html">Privacy Policy</a>. We'll respond within one business day.</p>
-      </div>
-      <div class="reveal">
-        <div class="info-card">
-          <h3>📍 Global Headquarters</h3>
-          <div class="i-item"><span class="i-icon">🏢</span><div class="i-text"><strong>Mailing Address</strong>5000 Thayer Center STE C<br>Oakland, MD 21550, USA</div></div>
-          <div class="i-item"><span class="i-icon">📞</span><div class="i-text"><strong>Phone</strong><a href="tel:+13013334686">+1 (301) 334-QNTM</a></div></div>
-          <div class="i-item"><span class="i-icon">✉️</span><div class="i-text"><strong>General Inquiries</strong><a href="mailto:info@qantumiq.com">info@qantumiq.com</a></div></div>
-        </div>
-        <div class="info-card">
-          <h3>⚡ Response Times</h3>
-          <div class="i-item"><span class="i-icon">💼</span><div class="i-text"><strong>Consulting Inquiries</strong>Within 1 business day</div></div>
-          <div class="i-item"><span class="i-icon">🤝</span><div class="i-text"><strong>Partnership &amp; Media</strong><a href="mailto:partnerships@qantumiq.com">partnerships@qantumiq.com</a></div></div>
-          <div class="i-item"><span class="i-icon">💡</span><div class="i-text"><strong>Careers</strong><a href="../company/careers.html">View open positions →</a></div></div>
-        </div>
-        <div class="info-card">
-          <h3>🌍 Global Presence</h3>
-          <div class="i-item"><span class="i-icon">🗺️</span><div class="i-text"><strong>12 Offices Across 5 Countries</strong>United States · United Kingdom · Germany · Singapore · UAE</div></div>
-          <div style="margin-top:1rem;"><a href="#global-offices" class="btn-primary" style="font-size:.84rem;padding:10px 20px;">View All Offices ↓</a></div>
+        <div style="margin-top:1.5rem;padding:1.2rem 1.25rem;border:1px solid rgba(15,98,254,.3);background:rgba(15,98,254,.05);">
+          <div style="font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:.55rem;">Response Commitment</div>
+          <p style="font-size:.83rem;color:var(--muted);line-height:1.65;">All requests receive a response within <strong style="color:var(--white);">1 business day</strong>. We match each inquiry to the consultant with the most relevant expertise for your needs.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="global-offices" class="section-pad">
-  <div class="container">
-    <div class="reveal">
-      <div class="eyebrow">Global Reach</div>
-      <h2 class="section-title">Our Global <span class="it">Offices</span></h2>
-      <p class="section-desc">12 offices across 5 countries — delivering local expertise with global insight.</p>
-    </div>
-    <div class="o-stats reveal">
-      <div><div class="o-num">12</div><div class="o-lbl">Global Offices</div></div>
-      <div style="width:1px;background:var(--border);"></div>
-      <div><div class="o-num">5</div><div class="o-lbl">Countries</div></div>
-      <div style="width:1px;background:var(--border);"></div>
-      <div><div class="o-num">300+</div><div class="o-lbl">Consultants</div></div>
-      <div style="width:1px;background:var(--border);"></div>
-      <div><div class="o-num">24/7</div><div class="o-lbl">Global Support</div></div>
-    </div>
-    <div class="o-layout reveal">
-      <div class="o-btns">
-        <div class="c-group">
-          <div class="c-label">🇺🇸 United States</div>
-          <button class="o-btn" data-id="us-oakland"  onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">Oakland, MD</div><div class="o-region">Global HQ</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="us-newyork"  onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">New York, NY</div><div class="o-region">Financial Services Hub</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="us-sf"       onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">San Francisco, CA</div><div class="o-region">Technology &amp; AI Practice</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="us-dc"       onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">Washington, D.C.</div><div class="o-region">Government Practice</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="us-boston"   onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">Boston, MA</div><div class="o-region">Life Sciences &amp; Pharma</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="us-houston"  onclick="selOffice(this)"><span class="o-flag">🇺🇸</span><div class="o-info"><div class="o-city">Houston, TX</div><div class="o-region">Energy Practice</div></div><span class="o-dot"></span></button>
-        </div>
-        <div class="c-group">
-          <div class="c-label">🇬🇧 United Kingdom</div>
-          <button class="o-btn" data-id="uk-london"    onclick="selOffice(this)"><span class="o-flag">🇬🇧</span><div class="o-info"><div class="o-city">London</div><div class="o-region">EMEA Headquarters</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="uk-edinburgh" onclick="selOffice(this)"><span class="o-flag">🇬🇧</span><div class="o-info"><div class="o-city">Edinburgh</div><div class="o-region">Quantum Research Center</div></div><span class="o-dot"></span></button>
-        </div>
-        <div class="c-group">
-          <div class="c-label">🇩🇪 Germany</div>
-          <button class="o-btn" data-id="de-frankfurt" onclick="selOffice(this)"><span class="o-flag">🇩🇪</span><div class="o-info"><div class="o-city">Frankfurt</div><div class="o-region">European Finance Hub</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="de-munich"    onclick="selOffice(this)"><span class="o-flag">🇩🇪</span><div class="o-info"><div class="o-city">Munich</div><div class="o-region">Engineering &amp; Manufacturing</div></div><span class="o-dot"></span></button>
-        </div>
-        <div class="c-group">
-          <div class="c-label">🇸🇬 Singapore</div>
-          <button class="o-btn" data-id="sg-singapore" onclick="selOffice(this)"><span class="o-flag">🇸🇬</span><div class="o-info"><div class="o-city">Singapore</div><div class="o-region">APAC Headquarters</div></div><span class="o-dot"></span></button>
-        </div>
-        <div class="c-group">
-          <div class="c-label">🇦🇪 United Arab Emirates</div>
-          <button class="o-btn" data-id="ae-dubai"    onclick="selOffice(this)"><span class="o-flag">🇦🇪</span><div class="o-info"><div class="o-city">Dubai</div><div class="o-region">Middle East &amp; Africa Hub</div></div><span class="o-dot"></span></button>
-          <button class="o-btn" data-id="ae-abudhabi" onclick="selOffice(this)"><span class="o-flag">🇦🇪</span><div class="o-info"><div class="o-city">Abu Dhabi</div><div class="o-region">Government &amp; Sovereign Advisory</div></div><span class="o-dot"></span></button>
-        </div>
-      </div>
-      <div class="map-panel">
-        <div class="map-disp">
-          <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <path d="M80 80L240 60L280 120L250 180L200 220L160 280L120 260L80 200Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M180 290L220 280L240 350L220 430L190 440L170 390Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M440 70L500 60L520 90L490 120L450 130L430 100Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M460 150L510 140L530 200L520 320L490 360L460 300L445 200Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M535 120L590 115L600 160L555 170L535 145Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M600 60L780 50L820 130L760 180L700 200L640 170L600 130Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <path d="M750 290L840 280L860 350L820 390L760 370Z" fill="rgba(0,212,255,.07)" stroke="rgba(0,212,255,.2)" stroke-width="1"/>
-            <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(0,212,255,.08)" stroke-width="1" stroke-dasharray="4,8"/>
-            <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(0,212,255,.08)" stroke-width="1" stroke-dasharray="4,8"/>
-          </svg>
-          <div class="map-pin" id="mapPin" style="display:none;left:50%;top:50%;">
-            <div style="position:relative;"><div class="m-pulse"></div><div class="m-dot"></div></div>
-            <div class="m-stem"></div>
-          </div>
-          <div class="m-placeholder" id="mapPH">
-            <span class="m-ph-icon">🌐</span>
-            <span class="m-ph-text">Select an office to view its location</span>
-          </div>
-        </div>
-        <div class="map-info" id="mapInfo" style="display:none;">
-          <div class="m-name" id="mName">—</div>
-          <div class="m-country" id="mCountry">—</div>
-          <div class="m-grid">
-            <div class="m-item"><label>Specialization</label><span id="mSpec">—</span></div>
-            <div class="m-item"><label>Contact</label><span id="mContact">—</span></div>
-            <div class="m-item"><label>Team Size</label><span id="mTeam">—</span></div>
-            <div class="m-item"><label>Open Hours</label><span id="mHours">—</span></div>
+      <!-- RIGHT: FORM -->
+      <div>
+        <div style="background:var(--surface);border:1px solid var(--border);padding:2.25rem;">
+          <div style="font-family:var(--ff-serif);font-weight:600;font-size:1.12rem;margin-bottom:.35rem;">Schedule a Consultation</div>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.65rem;">Tell us about your organization and challenge — we'll connect you with the right expert.</p>
+          <form class="qiq-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-input" placeholder="Jane" required/></div>
+              <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-input" placeholder="Smith" required/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Work Email *</label><input type="email" class="form-input" placeholder="jane@company.com" required/></div>
+              <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" placeholder="+1 (555) 000-0000"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Company *</label><input type="text" class="form-input" placeholder="Acme Corporation" required/></div>
+              <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" placeholder="Chief Technology Officer"/></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service of Interest *</label>
+              <select class="form-select" required>
+                <option value="">Select a service…</option>
+                <option>AI &amp; ML Solutions</option>
+                <option>Quantum Computing</option>
+                <option>Digital Transformation</option>
+                <option>C-Suite Advisory</option>
+                <option>Business Process Optimization</option>
+                <option>Information Insights</option>
+                <option>Management Consulting</option>
+                <option>Multiple / Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nearest Office</label>
+              <select class="form-select">
+                <option value="">Select region…</option>
+                <option>Oakland, MD — Global HQ (USA)</option>
+                <option>New York City, NY (USA)</option>
+                <option>Miami, FL (USA)</option>
+                <option>Boston, MA (USA)</option>
+                <option>London, UK</option>
+                <option>Birmingham, UK</option>
+                <option>NCR (Delhi), India</option>
+                <option>Bangalore, India</option>
+                <option>Mumbai, India</option>
+                <option>Hyderabad, India</option>
+                <option>Singapore</option>
+                <option>Sydney, Australia</option>
+                <option>Melbourne, Australia</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tell Us About Your Challenge *</label>
+              <textarea class="form-textarea" placeholder="Briefly describe your organization's key technology or business challenge…" required></textarea>
+            </div>
+            <!-- MATH CAPTCHA -->
+            <div>
+              <div class="captcha-box">
+                <div class="captcha-question" id="captcha-q" style="font-weight:600;"></div>
+                <input type="number" class="captcha-input" id="captcha-ans" placeholder="?" autocomplete="off" min="0"/>
+                <div class="captcha-label">Solve to verify you're human</div>
+              </div>
+              <div class="captcha-error" id="captcha-err">✕ Incorrect answer — please try again.</div>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:.95rem;">Submit Request →</button>
+          </form>
+          <div id="form-success" style="display:none;padding:2rem;text-align:center;border:1px solid var(--blue);background:rgba(15,98,254,.06);margin-top:1rem;">
+            <div style="font-size:2rem;margin-bottom:.65rem;color:var(--blue-lt);">✓</div>
+            <div style="font-family:var(--ff-serif);font-weight:600;font-size:1.05rem;color:var(--blue-lt);margin-bottom:.45rem;">Request Received</div>
+            <p style="font-size:.84rem;color:var(--muted);">A QantumIQ consultant will contact you within 1 business day.</p>
           </div>
         </div>
       </div>
@@ -242,82 +169,138 @@
   </div>
 </section>
 
-<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+<!-- MAP SECTION -->
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border2);">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">Partners &amp; Clients</div>
-      <h2 class="section-title">Trusted by <span class="it">Industry Leaders</span></h2>
-      <p class="section-desc">Strategic technology partnerships and client relationships spanning every major sector.</p>
+      <div class="eyebrow">Global Presence</div>
+      <h2 class="section-title">13 offices across <span class="it">5 countries</span></h2>
+      <p class="section-desc">Click any location below to zoom the map and view office details.</p>
     </div>
-    <div class="mq-wrap reveal">
-      <div class="mq-track">
-        <span class="mq-chip">Microsoft</span><span class="mq-chip">Amazon Web Services</span><span class="mq-chip">Google Cloud</span><span class="mq-chip">IBM</span><span class="mq-chip">Salesforce</span><span class="mq-chip">SAP</span><span class="mq-chip">Oracle</span><span class="mq-chip">Deloitte</span><span class="mq-chip">Accenture</span><span class="mq-chip">McKinsey</span><span class="mq-chip">BCG</span><span class="mq-chip">PwC</span><span class="mq-chip">Gartner</span><span class="mq-chip">Snowflake</span><span class="mq-chip">ServiceNow</span><span class="mq-chip">Palantir</span>
-        <span class="mq-chip">Microsoft</span><span class="mq-chip">Amazon Web Services</span><span class="mq-chip">Google Cloud</span><span class="mq-chip">IBM</span><span class="mq-chip">Salesforce</span><span class="mq-chip">SAP</span><span class="mq-chip">Oracle</span><span class="mq-chip">Deloitte</span><span class="mq-chip">Accenture</span><span class="mq-chip">McKinsey</span><span class="mq-chip">BCG</span><span class="mq-chip">PwC</span><span class="mq-chip">Gartner</span><span class="mq-chip">Snowflake</span><span class="mq-chip">ServiceNow</span><span class="mq-chip">Palantir</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-band">
-  <div class="reveal">
-    <h2 class="cta-band-title">Ready to <span class="it">Get Started?</span></h2>
-    <p class="cta-band-desc">One conversation could be the beginning of your organization's quantum transformation.</p>
-    <div class="cta-band-actions">
-      <a href="#" onclick="document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});return false;" class="btn-primary">Send Us a Message →</a>
-      <a href="../services/ai-ml.html" class="btn-ghost">Explore Services</a>
-    </div>
+    <!-- Clickable location buttons -->
+    <div class="reveal loc-grid" id="loc-grid"></div>
+    <!-- Leaflet map -->
+    <div class="reveal" style="margin-top:1.5rem;" id="contact-map"></div>
   </div>
 </section>
 
 <footer id="qiq-footer"></footer>
 <script src="../assets/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
-const OD = {
-  'us-oakland':   {n:'Oakland, MD',        c:'United States · Global HQ',       s:'Executive Leadership & Operations',        t:'+1 (301) 334-QNTM', tm:'45 consultants', h:'Mon–Fri 8am–6pm ET',  x:'21%',y:'42%'},
-  'us-newyork':   {n:'New York, NY',        c:'United States · Financial Hub',    s:'Financial Services & Capital Markets',     t:'+1 (212) 555-0190', tm:'65 consultants', h:'Mon–Fri 8am–6pm ET',  x:'23%',y:'37%'},
-  'us-sf':        {n:'San Francisco, CA',   c:'United States · Tech Hub',         s:'AI, ML & Technology Practice',             t:'+1 (415) 555-0172', tm:'55 consultants', h:'Mon–Fri 8am–6pm PT',  x:'10%',y:'40%'},
-  'us-dc':        {n:'Washington, D.C.',    c:'United States · Gov Hub',          s:'Government & Public Sector',               t:'+1 (202) 555-0198', tm:'35 consultants', h:'Mon–Fri 8am–6pm ET',  x:'22%',y:'39%'},
-  'us-boston':    {n:'Boston, MA',          c:'United States · Life Sciences',    s:'Pharma, Healthcare & Life Sciences',        t:'+1 (617) 555-0145', tm:'40 consultants', h:'Mon–Fri 8am–6pm ET',  x:'24%',y:'35%'},
-  'us-houston':   {n:'Houston, TX',         c:'United States · Energy Hub',       s:'Energy & Natural Resources',               t:'+1 (713) 555-0163', tm:'30 consultants', h:'Mon–Fri 8am–6pm CT',  x:'18%',y:'46%'},
-  'uk-london':    {n:'London',              c:'United Kingdom · EMEA HQ',         s:'EMEA Strategy & Financial Services',        t:'+44 20 7946 0000',  tm:'50 consultants', h:'Mon–Fri 9am–6pm GMT', x:'46%',y:'30%'},
-  'uk-edinburgh': {n:'Edinburgh',           c:'United Kingdom · Research Center', s:'Quantum Computing & R&D',                  t:'+44 131 555 0120',  tm:'20 consultants', h:'Mon–Fri 9am–5pm GMT', x:'46%',y:'25%'},
-  'de-frankfurt': {n:'Frankfurt',           c:'Germany · European Finance',       s:'Financial Services & Regulatory',           t:'+49 69 555 0100',   tm:'35 consultants', h:'Mon–Fri 9am–6pm CET', x:'49%',y:'28%'},
-  'de-munich':    {n:'Munich',              c:'Germany · Engineering Hub',        s:'Manufacturing & Digital Engineering',       t:'+49 89 555 0110',   tm:'28 consultants', h:'Mon–Fri 9am–6pm CET', x:'50%',y:'30%'},
-  'sg-singapore': {n:'Singapore',           c:'Singapore · APAC HQ',              s:'APAC Strategy & Digital Transformation',   t:'+65 6555 0180',     tm:'45 consultants', h:'Mon–Fri 9am–6pm SGT', x:'74%',y:'58%'},
-  'ae-dubai':     {n:'Dubai',               c:'UAE · MEA Hub',                    s:'Digital Transformation & Innovation',       t:'+971 4 555 0190',   tm:'30 consultants', h:'Sun–Thu 9am–6pm GST', x:'59%',y:'44%'},
-  'ae-abudhabi':  {n:'Abu Dhabi',           c:'UAE · Gov Advisory',               s:'Government & Sovereign Wealth',             t:'+971 2 555 0195',   tm:'20 consultants', h:'Sun–Thu 9am–6pm GST', x:'59%',y:'46%'},
-};
-function selOffice(btn) {
-  const id = btn.dataset.id;
-  document.querySelectorAll('.o-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const d = OD[id]; if(!d) return;
-  const pin = document.getElementById('mapPin');
-  document.getElementById('mapPH').style.display = 'none';
-  pin.style.display = 'block';
-  pin.style.left = d.x; pin.style.top = d.y;
-  pin.style.transform = 'translate(-50%,-100%) scale(.5)';
-  requestAnimationFrame(()=>{
-    pin.style.transition = 'all .4s cubic-bezier(.34,1.56,.64,1)';
-    pin.style.transform = 'translate(-50%,-100%) scale(1)';
+// ── OFFICES DATA ──
+var OFFICES = [
+  {city:'Oakland, MD', country:'USA 🇺🇸', flag:'🇺🇸', hq:true,  lat:39.4092,  lng:-79.4052, addr:'5000 Thayer Center STE C, Oakland MD 21550'},
+  {city:'New York City', country:'USA 🇺🇸', flag:'🇺🇸',          lat:40.7128,  lng:-74.0060, addr:'New York, NY, USA'},
+  {city:'Miami',         country:'USA 🇺🇸', flag:'🇺🇸',          lat:25.7617,  lng:-80.1918, addr:'Miami, FL, USA'},
+  {city:'Boston',        country:'USA 🇺🇸', flag:'🇺🇸',          lat:42.3601,  lng:-71.0589, addr:'Boston, MA, USA'},
+  {city:'London',        country:'UK 🇬🇧',  flag:'🇬🇧',          lat:51.5074,  lng:-0.1278,  addr:'London, United Kingdom'},
+  {city:'Birmingham',    country:'UK 🇬🇧',  flag:'🇬🇧',          lat:52.4862,  lng:-1.8904,  addr:'Birmingham, United Kingdom'},
+  {city:'NCR (Delhi)',   country:'India 🇮🇳',flag:'🇮🇳',          lat:28.6139,  lng:77.2090,  addr:'National Capital Region, India'},
+  {city:'Bangalore',     country:'India 🇮🇳',flag:'🇮🇳',          lat:12.9716,  lng:77.5946,  addr:'Bangalore, Karnataka, India'},
+  {city:'Mumbai',        country:'India 🇮🇳',flag:'🇮🇳',          lat:19.0760,  lng:72.8777,  addr:'Mumbai, Maharashtra, India'},
+  {city:'Hyderabad',     country:'India 🇮🇳',flag:'🇮🇳',          lat:17.3850,  lng:78.4867,  addr:'Hyderabad, Telangana, India'},
+  {city:'Singapore',     country:'Singapore 🇸🇬',flag:'🇸🇬',      lat:1.3521,   lng:103.8198, addr:'Singapore'},
+  {city:'Sydney',        country:'Australia 🇦🇺',flag:'🇦🇺',      lat:-33.8688, lng:151.2093, addr:'Sydney, NSW, Australia'},
+  {city:'Melbourne',     country:'Australia 🇦🇺',flag:'🇦🇺',      lat:-37.8136, lng:144.9631, addr:'Melbourne, VIC, Australia'},
+];
+
+// ── BUILD LOCATION BUTTONS ──
+var locGrid = document.getElementById('loc-grid');
+var markers = [];
+var map, activeBtn = null;
+
+OFFICES.forEach(function(o, i){
+  var btn = document.createElement('button');
+  btn.className = 'loc-btn' + (o.hq ? '' : '');
+  btn.innerHTML =
+    '<span class="loc-flag">' + o.flag + '</span>' +
+    '<span class="loc-text">' +
+    (o.hq ? '<span class="hq-badge">HQ</span>' : '') +
+    '<span class="loc-city">' + o.city + '</span>' +
+    '<span class="loc-country">' + o.country + '</span>' +
+    '</span>';
+  btn.addEventListener('click', function(){
+    focusOffice(i, btn, o.hq);
   });
-  document.getElementById('mapInfo').style.display = 'block';
-  document.getElementById('mName').textContent = d.n;
-  document.getElementById('mCountry').textContent = d.c;
-  document.getElementById('mSpec').textContent = d.s;
-  document.getElementById('mContact').textContent = d.t;
-  document.getElementById('mTeam').textContent = d.tm;
-  document.getElementById('mHours').textContent = d.h;
-}
-function handleSubmit(e) {
-  e.preventDefault();
-  e.target.textContent = 'Message Sent ✓';
-  e.target.style.opacity = '.6'; e.target.disabled = true;
-}
-document.addEventListener('DOMContentLoaded', ()=>{
-  const first = document.querySelector('.o-btn');
-  if(first) selOffice(first);
+  locGrid.appendChild(btn);
+  o._btn = btn;
 });
+
+// ── MATH CAPTCHA ──
+var _answer = 0;
+function newCaptcha(){
+  var a = Math.floor(Math.random()*12)+1;
+  var b = Math.floor(Math.random()*10)+1;
+  var ops = ['+','+','-','×'];
+  var op = ops[Math.floor(Math.random()*ops.length)];
+  if(op==='-' && a<b){ var t=a; a=b; b=t; }
+  _answer = op==='+' ? a+b : op==='-' ? a-b : a*b;
+  document.getElementById('captcha-q').textContent = 'What is ' + a + ' ' + op + ' ' + b + ' ?';
+  document.getElementById('captcha-ans').value = '';
+}
+newCaptcha();
+document.getElementById('captcha-ans').addEventListener('input', function(){
+  document.getElementById('captcha-err').style.display='none';
+  this.style.borderColor='';
+});
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var valid = true;
+  this.querySelectorAll('[required]').forEach(function(el){
+    if(!el.value.trim()){ el.style.borderColor='#e74c3c'; valid=false; }
+    else el.style.borderColor='';
+  });
+  if(!valid) return;
+  var userAns = parseInt(document.getElementById('captcha-ans').value, 10);
+  if(isNaN(userAns) || userAns !== _answer){
+    document.getElementById('captcha-err').style.display='block';
+    document.getElementById('captcha-ans').style.borderColor='#e74c3c';
+    newCaptcha(); return;
+  }
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('form-success').style.display='block';
+});
+
+// ── LEAFLET MAP ──
+document.addEventListener('DOMContentLoaded', function(){
+  map = L.map('contact-map', {zoomControl:true, scrollWheelZoom:false}).setView([25,18],2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom:18
+  }).addTo(map);
+
+  OFFICES.forEach(function(o, i){
+    var cls = 'qiq-pin' + (o.hq ? ' hq' : '');
+    var icon = L.divIcon({
+      html:'<div class="' + cls + '" data-idx="' + i + '"></div>',
+      className:'', iconSize:[o.hq?24:20,o.hq?24:20], iconAnchor:[o.hq?12:10,o.hq?12:10], popupAnchor:[0,-14]
+    });
+    var popup = '<strong style="color:#4589FF;font-size:.82rem;">' +
+      (o.hq?'★ ':'') + o.city + (o.hq?' — HQ':'') +
+      '</strong><br><span style="color:rgba(244,246,255,.6);font-size:.76rem;">' + o.addr + '</span>' +
+      (o.hq?'<br><a href="mailto:info@qantumiq.com" style="color:#4589FF;font-size:.74rem;text-decoration:none;">info@qantumiq.com</a>':'');
+    var m = L.marker([o.lat,o.lng],{icon:icon}).addTo(map).bindPopup(popup,{maxWidth:240});
+    markers.push(m);
+    o._marker = m;
+  });
+});
+
+function focusOffice(i, btn, isHQ){
+  // Update button states
+  OFFICES.forEach(function(o){ if(o._btn) o._btn.className='loc-btn'; });
+  btn.className = 'loc-btn ' + (isHQ ? 'active-hq' : 'active');
+
+  // Fly map to office
+  if(map){
+    map.flyTo([OFFICES[i].lat, OFFICES[i].lng], 12, {duration:1.2});
+    setTimeout(function(){
+      if(markers[i]) markers[i].openPopup();
+    }, 1300);
+  }
+  // Scroll map into view
+  document.getElementById('contact-map').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
 </script>
 </body>
 </html>
