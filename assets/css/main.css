@@ -39,9 +39,9 @@
 
   /* Text */
   --text:   #0A1828;
-  --text2:  #2A3A50;
-  --muted:  rgba(10,24,40,.62);
-  --muted2: rgba(10,24,40,.38);
+  --text2:  #334156;
+  --muted:  rgba(10,24,40,.52);
+  --muted2: rgba(10,24,40,.30);
   --white:  #FFFFFF;
 
   /* Typography */
@@ -66,7 +66,51 @@
   --sb-thumb:#BFC6D8;
 }
 
-/* ─────────────────── DARK OVERRIDE ─────────────────── */
+/* ─── SVG Logo ─── */
+.nav-logo-svg{
+  display:block;
+  height:36px;   /* 36px tall — proportional to 192×52 viewBox */
+  width:auto;
+  overflow:visible; /* allow Q-tails to render without clipping */
+  transition:opacity .2s;
+}
+.nav-logo-svg:hover{opacity:.80}
+[data-theme="dark"] .nav-logo-svg{--logo-main:#FFFFFF}
+/* Apply CSS vars to SVG elements inside the inline SVG */
+.nav-logo-svg .logo-stroke{stroke:var(--logo-main)}
+.nav-logo-svg .logo-text-main{fill:var(--logo-main)}
+/* Dark mode logo SVG stroke/text overrides */
+[data-theme="dark"] .nav-logo-svg .logo-stroke,
+[data-theme="dark"] .nav-logo-svg circle[stroke="#0B2240"],
+[data-theme="dark"] .nav-logo-svg line[stroke="#0B2240"],
+[data-theme="dark"] .nav-logo-svg path[stroke="#0B2240"] {
+  stroke: #FFFFFF !important;
+}
+[data-theme="dark"] .nav-logo-svg .logo-text-main,
+[data-theme="dark"] .nav-logo-svg text[fill="#0B2240"] {
+  fill: #FFFFFF !important;
+}
+
+
+/* Hero speed control (hidden by default, shows on hover) */
+.hero-speed-ctrl{
+  position:absolute;bottom:1.8rem;left:5vw;z-index:12;
+  display:flex;align-items:center;gap:.55rem;
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+[data-hero-theme]:hover .hero-speed-ctrl{opacity:1;pointer-events:auto}
+.hero-speed-label{
+  font-family:var(--ff-sans);font-size:.6rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);
+}
+.hero-speed-btn{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  color:rgba(255,255,255,.85);font-family:var(--ff-sans);font-size:.68rem;font-weight:600;
+  padding:.28rem .65rem;cursor:pointer;
+  transition:background .18s,border-color .18s;
+}
+.hero-speed-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5)}
+.hero-speed-btn.active{background:rgba(0,200,232,.3);border-color:rgba(0,200,232,.7);color:#fff}
 [data-theme="dark"]{
   --bg:      #05070F;
   --bg2:     #080A18;
@@ -87,9 +131,9 @@
   --gold-lt: #D4A84B;
   --gold-dim:rgba(176,136,64,.12);
   --text:    #EFF2FF;
-  --text2:   #C8D3E5;
-  --muted:   rgba(239,242,255,.58);
-  --muted2:  rgba(239,242,255,.35);
+  --text2:   #C5CEDE;
+  --muted:   rgba(239,242,255,.50);
+  --muted2:  rgba(239,242,255,.28);
   --white:   #EFF2FF;
   --hero-tint:5,7,15;
   --hero-ot: .22;
@@ -102,11 +146,11 @@
 }
 
 /* ─────────────────── BASE ─────────────────── */
-html{scroll-behavior:smooth;font-size:16.5px;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%}
 body{
   background:var(--bg);color:var(--text);
   font-family:var(--ff-sans);font-weight:400;
-  font-size:1rem;line-height:1.72;overflow-x:hidden;
+  font-size:1rem;line-height:1.65;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   transition:background .3s,color .3s;
 }
@@ -145,7 +189,6 @@ a{color:inherit}
   font-family:var(--ff-sans);font-weight:700;font-size:1.14rem;
   letter-spacing:-.01em;text-decoration:none;color:var(--navy);
   white-space:nowrap;transition:opacity .2s;flex-shrink:0;
-  display:flex;align-items:center;
 }
 .nav-logo span{color:var(--blue)}
 [data-theme="dark"] .nav-logo{color:var(--white)}
@@ -251,6 +294,7 @@ a{color:inherit}
   position:absolute;inset:0;
   background-size:cover;background-position:center 40%;
   opacity:0;
+  /* Transition duration is overridden by JS using HERO_TRANSITION constant */
   transition:opacity 2.2s cubic-bezier(.4,0,.2,1);
   will-change:transform,opacity;
 }
@@ -405,7 +449,7 @@ a{color:inherit}
   line-height:1.09;letter-spacing:-.022em;margin-bottom:1.05rem;color:var(--text);
 }
 .section-title .it{font-style:italic;font-weight:400;color:var(--gold-lt)}
-.section-desc{color:var(--muted);font-size:.97rem;line-height:1.80;max-width:60ch}
+.section-desc{color:var(--muted);font-size:.94rem;line-height:1.80;max-width:60ch}
 .section-header-row{
   display:flex;align-items:flex-end;justify-content:space-between;
   flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem;
@@ -927,32 +971,6 @@ a{color:inherit}
 ═══════════════════════════════════════════════════════════ */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in-view{opacity:1;transform:translateY(0)}
-
-/* ═══════════════════════════════════════════════════════════
-   ADMIN HERO SPEED CONTROL (Ctrl+Shift+A)
-═══════════════════════════════════════════════════════════ */
-.admin-panel{
-  position:fixed;bottom:1.5rem;right:1.5rem;z-index:99999;
-  background:rgba(11,34,64,.96);border:1px solid rgba(77,143,255,.3);
-  padding:1.2rem 1.6rem;min-width:260px;
-  font-family:var(--ff-sans);color:#fff;font-size:.82rem;
-  box-shadow:0 8px 32px rgba(0,0,0,.4);
-  display:none;
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-}
-.admin-panel.visible{display:block}
-.admin-panel h4{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(77,143,255,.9);margin-bottom:.9rem;}
-.admin-panel label{display:block;font-size:.75rem;color:rgba(200,220,255,.7);margin-bottom:.35rem;}
-.admin-panel input[type="range"]{width:100%;margin:.35rem 0;accent-color:#4D8FFF;cursor:pointer}
-.admin-panel .speed-val{font-family:var(--ff-sans);font-weight:700;font-size:1rem;color:#4D8FFF;margin-top:.25rem;}
-.admin-panel .admin-close{position:absolute;top:.6rem;right:.8rem;background:none;border:none;color:rgba(200,220,255,.5);cursor:pointer;font-size:.9rem}
-.admin-panel .admin-close:hover{color:#fff}
-
-/* Logo image in nav */
-.nav-logo-img{height:34px;vertical-align:middle;margin-right:.2rem;transition:opacity .2s}
-.nav-logo-img.dark{display:none}
-[data-theme="dark"] .nav-logo-img.light{display:none}
-[data-theme="dark"] .nav-logo-img.dark{display:inline}
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE

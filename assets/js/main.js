@@ -1,9 +1,102 @@
 /* ═══════════════════════════════════════════════════════════
-   QANTUMIQ — main.js v7
-   Light-first editorial theme
+   QANTUMIQ — main.js v8
+   Light-first editorial theme + SVG Logo
 ═══════════════════════════════════════════════════════════ */
 (function(){
 'use strict';
+
+/* ╔══════════════════════════════════════════════════╗
+   ║  HERO SLIDESHOW SPEED CONFIGURATION              ║
+   ║                                                  ║
+   ║  HERO_INTERVAL — milliseconds between slides     ║
+   ║  Minimum recommended: 2000 (2 seconds)           ║
+   ║  Default: 7500 (7.5 seconds)                     ║
+   ║  Maximum recommended: 20000 (20 seconds)         ║
+   ║                                                  ║
+   ║  Quick presets:                                  ║
+   ║    Fast:   3000  (3 sec)                         ║
+   ║    Medium: 5000  (5 sec) ← try this              ║
+   ║    Normal: 7500  (7.5 sec) ← current default     ║
+   ║    Slow:   12000 (12 sec)                        ║
+   ║                                                  ║
+   ║  Just change the number on the next line:        ║
+   ╚══════════════════════════════════════════════════╝ */
+const HERO_INTERVAL = 7500;  /* ← CHANGE THIS to control slide speed */
+
+/* HERO_TRANSITION — crossfade duration in milliseconds
+   Controls how long the fade between slides takes.
+   Recommended: 1200–2500ms. Must be less than HERO_INTERVAL. */
+const HERO_TRANSITION = 2200; /* ← CHANGE THIS for faster/slower crossfade */
+
+/* ─── SVG LOGO ───────────────────────────────────────────────
+   Layout: [Q-atom] antum I [Q-brain]
+   Reading as: Q(atom)antum + I + Q(brain) = "QantumIQ"
+   • Q of "Quantum" = circle with 3-orbital atom, animated electrons
+   • Q of "IQ"      = cyan circle with brain, neural pulse animations
+   • viewBox 192×52, no overflow, all elements contained
+─────────────────────────────────────────────────────────── */
+const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 52" class="nav-logo-svg" role="img" aria-label="QantumIQ — Intelligence at the Quantum Scale">
+  <title>QantumIQ</title>
+
+  <!-- ── Q₁ : QUANTUM  (atom inside, center 22,26, r=20) ── -->
+  <g transform="translate(22,26)">
+    <circle r="20" fill="none" stroke="#0B2240" stroke-width="2" class="logo-stroke"/>
+    <line x1="14" y1="13" x2="21" y2="20" stroke="#0B2240" stroke-width="2.8" stroke-linecap="round" class="logo-stroke"/>
+    <!-- orbital 1 — 0° (horizontal) -->
+    <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+    <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+    <!-- orbital 2 — 60° tilt -->
+    <g transform="rotate(60)">
+      <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+      <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+    </g>
+    <!-- orbital 3 — -60° tilt -->
+    <g transform="rotate(-60)">
+      <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+      <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="2s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+    </g>
+    <!-- nucleus — breathing pulse -->
+    <circle r="2.8" fill="#00C8E8">
+      <animate attributeName="r" values="2.8;3.9;2.8" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="1;0.5;1" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- ── "antum" — same color as Q₁, adapts dark/light ── -->
+  <text x="46" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#0B2240" class="logo-text-main" letter-spacing="-0.5">antum</text>
+
+  <!-- ── "I" of IQ — always cyan ── -->
+  <text x="133" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
+
+  <!-- ── Q₂ : IQ  (brain inside, center 161,26, r=18, cyan) ── -->
+  <g transform="translate(161,26)">
+    <circle r="18" fill="none" stroke="#00C8E8" stroke-width="2"/>
+    <line x1="13" y1="12" x2="19" y2="18" stroke="#00C8E8" stroke-width="2.8" stroke-linecap="round"/>
+    <!-- brain left lobe -->
+    <path d="M0,-11 C-2,-13 -9,-12 -11,-7 C-13,-2 -12,4 -9,8 C-7,10 -3,11 0,11" fill="none" stroke="#00C8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.92"/>
+    <!-- brain right lobe -->
+    <path d="M0,-11 C2,-13 9,-12 11,-7 C13,-2 12,4 9,8 C7,10 3,11 0,11" fill="none" stroke="#00C8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.92"/>
+    <!-- longitudinal fissure -->
+    <line x1="0" y1="-11" x2="0" y2="11" stroke="#00C8E8" stroke-width="0.9" stroke-dasharray="2,1.8" opacity="0.6"/>
+    <!-- sulci left -->
+    <path d="M-8,-2 C-6,-5 -3,-3 -5,0" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+    <path d="M-8,4 C-6,1 -3,3 -5,6" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+    <!-- sulci right -->
+    <path d="M8,-2 C6,-5 3,-3 5,0" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+    <path d="M8,4 C6,1 3,3 5,6" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+    <!-- neural pulse dots -->
+    <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0s" path="M-8,-2 C-6,-5 -3,-3 -5,0"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0s"/></circle>
+    <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s" path="M8,-2 C6,-5 3,-3 5,0"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0.4s"/></circle>
+    <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.8s" path="M-8,4 C-6,1 -3,3 -5,6"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0.8s"/></circle>
+    <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="1.2s" path="M8,4 C6,1 3,3 5,6"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="1.2s"/></circle>
+    <!-- ripple pulse on brain Q -->
+    <circle r="18" fill="none" stroke="#00C8E8" stroke-width="1" opacity="0">
+      <animate attributeName="r" values="18;24;18" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.28;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+</svg>`;
 
 /* ─── NAV BUILD ─── */
 function buildNav(){
@@ -13,9 +106,8 @@ function buildNav(){
   const nav=document.createElement('nav');
   nav.id='qiq-nav';
   nav.innerHTML=`
-<a class="nav-logo" href="${r}index.html"><img class="nav-logo-img light" src="${r}assets/logo.svg" alt="QantumIQ"/><img class="nav-logo-img dark" src="${r}assets/logo-dark.svg" alt="QantumIQ"/></a>
+<a class="nav-logo-link" href="${r}index.html" style="text-decoration:none;display:flex;align-items:center;flex-shrink:0;">${LOGO_SVG}</a>
 <ul class="nav-menu" id="nav-menu">
-  <li class="nav-item"><a class="nav-link" href="${r}index.html" style="text-decoration:none;">Home</a></li>
   <li class="nav-item" data-menu="services">
     <button class="nav-link">Services<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
@@ -26,7 +118,6 @@ function buildNav(){
       <a href="${r}services/business-process.html">Business Process</a>
       <a href="${r}services/information-insights.html">Information &amp; Insights</a>
       <a href="${r}services/management-consulting.html">Management Consulting</a>
-      <a href="${r}services/executive-staffing.html">Executive Staffing</a>
     </div>
   </li>
   <li class="nav-item" data-menu="industries">
@@ -47,9 +138,9 @@ function buildNav(){
     <div class="nav-dropdown">
       <a href="${r}insights/blog.html">Blog</a>
       <a href="${r}insights/case-studies.html">Case Studies</a>
-      <a href="${r}insights/white-papers.html">White Papers</a>
-      <a href="${r}insights/news.html">News</a>
+      <a href="${r}insights/whitepapers.html">Whitepapers</a>
       <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+      <a href="${r}insights/news.html">News</a>
     </div>
   </li>
   <li class="nav-item" data-menu="company">
@@ -72,7 +163,6 @@ function buildNav(){
 
 <div id="mobile-menu">
   <button class="mobile-close" id="mob-close">✕</button>
-  <a href="${r}index.html" style="font-weight:700;color:var(--blue);padding:.7rem 0;">🏠 Home</a>
   <div class="mob-heading">Services</div>
   <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
   <a href="${r}services/quantum-computing.html">Quantum Computing</a>
@@ -81,7 +171,6 @@ function buildNav(){
   <a href="${r}services/business-process.html">Business Process</a>
   <a href="${r}services/information-insights.html">Information &amp; Insights</a>
   <a href="${r}services/management-consulting.html">Management Consulting</a>
-  <a href="${r}services/executive-staffing.html">Executive Staffing</a>
   <div class="mob-heading">Industries</div>
   <a href="${r}industries/financial-services.html">Financial Services</a>
   <a href="${r}industries/healthcare.html">Healthcare</a>
@@ -94,9 +183,9 @@ function buildNav(){
   <div class="mob-heading">Insights</div>
   <a href="${r}insights/blog.html">Blog</a>
   <a href="${r}insights/case-studies.html">Case Studies</a>
-  <a href="${r}insights/white-papers.html">White Papers</a>
-  <a href="${r}insights/news.html">News</a>
+  <a href="${r}insights/whitepapers.html">Whitepapers</a>
   <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+  <a href="${r}insights/news.html">News</a>
   <div class="mob-heading">Company</div>
   <a href="${r}company/about.html">About Us</a>
   <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
@@ -150,7 +239,50 @@ function buildFooter(){
   footer.innerHTML=`
 <div class="footer-inner">
   <div>
-    <a class="footer-logo" href="${r}index.html"><img src="${r}assets/logo-dark.svg" alt="QantumIQ" style="height:32px;"/></a>
+    <a href="${r}index.html" style="text-decoration:none;display:inline-block;margin-bottom:1.1rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 52" height="40" role="img" aria-label="QantumIQ" style="display:block;">
+        <!-- Q₁: QUANTUM — atom, white on dark footer -->
+        <g transform="translate(22,26)">
+          <circle r="20" fill="none" stroke="rgba(255,255,255,0.92)" stroke-width="2"/>
+          <line x1="14" y1="13" x2="21" y2="20" stroke="rgba(255,255,255,0.92)" stroke-width="2.8" stroke-linecap="round"/>
+          <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+          <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="0s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+          <g transform="rotate(60)">
+            <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+            <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="1s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+          </g>
+          <g transform="rotate(-60)">
+            <ellipse rx="11" ry="4.4" fill="none" stroke="#00C8E8" stroke-width="1.15" opacity="0.88"/>
+            <circle r="1.9" fill="#00C8E8"><animateMotion dur="3s" repeatCount="indefinite" begin="2s" path="M11,0 A11,4.4,0,0,1,-11,0 A11,4.4,0,0,1,11,0"/></circle>
+          </g>
+          <circle r="2.8" fill="#00C8E8">
+            <animate attributeName="r" values="2.8;3.9;2.8" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+        <!-- "antum" — white on dark -->
+        <text x="46" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="rgba(255,255,255,0.92)" letter-spacing="-0.5">antum</text>
+        <!-- "I" — cyan -->
+        <text x="133" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
+        <!-- Q₂: IQ — brain, cyan -->
+        <g transform="translate(161,26)">
+          <circle r="18" fill="none" stroke="#00C8E8" stroke-width="2"/>
+          <line x1="13" y1="12" x2="19" y2="18" stroke="#00C8E8" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M0,-11 C-2,-13 -9,-12 -11,-7 C-13,-2 -12,4 -9,8 C-7,10 -3,11 0,11" fill="none" stroke="#00C8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.92"/>
+          <path d="M0,-11 C2,-13 9,-12 11,-7 C13,-2 12,4 9,8 C7,10 3,11 0,11" fill="none" stroke="#00C8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.92"/>
+          <line x1="0" y1="-11" x2="0" y2="11" stroke="#00C8E8" stroke-width="0.9" stroke-dasharray="2,1.8" opacity="0.6"/>
+          <path d="M-8,-2 C-6,-5 -3,-3 -5,0" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+          <path d="M-8,4 C-6,1 -3,3 -5,6" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+          <path d="M8,-2 C6,-5 3,-3 5,0" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+          <path d="M8,4 C6,1 3,3 5,6" fill="none" stroke="#00C8E8" stroke-width="1.1" stroke-linecap="round" opacity="0.78"/>
+          <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0s" path="M-8,-2 C-6,-5 -3,-3 -5,0"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0s"/></circle>
+          <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.4s" path="M8,-2 C6,-5 3,-3 5,0"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0.4s"/></circle>
+          <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="0.8s" path="M-8,4 C-6,1 -3,3 -5,6"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="0.8s"/></circle>
+          <circle r="1.5" fill="#00C8E8" opacity="0"><animateMotion dur="1.6s" repeatCount="indefinite" begin="1.2s" path="M8,4 C6,1 3,3 5,6"/><animate attributeName="opacity" values="0;1;0" dur="1.6s" repeatCount="indefinite" begin="1.2s"/></circle>
+          <circle r="18" fill="none" stroke="#00C8E8" stroke-width="1" opacity="0"><animate attributeName="r" values="18;24;18" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0.28;0" dur="3s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+    </a>
     <p class="footer-desc">Advanced consulting for organizations navigating the quantum age — where AI, quantum computing, and human ingenuity converge to create transformational advantage.</p>
     <div class="footer-social">
       <a href="https://linkedin.com/company/qantumiq" aria-label="LinkedIn">in</a>
@@ -167,7 +299,6 @@ function buildFooter(){
       <li><a href="${r}services/business-process.html">Business Process</a></li>
       <li><a href="${r}services/information-insights.html">Information &amp; Insights</a></li>
       <li><a href="${r}services/management-consulting.html">Management Consulting</a></li>
-      <li><a href="${r}services/executive-staffing.html">Executive Staffing</a></li>
     </ul>
   </div>
   <div class="footer-col">
@@ -188,8 +319,7 @@ function buildFooter(){
     <ul>
       <li><a href="${r}company/about.html">About Us</a></li>
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
-      <li><a href="${r}insights/news.html">News</a></li>
-      <li><a href="${r}insights/white-papers.html">White Papers</a></li>
+      <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
       <li><a href="${r}company/contact.html">Contact</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
@@ -301,10 +431,6 @@ const HERO_POOLS={
   about:      [158,159,160,162,163],
   contact:    [164,165,166,167,168],
   careers:    [169,170,171,172,173],
-  executive:  [174,175,177,178,180],
-  news:       [181,183,184,186,188],
-  whitepapers:[189,190,191,192,193],
-  casestudies:[194,195,196,197,198],
 };
 
 /* Photo pools for content sections — diverse, professional */
@@ -349,6 +475,11 @@ function initHeroSlideshow(){
   const theme=hero.getAttribute('data-hero-theme');
   const pool=HERO_POOLS[theme]||HERO_POOLS.home;
 
+  // Apply transition duration from config constant to CSS
+  const styleEl=document.createElement('style');
+  styleEl.textContent=`.hero-slide{transition-duration:${HERO_TRANSITION}ms !important}`;
+  document.head.appendChild(styleEl);
+
   // Slides container
   const slidesEl=document.createElement('div');
   slidesEl.className='hero-slides';
@@ -383,8 +514,34 @@ function initHeroSlideshow(){
   });
   hero.appendChild(dots);
 
+  // ── Speed control overlay (visible on hero hover) ──
+  let currentInterval = HERO_INTERVAL;
+  const speedPresets=[
+    {label:'Fast',ms:3000},
+    {label:'Medium',ms:5000},
+    {label:'Normal',ms:7500},
+    {label:'Slow',ms:12000},
+  ];
+  const speedCtrl=document.createElement('div');
+  speedCtrl.className='hero-speed-ctrl';
+  speedCtrl.innerHTML='<span class="hero-speed-label">Speed:</span>';
+  speedPresets.forEach(p=>{
+    const btn=document.createElement('button');
+    btn.className='hero-speed-btn'+(p.ms===HERO_INTERVAL?' active':'');
+    btn.textContent=p.label;
+    btn.title=`${p.ms/1000}s per slide`;
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      currentInterval=p.ms;
+      speedCtrl.querySelectorAll('.hero-speed-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      resetTimer();
+    });
+    speedCtrl.appendChild(btn);
+  });
+  hero.appendChild(speedCtrl);
+
   let current=0, timer;
-  let heroSpeed=parseInt(localStorage.getItem('qiq-hero-speed'))||7500;
   function goTo(idx){
     slides[current].classList.remove('active');
     dots.children[current].classList.remove('active');
@@ -395,7 +552,7 @@ function initHeroSlideshow(){
   }
   function resetTimer(){
     clearInterval(timer);
-    timer=setInterval(()=>goTo(current+1),heroSpeed);
+    timer=setInterval(()=>goTo(current+1), currentInterval);
   }
   resetTimer();
   hero.addEventListener('mouseenter',()=>clearInterval(timer));
@@ -404,35 +561,8 @@ function initHeroSlideshow(){
     if(e.key==='ArrowLeft')goTo(current-1);
     if(e.key==='ArrowRight')goTo(current+1);
   });
-
-  /* ── ADMIN PANEL (Ctrl+Shift+A) ── */
-  const adminPanel=document.createElement('div');
-  adminPanel.className='admin-panel';
-  adminPanel.innerHTML=`
-    <button class="admin-close" onclick="this.parentElement.classList.remove('visible')">✕</button>
-    <h4>⚡ Admin Controls</h4>
-    <label>Hero Slide Speed</label>
-    <input type="range" id="heroSpeedSlider" min="2000" max="15000" step="500" value="${heroSpeed}"/>
-    <div class="speed-val" id="heroSpeedVal">${(heroSpeed/1000).toFixed(1)}s</div>
-  `;
-  document.body.appendChild(adminPanel);
-
-  const slider=document.getElementById('heroSpeedSlider');
-  const speedVal=document.getElementById('heroSpeedVal');
-  slider.addEventListener('input',function(){
-    heroSpeed=parseInt(this.value);
-    localStorage.setItem('qiq-hero-speed',heroSpeed);
-    speedVal.textContent=(heroSpeed/1000).toFixed(1)+'s';
-    resetTimer();
-  });
-
-  document.addEventListener('keydown',function(e){
-    if(e.ctrlKey&&e.shiftKey&&e.key==='A'){
-      e.preventDefault();
-      adminPanel.classList.toggle('visible');
-    }
-  });
 }
+
 
 /* ═══════════════════════════════════════════════
    CONTENT PHOTO INJECTION
