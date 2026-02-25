@@ -13,8 +13,9 @@ function buildNav(){
   const nav=document.createElement('nav');
   nav.id='qiq-nav';
   nav.innerHTML=`
-<a class="nav-logo" href="${r}index.html">Qantum<span>IQ</span></a>
+<a class="nav-logo" href="${r}index.html"><img class="nav-logo-img light" src="${r}assets/logo.svg" alt="QantumIQ"/><img class="nav-logo-img dark" src="${r}assets/logo-dark.svg" alt="QantumIQ"/></a>
 <ul class="nav-menu" id="nav-menu">
+  <li class="nav-item"><a class="nav-link" href="${r}index.html" style="text-decoration:none;">Home</a></li>
   <li class="nav-item" data-menu="services">
     <button class="nav-link">Services<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
@@ -25,6 +26,7 @@ function buildNav(){
       <a href="${r}services/business-process.html">Business Process</a>
       <a href="${r}services/information-insights.html">Information &amp; Insights</a>
       <a href="${r}services/management-consulting.html">Management Consulting</a>
+      <a href="${r}services/executive-staffing.html">Executive Staffing</a>
     </div>
   </li>
   <li class="nav-item" data-menu="industries">
@@ -45,9 +47,9 @@ function buildNav(){
     <div class="nav-dropdown">
       <a href="${r}insights/blog.html">Blog</a>
       <a href="${r}insights/case-studies.html">Case Studies</a>
-      <a href="${r}insights/whitepapers.html">Whitepapers</a>
-      <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+      <a href="${r}insights/white-papers.html">White Papers</a>
       <a href="${r}insights/news.html">News</a>
+      <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
     </div>
   </li>
   <li class="nav-item" data-menu="company">
@@ -70,6 +72,7 @@ function buildNav(){
 
 <div id="mobile-menu">
   <button class="mobile-close" id="mob-close">✕</button>
+  <a href="${r}index.html" style="font-weight:700;color:var(--blue);padding:.7rem 0;">🏠 Home</a>
   <div class="mob-heading">Services</div>
   <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
   <a href="${r}services/quantum-computing.html">Quantum Computing</a>
@@ -78,6 +81,7 @@ function buildNav(){
   <a href="${r}services/business-process.html">Business Process</a>
   <a href="${r}services/information-insights.html">Information &amp; Insights</a>
   <a href="${r}services/management-consulting.html">Management Consulting</a>
+  <a href="${r}services/executive-staffing.html">Executive Staffing</a>
   <div class="mob-heading">Industries</div>
   <a href="${r}industries/financial-services.html">Financial Services</a>
   <a href="${r}industries/healthcare.html">Healthcare</a>
@@ -90,9 +94,9 @@ function buildNav(){
   <div class="mob-heading">Insights</div>
   <a href="${r}insights/blog.html">Blog</a>
   <a href="${r}insights/case-studies.html">Case Studies</a>
-  <a href="${r}insights/whitepapers.html">Whitepapers</a>
-  <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
+  <a href="${r}insights/white-papers.html">White Papers</a>
   <a href="${r}insights/news.html">News</a>
+  <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
   <div class="mob-heading">Company</div>
   <a href="${r}company/about.html">About Us</a>
   <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
@@ -146,7 +150,7 @@ function buildFooter(){
   footer.innerHTML=`
 <div class="footer-inner">
   <div>
-    <a class="footer-logo" href="${r}index.html">Qantum<span>IQ</span></a>
+    <a class="footer-logo" href="${r}index.html"><img src="${r}assets/logo-dark.svg" alt="QantumIQ" style="height:32px;"/></a>
     <p class="footer-desc">Advanced consulting for organizations navigating the quantum age — where AI, quantum computing, and human ingenuity converge to create transformational advantage.</p>
     <div class="footer-social">
       <a href="https://linkedin.com/company/qantumiq" aria-label="LinkedIn">in</a>
@@ -163,6 +167,7 @@ function buildFooter(){
       <li><a href="${r}services/business-process.html">Business Process</a></li>
       <li><a href="${r}services/information-insights.html">Information &amp; Insights</a></li>
       <li><a href="${r}services/management-consulting.html">Management Consulting</a></li>
+      <li><a href="${r}services/executive-staffing.html">Executive Staffing</a></li>
     </ul>
   </div>
   <div class="footer-col">
@@ -183,7 +188,8 @@ function buildFooter(){
     <ul>
       <li><a href="${r}company/about.html">About Us</a></li>
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
-      <li><a href="${r}insights/blog.html">Insights</a></li>
+      <li><a href="${r}insights/news.html">News</a></li>
+      <li><a href="${r}insights/white-papers.html">White Papers</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
       <li><a href="${r}company/contact.html">Contact</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
@@ -295,6 +301,10 @@ const HERO_POOLS={
   about:      [158,159,160,162,163],
   contact:    [164,165,166,167,168],
   careers:    [169,170,171,172,173],
+  executive:  [174,175,177,178,180],
+  news:       [181,183,184,186,188],
+  whitepapers:[189,190,191,192,193],
+  casestudies:[194,195,196,197,198],
 };
 
 /* Photo pools for content sections — diverse, professional */
@@ -374,6 +384,7 @@ function initHeroSlideshow(){
   hero.appendChild(dots);
 
   let current=0, timer;
+  let heroSpeed=parseInt(localStorage.getItem('qiq-hero-speed'))||7500;
   function goTo(idx){
     slides[current].classList.remove('active');
     dots.children[current].classList.remove('active');
@@ -384,7 +395,7 @@ function initHeroSlideshow(){
   }
   function resetTimer(){
     clearInterval(timer);
-    timer=setInterval(()=>goTo(current+1),7500);
+    timer=setInterval(()=>goTo(current+1),heroSpeed);
   }
   resetTimer();
   hero.addEventListener('mouseenter',()=>clearInterval(timer));
@@ -392,6 +403,34 @@ function initHeroSlideshow(){
   document.addEventListener('keydown',e=>{
     if(e.key==='ArrowLeft')goTo(current-1);
     if(e.key==='ArrowRight')goTo(current+1);
+  });
+
+  /* ── ADMIN PANEL (Ctrl+Shift+A) ── */
+  const adminPanel=document.createElement('div');
+  adminPanel.className='admin-panel';
+  adminPanel.innerHTML=`
+    <button class="admin-close" onclick="this.parentElement.classList.remove('visible')">✕</button>
+    <h4>⚡ Admin Controls</h4>
+    <label>Hero Slide Speed</label>
+    <input type="range" id="heroSpeedSlider" min="2000" max="15000" step="500" value="${heroSpeed}"/>
+    <div class="speed-val" id="heroSpeedVal">${(heroSpeed/1000).toFixed(1)}s</div>
+  `;
+  document.body.appendChild(adminPanel);
+
+  const slider=document.getElementById('heroSpeedSlider');
+  const speedVal=document.getElementById('heroSpeedVal');
+  slider.addEventListener('input',function(){
+    heroSpeed=parseInt(this.value);
+    localStorage.setItem('qiq-hero-speed',heroSpeed);
+    speedVal.textContent=(heroSpeed/1000).toFixed(1)+'s';
+    resetTimer();
+  });
+
+  document.addEventListener('keydown',function(e){
+    if(e.ctrlKey&&e.shiftKey&&e.key==='A'){
+      e.preventDefault();
+      adminPanel.classList.toggle('visible');
+    }
   });
 }
 
