@@ -620,7 +620,6 @@ function injectContentPhotos(){
     ph.style.cssText=`width:100%;height:175px;background-size:cover;background-position:center;background-image:url('${nextSmPhoto()}');margin-bottom:1.2rem;flex-shrink:0;`;
     card.insertBefore(ph, card.firstChild);
   });
-}
 
   // 7. Service cards on homepage — inject photos into .svc-photo elements
   document.querySelectorAll('.svc-photo').forEach(el=>{
