@@ -114,35 +114,41 @@
         <h2 class="section-title">Services that <span class="it">redefine</span> what's possible</h2>
         <p class="section-desc">From boardroom strategy to quantum-ready infrastructure — our expertise spans the full technology landscape.</p>
       </div>
-      <a href="services/ai-ml.html" class="btn-ghost">View All Services</a>
+      <a href="services/index.html" class="btn-ghost">View All Services</a>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border3);">
       <a href="services/ai-ml.html" class="card" style="padding:2.2rem 2rem;border:none;border-right:1px solid var(--border3);border-bottom:1px solid var(--border3);">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">🤖</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">AI &amp; ML Solutions</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">Enterprise AI strategy, ML model development, and production deployment at scale.</p>
       </a>
       <a href="services/quantum-computing.html" class="card" style="padding:2.2rem 2rem;border:none;border-right:1px solid var(--border3);border-bottom:1px solid var(--border3);">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">⚛️</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">Quantum Computing</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">Quantum readiness assessment, algorithm development, and post-quantum cryptography.</p>
       </a>
       <a href="services/digital-transformation.html" class="card" style="padding:2.2rem 2rem;border:none;border-bottom:1px solid var(--border3);">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">🔄</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">Digital Transformation</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">End-to-end transformation programs that modernize operations and unlock new value streams.</p>
       </a>
       <a href="services/c-suite-advisory.html" class="card" style="padding:2.2rem 2rem;border:none;border-right:1px solid var(--border3);">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">💼</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">C-Suite Advisory</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">Strategic guidance for technology executives navigating complex transformation agendas.</p>
       </a>
       <a href="services/business-process.html" class="card" style="padding:2.2rem 2rem;border:none;border-right:1px solid var(--border3);">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">⚙️</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">Business Process</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">Intelligent automation, process mining, and workflow optimization powered by AI.</p>
       </a>
       <a href="services/management-consulting.html" class="card" style="padding:2.2rem 2rem;border:none;">
+        <div class="svc-photo" style="width:calc(100% + 4rem);height:140px;background-size:cover;background-position:center;margin:-2.2rem -2rem 1.25rem -2rem;flex-shrink:0;"></div>
         <div class="card-icon">📊</div>
         <div style="font-family:var(--ff-sans);font-weight:700;font-size:.92rem;margin-bottom:.55rem;">Management Consulting</div>
         <p style="font-size:.82rem;color:var(--muted);line-height:1.65;">Strategy, organizational design, and change management for transformational programs.</p>
@@ -341,6 +347,6 @@
 
 <footer id="qiq-footer"></footer>
 <script src="assets/js/main.js"></script>
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('home-news'); });</script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('home-news', 'home'); QIQ.injectContentPhotos(); });</script>
 </body>
 </html>

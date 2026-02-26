@@ -111,6 +111,7 @@ function buildNav(){
   <li class="nav-item" data-menu="services">
     <button class="nav-link">Services<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
+      <a href="${r}services/index.html" style="font-weight:700;color:var(--blue);border-bottom:1px solid var(--border2);padding-bottom:.75rem;margin-bottom:.25rem;">→ All Services</a>
       <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
       <a href="${r}services/quantum-computing.html">Quantum Computing</a>
       <a href="${r}services/digital-transformation.html">Digital Transformation</a>
@@ -164,6 +165,7 @@ function buildNav(){
 <div id="mobile-menu">
   <button class="mobile-close" id="mob-close">✕</button>
   <div class="mob-heading">Services</div>
+  <a href="${r}services/index.html" style="font-weight:700;color:var(--blue);">→ All Services</a>
   <a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a>
   <a href="${r}services/quantum-computing.html">Quantum Computing</a>
   <a href="${r}services/digital-transformation.html">Digital Transformation</a>
@@ -620,45 +622,232 @@ function injectContentPhotos(){
   });
 }
 
-/* ═══════════════════════════════════════════════
-   NEWS FEED — curated + live RSS
-═══════════════════════════════════════════════ */
-const CURATED_NEWS=[
-  {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
-  {source:'IEEE Spectrum',title:'Quantum Error Correction Milestone Brings Fault-Tolerant Computing Closer to Reality',url:'https://spectrum.ieee.org'},
-  {source:'Harvard Business Review',title:'Why Most AI Transformations Fail — and the Six Factors That Make Them Succeed',url:'https://hbr.org'},
-  {source:'Nature',title:'Large Language Models Show Surprising Capability in Scientific Reasoning Benchmarks',url:'https://nature.com'},
-  {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},
-  {source:'IBM Research',title:'Advancing Quantum-Safe Cryptography: A Roadmap for Enterprise Migration',url:'https://research.ibm.com'},
-  {source:'Wired',title:'Digital Twins Are Becoming the Nervous System of Modern Manufacturing Operations',url:'https://wired.com'},
-  {source:'Deloitte Insights',title:'The Generative AI Inflection Point: How Organizations Are Moving From Pilot to Production',url:'https://www2.deloitte.com/insights'},
-  {source:'World Economic Forum',title:'Responsible AI Governance: A Framework for the Age of Agentic Systems',url:'https://weforum.org'},
-  {source:'Gartner',title:'2026 Top Strategic Technology Trends: Contextual Intelligence Leads the Pack',url:'https://gartner.com'},
-  {source:'NIST',title:'Post-Quantum Cryptography Standards: Implementation Guidance for Enterprises',url:'https://nist.gov'},
-  {source:'Financial Times',title:'The Race for Quantum Supremacy Enters Its Industrial Phase',url:'https://ft.com'},
-];
+  // 7. Service cards on homepage — inject photos into .svc-photo elements
+  document.querySelectorAll('.svc-photo').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextSmPhoto()}')`;
+  });
+}
 
-function loadNewsFeed(containerId){
+/* ═══════════════════════════════════════════════
+   NEWS FEED — topic-aware curated feeds per page
+═══════════════════════════════════════════════ */
+const PAGE_NEWS={
+
+  home:[
+    {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
+    {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},
+    {source:'Harvard Business Review',title:'Why Most AI Transformations Fail — and the Six Factors That Make Them Succeed',url:'https://hbr.org'},
+    {source:'IBM Research',title:'Advancing Quantum-Safe Cryptography: A Roadmap for Enterprise Migration',url:'https://research.ibm.com'},
+    {source:'Deloitte Insights',title:'The Generative AI Inflection Point: How Organizations Are Moving From Pilot to Production',url:'https://www2.deloitte.com/insights'},
+    {source:'Gartner',title:'2026 Top Strategic Technology Trends: Contextual Intelligence Leads the Pack',url:'https://gartner.com'},
+    {source:'Financial Times',title:'The Race for Quantum Supremacy Enters Its Industrial Phase',url:'https://ft.com'},
+    {source:'World Economic Forum',title:'Responsible AI Governance: A Framework for the Age of Agentic Systems',url:'https://weforum.org'},
+    {source:'IEEE Spectrum',title:'Quantum Error Correction Milestone Brings Fault-Tolerant Computing Closer to Reality',url:'https://spectrum.ieee.org'},
+  ],
+
+  ai:[
+    {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
+    {source:'Nature',title:'Large Language Models Show Surprising Capability in Scientific Reasoning Benchmarks',url:'https://nature.com'},
+    {source:'Harvard Business Review',title:'Why Most AI Transformations Fail — and the Six Factors That Make Them Succeed',url:'https://hbr.org'},
+    {source:'Google DeepMind',title:'Gemini 2.0: Multimodal Reasoning at the Frontier of Enterprise AI',url:'https://deepmind.google'},
+    {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},
+    {source:'IEEE Spectrum',title:'Agentic AI Frameworks: From Prototype to Production at Enterprise Scale',url:'https://spectrum.ieee.org'},
+    {source:'Deloitte Insights',title:'The Generative AI Inflection Point: How Organizations Are Moving From Pilot to Production',url:'https://www2.deloitte.com/insights'},
+    {source:'Wired',title:'How Frontier AI Models Are Rewriting the Playbook for Business Automation',url:'https://wired.com'},
+    {source:'Stanford HAI',title:'AI Index 2025: Enterprise Deployment Doubles as Model Costs Collapse',url:'https://hai.stanford.edu'},
+  ],
+
+  quantum:[
+    {source:'Nature',title:'Quantum Error Correction Milestone Brings Fault-Tolerant Computing 5 Years Closer',url:'https://nature.com'},
+    {source:'IBM Research',title:'Advancing Quantum-Safe Cryptography: A Roadmap for Enterprise Migration',url:'https://research.ibm.com'},
+    {source:'NIST',title:'Post-Quantum Cryptography Standards: Implementation Guidance for Enterprises',url:'https://nist.gov'},
+    {source:'Financial Times',title:'The Race for Quantum Supremacy Enters Its Industrial Phase',url:'https://ft.com'},
+    {source:'IEEE Spectrum',title:'1000-Qubit Processors and the Path to Cryptographically Relevant Quantum Machines',url:'https://spectrum.ieee.org'},
+    {source:'McKinsey',title:'Quantum Technology\'s Commercial Horizon: Where Value Will First Emerge',url:'https://mckinsey.com'},
+    {source:'Gartner',title:'Quantum Computing Hype Cycle 2025: What Enterprises Should Do Today',url:'https://gartner.com'},
+    {source:'MIT Technology Review',title:'Quantum Networks Are Being Tested in Real Cities — Here\'s What They\'ve Found',url:'https://technologyreview.com'},
+    {source:'Google Quantum AI',title:'Demonstrating Quantum Advantage on Industrially Relevant Problems',url:'https://quantumai.google'},
+  ],
+
+  digital:[
+    {source:'McKinsey',title:'Digital Transformation in 2025: Why 70% Still Fall Short — and What the Winners Do Differently',url:'https://mckinsey.com'},
+    {source:'Harvard Business Review',title:'The New Architecture of Digital Transformation: Platforms, Ecosystems, and AI',url:'https://hbr.org'},
+    {source:'Gartner',title:'Digital Business Transformation: The Four Critical Success Factors',url:'https://gartner.com'},
+    {source:'MIT Sloan Management Review',title:'From Digital Laggard to Digital Leader: A Roadmap for Legacy Industries',url:'https://sloanreview.mit.edu'},
+    {source:'Deloitte Insights',title:'The Digital Transformation Paradox: More Investment, Less Value — Here\'s Why',url:'https://www2.deloitte.com/insights'},
+    {source:'Wired',title:'Cloud-Native Transformation at Scale: Lessons from the Fortune 500',url:'https://wired.com'},
+    {source:'BCG',title:'Tech Debt Is the Hidden Tax Holding Back Digital Transformation',url:'https://bcg.com'},
+    {source:'Forrester',title:'Customer Experience as the New Competitive Battleground in the Digital Era',url:'https://forrester.com'},
+    {source:'IDC',title:'2025 Digital Transformation Spending Guide: Where the Money Is Going',url:'https://idc.com'},
+  ],
+
+  csuite:[
+    {source:'Harvard Business Review',title:'What the Best CEOs Know About AI That Most Leaders Don\'t',url:'https://hbr.org'},
+    {source:'McKinsey',title:'The CEO\'s Guide to the AI Era: Governance, Risk, and Competitive Advantage',url:'https://mckinsey.com'},
+    {source:'MIT Sloan Management Review',title:'Board-Level Technology Governance: A New Imperative for Digital Age Directors',url:'https://sloanreview.mit.edu'},
+    {source:'Fortune',title:'How Top CIOs Are Restructuring Technology for the Age of AI',url:'https://fortune.com'},
+    {source:'Deloitte Insights',title:'2025 Global CxO Survey: AI Strategy Is Now a CEO Priority, Not Just a CTO Concern',url:'https://www2.deloitte.com/insights'},
+    {source:'BCG',title:'The Four Decisions That Separate AI Leaders from AI Laggards at the Top',url:'https://bcg.com'},
+    {source:'Stanford GSB',title:'Technology M&A Due Diligence: What Acquirers Miss That Destroys Value',url:'https://gsb.stanford.edu'},
+    {source:'WEF',title:'Responsible Technology Leadership: A Framework for C-Suite Decision-Making',url:'https://weforum.org'},
+    {source:'Gartner',title:'CIO Agenda 2025: The Strategies That Define Technology Leadership',url:'https://gartner.com'},
+  ],
+
+  process:[
+    {source:'McKinsey',title:'The Automation Paradox: How AI Is Transforming Business Process and Creating New Roles',url:'https://mckinsey.com'},
+    {source:'Gartner',title:'Process Mining Market Guide: AI-Enhanced Discovery Is Transforming Business Operations',url:'https://gartner.com'},
+    {source:'Deloitte Insights',title:'Intelligent Automation at Scale: Moving Beyond RPA to Cognitive Process Transformation',url:'https://www2.deloitte.com/insights'},
+    {source:'Harvard Business Review',title:'Lean Is Dead. Long Live AI-Augmented Operations',url:'https://hbr.org'},
+    {source:'Forrester',title:'The Business Process Transformation Wave: AI, Orchestration, and the End of Manual Work',url:'https://forrester.com'},
+    {source:'BCG',title:'Operational Excellence in the Age of Intelligent Automation',url:'https://bcg.com'},
+    {source:'IEEE Spectrum',title:'Digital Twins for Business Processes: From Factory Floor to Enterprise Operations',url:'https://spectrum.ieee.org'},
+    {source:'MIT Technology Review',title:'Agentic AI in Operations: Early Case Studies and What They Tell Us',url:'https://technologyreview.com'},
+    {source:'IDC',title:'Intelligent Process Automation Market Forecast 2025–2028',url:'https://idc.com'},
+  ],
+
+  data:[
+    {source:'MIT Technology Review',title:'The Data Lakehouse Architecture Is Winning — Here\'s Why Enterprises Are Switching',url:'https://technologyreview.com'},
+    {source:'Harvard Business Review',title:'Becoming a Data-Driven Organization: What It Really Takes',url:'https://hbr.org'},
+    {source:'Gartner',title:'Data and Analytics Trends 2025: AI-Augmented Insights Are the New Baseline',url:'https://gartner.com'},
+    {source:'McKinsey',title:'The Data Advantage: How Companies That Invest in Information Governance Outperform',url:'https://mckinsey.com'},
+    {source:'Deloitte Insights',title:'Real-Time Analytics Architecture: From Batch Processing to Streaming Intelligence',url:'https://www2.deloitte.com/insights'},
+    {source:'Forbes',title:'Data Mesh vs. Data Fabric: Choosing the Right Architecture for Your Enterprise',url:'https://forbes.com'},
+    {source:'O\'Reilly',title:'The State of Data and AI 2025: How Enterprises Are Closing the Insight Gap',url:'https://oreilly.com'},
+    {source:'Databricks',title:'The 2025 State of Data+AI: LakeHouse Adoption Hits Mainstream',url:'https://databricks.com'},
+    {source:'TDWI',title:'Business Intelligence Modernization: From Dashboards to Decision Intelligence',url:'https://tdwi.org'},
+  ],
+
+  consulting:[
+    {source:'Harvard Business Review',title:'The Strategy Consulting Reinvention: How AI Is Changing What Consultants Actually Do',url:'https://hbr.org'},
+    {source:'McKinsey',title:'Strategy in a World of Rapid Change: When the Five-Year Plan Becomes the 18-Month Plan',url:'https://mckinsey.com'},
+    {source:'BCG',title:'Organizational Resilience in 2025: How the Best Companies Are Built to Last and Adapt',url:'https://bcg.com'},
+    {source:'Deloitte Insights',title:'Change Management in the AI Era: Leading Human-AI Hybrid Organizations',url:'https://www2.deloitte.com/insights'},
+    {source:'MIT Sloan Management Review',title:'Strategic Agility: The New Competitive Advantage in Volatile Markets',url:'https://sloanreview.mit.edu'},
+    {source:'Fortune',title:'The CFO in the AI Age: New Metrics, New Models, New Mandate',url:'https://fortune.com'},
+    {source:'WEF',title:'Future of Work 2025: Skills, Structures, and the Organizations That Will Thrive',url:'https://weforum.org'},
+    {source:'Stanford GSB',title:'Mergers in the Digital Age: Why 60% Fail to Deliver Value and How to Beat the Odds',url:'https://gsb.stanford.edu'},
+    {source:'Gartner',title:'Enterprise Architecture Trends 2025: Business Capability Mapping in the Age of AI',url:'https://gartner.com'},
+  ],
+
+  finance:[
+    {source:'Financial Times',title:'JPMorgan and Goldman Unveil AI Platforms That Are Transforming Trading Floors',url:'https://ft.com'},
+    {source:'McKinsey',title:'The Future of Banking: AI, Embedded Finance, and the Platform Economy',url:'https://mckinsey.com'},
+    {source:'Bloomberg',title:'Quantum Computing\'s Financial Services Moment: Risk Modeling and Portfolio Optimization',url:'https://bloomberg.com'},
+    {source:'Deloitte Insights',title:'RegTech 2025: How AI Is Transforming Compliance and Financial Crime Detection',url:'https://www2.deloitte.com/insights'},
+    {source:'Oliver Wyman',title:'Banking Outlook 2025: Margin Pressure, AI Transformation, and the Scale Imperative',url:'https://oliverwyman.com'},
+    {source:'Harvard Business Review',title:'Real-Time Risk: How Machine Learning Is Replacing VaR in Financial Services',url:'https://hbr.org'},
+    {source:'KPMG',title:'Asset Management in the Age of AI: Alpha Generation, Cost Reduction, and Client Experience',url:'https://kpmg.com'},
+    {source:'BIS',title:'Quantum Computing Implications for Financial System Security and Stability',url:'https://bis.org'},
+    {source:'Accenture',title:'The Future of Insurance: Parametric Products, AI Underwriting, and Digital Claims',url:'https://accenture.com'},
+  ],
+
+  healthcare:[
+    {source:'NEJM',title:'AI Diagnostics Outperform Specialist Physicians in Large Multi-Center Trial',url:'https://nejm.org'},
+    {source:'Nature Medicine',title:'Deep Learning Accelerates Drug Discovery: From Years to Weeks',url:'https://nature.com/nm'},
+    {source:'McKinsey',title:'Transforming Healthcare with AI: The Promise, Peril, and Practical Path Forward',url:'https://mckinsey.com'},
+    {source:'Harvard Health',title:'The Digital Health Decade: What Precision Medicine and AI Mean for Patient Outcomes',url:'https://health.harvard.edu'},
+    {source:'FDA',title:'Artificial Intelligence/Machine Learning-Based Software in Medical Devices: 2025 Guidance Update',url:'https://fda.gov'},
+    {source:'Fierce Healthcare',title:'Interoperability at Scale: How FHIR and AI Are Connecting the Care Continuum',url:'https://fiercehealthcare.com'},
+    {source:'JAMA',title:'Ambient AI Clinical Documentation Reduces Physician Burnout by 40% in Multicenter Study',url:'https://jamanetwork.com'},
+    {source:'WHO',title:'Global Health AI Governance Framework: Principles for Responsible Deployment',url:'https://who.int'},
+    {source:'Deloitte Insights',title:'The Hospital of the Future: AI-First Infrastructure, Remote Monitoring, and Predictive Care',url:'https://www2.deloitte.com/insights'},
+  ],
+
+  pharma:[
+    {source:'Nature',title:'AlphaFold 3 Unlocks Next Wave of Drug-Target Discovery Across Disease Classes',url:'https://nature.com'},
+    {source:'Science',title:'AI-Designed Antibodies Enter Phase III Trials with Unprecedented Speed',url:'https://science.org'},
+    {source:'McKinsey',title:'Biopharma 2025: Digital Transformation in R&D, Manufacturing, and Commercial Operations',url:'https://mckinsey.com'},
+    {source:'FDA',title:'Advancing AI in Drug Development: New Guidance on Machine Learning in Clinical Trials',url:'https://fda.gov'},
+    {source:'Fierce Pharma',title:'AI-Powered Supply Chain Transformation: How Pharma Is Eliminating Drug Shortages',url:'https://fiercepharma.com'},
+    {source:'MIT Technology Review',title:'Generative AI Is Becoming the Primary Tool in Drug Candidate Screening',url:'https://technologyreview.com'},
+    {source:'Deloitte Insights',title:'Pharmaceutical R&D Productivity: AI\'s Impact on Pipeline Success Rates',url:'https://www2.deloitte.com/insights'},
+    {source:'Gartner',title:'Life Sciences Digital Transformation: Real-World Evidence and AI-Driven Pharmacovigilance',url:'https://gartner.com'},
+    {source:'BCG',title:'The Biotech Convergence: How AI, CRISPR, and mRNA Are Creating a New Industry',url:'https://bcg.com'},
+  ],
+
+  tech:[
+    {source:'MIT Technology Review',title:'The Platform Wars of 2025: Cloud, Edge, and the Battle for AI Infrastructure',url:'https://technologyreview.com'},
+    {source:'Wired',title:'How the Next Generation of Enterprise Software Is Being Built on AI-First Architectures',url:'https://wired.com'},
+    {source:'Harvard Business Review',title:'Platform Strategy in the Age of AI: How Software Companies Are Reinventing Their Moats',url:'https://hbr.org'},
+    {source:'Gartner',title:'Technology Industry Outlook 2025: Consolidation, AI Monetization, and the SaaS Reset',url:'https://gartner.com'},
+    {source:'McKinsey',title:'The Engineering Productivity Revolution: AI Coding Tools and What They Mean for Software Teams',url:'https://mckinsey.com'},
+    {source:'IEEE Spectrum',title:'Semiconductor Geopolitics and the Future of the Global Technology Supply Chain',url:'https://spectrum.ieee.org'},
+    {source:'The Information',title:'Cloud Cost Optimization: How Top Tech Companies Are Rightsizing AI Infrastructure',url:'https://theinformation.com'},
+    {source:'BCG',title:'Open Source in the Enterprise: From Developer Tool to Strategic Competitive Asset',url:'https://bcg.com'},
+    {source:'Forrester',title:'The Cybersecurity Imperative: Zero Trust Architectures in the Age of AI Threats',url:'https://forrester.com'},
+  ],
+
+  energy:[
+    {source:'Nature Energy',title:'AI-Optimized Grid Management Reduces Renewable Curtailment by 35% in Pilot',url:'https://nature.com/ne'},
+    {source:'Financial Times',title:'The AI Energy Nexus: Data Centers Consume More Power Than Many Nations',url:'https://ft.com'},
+    {source:'McKinsey',title:'The Energy Transition at Inflection Point: AI, Storage, and the Path to Net Zero',url:'https://mckinsey.com'},
+    {source:'World Economic Forum',title:'Digital Twins for Energy Infrastructure: Predictive Maintenance at Grid Scale',url:'https://weforum.org'},
+    {source:'IEA',title:'AI-Enabled Energy Efficiency: Global Assessment of Impact Through 2030',url:'https://iea.org'},
+    {source:'BloombergNEF',title:'Clean Energy Investment Hits $2 Trillion — AI Optimization Is the New Differentiator',url:'https://bloomberg.com'},
+    {source:'MIT Technology Review',title:'Next-Generation Nuclear: SMRs, Fusion Timelines, and the AI-Optimized Reactor',url:'https://technologyreview.com'},
+    {source:'Deloitte Insights',title:'Oil & Gas in the Digital Age: AI-Driven Exploration, Carbon Capture, and Energy Transition',url:'https://www2.deloitte.com/insights'},
+    {source:'BCG',title:'Smart Grid 2.0: How AI Is Making the Electrical Grid Intelligent, Resilient, and Green',url:'https://bcg.com'},
+  ],
+
+  government:[
+    {source:'WEF',title:'AI in Government: How Public Sector Organizations Are Deploying Responsibly',url:'https://weforum.org'},
+    {source:'Harvard Kennedy School',title:'Digital Government 2025: What Citizens Expect and How Agencies Are Delivering',url:'https://hks.harvard.edu'},
+    {source:'McKinsey',title:'Modernizing Government IT: The Case for Cloud-First, AI-Ready Public Infrastructure',url:'https://mckinsey.com'},
+    {source:'NIST',title:'AI Risk Management Framework 1.1: Guidance for Government Agencies',url:'https://nist.gov'},
+    {source:'Deloitte Insights',title:'GovTech 2025: AI-Powered Citizen Services, Fraud Detection, and Policy Analysis',url:'https://www2.deloitte.com/insights'},
+    {source:'Brookings Institution',title:'Regulating AI: How Governments Are Approaching the Most Complex Policy Challenge of the Decade',url:'https://brookings.edu'},
+    {source:'CISA',title:'Post-Quantum Cryptography Migration Planning for Government Systems',url:'https://cisa.gov'},
+    {source:'Gartner',title:'Digital Government Trends 2025: GenAI in Public Service Delivery',url:'https://gartner.com'},
+    {source:'RAND',title:'National Security Implications of Quantum Computing and AI Convergence',url:'https://rand.org'},
+  ],
+
+  sustainability:[
+    {source:'Nature',title:'Machine Learning Accelerates Discovery of Solid-State Electrolytes for Next-Gen Batteries',url:'https://nature.com'},
+    {source:'McKinsey',title:'Sustainability-Linked Finance: How AI Is Transforming ESG Measurement and Reporting',url:'https://mckinsey.com'},
+    {source:'World Economic Forum',title:'Net Zero by 2050: The Role of AI, Digital Twins, and Smart Infrastructure',url:'https://weforum.org'},
+    {source:'MIT Technology Review',title:'Carbon Accounting Gets an AI Upgrade — and It\'s Changing What\'s Possible',url:'https://technologyreview.com'},
+    {source:'Bloomberg Green',title:'Climate Tech Investment Surges as AI-Driven Optimization Demonstrates ROI',url:'https://bloomberg.com'},
+    {source:'Deloitte Insights',title:'The ESG Data Problem: How AI Is Cleaning Up Corporate Sustainability Reporting',url:'https://www2.deloitte.com/insights'},
+    {source:'BCG',title:'Circular Economy at Scale: How AI and Data Are Enabling Waste Elimination',url:'https://bcg.com'},
+    {source:'Science',title:'AI-Powered Climate Modeling Reduces Uncertainty in 10-Year Regional Predictions',url:'https://science.org'},
+    {source:'Gartner',title:'Sustainable Technology Framework 2025: Operationalizing ESG as Business Value',url:'https://gartner.com'},
+  ],
+
+  media:[
+    {source:'Variety',title:'Streaming\'s Profitability Reckoning: How Netflix, Disney+, and Max Are Finally Making Money',url:'https://variety.com'},
+    {source:'Hollywood Reporter',title:'AI-Generated Content in Hollywood: The Guild Agreements That Will Define the Next Decade',url:'https://hollywoodreporter.com'},
+    {source:'Deadline',title:'FAST Channel Economics: Why Free Ad-Supported Streaming Is Outpacing Premium Subscription Growth',url:'https://deadline.com'},
+    {source:'Digiday',title:'The Cookieless Publisher Playbook: First-Party Data, Contextual Targeting, and Clean Rooms',url:'https://digiday.com'},
+    {source:'IAB',title:'2025 Digital Advertising Outlook: CTV, Retail Media, and AI-Powered Programmatic',url:'https://iab.com'},
+    {source:'Nielsen',title:'The Total Audience Report: Streaming Surpasses Linear TV in Total Watch Time',url:'https://nielsen.com'},
+    {source:'PwC',title:'Global Entertainment & Media Outlook 2025–2029: AI, Bundling, and the Attention Economy',url:'https://pwc.com'},
+    {source:'Adweek',title:'Programmatic\'s Next Chapter: How AI Bidding Algorithms Are Rewriting Ad Auction Economics',url:'https://adweek.com'},
+    {source:'Wired',title:'The Recommendation Engine Arms Race: How Streaming Platforms Are Fighting for Your Next 30 Minutes',url:'https://wired.com'},
+  ],
+
+  insights:[
+    {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
+    {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},
+    {source:'Harvard Business Review',title:'Why Most AI Transformations Fail — and the Six Factors That Make Them Succeed',url:'https://hbr.org'},
+    {source:'Nature',title:'Large Language Models Show Surprising Capability in Scientific Reasoning Benchmarks',url:'https://nature.com'},
+    {source:'Deloitte Insights',title:'The Generative AI Inflection Point: How Organizations Are Moving From Pilot to Production',url:'https://www2.deloitte.com/insights'},
+    {source:'Stanford HAI',title:'AI Index 2025: Enterprise Deployment Doubles as Model Costs Collapse',url:'https://hai.stanford.edu'},
+    {source:'IBM Research',title:'Advancing Quantum-Safe Cryptography: A Roadmap for Enterprise Migration',url:'https://research.ibm.com'},
+    {source:'Wired',title:'Digital Twins Are Becoming the Nervous System of Modern Manufacturing Operations',url:'https://wired.com'},
+    {source:'Financial Times',title:'The Race for Quantum Supremacy Enters Its Industrial Phase',url:'https://ft.com'},
+  ],
+
+};
+
+function loadNewsFeed(containerId, topic){
   const container=document.getElementById(containerId);
   if(!container)return;
+  const feed=PAGE_NEWS[topic]||PAGE_NEWS.home;
   const day=Math.floor(Date.now()/86400000);
-  const offset=day%CURATED_NEWS.length;
-  const items=[...CURATED_NEWS.slice(offset),...CURATED_NEWS.slice(0,offset)].slice(0,9);
+  const offset=day%feed.length;
+  const items=[...feed.slice(offset),...feed.slice(0,offset)].slice(0,9);
   renderNews(container, items);
-  // Try live feed silently
-  const feed='https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffeeds.feedburner.com%2FTheHackersNews&count=9&api_key=tqmhcvuausvdakz7s7mcvfmyexbcnhwufxlrjjnw';
-  const ctrl=new AbortController();
-  const timeout=setTimeout(()=>ctrl.abort(),4500);
-  fetch(feed,{signal:ctrl.signal})
-    .then(r=>r.json())
-    .then(d=>{
-      clearTimeout(timeout);
-      if(d&&d.items&&d.items.length>0){
-        const live=d.items.slice(0,9).map(i=>({source:d.feed.title||'Tech News',title:i.title,url:i.link}));
-        renderNews(container,live);
-      }
-    })
-    .catch(()=>clearTimeout(timeout));
 }
 
 function renderNews(container, items){
