@@ -126,11 +126,12 @@ function buildNav(){
     <div class="nav-dropdown">
       <a href="${r}industries/financial-services.html">Financial Services</a>
       <a href="${r}industries/healthcare.html">Healthcare</a>
-      <a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a>
+      <a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a>
       <a href="${r}industries/technology.html">Technology</a>
+      <a href="${r}industries/telecommunications.html">Telecommunications</a>
       <a href="${r}industries/energy.html">Energy</a>
       <a href="${r}industries/government.html">Government</a>
-      <a href="${r}industries/sustainability.html">Sustainability</a>
+      <a href="${r}industries/sustainability.html">Sustainability &amp; Water</a>
       <a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a>
     </div>
   </li>
@@ -176,11 +177,12 @@ function buildNav(){
   <div class="mob-heading">Industries</div>
   <a href="${r}industries/financial-services.html">Financial Services</a>
   <a href="${r}industries/healthcare.html">Healthcare</a>
-  <a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a>
+  <a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a>
   <a href="${r}industries/technology.html">Technology</a>
+  <a href="${r}industries/telecommunications.html">Telecommunications</a>
   <a href="${r}industries/energy.html">Energy</a>
   <a href="${r}industries/government.html">Government</a>
-  <a href="${r}industries/sustainability.html">Sustainability</a>
+  <a href="${r}industries/sustainability.html">Sustainability &amp; Water</a>
   <a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a>
   <div class="mob-heading">Insights</div>
   <a href="${r}insights/blog.html">Blog</a>
@@ -308,11 +310,12 @@ function buildFooter(){
     <ul>
       <li><a href="${r}industries/financial-services.html">Financial Services</a></li>
       <li><a href="${r}industries/healthcare.html">Healthcare</a></li>
-      <li><a href="${r}industries/pharmaceuticals.html">Pharmaceuticals</a></li>
+      <li><a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a></li>
       <li><a href="${r}industries/technology.html">Technology</a></li>
+      <li><a href="${r}industries/telecommunications.html">Telecommunications</a></li>
       <li><a href="${r}industries/energy.html">Energy</a></li>
       <li><a href="${r}industries/government.html">Government</a></li>
-      <li><a href="${r}industries/sustainability.html">Sustainability</a></li>
+      <li><a href="${r}industries/sustainability.html">Sustainability &amp; Water</a></li>
       <li><a href="${r}industries/media-entertainment.html">Media &amp; Entertainment</a></li>
     </ul>
   </div>
@@ -429,6 +432,7 @@ const HERO_POOLS={
   sustainability:[138,139,140,141,142],
   pharma:     [143,144,145,146,147],
   media:      [148,149,150,151,152],
+  telecom:    [122,125,126,127,131],
   insights:   [153,154,155,156,157],
   about:      [158,159,160,162,163],
   contact:    [164,165,166,167,168],
@@ -758,10 +762,10 @@ const PAGE_NEWS={
     {source:'Science',title:'AI-Designed Antibodies Enter Phase III Trials with Unprecedented Speed',url:'https://science.org'},
     {source:'McKinsey',title:'Biopharma 2025: Digital Transformation in R&D, Manufacturing, and Commercial Operations',url:'https://mckinsey.com'},
     {source:'FDA',title:'Advancing AI in Drug Development: New Guidance on Machine Learning in Clinical Trials',url:'https://fda.gov'},
-    {source:'Fierce Pharma',title:'AI-Powered Supply Chain Transformation: How Pharma Is Eliminating Drug Shortages',url:'https://fiercepharma.com'},
-    {source:'MIT Technology Review',title:'Generative AI Is Becoming the Primary Tool in Drug Candidate Screening',url:'https://technologyreview.com'},
-    {source:'Deloitte Insights',title:'Pharmaceutical R&D Productivity: AI\'s Impact on Pipeline Success Rates',url:'https://www2.deloitte.com/insights'},
-    {source:'Gartner',title:'Life Sciences Digital Transformation: Real-World Evidence and AI-Driven Pharmacovigilance',url:'https://gartner.com'},
+    {source:'Nature Biotechnology',title:'CRISPR Base Editing Achieves First Clinical Cure for Sickle Cell Disease in Landmark Trial',url:'https://nature.com/nbt'},
+    {source:'STAT News',title:'Cell and Gene Therapy Manufacturing Costs Drop 60% as Automation Scales',url:'https://statnews.com'},
+    {source:'MIT Technology Review',title:'Generative AI Is Becoming the Primary Tool in Drug Candidate Screening and Bioprocess Optimization',url:'https://technologyreview.com'},
+    {source:'Deloitte Insights',title:'Pharmaceutical & Biotech R&D Productivity: AI\'s Impact on Pipeline Success Rates',url:'https://www2.deloitte.com/insights'},
     {source:'BCG',title:'The Biotech Convergence: How AI, CRISPR, and mRNA Are Creating a New Industry',url:'https://bcg.com'},
   ],
 
@@ -775,6 +779,18 @@ const PAGE_NEWS={
     {source:'The Information',title:'Cloud Cost Optimization: How Top Tech Companies Are Rightsizing AI Infrastructure',url:'https://theinformation.com'},
     {source:'BCG',title:'Open Source in the Enterprise: From Developer Tool to Strategic Competitive Asset',url:'https://bcg.com'},
     {source:'Forrester',title:'The Cybersecurity Imperative: Zero Trust Architectures in the Age of AI Threats',url:'https://forrester.com'},
+  ],
+
+  telecom:[
+    {source:'Light Reading',title:'AI-Driven Network Operations: How Tier-1 Carriers Are Achieving Autonomous Self-Healing Networks',url:'https://lightreading.com'},
+    {source:'McKinsey',title:'Telecom 2025: 5G Monetization, Network-as-a-Service, and the Enterprise Revenue Opportunity',url:'https://mckinsey.com'},
+    {source:'GSMA',title:'The State of 5G Enterprise: Private Networks, Edge Computing, and the $700B Opportunity',url:'https://gsma.com'},
+    {source:'Fierce Telecom',title:'Cloud-Native Core Transformation: Why Open RAN Is Finally Delivering on Its Promise',url:'https://fiercetelecom.com'},
+    {source:'IEEE Spectrum',title:'6G Research Accelerates as AI-Native Radio Access Networks Show 10x Spectral Efficiency',url:'https://spectrum.ieee.org'},
+    {source:'Deloitte Insights',title:'Fiber-to-the-Home Economics: How AI Is Optimizing Rollout Planning and Reducing Dig Costs by 30%',url:'https://www2.deloitte.com/insights'},
+    {source:'Financial Times',title:'The Global Connectivity Race: Subsea Cables, LEO Satellites, and the Battle for Digital Sovereignty',url:'https://ft.com'},
+    {source:'BCG',title:'Telecom Operator Transformation: From Connectivity Provider to Digital Platform',url:'https://bcg.com'},
+    {source:'Analysys Mason',title:'Network Slicing Goes Live: Enterprise Use Cases and Revenue Models That Are Actually Working',url:'https://analysysmason.com'},
   ],
 
   energy:[
@@ -804,13 +820,13 @@ const PAGE_NEWS={
   sustainability:[
     {source:'Nature',title:'Machine Learning Accelerates Discovery of Solid-State Electrolytes for Next-Gen Batteries',url:'https://nature.com'},
     {source:'McKinsey',title:'Sustainability-Linked Finance: How AI Is Transforming ESG Measurement and Reporting',url:'https://mckinsey.com'},
-    {source:'World Economic Forum',title:'Net Zero by 2050: The Role of AI, Digital Twins, and Smart Infrastructure',url:'https://weforum.org'},
-    {source:'MIT Technology Review',title:'Carbon Accounting Gets an AI Upgrade — and It\'s Changing What\'s Possible',url:'https://technologyreview.com'},
-    {source:'Bloomberg Green',title:'Climate Tech Investment Surges as AI-Driven Optimization Demonstrates ROI',url:'https://bloomberg.com'},
-    {source:'Deloitte Insights',title:'The ESG Data Problem: How AI Is Cleaning Up Corporate Sustainability Reporting',url:'https://www2.deloitte.com/insights'},
-    {source:'BCG',title:'Circular Economy at Scale: How AI and Data Are Enabling Waste Elimination',url:'https://bcg.com'},
-    {source:'Science',title:'AI-Powered Climate Modeling Reduces Uncertainty in 10-Year Regional Predictions',url:'https://science.org'},
-    {source:'Gartner',title:'Sustainable Technology Framework 2025: Operationalizing ESG as Business Value',url:'https://gartner.com'},
+    {source:'World Economic Forum',title:'Net Zero by 2050: The Role of AI, Digital Twins, and Smart Water Infrastructure',url:'https://weforum.org'},
+    {source:'Nature Water',title:'AI-Powered Leak Detection Reduces Non-Revenue Water by 40% in Global Utility Trials',url:'https://nature.com/natwater'},
+    {source:'MIT Technology Review',title:'Smart Water Networks Are Using AI to Solve the Global Water Crisis — One Pipe at a Time',url:'https://technologyreview.com'},
+    {source:'World Bank',title:'The Water-AI Nexus: How Machine Learning Is Transforming Water Scarcity Prediction and Response',url:'https://worldbank.org'},
+    {source:'Deloitte Insights',title:'From ESG Reporting to Water Stewardship: How AI Is Closing the Corporate Sustainability Gap',url:'https://www2.deloitte.com/insights'},
+    {source:'BCG',title:'Circular Economy and Water Reuse: AI-Optimized Treatment Is Making Industrial Water Recycling Viable',url:'https://bcg.com'},
+    {source:'Science',title:'Quantum-Enhanced Climate and Hydrological Modeling Reduces Flood Prediction Uncertainty by 50%',url:'https://science.org'},
   ],
 
   media:[
