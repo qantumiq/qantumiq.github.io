@@ -39,9 +39,9 @@
 
   /* Text */
   --text:   #0A1828;
-  --text2:  #334156;
-  --muted:  rgba(10,24,40,.52);
-  --muted2: rgba(10,24,40,.30);
+  --text2:  #1E3048;
+  --muted:  rgba(10,24,40,.66);   /* was .52 — now noticeably darker */
+  --muted2: rgba(10,24,40,.44);   /* was .30 — now more readable */
   --white:  #FFFFFF;
 
   /* Typography */
@@ -67,29 +67,23 @@
 }
 
 /* ─── SVG Logo ─── */
+:root{
+  --logo-main:#0B2240;  /* Navy in light mode */
+}
 .nav-logo-svg{
   display:block;
-  height:36px;   /* 36px tall — proportional to 192×52 viewBox */
+  height:36px;
   width:auto;
-  overflow:visible; /* allow Q-tails to render without clipping */
+  overflow:visible;
   transition:opacity .2s;
 }
 .nav-logo-svg:hover{opacity:.80}
-[data-theme="dark"] .nav-logo-svg{--logo-main:#FFFFFF}
-/* Apply CSS vars to SVG elements inside the inline SVG */
-.nav-logo-svg .logo-stroke{stroke:var(--logo-main)}
-.nav-logo-svg .logo-text-main{fill:var(--logo-main)}
-/* Dark mode logo SVG stroke/text overrides */
-[data-theme="dark"] .nav-logo-svg .logo-stroke,
-[data-theme="dark"] .nav-logo-svg circle[stroke="#0B2240"],
-[data-theme="dark"] .nav-logo-svg line[stroke="#0B2240"],
-[data-theme="dark"] .nav-logo-svg path[stroke="#0B2240"] {
-  stroke: #FFFFFF !important;
-}
-[data-theme="dark"] .nav-logo-svg .logo-text-main,
-[data-theme="dark"] .nav-logo-svg text[fill="#0B2240"] {
-  fill: #FFFFFF !important;
-}
+/* Core rule — stroke/fill adapts via --logo-main CSS var */
+.nav-logo-svg .logo-stroke{stroke:var(--logo-main,#0B2240) !important}
+.nav-logo-svg .logo-text-main{fill:var(--logo-main,#0B2240) !important}
+/* Belt-and-suspenders dark mode override */
+[data-theme="dark"] .nav-logo-svg .logo-stroke{stroke:#FFFFFF !important}
+[data-theme="dark"] .nav-logo-svg .logo-text-main{fill:#FFFFFF !important}
 
 
 /* Hero speed control (hidden by default, shows on hover) */
@@ -112,6 +106,7 @@
 .hero-speed-btn:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.5)}
 .hero-speed-btn.active{background:rgba(0,200,232,.3);border-color:rgba(0,200,232,.7);color:#fff}
 [data-theme="dark"]{
+  --logo-main:#FFFFFF;
   --bg:      #05070F;
   --bg2:     #080A18;
   --bg3:     #0B0D1C;
@@ -199,8 +194,8 @@ a{color:inherit}
 .nav-link{
   display:flex;align-items:center;gap:.3rem;
   padding:.5rem .88rem;height:64px;
-  text-decoration:none;color:var(--muted);
-  font-family:var(--ff-sans);font-size:.72rem;font-weight:600;
+  text-decoration:none;color:var(--text2);
+  font-family:var(--ff-sans);font-size:.73rem;font-weight:600;
   letter-spacing:.065em;text-transform:uppercase;white-space:nowrap;
   cursor:pointer;background:none;border:none;
   transition:color .18s;
@@ -435,7 +430,7 @@ a{color:inherit}
 
 .eyebrow{
   display:inline-flex;align-items:center;gap:.6rem;
-  font-family:var(--ff-sans);font-size:.64rem;font-weight:700;
+  font-family:var(--ff-sans);font-size:.68rem;font-weight:700;
   letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.95rem;
 }
 .eyebrow::before{content:'';display:block;width:22px;height:1.5px;background:var(--blue);flex-shrink:0}
@@ -552,7 +547,7 @@ a{color:inherit}
 
 .insight-tag{
   display:inline-block;font-family:var(--ff-sans);
-  font-size:.59rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:var(--blue);border:1px solid rgba(19,82,201,.18);
   padding:.17rem .55rem;margin-bottom:.88rem;background:var(--blue-dim);
 }
@@ -561,7 +556,7 @@ a{color:inherit}
   line-height:1.38;flex:1;margin-bottom:.9rem;color:var(--text);
 }
 .insight-meta{
-  font-family:var(--ff-sans);font-size:.67rem;color:var(--muted);
+  font-family:var(--ff-sans);font-size:.72rem;color:var(--muted);
   padding-top:.82rem;border-top:1px solid var(--border3);
   margin-top:auto;display:flex;justify-content:space-between;align-items:center;
 }
@@ -935,7 +930,7 @@ a{color:inherit}
 }
 .footer-logo span{color:rgba(120,170,255,.9)}
 .footer-desc{
-  font-size:.82rem;line-height:1.68;color:rgba(190,210,255,.55);margin-bottom:1.5rem;
+  font-size:.83rem;line-height:1.68;color:rgba(190,210,255,.72);margin-bottom:1.5rem;
 }
 .footer-social{display:flex;gap:.55rem}
 .footer-social a{
@@ -946,17 +941,17 @@ a{color:inherit}
 }
 .footer-social a:hover{border-color:rgba(120,170,255,.7);color:#fff;background:rgba(19,82,201,.3)}
 .footer-col h4{
-  font-family:var(--ff-sans);font-size:.64rem;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.92);margin-bottom:1.15rem;
+  font-family:var(--ff-sans);font-size:.68rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.96);margin-bottom:1.15rem;
 }
 .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.62rem}
 .footer-col ul li a{
-  font-size:.80rem;color:rgba(190,210,255,.48);text-decoration:none;
+  font-size:.82rem;color:rgba(190,210,255,.68);text-decoration:none;
   transition:color .15s;font-weight:400;
 }
 .footer-col ul li a:hover{color:rgba(190,210,255,.9)}
-.footer-contact p{font-size:.80rem;color:rgba(190,210,255,.48);line-height:1.72}
+.footer-contact p{font-size:.82rem;color:rgba(190,210,255,.68);line-height:1.72}
 .footer-contact a{color:rgba(120,175,255,.75);text-decoration:none;transition:color .15s}
 .footer-contact a:hover{color:rgba(120,175,255,.98)}
 .footer-bottom{

@@ -66,10 +66,10 @@ const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 52" c
   <text x="46" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#0B2240" class="logo-text-main" letter-spacing="-0.5">antum</text>
 
   <!-- ── "I" of IQ — always cyan ── -->
-  <text x="133" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
+  <text x="139" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
 
-  <!-- ── Q₂ : IQ  (brain inside, center 161,26, r=18, cyan) ── -->
-  <g transform="translate(161,26)">
+  <!-- ── Q₂ : IQ  (brain inside, center 170,26, r=18, cyan) ── -->
+  <g transform="translate(170,26)">
     <circle r="18" fill="none" stroke="#00C8E8" stroke-width="2"/>
     <line x1="13" y1="12" x2="19" y2="18" stroke="#00C8E8" stroke-width="2.8" stroke-linecap="round"/>
     <!-- brain left lobe -->
@@ -138,7 +138,7 @@ function buildNav(){
     <div class="nav-dropdown">
       <a href="${r}insights/blog.html">Blog</a>
       <a href="${r}insights/case-studies.html">Case Studies</a>
-      <a href="${r}insights/whitepapers.html">Whitepapers</a>
+      <a href="${r}insights/white-papers.html">Whitepapers</a>
       <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
       <a href="${r}insights/news.html">News</a>
     </div>
@@ -183,7 +183,7 @@ function buildNav(){
   <div class="mob-heading">Insights</div>
   <a href="${r}insights/blog.html">Blog</a>
   <a href="${r}insights/case-studies.html">Case Studies</a>
-  <a href="${r}insights/whitepapers.html">Whitepapers</a>
+  <a href="${r}insights/white-papers.html">Whitepapers</a>
   <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
   <a href="${r}insights/news.html">News</a>
   <div class="mob-heading">Company</div>
@@ -263,9 +263,9 @@ function buildFooter(){
         <!-- "antum" — white on dark -->
         <text x="46" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="rgba(255,255,255,0.92)" letter-spacing="-0.5">antum</text>
         <!-- "I" — cyan -->
-        <text x="133" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
+        <text x="139" y="38" font-family="IBM Plex Sans,Arial,sans-serif" font-weight="700" font-size="28" fill="#00C8E8" letter-spacing="-0.5">I</text>
         <!-- Q₂: IQ — brain, cyan -->
-        <g transform="translate(161,26)">
+        <g transform="translate(170,26)">
           <circle r="18" fill="none" stroke="#00C8E8" stroke-width="2"/>
           <line x1="13" y1="12" x2="19" y2="18" stroke="#00C8E8" stroke-width="2.8" stroke-linecap="round"/>
           <path d="M0,-11 C-2,-13 -9,-12 -11,-7 C-13,-2 -12,4 -9,8 C-7,10 -3,11 0,11" fill="none" stroke="#00C8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.92"/>
