@@ -825,6 +825,42 @@ const PAGE_NEWS={
     {source:'Wired',title:'The Recommendation Engine Arms Race: How Streaming Platforms Are Fighting for Your Next 30 Minutes',url:'https://wired.com'},
   ],
 
+  about:[
+    {source:'Harvard Business Review',title:'The Leadership Qualities That Separate Great Consulting Firms from Good Ones',url:'https://hbr.org'},
+    {source:'McKinsey',title:'Purpose-Driven Organizations: How Mission Alignment Drives Outperformance',url:'https://mckinsey.com'},
+    {source:'MIT Sloan Management Review',title:'Building a Culture of Innovation: Lessons from Top Technology Consultancies',url:'https://sloanreview.mit.edu'},
+    {source:'Fortune',title:'The 100 Best Companies to Work For in 2025: What Sets Them Apart',url:'https://fortune.com'},
+    {source:'Deloitte Insights',title:'The Future of Professional Services: How AI Is Reshaping Consulting, Advisory, and Strategy',url:'https://www2.deloitte.com/insights'},
+    {source:'WEF',title:'Stakeholder Capitalism and Responsible AI: Why Purpose Matters More Than Ever',url:'https://weforum.org'},
+    {source:'BCG',title:'How the Best Firms Attract Top Talent in the Age of AI',url:'https://bcg.com'},
+    {source:'Financial Times',title:'The Boutique Consulting Boom: Why Specialist Firms Are Winning Enterprise Mandates',url:'https://ft.com'},
+    {source:'Stanford GSB',title:'From Strategy to Execution: What Distinguishes Firms That Deliver on Transformation Promises',url:'https://gsb.stanford.edu'},
+  ],
+
+  careers:[
+    {source:'Harvard Business Review',title:'The Skills That Matter Most in 2025 — and How Leading Firms Are Building Them',url:'https://hbr.org'},
+    {source:'McKinsey',title:'The War for AI Talent: What Top Employers Are Doing to Win',url:'https://mckinsey.com'},
+    {source:'LinkedIn',title:'2025 Workplace Learning Report: AI Skills Demand Surges 300% Among Enterprise Employers',url:'https://linkedin.com'},
+    {source:'MIT Technology Review',title:'Quantum Computing Careers: The Emerging Roles and Skills Employers Need Now',url:'https://technologyreview.com'},
+    {source:'Fortune',title:'Why the Best Technologists Are Choosing Consulting Over Big Tech in 2025',url:'https://fortune.com'},
+    {source:'Glassdoor',title:'Top Employers for AI and Data Science Professionals: What Makes Them Stand Out',url:'https://glassdoor.com'},
+    {source:'WEF',title:'Future of Jobs 2025: The Skills Gap Is Closing — Here Is Why',url:'https://weforum.org'},
+    {source:'Deloitte Insights',title:'Rethinking the Employee Value Proposition for the Age of AI',url:'https://www2.deloitte.com/insights'},
+    {source:'Stanford HAI',title:'Where AI Talent Goes: Industry vs Academia vs Consulting in 2025',url:'https://hai.stanford.edu'},
+  ],
+
+  partners:[
+    {source:'Gartner',title:'Strategic Technology Partnerships: How Ecosystems Are Replacing Vendor Relationships',url:'https://gartner.com'},
+    {source:'McKinsey',title:'The Power of Ecosystems: Why the Best Firms Co-Create Value with Technology Partners',url:'https://mckinsey.com'},
+    {source:'Harvard Business Review',title:'From Vendor to Strategic Partner: How IT Consulting Alliances Are Evolving',url:'https://hbr.org'},
+    {source:'Forrester',title:'The 2025 Cloud Partner Ecosystem: How Hyperscalers Are Reshaping Enterprise IT Delivery',url:'https://forrester.com'},
+    {source:'AWS',title:'Partner Transformation Program: Building Next-Generation Consulting Capabilities on AWS',url:'https://aws.amazon.com'},
+    {source:'Microsoft',title:'AI Partner Innovation: How the Copilot Ecosystem Is Creating New Value for Enterprise Clients',url:'https://microsoft.com'},
+    {source:'IDC',title:'The IT Services Partner Landscape: Joint Solutions Are Outperforming Solo Strategies 3:1',url:'https://idc.com'},
+    {source:'Deloitte Insights',title:'Alliance Strategy in the AI Era: Building vs. Buying vs. Partnering for Capability',url:'https://www2.deloitte.com/insights'},
+    {source:'BCG',title:'The Platform Partnership Playbook: How Consulting Firms Are Monetizing Cloud Alliances',url:'https://bcg.com'},
+  ],
+
   insights:[
     {source:'MIT Technology Review',title:'The Next Wave of AI Agents Is Already Here — And They\'re Reshaping Enterprise Workflows',url:'https://technologyreview.com'},
     {source:'McKinsey',title:'The State of AI in 2025: Adoption Has Crossed the Chasm, But ROI Remains Elusive',url:'https://mckinsey.com'},

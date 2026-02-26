@@ -70,19 +70,19 @@
         <p style="font-size:.92rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;">Our consultants respond to all inquiries within one business day. For urgent matters, call our HQ directly.</p>
         <div style="display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);">
           <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.2rem;background:var(--surface);">
-            <span style="color:var(--blue-lt);flex-shrink:0;margin-top:.1rem;">📍</span>
+            <span style="color:var(--blue-lt);flex-shrink:0;display:inline-flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
             <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.2rem;">Global Headquarters</div><div style="font-size:.82rem;color:var(--muted);">5000 Thayer Center STE C<br>Oakland, MD 21550, USA</div></div>
           </div>
           <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
-            <span style="color:var(--blue-lt);flex-shrink:0;">📞</span>
+            <span style="color:var(--blue-lt);flex-shrink:0;display:inline-flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
             <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Phone</div><a href="tel:+13013347686" style="font-size:.82rem;color:var(--muted);text-decoration:none;">+1 (301) 334-QNTM</a></div>
           </div>
           <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
-            <span style="color:var(--blue-lt);flex-shrink:0;">✉️</span>
+            <span style="color:var(--blue-lt);flex-shrink:0;display:inline-flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
             <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Email</div><a href="mailto:info@qantumiq.com" style="font-size:.82rem;color:var(--muted);text-decoration:none;">info@qantumiq.com</a></div>
           </div>
           <div style="display:flex;gap:1rem;align-items:center;padding:1.1rem 1.2rem;background:var(--surface);border-top:1px solid var(--border2);">
-            <span style="color:var(--blue-lt);flex-shrink:0;">💼</span>
+            <span style="color:var(--blue-lt);flex-shrink:0;display:inline-flex;align-items:center;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M12 12v4"/><path d="M2 12h20"/></svg></span>
             <div><div style="font-weight:600;font-size:.82rem;margin-bottom:.18rem;">Business Development</div><a href="mailto:consulting@qantumiq.com" style="font-size:.82rem;color:var(--muted);text-decoration:none;">consulting@qantumiq.com</a></div>
           </div>
         </div>
@@ -180,6 +180,18 @@
     <div class="reveal loc-grid" id="loc-grid"></div>
     <!-- Leaflet map -->
     <div class="reveal" style="margin-top:1.5rem;" id="contact-map"></div>
+  </div>
+</section>
+
+
+<!-- INTELLIGENCE FEED -->
+<section class="news-feed-section section-half">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Intelligence Feed</div>
+      <h2 class="section-title" style="font-size:1.75rem;">Latest <span class="it">industry</span> intelligence</h2>
+    </div>
+    <div class="news-feed-grid reveal" id="page-news"></div>
   </div>
 </section>
 
@@ -301,5 +313,7 @@ function focusOffice(i, btn, isHQ){
   document.getElementById('contact-map').scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 </script>
+
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'partners'); });</script>
 </body>
 </html>
