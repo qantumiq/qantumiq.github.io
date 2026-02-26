@@ -114,7 +114,7 @@
 <script src="../assets/js/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-  QIQ.loadNewsFeed('page-news', 'insights');
+  QIQ.loadNewsFeed('page-news');
   const fi=document.getElementById('feat-img');
   if(fi) fi.style.backgroundImage=`url('${QIQ.getDailyImage("finance")}')`;
 });
