@@ -34,9 +34,9 @@
   text-align:left;transition:border-color .18s,color .18s,background .18s;
   white-space:nowrap;overflow:hidden;
 }
-.loc-btn:hover{border-color:var(--blue-lt);color:var(--white);}
-.loc-btn.active{border-color:var(--blue);background:rgba(15,98,254,.1);color:var(--white);}
-.loc-btn.active-hq{border-color:var(--gold-lt);background:rgba(212,168,75,.08);color:var(--white);}
+.loc-btn:hover{border-color:var(--blue-lt);color:var(--navy);}
+.loc-btn.active{border-color:var(--blue);background:rgba(15,98,254,.1);color:var(--navy);}
+.loc-btn.active-hq{border-color:var(--gold-lt);background:rgba(212,168,75,.08);color:var(--navy);}
 .loc-flag{font-size:.95rem;flex-shrink:0;}
 .loc-text{display:flex;flex-direction:column;overflow:hidden;}
 .loc-city{font-weight:600;font-size:.78rem;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -314,6 +314,6 @@ function focusOffice(i, btn, isHQ){
 }
 </script>
 
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'partners'); });</script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'partners'); QIQ.injectContentPhotos(); });</script>
 </body>
 </html>

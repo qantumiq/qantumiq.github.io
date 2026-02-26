@@ -102,33 +102,68 @@
 </section>
 
 <!-- GLOBAL OFFICES -->
-<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border);">
+<section class="section-pad" style="background:var(--bg2);border-top:1px solid var(--border2);">
   <div class="container">
     <div class="reveal section-header-row">
       <div>
         <div class="eyebrow">Global Presence</div>
-        <h2 class="section-title">Where we <span class="it">operate</span></h2>
-        <p class="section-desc">12 offices across 8 countries — bringing quantum-era consulting to where our clients need us most.</p>
+        <h2 class="section-title">13 offices across <span class="it">5 countries</span></h2>
+        <p class="section-desc">From our Global HQ in Oakland, Maryland to offices across the Americas, Europe, and Asia-Pacific — QantumIQ expertise is where our clients need it most.</p>
       </div>
+      <a href="../company/contact.html" class="btn-ghost">View Interactive Map →</a>
     </div>
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;">
-      <div class="location-card location-hq">
-        <div class="location-hq-badge">Global HQ</div>
-        <div class="location-flag">🇺🇸</div>
-        <div class="location-city">Oakland, Maryland</div>
-        <div class="location-country" style="margin-bottom:.75rem;">USA</div>
-        <div style="font-size:.78rem;color:var(--muted);">5000 Thayer Center STE C<br>Oakland, MD 21550</div>
+
+    <!-- Stats row -->
+    <div class="reveal stats-row" style="margin-top:2.5rem;margin-bottom:2.5rem;">
+      <div><div class="stat-num">13</div><div class="stat-label">Global Offices</div></div>
+      <div><div class="stat-num">5</div><div class="stat-label">Countries</div></div>
+      <div><div class="stat-num">3</div><div class="stat-label">Continents</div></div>
+      <div><div class="stat-num">24/7</div><div class="stat-label">Follow-the-Sun Coverage</div></div>
+    </div>
+
+    <!-- Regional office grid using same loc-btn vocabulary as contact page -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1rem;">
+
+      <!-- Americas -->
+      <div>
+        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Americas</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <div class="loc-btn active-hq" style="cursor:default;">
+            <span class="loc-flag">🇺🇸</span>
+            <span class="loc-text">
+              <span class="loc-city"><span class="hq-badge">HQ</span> Oakland, Maryland</span>
+              <span class="loc-country">USA · 5000 Thayer Center STE C</span>
+            </span>
+          </div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇺🇸</span><span class="loc-text"><span class="loc-city">New York City</span><span class="loc-country">USA</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇺🇸</span><span class="loc-text"><span class="loc-city">Miami</span><span class="loc-country">USA</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇺🇸</span><span class="loc-text"><span class="loc-city">Boston</span><span class="loc-country">USA</span></span></div>
+        </div>
       </div>
-      <div class="location-card"><div class="location-flag">🇺🇸</div><div class="location-city">New York City</div><div class="location-country">USA</div></div>
-      <div class="location-card"><div class="location-flag">🇺🇸</div><div class="location-city">Miami</div><div class="location-country">USA</div></div>
-      <div class="location-card"><div class="location-flag">🇬🇧</div><div class="location-city">London</div><div class="location-country">United Kingdom</div></div>
-      <div class="location-card"><div class="location-flag">🇨🇦</div><div class="location-city">Toronto</div><div class="location-country">Canada</div></div>
-      <div class="location-card"><div class="location-flag">🇦🇺</div><div class="location-city">Sydney</div><div class="location-country">Australia</div></div>
-      <div class="location-card"><div class="location-flag">🇦🇺</div><div class="location-city">Melbourne</div><div class="location-country">Australia</div></div>
-      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Mumbai</div><div class="location-country">India</div></div>
-      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Bangalore</div><div class="location-country">India</div></div>
-      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">NCR (Delhi)</div><div class="location-country">India</div></div>
-      <div class="location-card"><div class="location-flag">🇮🇳</div><div class="location-city">Hyderabad</div><div class="location-country">India</div></div>
+
+      <!-- Europe -->
+      <div>
+        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Europe</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇬🇧</span><span class="loc-text"><span class="loc-city">London</span><span class="loc-country">United Kingdom</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇬🇧</span><span class="loc-text"><span class="loc-city">Birmingham</span><span class="loc-country">United Kingdom</span></span></div>
+        </div>
+      </div>
+
+      <!-- Asia-Pacific -->
+      <div>
+        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Asia-Pacific</div>
+        <div style="display:flex;flex-direction:column;gap:.5rem;">
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇮🇳</span><span class="loc-text"><span class="loc-city">NCR (Delhi)</span><span class="loc-country">India</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇮🇳</span><span class="loc-text"><span class="loc-city">Mumbai</span><span class="loc-country">India</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇮🇳</span><span class="loc-text"><span class="loc-city">Bangalore</span><span class="loc-country">India</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇮🇳</span><span class="loc-text"><span class="loc-city">Hyderabad</span><span class="loc-country">India</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇸🇬</span><span class="loc-text"><span class="loc-city">Singapore</span><span class="loc-country">Singapore</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇦🇺</span><span class="loc-text"><span class="loc-city">Sydney</span><span class="loc-country">Australia</span></span></div>
+          <div class="loc-btn" style="cursor:default;"><span class="loc-flag">🇦🇺</span><span class="loc-text"><span class="loc-city">Melbourne</span><span class="loc-country">Australia</span></span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -160,6 +195,6 @@
 <footer id="qiq-footer"></footer>
 <script src="../assets/js/main.js"></script>
 
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'about'); });</script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'about'); QIQ.injectContentPhotos(); });</script>
 </body>
 </html>

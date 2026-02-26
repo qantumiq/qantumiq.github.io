@@ -124,6 +124,7 @@ function buildNav(){
   <li class="nav-item" data-menu="industries">
     <button class="nav-link">Industries<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
+      <a href="${r}industries/index.html" style="font-weight:700;color:var(--blue);border-bottom:1px solid var(--border2);padding-bottom:.75rem;margin-bottom:.25rem;">→ All Industries</a>
       <a href="${r}industries/financial-services.html">Financial Services</a>
       <a href="${r}industries/healthcare.html">Healthcare</a>
       <a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a>
@@ -175,6 +176,7 @@ function buildNav(){
   <a href="${r}services/information-insights.html">Information &amp; Insights</a>
   <a href="${r}services/management-consulting.html">Management Consulting</a>
   <div class="mob-heading">Industries</div>
+  <a href="${r}industries/index.html" style="font-weight:700;color:var(--blue);">→ All Industries</a>
   <a href="${r}industries/financial-services.html">Financial Services</a>
   <a href="${r}industries/healthcare.html">Healthcare</a>
   <a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a>
@@ -296,6 +298,7 @@ function buildFooter(){
   <div class="footer-col">
     <h4>Services</h4>
     <ul>
+      <li><a href="${r}services/index.html" style="color:rgba(120,175,255,.9);font-weight:600;">All Services →</a></li>
       <li><a href="${r}services/ai-ml.html">AI &amp; ML Solutions</a></li>
       <li><a href="${r}services/quantum-computing.html">Quantum Computing</a></li>
       <li><a href="${r}services/digital-transformation.html">Digital Transformation</a></li>
@@ -308,6 +311,7 @@ function buildFooter(){
   <div class="footer-col">
     <h4>Industries</h4>
     <ul>
+      <li><a href="${r}industries/index.html" style="color:rgba(120,175,255,.9);font-weight:600;">All Industries →</a></li>
       <li><a href="${r}industries/financial-services.html">Financial Services</a></li>
       <li><a href="${r}industries/healthcare.html">Healthcare</a></li>
       <li><a href="${r}industries/pharmaceuticals.html">Pharma &amp; Biotech</a></li>
@@ -475,6 +479,14 @@ function nextWidePhoto(){
   return `https://picsum.photos/id/${id}/1200/600`;
 }
 
+/* Returns a consistent daily photo for a given theme using HERO_POOLS */
+function getDailyImage(theme){
+  const pool=HERO_POOLS[theme]||HERO_POOLS.home;
+  const day=Math.floor(Date.now()/86400000);
+  const id=pool[day % pool.length];
+  return `https://picsum.photos/id/${id}/900/500`;
+}
+
 function initHeroSlideshow(){
   const hero=document.querySelector('[data-hero-theme]');
   if(!hero)return;
@@ -627,6 +639,18 @@ function injectContentPhotos(){
 
   // 7. Service cards on homepage — inject photos into .svc-photo elements
   document.querySelectorAll('.svc-photo').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextSmPhoto()}')`;
+  });
+
+  // 8. Capability/industry photo panels in services and industries overview pages
+  document.querySelectorAll('.capability-photo,.industry-photo').forEach(el=>{
+    if(el.style.backgroundImage)return;
+    el.style.backgroundImage=`url('${nextSmPhoto()}')`;
+  });
+
+  // 9. Featured blog/article images
+  document.querySelectorAll('.feat-photo').forEach(el=>{
     if(el.style.backgroundImage)return;
     el.style.backgroundImage=`url('${nextSmPhoto()}')`;
   });
@@ -988,6 +1012,6 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 
 // Expose for external calls (news feed etc)
-window.QIQ={loadNewsFeed,injectContentPhotos};
+window.QIQ={loadNewsFeed,injectContentPhotos,getDailyImage};
 
 })();
