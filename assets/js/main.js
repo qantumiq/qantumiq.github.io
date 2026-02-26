@@ -649,10 +649,16 @@ function injectContentPhotos(){
     el.style.backgroundImage=`url('${nextSmPhoto()}')`;
   });
 
-  // 9. Featured blog/article images
+  // 9. Featured blog/article images — preload with fallback on broken IDs
   document.querySelectorAll('.feat-photo').forEach(el=>{
     if(el.style.backgroundImage)return;
-    el.style.backgroundImage=`url('${nextSmPhoto()}')`;
+    (function tryLoad(attempts){
+      const url=nextSmPhoto();
+      const img=new Image();
+      img.onload=()=>{ el.style.backgroundImage=`url('${url}')`; };
+      img.onerror=()=>{ if(attempts>0)tryLoad(attempts-1); };
+      img.src=url;
+    })(6);
   });
 }
 
