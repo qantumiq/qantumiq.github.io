@@ -682,8 +682,13 @@ a{color:inherit}
   color:var(--muted);white-space:nowrap;
   transition:border-color .2s,color .2s;cursor:default;flex-shrink:0;
   box-shadow:var(--shadow-xs);
+  display:inline-flex;align-items:center;gap:.5rem;
 }
 .marquee-chip:hover{border-color:var(--blue);color:var(--navy)}
+.chip-logo{
+  width:16px;height:16px;object-fit:contain;border-radius:2px;
+  flex-shrink:0;filter:var(--chip-logo-filter,none);
+}
 
 /* ═══════════════════════════════════════════════════════════
    NEWS FEED
