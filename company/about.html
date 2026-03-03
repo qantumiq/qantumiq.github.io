@@ -6,8 +6,10 @@
 <title>About Us — QantumIQ</title>
 <meta name="description" content="Learn about QantumIQ — a global advanced consulting firm headquartered in Oakland, MD, specializing in quantum computing, AI, and digital transformation."/>
 <link rel="stylesheet" href="../assets/css/main.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
+<div id="scroll-progress"></div>
 <canvas id="qiq-canvas"></canvas>
 <div class="page-hero" data-hero-theme="about">
   <div class="container">
@@ -57,8 +59,8 @@
       <div><div class="stat-num">300<span class="plus">+</span></div><div class="stat-label">Global Consultants</div></div>
       <div><div class="stat-num">15<span class="plus">+</span></div><div class="stat-label">Years of Excellence</div></div>
       <div><div class="stat-num">500<span class="plus">+</span></div><div class="stat-label">Client Engagements</div></div>
-      <div><div class="stat-num">12</div><div class="stat-label">Global Offices</div></div>
-      <div><div class="stat-num">8</div><div class="stat-label">Industries Served</div></div>
+      <div><div class="stat-num">13</div><div class="stat-label">Global Offices</div></div>
+      <div><div class="stat-num">9</div><div class="stat-label">Industries Served</div></div>
     </div>
   </div>
 </section>
@@ -110,7 +112,7 @@
         <h2 class="section-title">13 offices across <span class="it">5 countries</span></h2>
         <p class="section-desc">From our Global HQ in Oakland, Maryland to offices across the Americas, Europe, Asia-Pacific, and Australia — QantumIQ expertise is where our clients need it most.</p>
       </div>
-      <a href="../company/contact.html" class="btn-ghost">View Interactive Map →</a>
+      <a href="../company/contact.html" class="btn-ghost">Get in Touch →</a>
     </div>
 
     <!-- Stats row -->
@@ -121,50 +123,10 @@
       <div><div class="stat-num">24/7</div><div class="stat-label">Follow-the-Sun Coverage</div></div>
     </div>
 
-    <!-- Regional office grid using same loc-btn vocabulary as contact page -->
-    <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1rem;">
-
-      <!-- Americas -->
-      <div>
-        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Americas</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div class="loc-btn active-hq" style="cursor:default;">
-            <span class="loc-flag"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;"></span>
-            <span class="loc-text">
-              <span class="loc-city"><span class="hq-badge">HQ</span> Oakland, Maryland</span>
-              <span class="loc-country">USA · 5000 Thayer Center STE C</span>
-            </span>
-          </div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">New York City</span><span class="loc-country">USA</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Miami</span><span class="loc-country">USA</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Boston</span><span class="loc-country">USA</span></span></div>
-        </div>
-      </div>
-
-      <!-- Europe -->
-      <div>
-        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Europe</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="GB" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">London</span><span class="loc-country">United Kingdom</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="GB" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Birmingham</span><span class="loc-country">United Kingdom</span></span></div>
-        </div>
-      </div>
-
-      <!-- Asia-Pacific -->
-      <div>
-        <div style="font-family:var(--ff-sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:1.1rem;display:flex;align-items:center;gap:.6rem;"><span style="display:block;width:18px;height:1px;background:var(--blue);"></span>Asia-Pacific</div>
-        <div style="display:flex;flex-direction:column;gap:.5rem;">
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">NCR (Delhi)</span><span class="loc-country">India</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Mumbai</span><span class="loc-country">India</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Bangalore</span><span class="loc-country">India</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Hyderabad</span><span class="loc-country">India</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/sg.png" width="16" height="12" alt="SG" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Singapore</span><span class="loc-country">Singapore</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="AU" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Sydney</span><span class="loc-country">Australia</span></span></div>
-          <div class="loc-btn" style="cursor:default;"><span class="loc-flag"><img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="AU" style="vertical-align:middle;border-radius:1px;"></span><span class="loc-text"><span class="loc-city">Melbourne</span><span class="loc-country">Australia</span></span></div>
-        </div>
-      </div>
-
-    </div>
+    <!-- Interactive clickable location buttons -->
+    <div class="reveal loc-grid" id="about-loc-grid"></div>
+    <!-- Leaflet map -->
+    <div class="reveal" style="margin-top:1.5rem;" id="about-map"></div>
   </div>
 </section>
 
@@ -194,7 +156,106 @@
 </section>
 <footer id="qiq-footer"></footer>
 <script src="../assets/js/main.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+// ── OFFICES DATA (same as contact page) ──
+var ABOUT_OFFICES = [
+  {city:'Oakland, MD', country:'United States', flag:'<img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;">', hq:true,  lat:39.4092,  lng:-79.4052, addr:'5000 Thayer Center STE C, Oakland MD 21550'},
+  {city:'New York City', country:'United States', flag:'<img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;">',          lat:40.7128,  lng:-74.0060, addr:'New York, NY, USA'},
+  {city:'Miami',         country:'United States', flag:'<img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;">',          lat:25.7617,  lng:-80.1918, addr:'Miami, FL, USA'},
+  {city:'Boston',        country:'United States', flag:'<img src="https://flagcdn.com/16x12/us.png" width="16" height="12" alt="US" style="vertical-align:middle;border-radius:1px;">',          lat:42.3601,  lng:-71.0589, addr:'Boston, MA, USA'},
+  {city:'London',        country:'United Kingdom',  flag:'<img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="GB" style="vertical-align:middle;border-radius:1px;">',          lat:51.5074,  lng:-0.1278,  addr:'London, United Kingdom'},
+  {city:'Birmingham',    country:'United Kingdom',  flag:'<img src="https://flagcdn.com/16x12/gb.png" width="16" height="12" alt="GB" style="vertical-align:middle;border-radius:1px;">',          lat:52.4862,  lng:-1.8904,  addr:'Birmingham, United Kingdom'},
+  {city:'NCR (Delhi)',   country:'India',flag:'<img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;">',          lat:28.6139,  lng:77.2090,  addr:'National Capital Region, India'},
+  {city:'Bangalore',     country:'India',flag:'<img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;">',          lat:12.9716,  lng:77.5946,  addr:'Bangalore, Karnataka, India'},
+  {city:'Mumbai',        country:'India',flag:'<img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;">',          lat:19.0760,  lng:72.8777,  addr:'Mumbai, Maharashtra, India'},
+  {city:'Hyderabad',     country:'India',flag:'<img src="https://flagcdn.com/16x12/in.png" width="16" height="12" alt="IN" style="vertical-align:middle;border-radius:1px;">',          lat:17.3850,  lng:78.4867,  addr:'Hyderabad, Telangana, India'},
+  {city:'Singapore',     country:'Singapore',flag:'<img src="https://flagcdn.com/16x12/sg.png" width="16" height="12" alt="SG" style="vertical-align:middle;border-radius:1px;">',      lat:1.3521,   lng:103.8198, addr:'Singapore'},
+  {city:'Sydney',        country:'Australia',flag:'<img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="AU" style="vertical-align:middle;border-radius:1px;">',      lat:-33.8688, lng:151.2093, addr:'Sydney, NSW, Australia'},
+  {city:'Melbourne',     country:'Australia',flag:'<img src="https://flagcdn.com/16x12/au.png" width="16" height="12" alt="AU" style="vertical-align:middle;border-radius:1px;">',      lat:-37.8136, lng:144.9631, addr:'Melbourne, VIC, Australia'},
+];
 
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news', 'about'); QIQ.injectContentPhotos(); });</script>
+var aboutLocGrid = document.getElementById('about-loc-grid');
+var aboutMarkers = [];
+var aboutMap, aboutActiveBtn = null;
+
+ABOUT_OFFICES.forEach(function(o, i){
+  var btn = document.createElement('button');
+  btn.className = 'loc-btn';
+  btn.innerHTML =
+    '<span class="loc-flag">' + o.flag + '</span>' +
+    '<span class="loc-text">' +
+    (o.hq ? '<span class="hq-badge">HQ</span>' : '') +
+    '<span class="loc-city">' + o.city + '</span>' +
+    '<span class="loc-country">' + o.country + '</span>' +
+    '</span>';
+  btn.addEventListener('click', function(){
+    ABOUT_OFFICES.forEach(function(oo){ if(oo._btn) oo._btn.className='loc-btn'; });
+    btn.className = 'loc-btn ' + (o.hq ? 'active-hq' : 'active');
+    if(aboutMap){
+      aboutMap.flyTo([o.lat, o.lng], 12, {duration:1.2});
+      setTimeout(function(){ if(aboutMarkers[i]) aboutMarkers[i].openPopup(); }, 1300);
+    }
+    document.getElementById('about-map').scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  aboutLocGrid.appendChild(btn);
+  o._btn = btn;
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+  aboutMap = L.map('about-map', {zoomControl:true, scrollWheelZoom:false}).setView([25,18],2);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom:18
+  }).addTo(aboutMap);
+
+  ABOUT_OFFICES.forEach(function(o, i){
+    var cls = 'qiq-pin' + (o.hq ? ' hq' : '');
+    var icon = L.divIcon({
+      html:'<div class="' + cls + '" data-idx="' + i + '"></div>',
+      className:'', iconSize:[o.hq?24:20,o.hq?24:20], iconAnchor:[o.hq?12:10,o.hq?12:10], popupAnchor:[0,-14]
+    });
+    var popup = '<strong style="color:#4589FF;font-size:.82rem;">' +
+      (o.hq?'★ ':'') + o.city + (o.hq?' — HQ':'') +
+      '</strong><br><span style="color:rgba(244,246,255,.6);font-size:.76rem;">' + o.addr + '</span>';
+    var m = L.marker([o.lat,o.lng],{icon:icon}).addTo(aboutMap).bindPopup(popup,{maxWidth:240});
+    aboutMarkers.push(m);
+  });
+
+  QIQ.loadNewsFeed('page-news', 'about');
+  QIQ.injectContentPhotos();
+});
+</script>
+<div id="cookie-consent">
+  <p>We use cookies to improve your experience and analyse site usage. <a href="../legal/privacy-policy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn-accept" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+<div id="qiq-search-overlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input id="qiq-search-input" type="text" placeholder="Search services, industries, insights..." oninput="doSearch(this.value)">
+  <div id="qiq-search-results"></div>
+</div>
+<button id="qiq-chat-btn" onclick="toggleChat()" title="Ask QantumIQ AI">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="qiq-chatbot">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">Q</div>
+      <div><div class="chat-name">QantumIQ Assistant</div><div class="chat-status">Online</div></div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm the QantumIQ AI assistant. Ask me about our services, quantum readiness, AI strategy, or how we can help your organization.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about quantum, AI, or our services..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+    <button onclick="sendChatMsg()">Send</button>
+  </div>
+</div>
 </body>
 </html>

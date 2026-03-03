@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="../../assets/css/main.css"/>
 </head>
 <body>
+<div id="scroll-progress"></div>
 <canvas id="qiq-canvas"></canvas>
 <div class="page-hero" data-hero-theme="pharma">
   <div class="container"><div class="page-hero-content">
@@ -112,5 +113,36 @@
   var img=document.getElementById('article-img');
   if(img) img.style.backgroundImage=`url('${QIQ.getDailyImage("pharma")}')`;
 });</script>
+<div id="cookie-consent">
+  <p>We use cookies to improve your experience and analyse site usage. <a href="../../legal/privacy-policy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn-accept" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+<div id="qiq-search-overlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input id="qiq-search-input" type="text" placeholder="Search services, industries, insights..." oninput="doSearch(this.value)">
+  <div id="qiq-search-results"></div>
+</div>
+<button id="qiq-chat-btn" onclick="toggleChat()" title="Ask QantumIQ AI">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="qiq-chatbot">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">Q</div>
+      <div><div class="chat-name">QantumIQ Assistant</div><div class="chat-status">Online</div></div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm the QantumIQ AI assistant. Ask me about our services, quantum readiness, AI strategy, or how we can help your organization.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about quantum, AI, or our services..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+    <button onclick="sendChatMsg()">Send</button>
+  </div>
+</div>
 </body>
 </html>

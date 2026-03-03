@@ -157,7 +157,7 @@ function buildNav(){
   </li>
 </ul>
 <div style="display:flex;align-items:center;gap:.2rem;">
-  <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
+  <button id="theme-toggle" aria-label="Toggle theme">☀️</button><button id="search-btn" aria-label="Search" onclick="toggleSearch()" style="width:32px;height:32px;background:none;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.82rem;color:var(--muted);margin-left:.3rem;transition:border-color .2s,color .2s;" onmouseover="this.style.borderColor='var(--blue-lt)';this.style.color='var(--blue)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -330,6 +330,19 @@ function buildFooter(){
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
       <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
+    </ul>
+    <div style="margin-top:1rem;">
+      <div style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;">Newsletter</div>
+      <form class="newsletter-form" onsubmit="nlSubmit(event)">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="nl-success">Thank you for subscribing!</div>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Quick Links</h4>
+    <ul>
       <li><a href="${r}company/contact.html">Contact</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
     </ul>
@@ -1018,6 +1031,140 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 
 // Expose for external calls (news feed etc)
-window.QIQ={loadNewsFeed,injectContentPhotos,getDailyImage};
+// ── SCROLL PROGRESS BAR ──
+window.addEventListener('scroll',function(){
+  var bar=document.getElementById('scroll-progress');
+  if(!bar)return;
+  var pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  bar.style.width=Math.min(pct,100)+'%';
+});
+
+// ── COOKIE CONSENT ──
+(function(){
+  if(localStorage.getItem('qiq-cookie'))return;
+  setTimeout(function(){
+    var ck=document.getElementById('cookie-consent');
+    if(ck)ck.classList.add('show');
+  },1800);
+})();
+function dismissCookie(accepted){
+  var ck=document.getElementById('cookie-consent');
+  if(ck)ck.classList.remove('show');
+  localStorage.setItem('qiq-cookie','1');
+}
+
+// ── SEARCH OVERLAY ──
+function toggleSearch(){
+  var s=document.getElementById('qiq-search-overlay');
+  if(!s)return;
+  s.classList.toggle('open');
+  if(s.classList.contains('open'))setTimeout(function(){document.getElementById('qiq-search-input').focus()},100);
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    var s=document.getElementById('qiq-search-overlay');
+    if(s)s.classList.remove('open');
+  }
+});
+var QIQ_SEARCH=[
+  {t:'AI & ML Solutions',d:'Enterprise AI strategy, ML model development, production deployment',u:'services/ai-ml.html'},
+  {t:'Quantum Computing & PQC',d:'Quantum readiness, post-quantum cryptography, NIST standards',u:'services/quantum-computing.html'},
+  {t:'Digital Transformation',d:'End-to-end transformation programs, modern data estates',u:'services/digital-transformation.html'},
+  {t:'C-Suite Advisory',d:'Board-level technology strategy, AI governance, M&A',u:'services/c-suite-advisory.html'},
+  {t:'Business Process',d:'Process mining, RPA, intelligent automation',u:'services/business-process.html'},
+  {t:'Information & Insights',d:'Data platforms, BI, real-time analytics',u:'services/information-insights.html'},
+  {t:'Management Consulting',d:'Strategy, org design, change management',u:'services/management-consulting.html'},
+  {t:'Financial Services',d:'AI risk models, fraud detection, PQC, digital banking',u:'industries/financial-services.html'},
+  {t:'Healthcare',d:'Clinical AI, interoperability, value-based care analytics',u:'industries/healthcare.html'},
+  {t:'Pharma & Biotech',d:'AI drug discovery, CRISPR, bioprocessing, CGT',u:'industries/pharmaceuticals.html'},
+  {t:'Technology',d:'Platform strategy, cloud optimization, AI engineering',u:'industries/technology.html'},
+  {t:'Telecommunications',d:'5G monetization, network AI, cloud-native core',u:'industries/telecommunications.html'},
+  {t:'Energy & Utilities',d:'Grid AI, renewable optimization, OT security',u:'industries/energy.html'},
+  {t:'Government',d:'Digital government, national security AI, policy analytics',u:'industries/government.html'},
+  {t:'Sustainability & Water',d:'ESG strategy, smart water networks, net-zero roadmaps',u:'industries/sustainability.html'},
+  {t:'Media & Entertainment',d:'Streaming strategy, AI content ops, AdTech',u:'industries/media-entertainment.html'},
+  {t:'Blog & Insights',d:'Thought leadership on AI, quantum, digital transformation',u:'insights/blog.html'},
+  {t:'Case Studies',d:'Real-world client transformation stories',u:'insights/case-studies.html'},
+  {t:'Contact',d:'Schedule a consultation, find your nearest office',u:'company/contact.html'},
+  {t:'About QantumIQ',d:'Our mission, leadership, and global presence',u:'company/about.html'},
+];
+function doSearch(q){
+  var sr=document.getElementById('qiq-search-results');
+  if(!sr)return;
+  if(!q.trim()){sr.innerHTML='';return;}
+  var ql=q.toLowerCase();
+  var res=QIQ_SEARCH.filter(function(d){return d.t.toLowerCase().indexOf(ql)>-1||d.d.toLowerCase().indexOf(ql)>-1});
+  var isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
+  var r=isRoot?'':'../';
+  if(res.length){
+    sr.innerHTML=res.map(function(x){return '<a class="search-result" href="'+r+x.u+'"><h4>'+x.t+'</h4><p>'+x.d+'</p></a>'}).join('');
+  } else {
+    sr.innerHTML='<div class="search-result"><p>No results found.</p></div>';
+  }
+}
+
+// ── AI CHATBOT ──
+var _chatOpen=false,_chatHistory=[];
+function toggleChat(){
+  _chatOpen=!_chatOpen;
+  var w=document.getElementById('qiq-chatbot');
+  if(w)w.classList.toggle('open',_chatOpen);
+  if(_chatOpen){var i=document.getElementById('chat-input');if(i)i.focus();}
+}
+function appendChatMsg(txt,role){
+  var m=document.getElementById('chat-messages');
+  if(!m)return;
+  var d=document.createElement('div');
+  d.className='chat-msg '+(role==='user'?'user':'bot');
+  d.textContent=txt;m.appendChild(d);
+  m.scrollTop=m.scrollHeight;
+  return d;
+}
+function sendChatMsg(){
+  var inp=document.getElementById('chat-input');
+  if(!inp)return;
+  var msg=inp.value.trim();if(!msg)return;
+  inp.value='';
+  appendChatMsg(msg,'user');
+  _chatHistory.push({role:'user',content:msg});
+  var typing=appendChatMsg('Thinking...','bot');
+  fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',max_tokens:400,
+      system:'You are the QantumIQ AI assistant. QantumIQ is an advanced consulting firm specializing in AI/ML, quantum computing and PQC, digital transformation, and C-suite advisory. Offices in Oakland MD (HQ), New York, Miami, Boston, London, Birmingham, Delhi NCR, Mumbai, Bangalore, Hyderabad, Singapore, Sydney, Melbourne. Keep responses concise and professional. Suggest scheduling a consultation for complex inquiries.',
+      messages:_chatHistory
+    })
+  }).then(function(r){return r.json()}).then(function(data){
+    typing.remove();
+    var reply=(data.content&&data.content.map(function(b){return b.text||''}).join(''))||'I had trouble responding. Please contact us at info@qantumiq.com';
+    appendChatMsg(reply,'bot');
+    _chatHistory.push({role:'assistant',content:reply});
+  }).catch(function(){
+    typing.textContent='I had trouble connecting. Please try again or email info@qantumiq.com';
+  });
+}
+
+// ── NEWSLETTER ──
+function nlSubmit(e){
+  e.preventDefault();
+  var f=e.target;
+  f.style.display='none';
+  var ok=f.nextElementSibling;
+  if(ok)ok.style.display='block';
+}
+
+// ── BRAND MARQUEE BUILDER ──
+function buildBrandMarquee(id, data){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var double=data.concat(data);
+  el.innerHTML=double.map(function(p){
+    return '<div class="brand-card"><span class="brand-dot" style="background:'+p.color+'"></span><span class="brand-name">'+p.name+'</span></div>';
+  }).join('');
+}
+
+window.QIQ={loadNewsFeed,injectContentPhotos,getDailyImage,buildBrandMarquee};
 
 })();
