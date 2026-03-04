@@ -100,8 +100,8 @@ const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 52" c
 
 /* ─── NAV BUILD ─── */
 function buildNav(){
-  const isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
-  const r=isRoot?'':'../';
+  const _segs=location.pathname.replace(/\/$/,'').split('/').filter(Boolean);
+  const r='../'.repeat(Math.max(0,_segs.length-1));
 
   const nav=document.createElement('nav');
   nav.id='qiq-nav';
@@ -247,8 +247,8 @@ function buildNav(){
 
 /* ─── FOOTER BUILD ─── */
 function buildFooter(){
-  const isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
-  const r=isRoot?'':'../';
+  const _segs=location.pathname.replace(/\/$/,'').split('/').filter(Boolean);
+  const r='../'.repeat(Math.max(0,_segs.length-1));
 
   const footer=document.getElementById('qiq-footer');
   if(!footer)return;
@@ -1095,6 +1095,11 @@ var QIQ_SEARCH=[
   {t:'Case Studies',d:'Real-world client transformation stories',u:'insights/case-studies.html'},
   {t:'Contact',d:'Schedule a consultation, find your nearest office',u:'company/contact.html'},
   {t:'About QantumIQ',d:'Our mission, leadership, and global presence',u:'company/about.html'},
+  {t:'Quantum Readiness Quiz',d:'Assess your organization quantum readiness score',u:'tools/quantum-readiness-quiz.html'},
+  {t:'AI ROI Calculator',d:'Estimate the ROI of an AI transformation programme',u:'tools/roi-calculator.html'},
+  {t:'Privacy Policy',d:'QantumIQ privacy and data protection policy',u:'legal/privacy-policy.html'},
+  {t:'Careers',d:'Career opportunities in AI and quantum consulting',u:'company/careers.html'},
+  {t:'Partners & Clients',d:'Technology partners and enterprise clients',u:'company/partners-clients.html'},
 ];
 function doSearch(q){
   var sr=document.getElementById('qiq-search-results');
@@ -1102,8 +1107,8 @@ function doSearch(q){
   if(!q.trim()){sr.innerHTML='';return;}
   var ql=q.toLowerCase();
   var res=QIQ_SEARCH.filter(function(d){return d.t.toLowerCase().indexOf(ql)>-1||d.d.toLowerCase().indexOf(ql)>-1});
-  var isRoot=!location.pathname.includes('/company/')&&!location.pathname.includes('/services/')&&!location.pathname.includes('/industries/')&&!location.pathname.includes('/insights/')&&!location.pathname.includes('/legal/');
-  var r=isRoot?'':'../';
+  var _segs=location.pathname.replace(/\/$/,'').split('/').filter(Boolean);
+  var r='../'.repeat(Math.max(0,_segs.length-1));
   if(res.length){
     sr.innerHTML=res.map(function(x){return '<a class="search-result" href="'+r+x.u+'"><h4>'+x.t+'</h4><p>'+x.d+'</p></a>'}).join('');
   } else {
