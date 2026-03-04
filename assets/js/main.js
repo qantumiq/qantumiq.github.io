@@ -157,6 +157,7 @@ function buildNav(){
     <button class="nav-link">Company<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
       <a href="${r}company/about.html">About Us</a>
+      <a href="${r}company/about.html#leadership">Leadership</a>
       <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
       <a href="${r}company/careers.html">Careers</a>
       <a href="${r}company/contact.html">Contact Us</a>
@@ -204,6 +205,7 @@ function buildNav(){
   <a href="${r}tools/roi-calculator.html">AI ROI Calculator</a>
   <div class="mob-heading">Company</div>
   <a href="${r}company/about.html">About Us</a>
+  <a href="${r}company/about.html#leadership">Leadership</a>
   <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
   <a href="${r}company/careers.html">Careers</a>
   <a class="mob-cta" href="${r}company/contact.html">Contact Us</a>
@@ -337,6 +339,7 @@ function buildFooter(){
     <h4>Company</h4>
     <ul>
       <li><a href="${r}company/about.html">About Us</a></li>
+      <li><a href="${r}company/about.html#leadership">Leadership</a></li>
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
       <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>

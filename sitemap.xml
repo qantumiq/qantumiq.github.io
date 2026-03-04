@@ -270,4 +270,10 @@
     <lastmod>2026-03-04</lastmod>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://qantumiq.com/llms.txt</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

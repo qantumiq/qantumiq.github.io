@@ -1,0 +1,41 @@
+# QantumIQ
+> Advanced consulting at the intersection of AI, quantum computing, and human ingenuity.
+
+## About
+QantumIQ is a global consulting firm headquartered in Oakland, MD with 13 offices across 7 countries. We specialize in AI/ML solutions, quantum computing & post-quantum cryptography, digital transformation, and C-suite advisory. 500+ clients served, $4.2B+ in client value delivered, 15+ years of excellence.
+
+## Services
+- [AI & Machine Learning Solutions](https://qantumiq.com/services/ai-ml.html): Enterprise AI strategy, predictive analytics, generative AI, computer vision, MLOps
+- [Quantum Computing & PQC](https://qantumiq.com/services/quantum-computing.html): Quantum readiness assessments, post-quantum cryptography migration, quantum algorithm design
+- [Digital Transformation](https://qantumiq.com/services/digital-transformation.html): Cloud architecture, legacy modernization, data platform engineering
+- [C-Suite Advisory](https://qantumiq.com/services/c-suite-advisory.html): Board-level strategic guidance, technology due diligence, transformation roadmaps
+- [Business Process Optimisation](https://qantumiq.com/services/business-process.html): Process mining, intelligent automation, operational excellence
+- [Management Consulting](https://qantumiq.com/services/management-consulting.html): Organizational design, change management, performance improvement
+- [Information & Insights](https://qantumiq.com/services/information-insights.html): Data strategy, analytics platforms, business intelligence
+
+## Industries
+- [Financial Services](https://qantumiq.com/industries/financial-services.html): AI risk models, fraud detection, PQC migration, digital banking
+- [Healthcare](https://qantumiq.com/industries/healthcare.html): Clinical AI, interoperability, value-based care analytics
+- [Pharmaceuticals & Biotech](https://qantumiq.com/industries/pharmaceuticals.html): AI drug discovery, cell & gene therapy, CRISPR, bioprocessing
+- [Technology](https://qantumiq.com/industries/technology.html): Product-led growth, platform strategy, cloud architecture
+- [Telecommunications](https://qantumiq.com/industries/telecommunications.html): 5G monetization, AI network ops, quantum-safe security
+- [Energy](https://qantumiq.com/industries/energy.html): Grid optimization, predictive maintenance, clean energy transition
+- [Government & Defence](https://qantumiq.com/industries/government.html): National security AI, public service transformation
+- [Sustainability & Water](https://qantumiq.com/industries/sustainability.html): ESG data strategy, smart water networks, carbon intelligence
+- [Media & Entertainment](https://qantumiq.com/industries/media-entertainment.html): Streaming strategy, AI content ops, audience intelligence
+
+## Insights
+- [Blog & Articles](https://qantumiq.com/insights/blog.html)
+- [Case Studies](https://qantumiq.com/insights/case-studies.html)
+
+## Tools
+- [Quantum Readiness Quiz](https://qantumiq.com/tools/quantum-readiness-quiz.html)
+- [AI ROI Calculator](https://qantumiq.com/tools/roi-calculator.html)
+
+## Contact
+- Email: info@qantumiq.com
+- Phone: +1 (301) 334-7686
+- Address: 5000 Thayer Center STE C, Oakland, MD 21550
+- Website: https://qantumiq.com
+- LinkedIn: https://linkedin.com/company/qantumiq
+- X/Twitter: https://twitter.com/qantumiq
