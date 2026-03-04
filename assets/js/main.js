@@ -1139,24 +1139,47 @@ function sendChatMsg(){
   var msg=inp.value.trim();if(!msg)return;
   inp.value='';
   appendChatMsg(msg,'user');
-  _chatHistory.push({role:'user',content:msg});
-  var typing=appendChatMsg('Thinking...','bot');
-  fetch('https://api.anthropic.com/v1/messages',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',max_tokens:400,
-      system:'You are the QantumIQ AI assistant. QantumIQ is an advanced consulting firm specializing in AI/ML, quantum computing and PQC, digital transformation, and C-suite advisory. Offices in Oakland MD (HQ), New York, Miami, Boston, London, Birmingham, Delhi NCR, Mumbai, Bangalore, Hyderabad, Singapore, Sydney, Melbourne. Keep responses concise and professional. Suggest scheduling a consultation for complex inquiries.',
-      messages:_chatHistory
-    })
-  }).then(function(r){return r.json()}).then(function(data){
+  var typing=appendChatMsg('','bot');
+  setTimeout(function(){
     typing.remove();
-    var reply=(data.content&&data.content.map(function(b){return b.text||''}).join(''))||'I had trouble responding. Please contact us at info@qantumiq.com';
+    var reply=_qiqRespond(msg);
     appendChatMsg(reply,'bot');
-    _chatHistory.push({role:'assistant',content:reply});
-  }).catch(function(){
-    typing.textContent='I had trouble connecting. Please try again or email info@qantumiq.com';
-  });
+  },600+Math.random()*400);
+}
+var _KB=[
+  {k:['quantum','pqc','post-quantum','cryptograph','nist','rsa','ecc','ml-kem','ml-dsa','encrypt'],r:'QantumIQ offers comprehensive quantum readiness services including cryptographic asset inventory, post-quantum cryptography (PQC) migration using NIST-approved standards (ML-KEM, ML-DSA), and 90-day structured migration programmes. Our CTO Dr. Sophia Liu is a pioneer in applied PQC.\n\nWould you like to schedule a Quantum Readiness Assessment? → Contact us at company/contact.html'},
+  {k:['ai','artificial intelligence','machine learn','ml','mlops','deploy','production','model','llm','gpt','claude','deep learn'],r:'Our AI & ML practice bridges the gap between proof-of-concept and production deployment. We specialise in enterprise MLOps, AI governance frameworks, and responsible AI — with 140+ AI systems in production across our client base.\n\nOur Chief AI Officer Dr. Daniel Reeves (formerly Google DeepMind) leads this practice.'},
+  {k:['consult','help','engage','hire','work with','partner','methodology','how you work','approach'],r:'QantumIQ consulting engagements typically follow a structured approach:\n\n1. Discovery & Assessment (30 days)\n2. Strategy & Roadmap (30-60 days)\n3. Implementation & Scale (60-90 days)\n\nWe embed with your teams — we don\'t just deliver slide decks. Schedule a consultation at company/contact.html to discuss your needs.'},
+  {k:['service','offer','do','what do','capabilities','practice','solution'],r:'QantumIQ offers 7 service lines:\n\n• AI & ML Solutions\n• Quantum Computing & PQC\n• Digital Transformation\n• C-Suite Advisory\n• Business Process Optimisation\n• Information & Insights\n• Management Consulting\n\nExplore all services at services/index.html'},
+  {k:['industr','sector','vertical','financial','bank','pharma','health','energy','government','media','telecom','sustain','tech'],r:'We serve 9 industry verticals: Financial Services, Healthcare, Pharma & Biotech, Technology, Telecommunications, Energy, Government, Media & Entertainment, and Sustainability & Water.\n\nEach vertical has dedicated practitioners with deep domain knowledge. View all industries at industries/index.html'},
+  {k:['contact','call','reach','email','phone','schedule','book','consultation','meet','talk','speak'],r:'Ready to connect? You can reach us via:\n\n📧 info@qantumiq.com\n📧 consulting@qantumiq.com\n\nOr schedule directly at company/contact.html\n\nWe respond within 1 business day.'},
+  {k:['office','location','where','headquarter','global','presence','country','city','oakland','new york','london','singapore','delhi','sydney','mumbai','bangalore'],r:'QantumIQ has 13 global offices across 7 countries:\n\n🇺🇸 Oakland MD (HQ), New York, Miami, Boston\n🇬🇧 London, Birmingham\n🇮🇳 Delhi NCR, Mumbai, Bangalore, Hyderabad\n🇸🇬 Singapore\n🇦🇺 Sydney, Melbourne'},
+  {k:['case study','client','result','outcome','success','transform','impact','roi','stat','number'],r:'Notable outcomes from QantumIQ engagements:\n\n• 87% fraud detection accuracy for a Tier-1 bank ($420M annual risk reduction)\n• 40% subscriber churn reduction for a global streaming platform ($95M retained)\n• 40% faster drug development across 6 pharma facilities ($310M R&D savings)\n\nView full case studies at insights/case-studies.html'},
+  {k:['about','who','company','team','leader','founder','ceo','cto','history','mission','vision','bio','people','leadership'],r:'QantumIQ was founded by Arjun Kapoor (former McKinsey Partner, MIT Quantum PhD). The leadership team includes practitioners from IBM Research, Google DeepMind, DARPA, Bain, and Accenture.\n\n$4.2B+ client value delivered | 500+ clients | 15+ years experience | 95% client satisfaction\n\nLearn more at company/about.html'},
+  {k:['quiz','readiness','assess','score','test','evaluate'],r:'Try our free Quantum Readiness Quiz — a 6-step interactive assessment that evaluates your PQC preparedness, AI maturity, and quantum risk exposure.\n\nGet instant results with a personalised action plan → tools/quantum-readiness-quiz.html'},
+  {k:['calculator','estimate','project','invest','value','business case','cost','saving','payback'],r:'Use our AI ROI Calculator to estimate the 3-year return on an AI transformation programme — including projected cost savings, revenue uplift, efficiency gains, and payback period.\n\nTry it free → tools/roi-calculator.html'},
+  {k:['digital transform','cloud','migrat','modern','data','platform','legacy','infrastructure'],r:'Our Digital Transformation practice covers end-to-end modernisation: cloud migration strategy, data estate modernisation, legacy system replacement, and change management at enterprise scale.\n\nWe\'ve helped organisations compress 3-year transformation timelines to under 18 months.'},
+  {k:['c-suite','board','executive','strateg','advisor','governance','ceo guide','cio','ciso','cto brief'],r:'QantumIQ\'s C-Suite Advisory practice provides board-level technology strategy: quantum risk briefings, AI readiness assessments, M&A technology due diligence, and executive coaching on emerging technology adoption.\n\nSchedule an executive briefing → company/contact.html'},
+  {k:['drug','discover','pharma','cmc','formulation','fda','clinical','biotech','gene','crispr','manufacturing'],r:'In pharma and biotech, we specialise in AI-driven drug discovery, CMC optimization (40% timeline compression), bioprocessing analytics, and regulatory technology. Three clients have achieved sub-12-month IND timelines using our platform.\n\nRead more → insights/articles/ai-pharmaceutical-development.html'},
+  {k:['fraud','risk','trade','portfolio','hedge','wealth','payment','banking','financ','invest'],r:'For financial services, our AI and quantum capabilities span fraud detection (87% accuracy, sub-40ms latency), risk management, algorithmic trading optimization, and PQC migration for long-lived financial data.\n\nCase study → insights/case-studies.html'},
+  {k:['hello','hi ','hey','greet','good morning','good afternoon','good evening','howdy','sup'],r:'Hello! I\'m the QantumIQ AI assistant. I can help you with:\n\n• Our services & industry expertise\n• Quantum readiness & PQC migration\n• AI strategy & implementation\n• Scheduling a consultation\n• Interactive tools (Quiz, ROI Calculator)\n\nWhat would you like to know?'},
+  {k:['thank','thanks','great','perfect','helpful','awesome','good','nice','excellent','wonderful','brilliant','cheers','appreciate'],r:'You\'re welcome! If you need anything else — whether it\'s a deeper dive into a specific service, or you\'d like to schedule a consultation — just ask.\n\n📧 info@qantumiq.com\n→ company/contact.html'},
+  {k:['price','cost','fee','pricing','expensive','afford','budget','rate','charg','invest','pay','spend'],r:'QantumIQ engagement pricing varies by scope and complexity. We offer structured assessment programmes starting from 30-day discovery engagements.\n\nFor a tailored proposal, schedule a consultation → company/contact.html\n\nOr use our free AI ROI Calculator to estimate potential value → tools/roi-calculator.html'},
+  {k:['career','job','work for','position','recruit','join','hiring','open role','opportunity','talent','apply','intern'],r:'QantumIQ is always looking for exceptional talent in AI, quantum computing, and consulting. Current openings span research, delivery, and strategy roles across our 13 offices.\n\nView opportunities → company/careers.html'},
+  {k:['blog','article','insight','thought leadership','read','publish','paper','research','whitepaper','report','podcast','webinar','event'],r:'Our Intelligence Feed features practitioner-written insights on AI, quantum computing, and digital transformation:\n\n• NIST PQC Migration Checklist\n• Enterprise AI Failure Analysis\n• AI Drug Discovery Timelines\n• Quantum in Financial Services\n\nRead all insights → insights/blog.html'},
+];
+function _qiqRespond(msg){
+  var m=msg.toLowerCase();
+  var best=null,bestScore=0;
+  for(var i=0;i<_KB.length;i++){
+    var entry=_KB[i],score=0;
+    for(var j=0;j<entry.k.length;j++){
+      if(m.indexOf(entry.k[j])>-1)score+=1;
+    }
+    if(score>bestScore){bestScore=score;best=entry}
+  }
+  if(best)return best.r;
+  return 'I\'d be happy to help! I can assist with:\n\n• Our services (AI, quantum, consulting)\n• Quantum readiness & PQC migration\n• Scheduling a consultation\n• Case studies & results\n• Interactive tools\n\nCould you rephrase your question? Or reach us directly at info@qantumiq.com';
 }
 
 // ── NEWSLETTER ──

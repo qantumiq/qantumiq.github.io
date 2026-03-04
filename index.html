@@ -10,6 +10,7 @@
 <meta property="og:url" content="https://qantumiq.com/">
 <meta property="og:title" content="QantumIQ — Advanced Consulting for the Quantum Age">
 <meta property="og:description" content="Where Intelligence Meets the Quantum Frontier. Enterprise AI, Post-Quantum Cryptography, and Digital Transformation.">
+<meta property="og:image" content="https://qantumiq.com/assets/images/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="QantumIQ — Advanced Consulting for the Quantum Age">
 <link rel="canonical" href="https://qantumiq.com/">
@@ -24,6 +25,7 @@
   {"@context":"https://schema.org","@type":"Review","reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Dr. Elena Petrova"},"reviewBody":"The digital twin model alone saved us more than a year of development time across our pipeline.","itemReviewed":{"@type":"Organization","name":"QantumIQ Consulting"}}
 ]
 </script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <div id="scroll-progress"></div>
@@ -231,45 +233,81 @@
         <div class="eyebrow">Client Impact</div>
         <h2 class="section-title">Transformations that <span class="it">change the equation</span></h2>
       </div>
-      <a href="insights/blog.html" class="btn-ghost">All Case Studies</a>
+      <a href="insights/case-studies.html" class="btn-ghost">All Case Studies</a>
     </div>
-    <div class="reveal grid-3">
-      <div class="story-card">
-        <div class="story-card-photo"></div>
-        <div class="story-card-body">
-          <div class="story-industry">Financial Services</div>
+    <div class="reveal cs-grid">
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-tag">Financial Services</div>
           <h3>Global Bank Transforms Risk Management with Production AI</h3>
-          <p>ML-powered risk platform processing 2 billion daily transactions — deployed in 6 months.</p>
-          <div class="story-metrics">
-            <div><div class="story-metric-val">87%</div><div class="story-metric-lbl">Fraud detection accuracy</div></div>
-            <div><div class="story-metric-val">$420M</div><div class="story-metric-lbl">Annual risk reduction</div></div>
-          </div>
+          <p class="cs-desc">Tier-1 North American bank needed to modernize its fraud detection infrastructure, replacing aging rules-based systems with ML-powered real-time decisioning at enterprise scale.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><div class="cs-val">87%</div><div class="cs-label">Fraud detection accuracy</div></div>
+          <div class="cs-metric"><div class="cs-val">$420M</div><div class="cs-label">Annual risk reduction</div></div>
+          <div class="cs-metric"><div class="cs-val">6mo</div><div class="cs-label">Time to production</div></div>
+          <div class="cs-metric"><div class="cs-val">2B+</div><div class="cs-label">Daily transactions</div></div>
+        </div>
+        <div class="cs-foot">
+          <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+          <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+        </div>
+        <div class="cs-detail">
+          <h4>Challenge</h4><p>The bank's legacy fraud system generated false positive rates exceeding 34%, costing over $80M annually in manual review and customer friction. Fraudsters were adapting faster than static rule updates could respond.</p>
+          <h4>Our Approach</h4><p>QantumIQ deployed a three-phase AI at Scale engagement: a 30-day discovery and data audit, followed by a 60-day ML model development sprint using gradient boosting and transformer-based sequence models, culminating in a 90-day hardened production deployment with full MLOps infrastructure.</p>
+          <h4>Results</h4><p>The platform now processes over 2 billion transactions daily with sub-40ms latency, achieving 87% fraud detection accuracy — a 31-point improvement — while reducing false positives by 62%.</p>
+          <h4>Technologies Used</h4><div class="cs-tech"><span>Python</span><span>AWS SageMaker</span><span>Apache Kafka</span><span>XGBoost</span><span>Snowflake</span><span>Databricks</span></div>
         </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-photo"></div>
-        <div class="story-card-body">
-          <div class="story-industry">Media &amp; Entertainment</div>
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-tag">Media &amp; Entertainment</div>
           <h3>Streaming Giant Reduces Subscriber Churn 40% with Personalization AI</h3>
-          <p>Next-gen recommendation engine across 180M subscriber profiles in 35 countries.</p>
-          <div class="story-metrics">
-            <div><div class="story-metric-val">40%</div><div class="story-metric-lbl">Churn reduction</div></div>
-            <div><div class="story-metric-val">$95M</div><div class="story-metric-lbl">Retained ARR</div></div>
-          </div>
+          <p class="cs-desc">A leading global streaming platform with 180M subscribers across 35 countries faced accelerating churn driven by content discovery fatigue and commoditized content libraries.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><div class="cs-val">40%</div><div class="cs-label">Churn reduction</div></div>
+          <div class="cs-metric"><div class="cs-val">$95M</div><div class="cs-label">Retained ARR</div></div>
+          <div class="cs-metric"><div class="cs-val">180M</div><div class="cs-label">Subscriber profiles</div></div>
+          <div class="cs-metric"><div class="cs-val">35</div><div class="cs-label">Countries deployed</div></div>
+        </div>
+        <div class="cs-foot">
+          <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+          <span style="font-size:.68rem;color:var(--muted);">6 min read</span>
+        </div>
+        <div class="cs-detail">
+          <h4>Challenge</h4><p>With 45% of cancellations citing "nothing to watch," the client needed a personalization engine capable of real-time content discovery across 180M diverse profiles, localized across 35 markets.</p>
+          <h4>Our Approach</h4><p>QantumIQ built a multi-armed bandit recommendation system layered on a deep collaborative filtering model, with a content embedding pipeline ingesting metadata, viewing behavior, and contextual signals. Deployed via microservices on Google Cloud.</p>
+          <h4>Results</h4><p>Churn fell 40% within 90 days of full rollout, retaining $95M in annual recurring revenue. Average session length increased 23%. The recommendation engine now serves 1.4 billion API calls per day with 99.7% uptime.</p>
+          <h4>Technologies Used</h4><div class="cs-tech"><span>TensorFlow</span><span>Google Cloud</span><span>BigQuery</span><span>Vertex AI</span><span>Kubernetes</span><span>Redis</span></div>
         </div>
       </div>
-      <div class="story-card">
-        <div class="story-card-photo"></div>
-        <div class="story-card-body">
-          <div class="story-industry">Pharmaceuticals</div>
+      <div class="cs-card">
+        <div class="cs-head">
+          <div class="cs-tag">Pharmaceuticals</div>
           <h3>Global Pharma Accelerates Drug Development 40% with AI-Driven CMC</h3>
-          <p>AI optimization platform across six manufacturing facilities, 99.2% batch compliance.</p>
-          <div class="story-metrics">
-            <div><div class="story-metric-val">40%</div><div class="story-metric-lbl">Faster development</div></div>
-            <div><div class="story-metric-val">$310M</div><div class="story-metric-lbl">R&amp;D savings</div></div>
-          </div>
+          <p class="cs-desc">A top-5 global pharmaceutical company sought to compress its CMC timeline across six manufacturing facilities through AI-driven process optimization.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><div class="cs-val">40%</div><div class="cs-label">Faster development</div></div>
+          <div class="cs-metric"><div class="cs-val">$310M</div><div class="cs-label">R&D savings</div></div>
+          <div class="cs-metric"><div class="cs-val">99.2%</div><div class="cs-label">Batch compliance</div></div>
+          <div class="cs-metric"><div class="cs-val">6</div><div class="cs-label">Facilities deployed</div></div>
+        </div>
+        <div class="cs-foot">
+          <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+          <span style="font-size:.68rem;color:var(--muted);">7 min read</span>
+        </div>
+        <div class="cs-detail">
+          <h4>Challenge</h4><p>CMC development delays were adding 18–24 months to drug development timelines, costing $310M+ per year in delayed revenue and regulatory overhead.</p>
+          <h4>Our Approach</h4><p>QantumIQ deployed an AI platform combining process analytical technology (PAT) sensor integration, Bayesian optimization for formulation development, and a digital twin model of each manufacturing facility. The system ingests real-time batch data to predict deviations before they occur.</p>
+          <h4>Results</h4><p>Development timelines compressed by 40% across all six facilities. Batch compliance reached 99.2%, up from 87.4%. The platform identified three previously unknown process optimization windows.</p>
+          <h4>Technologies Used</h4><div class="cs-tech"><span>Azure ML</span><span>Python</span><span>Bayesian Optimization</span><span>Digital Twin</span><span>SAP Integration</span><span>IoT Hub</span></div>
         </div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="insights/case-studies.html" class="btn-ghost">View All Case Studies</a>
     </div>
   </div>
 </section>
@@ -301,17 +339,73 @@
   </div>
 </div>
 
-<!-- ── INSIGHTS ── -->
-<section class="news-feed-section section-half">
+<!-- ── INTELLIGENCE FEED ── -->
+<section class="section-pad" style="background:var(--bg2);">
   <div class="container">
     <div class="reveal section-header-row">
       <div>
         <div class="eyebrow">Intelligence Feed</div>
-        <h2 class="section-title" style="font-size:1.75rem;">Latest <span class="it">intelligence</span></h2>
+        <h2 class="section-title">Latest intelligence from <span class="it">the frontier</span></h2>
+        <p style="color:var(--muted);font-size:.92rem;max-width:560px;line-height:1.7;margin-top:.5rem;">Practical insights on AI, quantum computing, and digital transformation — written by our practitioners, not our marketing team.</p>
       </div>
-      <a href="insights/news.html" class="btn-ghost">All Insights</a>
+      <a href="insights/blog.html" class="btn-ghost">All Insights</a>
     </div>
-    <div class="news-feed-grid reveal" id="home-news"></div>
+    <div class="reveal insight-feed-grid">
+      <a class="insight-card featured" href="insights/articles/quantum-computing-business-guide.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#0c2a4a,#0d3060);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">Quantum Security</span><span class="insight-date">Feb 2026</span></div>
+          <h3>NIST Post-Quantum Standards Are Live: Your 90-Day Migration Checklist</h3>
+          <p>ML-KEM and ML-DSA are now final NIST standards. Here's the precise, actionable migration path every enterprise security team needs to execute immediately.</p>
+          <div class="insight-read">9 min read · Dr. Sophia Liu</div>
+        </div>
+      </a>
+      <a class="insight-card" href="insights/articles/enterprise-ai-adoption-guide.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#1a0a3a,#2d1060);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">AI Strategy</span><span class="insight-date">Feb 2026</span></div>
+          <h3>Why 75% of Enterprise AI Projects Fail to Reach Production</h3>
+          <p>Three-quarters fail at scale. QantumIQ's AI at Scale methodology bridges the gap between proof-of-concept and enterprise deployment.</p>
+          <div class="insight-read">11 min read · Dr. Daniel Reeves</div>
+        </div>
+      </a>
+      <a class="insight-card" href="insights/articles/ai-pharmaceutical-development.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#0a2a1a,#105030);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">Pharma &amp; Biotech</span><span class="insight-date">Jan 2026</span></div>
+          <h3>AI Drug Discovery: From Hypothesis to IND in Under 12 Months</h3>
+          <p>Three pharmaceutical companies have compressed their IND timeline below 12 months using AI-assisted CMC optimization.</p>
+          <div class="insight-read">8 min read · Nadia Khoury</div>
+        </div>
+      </a>
+      <a class="insight-card" href="insights/articles/future-of-ai-financial-services.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#1a1a0a,#303010);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">Financial Services</span><span class="insight-date">Jan 2026</span></div>
+          <h3>Quantum Computing in Financial Services: 5 Use Cases Ready for 2026</h3>
+          <p>From portfolio optimization to fraud cascade modelling — here are the quantum finance use cases that are production-viable today.</p>
+          <div class="insight-read">10 min read · Marcus Okafor</div>
+        </div>
+      </a>
+      <a class="insight-card" href="insights/article-agentic-ai.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#0d1f3a,#1a3560);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">AI Governance</span><span class="insight-date">Dec 2025</span></div>
+          <h3>Building a Responsible AI Governance Framework: A Practical Template</h3>
+          <p>A board-ready framework for AI governance that balances innovation velocity with risk management and ethical compliance.</p>
+          <div class="insight-read">7 min read · Elena Stavros</div>
+        </div>
+      </a>
+      <a class="insight-card" href="insights/articles/esg-sustainability-technology.html">
+        <div class="insight-card-gradient" style="background:linear-gradient(135deg,#0a1a2a,#102540);"></div>
+        <div class="insight-card-body">
+          <div class="insight-meta"><span class="insight-cat">Energy &amp; Grid</span><span class="insight-date">Dec 2025</span></div>
+          <h3>Grid Optimization with Predictive AI: Cutting Outages 45%</h3>
+          <p>How graph neural networks and IoT sensor telemetry are transforming utility grid management and renewable integration.</p>
+          <div class="insight-read">8 min read · Dr. James Wu</div>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -360,6 +454,70 @@
   </div>
 </section>
 
+<!-- ── LEADERSHIP TEAM ── -->
+<section class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Leadership Team</div>
+      <h2 class="section-title">The minds behind <span class="it">the mission</span></h2>
+      <p style="color:var(--muted);font-size:.92rem;max-width:560px;line-height:1.7;">Former practitioners from McKinsey, IBM Research, Google DeepMind, DARPA, and leading quantum labs — now building the future together.</p>
+    </div>
+    <div class="reveal grid-4" style="margin-top:2rem;">
+      <div class="leader-card">
+        <div class="leader-avatar">AK</div>
+        <div class="leader-name">Arjun Kapoor</div>
+        <div class="leader-title">CEO &amp; Founder</div>
+        <p class="leader-bio">Former McKinsey Partner. MIT quantum computing PhD. 20+ years leading technology transformations globally.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">SL</div>
+        <div class="leader-name">Sophia Liu</div>
+        <div class="leader-title">Chief Technology Officer</div>
+        <p class="leader-bio">IBM Research alumna. Pioneer in post-quantum cryptography. 15+ years in applied quantum algorithms.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">MO</div>
+        <div class="leader-name">Marcus Okafor</div>
+        <div class="leader-title">Managing Partner, Americas</div>
+        <p class="leader-bio">Former Bain Partner. Harvard Business School. Leads financial services and government practice.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">PT</div>
+        <div class="leader-name">Priya Thakur</div>
+        <div class="leader-title">Managing Partner, APAC</div>
+        <p class="leader-bio">IIT Delhi. Oxford MBA. 18 years leading technology transformations across Asia-Pacific markets.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">DR</div>
+        <div class="leader-name">Dr. Daniel Reeves</div>
+        <div class="leader-title">Chief AI Officer</div>
+        <p class="leader-bio">Former Google DeepMind. Stanford AI Lab. Pioneered enterprise MLOps methodologies at scale.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">ES</div>
+        <div class="leader-name">Elena Stavros</div>
+        <div class="leader-title">Managing Partner, Europe</div>
+        <p class="leader-bio">Former Accenture MD. London Business School. 16 years across defence, aerospace, and financial services.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">JW</div>
+        <div class="leader-name">Dr. James Wu</div>
+        <div class="leader-title">Head of Quantum Research</div>
+        <p class="leader-bio">Former DARPA quantum programme lead. Caltech PhD. Published 40+ papers on quantum error correction.</p>
+      </div>
+      <div class="leader-card">
+        <div class="leader-avatar">NK</div>
+        <div class="leader-name">Nadia Khoury</div>
+        <div class="leader-title">Chief Strategy Officer</div>
+        <p class="leader-bio">Former BCG principal. Wharton MBA. Specialises in C-suite digital transformation strategy.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <a href="company/about.html" class="btn-ghost">Meet the Full Team</a>
+    </div>
+  </div>
+</section>
+
 <section class="cta-band">
   <div class="cta-band-bg" data-photo-src></div>
   <div class="cta-band-overlay"></div>
@@ -376,7 +534,7 @@
 
 <footer id="qiq-footer"></footer>
 <script src="assets/js/main.js"></script>
-<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('home-news', 'home'); QIQ.injectContentPhotos(); });</script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.injectContentPhotos(); });</script>
 <div id="cookie-consent">
   <p>We use cookies to improve your experience and analyse site usage. <a href="legal/privacy-policy.html">Privacy Policy</a></p>
   <div class="cookie-btns">
