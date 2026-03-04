@@ -1,4 +1,196 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/>
-<meta http-equiv="refresh" content="0; url=blog.html"/>
-<title>Case Studies — QantumIQ</title></head><body>
-<a href="blog.html">Click here if not redirected</a></body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Case Studies — QantumIQ</title>
+<meta name="description" content="Detailed case studies from QantumIQ: enterprise AI, quantum cryptography, and digital transformation outcomes across financial services, pharma, defence, and more."/>
+<meta property="og:title" content="Case Studies — QantumIQ">
+<meta property="og:description" content="Real transformation outcomes from QantumIQ engagements — from global banks to pharmaceutical giants.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qantumiq.com/insights/case-studies.html">
+<link rel="stylesheet" href="../assets/css/main.css"/>
+<link rel="preload" href="../assets/css/main.css" as="style">
+</head><body>
+<div id="scroll-progress"></div>
+<canvas id="qiq-canvas"></canvas>
+
+<section class="page-hero" style="background:linear-gradient(135deg,var(--navy3) 0%,var(--navy2) 100%);">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow" style="color:var(--gold-lt);">Client Impact</div>
+    <h1 class="section-title" style="color:#fff;font-size:2.8rem;">Transformations that <span class="it">change the equation</span></h1>
+    <p style="color:rgba(210,225,255,.75);font-size:1.05rem;max-width:600px;line-height:1.7;">From global banks to pharmaceutical giants — measurable outcomes delivered in production, not in slide decks.</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="cs-grid reveal">
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Financial Services</div>
+        <h3>Global Bank Transforms Risk Management with Production AI</h3>
+        <p class="cs-desc">Tier-1 North American bank needed to modernize its fraud detection infrastructure, replacing aging rules-based systems with ML-powered real-time decisioning at enterprise scale.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">87%</div><div class="cs-label">Fraud detection accuracy</div></div><div class="cs-metric"><div class="cs-val">$420M</div><div class="cs-label">Annual risk reduction</div></div><div class="cs-metric"><div class="cs-val">6mo</div><div class="cs-label">Time to production</div></div><div class="cs-metric"><div class="cs-val">2B+</div><div class="cs-label">Daily transactions</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>The bank's legacy fraud system generated false positive rates exceeding 34%, costing over $80M annually in manual review and customer friction. Fraudsters were adapting faster than static rule updates could respond.</p>
+        <h4>Our Approach</h4><p>QantumIQ deployed a three-phase AI at Scale engagement: a 30-day discovery and data audit, followed by a 60-day ML model development sprint using gradient boosting and transformer-based sequence models, culminating in a 90-day hardened production deployment with full MLOps infrastructure.</p>
+        <h4>Results</h4><p>The platform now processes over 2 billion transactions daily with sub-40ms latency, achieving 87% fraud detection accuracy — a 31-point improvement — while reducing false positives by 62%.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>Python</span><span>AWS SageMaker</span><span>Apache Kafka</span><span>XGBoost</span><span>Snowflake</span><span>Databricks</span></div>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Media & Entertainment</div>
+        <h3>Streaming Giant Reduces Subscriber Churn 40% with Personalization AI</h3>
+        <p class="cs-desc">A leading global streaming platform with 180M subscribers across 35 countries faced accelerating churn driven by content discovery fatigue and commoditized content libraries.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">40%</div><div class="cs-label">Churn reduction</div></div><div class="cs-metric"><div class="cs-val">$95M</div><div class="cs-label">Retained ARR</div></div><div class="cs-metric"><div class="cs-val">180M</div><div class="cs-label">Subscriber profiles</div></div><div class="cs-metric"><div class="cs-val">35</div><div class="cs-label">Countries deployed</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>With 45% of cancellations citing 'nothing to watch,' the client needed a personalization engine capable of real-time content discovery across 180M diverse profiles, localized across 35 markets.</p>
+        <h4>Our Approach</h4><p>QantumIQ built a multi-armed bandit recommendation system layered on a deep collaborative filtering model, with a content embedding pipeline ingesting metadata, viewing behavior, and contextual signals. Deployed via microservices on Google Cloud.</p>
+        <h4>Results</h4><p>Churn fell 40% within 90 days of full rollout, retaining $95M in annual recurring revenue. Average session length increased 23%. The recommendation engine now serves 1.4 billion API calls per day with 99.7% uptime.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>TensorFlow</span><span>Google Cloud</span><span>BigQuery</span><span>Vertex AI</span><span>Kubernetes</span><span>Redis</span></div>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Pharmaceuticals</div>
+        <h3>Global Pharma Accelerates Drug Development 40% with AI-Driven CMC</h3>
+        <p class="cs-desc">A top-5 global pharmaceutical company sought to compress its Chemistry, Manufacturing and Controls (CMC) timeline across six manufacturing facilities through AI-driven process optimization.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">40%</div><div class="cs-label">Faster development</div></div><div class="cs-metric"><div class="cs-val">$310M</div><div class="cs-label">R&D savings</div></div><div class="cs-metric"><div class="cs-val">99.2%</div><div class="cs-label">Batch compliance</div></div><div class="cs-metric"><div class="cs-val">6</div><div class="cs-label">Facilities deployed</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>CMC development delays were adding 18–24 months to drug development timelines, costing the client $310M+ per year in delayed revenue and regulatory overhead.</p>
+        <h4>Our Approach</h4><p>QantumIQ deployed an AI platform combining process analytical technology (PAT) sensor integration, Bayesian optimization for formulation development, and a digital twin model of each manufacturing facility. The system ingests real-time batch data to predict deviations before they occur.</p>
+        <h4>Results</h4><p>Development timelines compressed by 40% across all six facilities. Batch compliance reached 99.2%, up from 87.4%. The platform identified three previously unknown process optimization windows.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>Azure ML</span><span>Python</span><span>Bayesian Optimization</span><span>Digital Twin</span><span>SAP Integration</span><span>IoT Hub</span></div>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Government & Defence</div>
+        <h3>Defence Agency Achieves Post-Quantum Cryptographic Migration in 120 Days</h3>
+        <p class="cs-desc">A national defence agency needed to migrate its classified communications infrastructure to NIST-approved post-quantum cryptographic standards ahead of regulatory deadlines.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">120</div><div class="cs-label">Days to full migration</div></div><div class="cs-metric"><div class="cs-val">100%</div><div class="cs-label">PQC compliance</div></div><div class="cs-metric"><div class="cs-val">14K+</div><div class="cs-label">Endpoints secured</div></div><div class="cs-metric"><div class="cs-val">Zero</div><div class="cs-label">Operational downtime</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>The agency's classified communications relied on RSA-2048 and ECC-256 encryption across 14,000+ endpoints. The 'harvest now, decrypt later' threat model made immediate migration critical.</p>
+        <h4>Our Approach</h4><p>QantumIQ conducted a full cryptographic asset inventory, designed a phased migration to ML-KEM (FIPS 203) and ML-DSA (FIPS 204), and deployed automated certificate rotation across all endpoints with zero-downtime switchover.</p>
+        <h4>Results</h4><p>Full PQC compliance achieved in 120 days. Zero classified communications were disrupted during migration. The framework has since been adopted as a template by three allied nations.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>ML-KEM</span><span>ML-DSA</span><span>HSM Integration</span><span>PKI</span><span>Zero Trust Architecture</span><span>Ansible</span></div>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Healthcare</div>
+        <h3>Regional Health System Reduces Diagnostic Wait Times by 60% with AI Triage</h3>
+        <p class="cs-desc">A 12-hospital health system with 2.4M annual patient encounters needed to reduce diagnostic imaging backlog and improve triage accuracy for emergency radiology.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">60%</div><div class="cs-label">Wait time reduction</div></div><div class="cs-metric"><div class="cs-val">94%</div><div class="cs-label">Triage accuracy</div></div><div class="cs-metric"><div class="cs-val">2.4M</div><div class="cs-label">Annual encounters</div></div><div class="cs-metric"><div class="cs-val">12</div><div class="cs-label">Hospitals deployed</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>Emergency radiology turnaround averaged 4.2 hours, with critical findings occasionally delayed by 8+ hours. Staff burnout was accelerating radiologist attrition.</p>
+        <h4>Our Approach</h4><p>QantumIQ deployed a computer vision AI model trained on 2.8M de-identified studies to auto-prioritize critical findings (stroke, PE, pneumothorax) and surface them to radiologists within minutes.</p>
+        <h4>Results</h4><p>Diagnostic wait times dropped 60%. Critical finding escalation time reduced from 4.2 hours to 18 minutes. Radiologist satisfaction scores improved 34%, and attrition reversed within 6 months.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>PyTorch</span><span>DICOM</span><span>HL7 FHIR</span><span>Azure Health</span><span>MONAI</span><span>Kubernetes</span></div>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-head">
+        <div class="cs-tag">Energy</div>
+        <h3>Utility Optimizes Grid Stability and Reduces Outages 45% with Predictive AI</h3>
+        <p class="cs-desc">A major North American utility serving 8M customers needed to modernize grid management for renewable integration and reduce costly unplanned outages.</p>
+      </div>
+      <div class="cs-metrics"><div class="cs-metric"><div class="cs-val">45%</div><div class="cs-label">Outage reduction</div></div><div class="cs-metric"><div class="cs-val">$180M</div><div class="cs-label">Cost avoidance</div></div><div class="cs-metric"><div class="cs-val">8M</div><div class="cs-label">Customers served</div></div><div class="cs-metric"><div class="cs-val">99.97%</div><div class="cs-label">Grid uptime</div></div></div>
+      <div class="cs-foot">
+        <button class="cs-expand" onclick="toggleCase(this)">Read Full Case Study <span>▼</span></button>
+        <span style="font-size:.68rem;color:var(--muted);">8 min read</span>
+      </div>
+      <div class="cs-detail">
+        <h4>Challenge</h4><p>Renewable intermittency was causing 200+ grid stability events annually, and aging infrastructure lacked real-time predictive capability. Manual dispatch responses averaged 45 minutes.</p>
+        <h4>Our Approach</h4><p>QantumIQ built a predictive grid management platform combining weather forecasting, IoT sensor telemetry, and graph neural networks to model grid topology and predict failure cascades before they occur.</p>
+        <h4>Results</h4><p>Unplanned outages fell 45% in the first year. Automated response reduced dispatch times from 45 minutes to under 4 minutes. The platform manages 1.2M IoT sensor feeds in real-time.</p>
+        <h4>Technologies Used</h4><div class="cs-tech"><span>Graph Neural Networks</span><span>Azure IoT</span><span>Time Series DB</span><span>Python</span><span>SCADA Integration</span><span>Databricks</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad" style="background:var(--bg2);text-align:center;border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Ready to transform?</div>
+      <h2 class="section-title" style="font-size:2rem;">Your case study <span class="it">starts here</span></h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 2rem;">Schedule a consultation and discover how QantumIQ can deliver measurable outcomes for your organization.</p>
+      <a href="../company/contact.html" class="btn-primary">Schedule a Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<section class="news-feed-section section-half">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Intelligence Feed</div>
+      <h2 class="section-title" style="font-size:1.75rem;">Related <span class="it">insights</span></h2>
+    </div>
+    <div class="news-feed-grid reveal" id="page-news"></div>
+  </div>
+</section>
+
+<footer id="qiq-footer"></footer>
+<script src="../assets/js/main.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.loadNewsFeed('page-news','insights'); QIQ.injectContentPhotos(); });</script>
+<div id="cookie-consent">
+  <p>We use cookies to improve your experience and analyse site usage. <a href="../legal/privacy-policy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn-accept" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+<div id="qiq-search-overlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input id="qiq-search-input" type="text" placeholder="Search services, industries, insights..." oninput="doSearch(this.value)">
+  <div id="qiq-search-results"></div>
+</div>
+<button id="qiq-chat-btn" onclick="toggleChat()" title="Ask QantumIQ AI">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="qiq-chatbot">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">Q</div>
+      <div><div class="chat-name">QantumIQ Assistant</div><div class="chat-status">Online</div></div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm the QantumIQ AI assistant. Ask me about our services, quantum readiness, AI strategy, or how we can help your organization.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about quantum, AI, or our services..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+    <button onclick="sendChatMsg()">Send</button>
+  </div>
+</div>
+</body>
+</html>

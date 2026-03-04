@@ -146,6 +146,13 @@ function buildNav(){
       <a href="${r}insights/news.html">News</a>
     </div>
   </li>
+  <li class="nav-item" data-menu="tools">
+    <button class="nav-link">Tools<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
+    <div class="nav-dropdown">
+      <a href="${r}tools/quantum-readiness-quiz.html">Quantum Readiness Quiz</a>
+      <a href="${r}tools/roi-calculator.html">AI ROI Calculator</a>
+    </div>
+  </li>
   <li class="nav-item" data-menu="company">
     <button class="nav-link">Company<svg viewBox="0 0 10 6" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></button>
     <div class="nav-dropdown">
@@ -192,6 +199,9 @@ function buildNav(){
   <a href="${r}insights/white-papers.html">Whitepapers</a>
   <a href="${r}insights/webinars-events.html">Webinars &amp; Events</a>
   <a href="${r}insights/news.html">News</a>
+  <div class="mob-heading">Tools</div>
+  <a href="${r}tools/quantum-readiness-quiz.html">Quantum Readiness Quiz</a>
+  <a href="${r}tools/roi-calculator.html">AI ROI Calculator</a>
   <div class="mob-heading">Company</div>
   <a href="${r}company/about.html">About Us</a>
   <a href="${r}company/partners-clients.html">Partners &amp; Clients</a>
@@ -331,6 +341,9 @@ function buildFooter(){
       <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
       <li><a href="${r}company/contact.html">Contact</a></li>
+      <li><a href="${r}insights/case-studies.html">Case Studies</a></li>
+      <li><a href="${r}tools/quantum-readiness-quiz.html">Quantum Readiness Quiz</a></li>
+      <li><a href="${r}tools/roi-calculator.html">AI ROI Calculator</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
     </ul>
   </div>
@@ -1160,6 +1173,75 @@ function buildBrandMarquee(id, data){
   }).join('');
 }
 
+
+// ── CASE STUDY EXPAND ──
+function toggleCase(btn){
+  var det=btn.closest('.cs-card').querySelector('.cs-detail');
+  var isOpen=det.classList.toggle('open');
+  btn.innerHTML=(isOpen?'Close Case Study ':'Read Full Case Study ')+'<span>'+(isOpen?'▲':'▼')+'</span>';
+}
+
+// ── QUANTUM READINESS QUIZ ──
+var _qStep=1,_qScores=[0,0,0,0,0,0];
+function selectQuizOpt(el,val){
+  el.closest('.quiz-opts').querySelectorAll('.quiz-opt').forEach(function(o){o.classList.remove('selected')});
+  el.classList.add('selected');
+  _qScores[_qStep-1]=val;
+}
+function nextQuizStep(){_qStep++;gotoQuizStep(_qStep)}
+function prevQuizStep(){_qStep--;gotoQuizStep(_qStep)}
+function gotoQuizStep(s){
+  document.querySelectorAll('.quiz-step').forEach(function(el){el.classList.remove('active')});
+  var target=document.querySelector('[data-qstep="'+s+'"]');
+  if(target)target.classList.add('active');
+  var fill=document.getElementById('quiz-fill');
+  if(fill)fill.style.width=Math.min(((s-1)/6)*100,100)+'%';
+}
+function showQuizResult(){
+  var total=_qScores.reduce(function(a,b){return a+b},0);
+  var max=18,pct=Math.round((total/max)*100);
+  gotoQuizStep('result');
+  var fill=document.getElementById('quiz-fill');
+  if(fill)fill.style.width='100%';
+  var arc=document.getElementById('qr-arc');
+  if(arc)setTimeout(function(){arc.style.strokeDashoffset=352-(352*(pct/100))},100);
+  var numEl=document.getElementById('qr-pct');
+  if(numEl){var c=0;var iv=setInterval(function(){c=Math.min(c+2,pct);numEl.textContent=c+'%';if(c>=pct)clearInterval(iv)},20)}
+  var titles=['Critical Risk','High Risk — Act Now','Moderate — Momentum Needed','Progressing Well','Quantum Ready'];
+  var idx=Math.min(Math.floor(pct/20),4);
+  var titleEl=document.getElementById('qr-title');
+  if(titleEl)titleEl.textContent=titles[idx];
+  var recs=[
+    ['Begin a cryptographic asset inventory immediately','Engage your CISO on quantum risk briefing','Request a QantumIQ Quantum Readiness Assessment','Prioritise PQC education for your security team'],
+    ['Complete your cryptographic inventory','Develop a formal PQC migration roadmap','Identify your highest-risk systems (financial data, IP)','Schedule a board-level quantum risk briefing'],
+    ['Accelerate PQC migration to production systems','Expand AI governance framework','Explore quantum algorithm use cases for your sector','Begin harvest-now-decrypt-later threat mitigation'],
+    ['Finalise PQC migration across all legacy systems','Scale AI to enterprise production','Explore quantum computing pilots','Implement continuous cryptographic monitoring'],
+    ['Maintain quantum security posture','Explore quantum advantage use cases','Share your PQC learnings across your supply chain','Consider quantum-native algorithm development']
+  ];
+  var recsEl=document.getElementById('qr-recs');
+  if(recsEl)recsEl.innerHTML=recs[idx].map(function(r){return '<div class="quiz-rec">'+r+'</div>'}).join('');
+}
+function resetQuiz(){_qStep=1;_qScores=[0,0,0,0,0,0];gotoQuizStep(1);var f=document.getElementById('quiz-fill');if(f)f.style.width='0%';document.querySelectorAll('.quiz-opt').forEach(function(o){o.classList.remove('selected')})}
+
+// ── ROI CALCULATOR ──
+var _roiChart=null;
+var _matLabels=['','Exploring','Experimenting','Scaling','Optimising','AI-Native'];
+function fmtROI(v){return v>=1000?'$'+(v/1000).toFixed(1)+'B':'$'+Math.round(v)+'M'}
+function calcROI(){
+  var r1=document.getElementById('roi-rev');if(!r1)return;
+  var rev=+r1.value,emp=+document.getElementById('roi-emp').value,mat=+document.getElementById('roi-mat').value,mult=+document.getElementById('roi-ind').value;
+  document.getElementById('roi-rev-v').textContent=rev>=1000?'$'+(rev/1000).toFixed(1)+'B':'$'+rev+'M';
+  document.getElementById('roi-emp-v').textContent=emp.toLocaleString();
+  document.getElementById('roi-mat-v').textContent='Level '+mat+' — '+_matLabels[mat];
+  var base=rev*(0.04+(mat-1)*0.018)*mult;
+  var cost=base*0.38,rvu=base*0.62,eff=Math.round(8+(mat-1)*4+mult*3),payback=Math.round(18-mat*2);
+  document.getElementById('roi-total').textContent=fmtROI(base*3);
+  document.getElementById('roi-cost').textContent=fmtROI(cost*3);
+  document.getElementById('roi-revenue').textContent=fmtROI(rvu*3);
+  document.getElementById('roi-eff').textContent=eff+'%';
+  document.getElementById('roi-payback').textContent=payback+'mo';
+}
+
 window.QIQ={loadNewsFeed,injectContentPhotos,getDailyImage,buildBrandMarquee};
 
 // Expose interactive functions globally so HTML onclick handlers can call them
@@ -1170,5 +1252,12 @@ window.toggleChat=toggleChat;
 window.sendChatMsg=sendChatMsg;
 window.nlSubmit=nlSubmit;
 window.buildBrandMarquee=buildBrandMarquee;
+window.toggleCase=toggleCase;
+window.selectQuizOpt=selectQuizOpt;
+window.nextQuizStep=nextQuizStep;
+window.prevQuizStep=prevQuizStep;
+window.showQuizResult=showQuizResult;
+window.resetQuiz=resetQuiz;
+window.calcROI=calcROI;
 
 })();

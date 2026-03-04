@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Quantum Readiness Quiz — QantumIQ</title>
+<meta name="description" content="Assess your organization's quantum readiness with QantumIQ's free 6-question assessment. Get a personalised score and action plan."/>
+<meta property="og:title" content="Quantum Readiness Quiz — QantumIQ">
+<meta property="og:description" content="Free quantum readiness assessment. 6 questions, instant results, personalised action plan.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/main.css"/>
+<link rel="preload" href="../assets/css/main.css" as="style">
+</head><body>
+<div id="scroll-progress"></div>
+<canvas id="qiq-canvas"></canvas>
+
+<section class="page-hero" style="background:linear-gradient(135deg,var(--navy3) 0%,var(--navy2) 100%);">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow" style="color:var(--gold-lt);">Interactive Tool</div>
+    <h1 class="section-title" style="color:#fff;font-size:2.8rem;">Assess Your <span class="it">Quantum Readiness</span></h1>
+    <p style="color:rgba(210,225,255,.75);font-size:1.05rem;max-width:600px;line-height:1.7;">Answer 6 questions to receive a personalised quantum readiness score and tailored action plan — free, instant results.</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="quiz-box reveal">
+      <div class="quiz-progress"><div class="quiz-fill" id="quiz-fill" style="width:0%"></div></div>
+    <div class="quiz-step active" data-qstep="1">
+      <div class="quiz-q">Has your organization conducted a cryptographic asset inventory?</div>
+      <div class="quiz-hint">An inventory maps all encryption keys, algorithms, and certificates in use across your infrastructure.</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">No — we haven't started</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">Partially — some systems mapped</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">Yes — full enterprise-wide inventory</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">Yes — and it's continuously updated</button>
+      </div>
+      <div class="quiz-nav"><span class="quiz-ind">Step 1 of 6</span><button class="btn-primary" onclick="nextQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">Next →</button></div>
+    </div>
+    <div class="quiz-step" data-qstep="2">
+      <div class="quiz-q">What is your current PQC migration strategy?</div>
+      <div class="quiz-hint">Post-quantum cryptography migration replaces vulnerable RSA/ECC algorithms with NIST-approved quantum-resistant standards.</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">We have no PQC plan in place</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">PQC is on our radar but not yet prioritized</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">We have a migration roadmap in development</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">Active PQC migration underway with NIST standards</button>
+      </div>
+      <div class="quiz-nav"><button class="btn-ghost" onclick="prevQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">← Back</button><span class="quiz-ind">Step 2 of 6</span><button class="btn-primary" onclick="nextQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">Next →</button></div>
+    </div>
+    <div class="quiz-step" data-qstep="3">
+      <div class="quiz-q">Does your organization have a quantum computing strategy?</div>
+      <div class="quiz-hint">This covers both threat mitigation (PQC) and opportunity capture (quantum advantage use cases).</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">Quantum is not on our strategic agenda</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">We're monitoring quantum developments</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">We have a documented quantum strategy</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">We're running active quantum computing pilots</button>
+      </div>
+      <div class="quiz-nav"><button class="btn-ghost" onclick="prevQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">← Back</button><span class="quiz-ind">Step 3 of 6</span><button class="btn-primary" onclick="nextQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">Next →</button></div>
+    </div>
+    <div class="quiz-step" data-qstep="4">
+      <div class="quiz-q">How would you rate your organization's AI maturity?</div>
+      <div class="quiz-hint">AI maturity ranges from initial experimentation to full enterprise-scale production deployment with governance.</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">No AI in production — exploring</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">1–3 AI models in production</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">Multiple AI systems with MLOps in place</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">Enterprise AI platform with governance & scale</button>
+      </div>
+      <div class="quiz-nav"><button class="btn-ghost" onclick="prevQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">← Back</button><span class="quiz-ind">Step 4 of 6</span><button class="btn-primary" onclick="nextQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">Next →</button></div>
+    </div>
+    <div class="quiz-step" data-qstep="5">
+      <div class="quiz-q">What is your organization's exposure to quantum risk?</div>
+      <div class="quiz-hint">Sectors with long-lived sensitive data (finance, defence, healthcare) face the highest quantum risk today.</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">Low — minimal sensitive data</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">Medium — some regulated data</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">High — financial, healthcare, or defence data</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">Critical — national security or long-term IP protection</button>
+      </div>
+      <div class="quiz-nav"><button class="btn-ghost" onclick="prevQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">← Back</button><span class="quiz-ind">Step 5 of 6</span><button class="btn-primary" onclick="nextQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">Next →</button></div>
+    </div>
+    <div class="quiz-step" data-qstep="6">
+      <div class="quiz-q">Does your board/C-suite have visibility of quantum risk?</div>
+      <div class="quiz-hint">Quantum risk requires board-level awareness and executive ownership to drive meaningful migration progress.</div>
+      <div class="quiz-opts">
+      <button class="quiz-opt" onclick="selectQuizOpt(this,0)">No quantum awareness at board level</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,1)">Informal awareness — no formal agenda item</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,2)">Quantum risk on board risk register</button>
+      <button class="quiz-opt" onclick="selectQuizOpt(this,3)">Active board-level quantum programme sponsorship</button>
+      </div>
+      <div class="quiz-nav"><button class="btn-ghost" onclick="prevQuizStep()" style="padding:.6rem 1.2rem;font-size:.82rem;">← Back</button><span class="quiz-ind">Step 6 of 6</span><button class="btn-primary" onclick="showQuizResult()" style="padding:.6rem 1.2rem;font-size:.82rem;">See My Score →</button></div>
+    </div>
+
+      <!-- Result -->
+      <div class="quiz-step" data-qstep="result">
+        <div class="quiz-result">
+          <div class="quiz-ring">
+            <svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="56" fill="none" stroke="var(--border)" stroke-width="8"/><circle id="qr-arc" cx="65" cy="65" r="56" fill="none" stroke="var(--blue)" stroke-width="8" stroke-linecap="round" stroke-dasharray="352" stroke-dashoffset="352" style="transition:stroke-dashoffset 1.5s ease"/></svg>
+            <div class="quiz-pct" id="qr-pct">0%</div>
+          </div>
+          <h3 id="qr-title" style="font-family:var(--ff-sans);font-size:1.3rem;font-weight:700;margin-bottom:.5rem;">Your Quantum Readiness Score</h3>
+          <p style="color:var(--muted);margin-bottom:1rem;font-size:.87rem;">Based on your responses, here's your personalised action plan:</p>
+          <div class="quiz-recs" id="qr-recs"></div>
+          <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
+            <a href="../company/contact.html" class="btn-primary" style="padding:.6rem 1.2rem;font-size:.87rem;">Get a Full Assessment →</a>
+            <button class="btn-ghost" onclick="resetQuiz()" style="padding:.6rem 1.2rem;font-size:.87rem;">Retake Quiz</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="qiq-footer"></footer>
+<script src="../assets/js/main.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.injectContentPhotos(); });</script>
+<div id="cookie-consent">
+  <p>We use cookies to improve your experience and analyse site usage. <a href="../legal/privacy-policy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn-accept" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+<div id="qiq-search-overlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input id="qiq-search-input" type="text" placeholder="Search services, industries, insights..." oninput="doSearch(this.value)">
+  <div id="qiq-search-results"></div>
+</div>
+<button id="qiq-chat-btn" onclick="toggleChat()" title="Ask QantumIQ AI">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="qiq-chatbot">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">Q</div>
+      <div><div class="chat-name">QantumIQ Assistant</div><div class="chat-status">Online</div></div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm the QantumIQ AI assistant. Ask me about our services, quantum readiness, AI strategy, or how we can help your organization.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about quantum, AI, or our services..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+    <button onclick="sendChatMsg()">Send</button>
+  </div>
+</div>
+</body>
+</html>

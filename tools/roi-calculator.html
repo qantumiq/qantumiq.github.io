@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI ROI Calculator — QantumIQ</title>
+<meta name="description" content="Estimate the ROI of an AI transformation programme with QantumIQ's free calculator. Projected cost savings, revenue uplift, and payback period."/>
+<meta property="og:title" content="AI ROI Calculator — QantumIQ">
+<meta property="og:description" content="Free AI ROI calculator. Estimate 3-year cost savings, revenue uplift, and payback period.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/main.css"/>
+<link rel="preload" href="../assets/css/main.css" as="style">
+</head><body>
+<div id="scroll-progress"></div>
+<canvas id="qiq-canvas"></canvas>
+
+<section class="page-hero" style="background:linear-gradient(135deg,var(--navy3) 0%,var(--navy2) 100%);">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow" style="color:var(--gold-lt);">ROI Calculator</div>
+    <h1 class="section-title" style="color:#fff;font-size:2.8rem;">Estimate your <span class="it">AI transformation ROI</span></h1>
+    <p style="color:rgba(210,225,255,.75);font-size:1.05rem;max-width:600px;line-height:1.7;">Adjust the inputs to see the projected value of an AI transformation programme tailored to your organization.</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="roi-wrap reveal">
+      <div class="roi-panel">
+        <h3 style="font-family:var(--ff-sans);font-size:1.1rem;font-weight:700;margin-bottom:1.3rem;">Your Organisation</h3>
+        <div class="roi-field">
+          <label>Annual Revenue</label>
+          <input type="range" id="roi-rev" min="10" max="10000" value="500" oninput="calcROI()">
+          <div class="roi-field-val" id="roi-rev-v">$500M</div>
+        </div>
+        <div class="roi-field">
+          <label>Number of Employees</label>
+          <input type="range" id="roi-emp" min="100" max="100000" value="5000" oninput="calcROI()">
+          <div class="roi-field-val" id="roi-emp-v">5,000</div>
+        </div>
+        <div class="roi-field">
+          <label>Current AI Maturity (1–5)</label>
+          <input type="range" id="roi-mat" min="1" max="5" value="2" step="1" oninput="calcROI()">
+          <div class="roi-field-val" id="roi-mat-v">Level 2 — Experimenting</div>
+        </div>
+        <div class="roi-field">
+          <label>Industry</label>
+          <select id="roi-ind" onchange="calcROI()" class="form-select">
+            <option value="1.4">Financial Services</option>
+            <option value="1.2" selected>Technology</option>
+            <option value="1.35">Healthcare / Pharma</option>
+            <option value="1.15">Manufacturing / Energy</option>
+            <option value="1.1">Retail / Consumer</option>
+            <option value="1.0">Government / Public</option>
+          </select>
+        </div>
+      </div>
+      <div class="roi-panel">
+        <div class="roi-label">Projected 3-Year ROI</div>
+        <div class="roi-big" id="roi-total">$0</div>
+        <div class="roi-grid">
+          <div class="roi-mini"><div class="roi-mini-num" id="roi-cost">$0</div><div class="roi-mini-label">Cost Savings</div></div>
+          <div class="roi-mini"><div class="roi-mini-num" id="roi-revenue">$0</div><div class="roi-mini-label">Revenue Uplift</div></div>
+          <div class="roi-mini"><div class="roi-mini-num" id="roi-eff">0%</div><div class="roi-mini-label">Efficiency Gain</div></div>
+          <div class="roi-mini"><div class="roi-mini-num" id="roi-payback">0mo</div><div class="roi-mini-label">Payback Period</div></div>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted);margin-top:1.2rem;line-height:1.5;">* Projections are based on industry benchmarks and QantumIQ engagement data across 500+ client transformations. Actual results vary by organization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-pad" style="background:var(--bg2);text-align:center;border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Ready to realize this ROI?</div>
+      <h2 class="section-title" style="font-size:2rem;">Let's build your <span class="it">business case</span></h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 2rem;">Our consultants can build a detailed, defensible business case for your AI transformation — tailored to your organization's specific context.</p>
+      <a href="../company/contact.html" class="btn-primary">Schedule a Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="qiq-footer"></footer>
+<script src="../assets/js/main.js"></script>
+<script>document.addEventListener('DOMContentLoaded',function(){ QIQ.injectContentPhotos(); calcROI(); });</script>
+<div id="cookie-consent">
+  <p>We use cookies to improve your experience and analyse site usage. <a href="../legal/privacy-policy.html">Privacy Policy</a></p>
+  <div class="cookie-btns">
+    <button class="btn-decline" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn-accept" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+<div id="qiq-search-overlay">
+  <button class="search-close" onclick="toggleSearch()">✕</button>
+  <input id="qiq-search-input" type="text" placeholder="Search services, industries, insights..." oninput="doSearch(this.value)">
+  <div id="qiq-search-results"></div>
+</div>
+<button id="qiq-chat-btn" onclick="toggleChat()" title="Ask QantumIQ AI">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="qiq-chatbot">
+  <div class="chat-header">
+    <div class="chat-header-left">
+      <div class="chat-avatar">Q</div>
+      <div><div class="chat-name">QantumIQ Assistant</div><div class="chat-status">Online</div></div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! I'm the QantumIQ AI assistant. Ask me about our services, quantum readiness, AI strategy, or how we can help your organization.</div>
+  </div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ask about quantum, AI, or our services..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+    <button onclick="sendChatMsg()">Send</button>
+  </div>
+</div>
+</body>
+</html>
