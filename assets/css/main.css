@@ -1029,8 +1029,8 @@ blockquote p{
   border-top:1px solid rgba(255,255,255,.07);
 }
 .footer-inner{
-  max-width:1280px;margin:0 auto;padding:5.5rem 5vw 2.5rem;
-  display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1.5fr;gap:3.5rem;
+  max-width:1280px;margin:0 auto;padding:4rem 5vw 2rem;
+  display:grid;grid-template-columns:2fr 1fr 1.1fr 1fr 1.3fr;gap:2.5rem;
 }
 .footer-logo{
   font-family:var(--ff-sans);font-weight:700;font-size:1.12rem;
@@ -1051,15 +1051,15 @@ blockquote p{
 .footer-col h4{
   font-family:var(--ff-sans);font-size:.68rem;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.96);margin-bottom:1.15rem;
+  color:rgba(255,255,255,.96);margin-bottom:.85rem;
 }
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.62rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;padding:0;margin:0}
 .footer-col ul li a{
-  font-size:.82rem;color:rgba(190,210,255,.68);text-decoration:none;
-  transition:color .15s;font-weight:400;
+  font-size:.8rem;color:rgba(190,210,255,.68);text-decoration:none;
+  transition:color .15s;font-weight:400;white-space:nowrap;
 }
 .footer-col ul li a:hover{color:rgba(190,210,255,.9)}
-.footer-contact p{font-size:.82rem;color:rgba(190,210,255,.68);line-height:1.72}
+.footer-contact p{font-size:.8rem;color:rgba(190,210,255,.68);line-height:1.6}
 .footer-contact a{color:rgba(120,175,255,.75);text-decoration:none;transition:color .15s}
 .footer-contact a:hover{color:rgba(120,175,255,.98)}
 .footer-bottom{
@@ -1125,7 +1125,7 @@ blockquote p{
   position:fixed;bottom:0;left:0;right:0;
   background:var(--bg2);border-top:1px solid var(--border);
   padding:14px 5%;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  z-index:8900;transform:translateY(100%);transition:transform .4s ease;
+  z-index:8500;transform:translateY(100%);transition:transform .4s ease;
   box-shadow:0 -4px 20px rgba(0,0,0,.1);
 }
 #cookie-consent.show{transform:translateY(0)}
@@ -1142,7 +1142,7 @@ blockquote p{
    AI CHATBOT WIDGET
 ═══════════════════════════════════════════════════════════ */
 #qiq-chat-btn{
-  position:fixed;bottom:24px;right:24px;width:50px;height:50px;
+  position:fixed;bottom:80px;right:24px;width:50px;height:50px;
   background:var(--blue);color:#fff;border:none;border-radius:50%;
   display:flex;align-items:center;justify-content:center;cursor:pointer;
   box-shadow:var(--shadow-md);z-index:8800;transition:all .25s;
@@ -1150,9 +1150,9 @@ blockquote p{
 #qiq-chat-btn:hover{transform:scale(1.08);box-shadow:var(--shadow-lg)}
 #qiq-chat-btn svg{width:22px;height:22px}
 #qiq-chatbot{
-  position:fixed;bottom:86px;right:24px;width:360px;max-height:480px;
+  position:fixed;bottom:142px;right:24px;width:360px;max-height:480px;
   background:var(--bg);border:1px solid var(--border);
-  box-shadow:var(--shadow-lg);z-index:8801;
+  box-shadow:var(--shadow-lg);z-index:8800;
   display:none;flex-direction:column;overflow:hidden;
 }
 #qiq-chatbot.open{display:flex}
@@ -1251,28 +1251,6 @@ blockquote p{
 }
 .testimonial-info .t-name{font-family:var(--ff-sans);font-weight:700;font-size:.8rem}
 .testimonial-info .t-role{font-size:.72rem;color:var(--muted)}
-
-/* ═══════════════════════════════════════════════════════════
-   BRAND PARTNER MARQUEE
-═══════════════════════════════════════════════════════════ */
-.brand-marquee{overflow:hidden;position:relative;padding:1rem 0}
-.brand-marquee::before,.brand-marquee::after{
-  content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;
-}
-.brand-marquee::before{left:0;background:linear-gradient(to right,var(--bg2),transparent)}
-.brand-marquee::after{right:0;background:linear-gradient(to left,var(--bg2),transparent)}
-.brand-track{display:flex;animation:brand-scroll 50s linear infinite;width:max-content;gap:12px}
-.brand-track:hover{animation-play-state:paused}
-.brand-track.reverse{animation-direction:reverse}
-@keyframes brand-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.brand-card{
-  display:flex;align-items:center;gap:10px;
-  padding:10px 20px;border:1px solid var(--border);background:var(--bg);
-  white-space:nowrap;transition:border-color .2s;flex-shrink:0;
-}
-.brand-card:hover{border-color:var(--blue-lt)}
-.brand-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.brand-name{font-family:var(--ff-sans);font-size:.78rem;font-weight:600;color:var(--text)}
 
 /* ═══════════════════════════════════════════════════════════
    NEWSLETTER SIGNUP

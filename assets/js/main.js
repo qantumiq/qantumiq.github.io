@@ -330,29 +330,24 @@ function buildFooter(){
       <li><a href="${r}company/partners-clients.html">Partners &amp; Clients</a></li>
       <li><a href="${r}insights/blog.html">Insights</a></li>
       <li><a href="${r}company/careers.html">Careers</a></li>
-    </ul>
-    <div style="margin-top:1rem;">
-      <div style="font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;">Newsletter</div>
-      <form class="newsletter-form" onsubmit="nlSubmit(event)">
-        <input type="email" placeholder="Your email" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="nl-success">Thank you for subscribing!</div>
-    </div>
-  </div>
-  <div class="footer-col">
-    <h4>Quick Links</h4>
-    <ul>
       <li><a href="${r}company/contact.html">Contact</a></li>
       <li><a href="${r}legal/privacy-policy.html">Privacy Policy</a></li>
     </ul>
   </div>
   <div class="footer-col footer-contact">
     <h4>Contact Us</h4>
-    <p>📍 5000 Thayer Center STE C<br>Oakland, MD 21550, USA</p>
-    <p style="margin-top:.8rem;">📞 <a href="tel:+13013347686">+1 (301) 334-QNTM</a></p>
-    <p style="margin-top:.8rem;">✉️ <a href="mailto:info@qantumiq.com">info@qantumiq.com</a></p>
-    <p style="margin-top:.8rem;">💼 <a href="mailto:consulting@qantumiq.com">consulting@qantumiq.com</a></p>
+    <p>5000 Thayer Center STE C<br>Oakland, MD 21550, USA</p>
+    <p style="margin-top:.6rem;"><a href="tel:+13013347686">+1 (301) 334-QNTM</a></p>
+    <p style="margin-top:.6rem;"><a href="mailto:info@qantumiq.com">info@qantumiq.com</a></p>
+    <p style="margin-top:.6rem;"><a href="mailto:consulting@qantumiq.com">consulting@qantumiq.com</a></p>
+    <div style="margin-top:1.2rem;">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:.5rem;">Newsletter</div>
+      <form class="newsletter-form" onsubmit="nlSubmit(event)">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="nl-success">Thank you for subscribing!</div>
+    </div>
   </div>
 </div>
 <div class="footer-bottom">
@@ -1161,10 +1156,19 @@ function buildBrandMarquee(id, data){
   if(!el)return;
   var double=data.concat(data);
   el.innerHTML=double.map(function(p){
-    return '<div class="brand-card"><span class="brand-dot" style="background:'+p.color+'"></span><span class="brand-name">'+p.name+'</span></div>';
+    return '<span class="marquee-chip"><img src="https://www.google.com/s2/favicons?domain='+p.domain+'&sz=64" alt="'+p.name+'" class="chip-logo" onerror="this.style.display=\'none\'">'+p.name+'</span>';
   }).join('');
 }
 
 window.QIQ={loadNewsFeed,injectContentPhotos,getDailyImage,buildBrandMarquee};
+
+// Expose interactive functions globally so HTML onclick handlers can call them
+window.dismissCookie=dismissCookie;
+window.toggleSearch=toggleSearch;
+window.doSearch=doSearch;
+window.toggleChat=toggleChat;
+window.sendChatMsg=sendChatMsg;
+window.nlSubmit=nlSubmit;
+window.buildBrandMarquee=buildBrandMarquee;
 
 })();
